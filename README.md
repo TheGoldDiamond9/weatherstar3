@@ -1,6 +1,8 @@
 # Weatherscan Star 3000 Emulator
 Weather Star 3000 emulation in HTML/JS/CSS
 
+### This is in Beta
+
 ## Installation Instructions:
 
 ## NOTE: AUTOMATIC LOCATION FINDING DOES NOT WORK
