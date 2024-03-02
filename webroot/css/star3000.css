@@ -1,0 +1,799 @@
+@font-face {
+    font-family: 'mainfont';
+    src: url(/fonts/Star3000.woff) format("woff");
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'smallfont';
+    src: url(/fonts/Star3000Small.woff) format("woff");
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'largefont';
+    src: url(/fonts/Star3000Large.woff) format("woff");
+    font-weight: 700;
+    font-style: normal;
+}
+#main {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    overflow: hidden;
+    transform: translate(-50%, -50%);
+    width: 1440px;
+    height: 1080px;
+    will-change: transform;
+}
+#main>#template {
+    display: block;
+    max-height: 100%;
+    max-width: 100%
+  }
+html * {
+    box-sizing: border-box;
+    font-size: 100%
+}
+  body, html {
+    color: #FFF;
+    height: 100%;
+    background-color: #000;
+    font-size: 100%
+}
+#startup-screen {
+    position:absolute;
+    margin-left: 10%;
+    margin-top: 12.3%;
+    width: 1140px;
+    height: 660px;
+}
+#startup-text {
+    font-family: 'mainfont';
+    font-size: 65.1px;
+    text-shadow:
+    2.5px 2.5px 0 #000,
+    -2.5px 2.5px 0 #000,
+    -2.5px -2.5px 0 #000,
+    2.5px -2.5px 0 #000;
+    text-align: center;
+    white-space: pre-wrap;
+}
+.header {
+    text-shadow:
+    2.5px 2.5px 0 #000,
+    -2.5px 2.5px 0 #000,
+    -2.5px -2.5px 0 #000,
+    2.5px -2.5px 0 #000;
+}
+#template {
+    position: absolute;
+    display: block;
+    max-height: 100%;
+    max-width: 100%
+}
+#title-container {
+    position:absolute;
+    margin-top: 6%;
+    margin-left: 10%;
+    width: 1140px;
+    height: 90px;
+}
+#slide-title-text {
+    position:absolute;
+    font-family: 'mainfont';
+    font-size: 65.1px;
+    width: 1140px;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+}
+#bulletin-background {
+    position: absolute;
+    width: 100%;
+    height: 850px;
+    background-color: #330912;
+    z-index: 25000;
+}
+#bulletin-container {
+    position:absolute;
+    overflow: hidden;
+    margin-left: 10%;
+    margin-top: 6%;
+    width: 1140px;
+    height: 755px;
+    z-index: 25001
+}
+#bulletin-container #bulletin {
+    font-family: 'mainfont';
+    overflow: hidden;
+    font-size: 65.1px;
+    width: 100%;
+    height: 755px;
+    line-height: 89px;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+    white-space: pre-wrap;
+}
+#travel-background {
+    position: absolute;
+    width: 100%;
+    height: 850px;
+    background-color: #4E4E50;
+    z-index: 15000;
+}
+#travel-container {
+    position:absolute;
+    font-family: 'mainfont';
+    overflow: hidden;
+    margin-left: 10%;
+    margin-top: 6%;
+    width: 1140px;
+    height: 755px;
+    z-index: 15001;
+}
+#travel-container #travel-title-container {
+    position:absolute;
+    text-align: center;
+    width: 1140px;
+    height: 755px;
+    font-size: 89px;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+}
+#travel-container #travel-content {
+    position: absolute;
+    margin-top: 303px;
+    font-family: 'largefont';
+    font-size: 65px;
+    width: 1140px;
+    height: 750px;
+    line-height: 135px;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+}
+#travel-container #travel-content .cities {
+    position: absolute;
+    width: 510px;
+    height: 755px;
+}
+#travel-container #travel-content .weathers {
+    position: absolute;
+    margin-left: 530px;
+    width: 365px;
+    height: 1000%;
+}
+#travel-container #travel-content .his {
+    position: absolute;
+    margin-left: 855px;
+    text-align: right;
+    width: 130px;
+    height: 755px;
+}
+#travel-container #travel-content .lows {
+    position: absolute;
+    text-align: right;
+    width: 1140px;
+    height: 755px;
+}
+#info-slides-container {
+    position:absolute;
+    margin-left: 10%;
+    margin-top: 12.3%;
+    width: 1140px;
+    height: 660px;
+}
+.info-cc {
+    position: absolute;
+    font-family: 'mainfont';
+    font-size: 65.1px;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+    width: 1140px;
+    height: 660px;
+}
+.info-cc .current-condition {
+    position: absolute;
+}
+.info-cc .current-temperature {
+    position: absolute;
+    white-space: pre-wrap;
+    margin-top: 90px;
+}
+.info-cc .current-windchill {
+    position: absolute;
+    margin-top: 90px;
+    width: 1100px;
+    text-align: right;
+}
+.info-cc .current-humidity {
+    position: absolute;
+    white-space: pre-wrap;
+    margin-top: 180px;
+}
+.info-cc .current-dewpoint {
+    position: absolute;
+    margin-top: 180px;
+    width: 1140px;
+    text-align: right;
+}
+.info-cc .current-pressure {
+    position: absolute;
+    margin-top: 270px;
+}
+.info-cc .current-wind {
+    position: absolute;
+    white-space: pre-wrap;
+    margin-top: 360px;
+}
+.info-cc .current-visibility1 {
+    position: absolute;
+    white-space: pre-wrap;
+    margin-top: 450px;
+}
+.info-cc .current-visibility2 {
+    position: absolute;
+    white-space: pre-wrap;
+    text-align: right;
+    width: 44%;
+    margin-top: 450px;
+}
+.info-cc .current-ceiling {
+    position: absolute;
+    margin-top: 450px;
+    width: 1140px;
+    text-align: right;
+}
+.hourly-observations {
+    position: absolute;
+    width: 1140px;
+    height: 660px;
+    font-size: 65.1px;
+}
+.hourly-observations .header-1 {
+    position:absolute;
+    font-family: 'smallfont';
+    text-align: left;
+    font-size: 65.1px;
+    line-height: 52px;
+    text-shadow:
+    2.5px 2.5px 0 #000,
+    -2.5px 2.5px 0 #000,
+    -2.5px -2.5px 0 #000,
+    2.5px -2.5px 0 #000;
+}
+.hourly-observations .header-2 {
+    position:absolute;
+    font-family: 'smallfont';
+    text-align: center;
+    font-size: 65.1px;
+    line-height: 52px;
+    width: 1140px;
+    text-shadow:
+    2.5px 2.5px 0 #000,
+    -2.5px 2.5px 0 #000,
+    -2.5px -2.5px 0 #000,
+    2.5px -2.5px 0 #000;
+}
+.hourly-observations .header-3 {
+    position:absolute;
+    font-family: 'smallfont';
+    text-align: center;
+    font-size: 65.1px;
+    line-height: 52px;
+    width: 1140px;
+    padding-left: 380px;
+    text-shadow:
+    2.5px 2.5px 0 #000,
+    -2.5px 2.5px 0 #000,
+    -2.5px -2.5px 0 #000,
+    2.5px -2.5px 0 #000;
+}
+.hourly-observations .header-4 {
+    position:absolute;
+    font-family: 'smallfont';
+    text-align: right;
+    font-size: 65.1px;
+    line-height: 52px;
+    width: 1140px;
+    text-shadow:
+    2.5px 2.5px 0 #000,
+    -2.5px 2.5px 0 #000,
+    -2.5px -2.5px 0 #000,
+    2.5px -2.5px 0 #000;
+}
+.hourly-observations .cities{
+    position: absolute;
+    font-family: 'mainfont';
+    width: 1140px;
+    text-align: left;
+    margin-top: 44px;
+    line-height: 89px;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+}
+.hourly-observations .temps{
+    position: absolute;
+    font-family: 'mainfont';
+    width: 604px;
+    text-align: right;
+    margin-top: 44px;
+    line-height: 89px;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+}
+.hourly-observations .weathers{
+    position: absolute;
+    font-family: 'mainfont';
+    margin-left: 630px;
+    width: 600px;
+    text-align: left;
+    margin-top: 44px;
+    line-height: 89px;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+}
+.hourly-observations .winds{
+    position: absolute;
+    font-family: 'mainfont';
+    margin-top: 44px;
+    line-height: 89px;
+    width: 1140px;
+    text-align: right;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+}
+.daypart-forecast {
+    position: absolute;
+    width: 1140px;
+    height: 635px;
+    font-size: 65.1px;
+    overflow: hidden;
+}
+.daypart-forecast .forecast-1-bulletin .border1 {
+    position: absolute;
+    line-height: 89px;
+    width: 10px;
+    font-family: 'mainfont';
+    font-size: 65.1px;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+}
+.daypart-forecast .forecast-1-bulletin .border2 {
+    position: absolute;
+    line-height: 89px;
+    margin-left: 1090px;
+    width: 10px;
+    font-family: 'mainfont';
+    font-size: 65.1px;
+    text-align: right;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+}
+.daypart-forecast .forecast-1-bulletin .daypartalert {
+    position: relative;
+    white-space: pre-wrap;
+    line-height: 89px;
+    margin-left: 40px;
+    width: 1060px;
+    font-family: 'mainfont';
+    font-size: 65.1px;
+    text-align: center;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+}
+.daypart-forecast .forecast-1-bulletin .forecast1 {
+    position: relative;
+    line-height: 89px;
+    white-space: pre-wrap;
+    width: 1140px;
+    font-family: 'mainfont';
+    font-size: 65.1px;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+}
+.daypart-forecast .forecast-1 {
+    position: absolute;
+    width: 1140px;
+    height: 635px;
+    font-size: 65.1px;
+    font-family: 'mainfont';
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+    line-height: 89px;
+    overflow: hidden;
+}
+.extended-forecast {
+    position: absolute;
+    width: 1140px;
+    height: 635px;
+    font-size: 65.1px;
+    overflow: hidden;
+}
+.extended-forecast .forecast-1 {
+    position: absolute;
+    width: 1140px;
+    height: 635px;
+    font-size: 65.1px;
+    font-family: 'mainfont';
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+    line-height: 89px;
+    overflow: hidden;
+}
+.almanac {
+    position: absolute;
+    width: 1140px;
+    height: 660px;
+    font-size: 65.1px;
+    font-family: 'mainfont';
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+    line-height: 89px;
+    margin-top: 40px;
+}
+.almanac .header {
+    position:absolute;
+    width: 1140px;
+    height: 100px;
+}
+.almanac .header .header-1 {
+    position:absolute;
+    width: 745px;
+    text-align: right;
+}
+.almanac .header .header-2 {
+    position:absolute;
+    width: 1140px;
+    text-align: right;
+}
+.almanac .sideheader {
+    position: absolute;
+    margin-top: 90px;
+    width: 430px;
+}
+.almanac .day-1-info {
+    position:absolute;
+    margin-top: 90px;
+    width: 745px;
+    text-align: right;
+}
+.almanac .day-2-info {
+    position:absolute;
+    margin-top: 90px;
+    width: 1140px;
+    text-align: right;
+}
+.regional-forecast {
+    position: absolute;
+    width: 1140px;
+    height: 660px;
+    font-size: 65.1px;
+}
+.regional-forecast .header-1 {
+    position:absolute;
+    font-family: 'smallfont';
+    text-align: left;
+    font-size: 65.1px;
+    line-height: 52px;
+    text-shadow:
+    2.5px 2.5px 0 #000,
+    -2.5px 2.5px 0 #000,
+    -2.5px -2.5px 0 #000,
+    2.5px -2.5px 0 #000;
+}
+.regional-forecast .header-2 {
+    position:absolute;
+    font-family: 'smallfont';
+    text-align: center;
+    font-size: 65.1px;
+    line-height: 52px;
+    width: 1140px;
+    padding-left: 160px;
+    text-shadow:
+    2.5px 2.5px 0 #000,
+    -2.5px 2.5px 0 #000,
+    -2.5px -2.5px 0 #000,
+    2.5px -2.5px 0 #000;
+}
+.regional-forecast .header-3 {
+    position:absolute;
+    font-family: 'smallfont';
+    text-align: center;
+    font-size: 65.1px;
+    line-height: 52px;
+    width: 1140px;
+    padding-left: 730px;
+    text-shadow:
+    2.5px 2.5px 0 #000,
+    -2.5px 2.5px 0 #000,
+    -2.5px -2.5px 0 #000,
+    2.5px -2.5px 0 #000;
+}
+.regional-forecast .header-4 {
+    position:absolute;
+    font-family: 'smallfont';
+    text-align: right;
+    font-size: 65.1px;
+    line-height: 52px;
+    width: 1140px;
+    text-shadow:
+    2.5px 2.5px 0 #000,
+    -2.5px 2.5px 0 #000,
+    -2.5px -2.5px 0 #000,
+    2.5px -2.5px 0 #000;
+}
+.regional-forecast .cities{
+    position: absolute;
+    font-family: 'mainfont';
+    width: 1140px;
+    text-align: left;
+    margin-top: 44px;
+    line-height: 89px;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+}
+.regional-forecast .weathers{
+    position: absolute;
+    font-family: 'mainfont';
+    width: 820px;
+    text-align: left;
+    margin-top: 44px;
+    margin-left: 530px;
+    line-height: 89px;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+}
+.regional-forecast .lows{
+    position: absolute;
+    font-family: 'mainfont';
+    width: 990px;
+    text-align: right;
+    margin-top: 44px;
+    line-height: 89px;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+}
+.regional-forecast .highs{
+    position: absolute;
+    font-family: 'mainfont';
+    margin-top: 44px;
+    line-height: 89px;
+    width: 1140px;
+    text-align: right;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+}
+.regional-conditions {
+    position: absolute;
+    width: 1140px;
+    height: 660px;
+    font-size: 65.1px;
+}
+.regional-conditions .header-1 {
+    position:absolute;
+    font-family: 'smallfont';
+    text-align: left;
+    font-size: 65.1px;
+    line-height: 52px;
+    text-shadow:
+    2.5px 2.5px 0 #000,
+    -2.5px 2.5px 0 #000,
+    -2.5px -2.5px 0 #000,
+    2.5px -2.5px 0 #000;
+}
+.regional-conditions .header-2 {
+    position:absolute;
+    font-family: 'smallfont';
+    text-align: left;
+    font-size: 65.1px;
+    line-height: 52px;
+    width: 1140px;
+    padding-left: 710px;
+    text-shadow:
+    2.5px 2.5px 0 #000,
+    -2.5px 2.5px 0 #000,
+    -2.5px -2.5px 0 #000,
+    2.5px -2.5px 0 #000;
+}
+.regional-conditions .header-3 {
+    position:absolute;
+    font-family: 'smallfont';
+    text-align: right;
+    font-size: 65.1px;
+    line-height: 52px;
+    width: 1140px;
+    padding-left: 730px;
+    text-shadow:
+    2.5px 2.5px 0 #000,
+    -2.5px 2.5px 0 #000,
+    -2.5px -2.5px 0 #000,
+    2.5px -2.5px 0 #000;
+}
+.regional-conditions .cities{
+    position: absolute;
+    font-family: 'mainfont';
+    width: 1140px;
+    text-align: left;
+    margin-top: 44px;
+    line-height: 89px;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+}
+.regional-conditions .weathers{
+    position: absolute;
+    font-family: 'mainfont';
+    width: 820px;
+    text-align: left;
+    margin-top: 44px;
+    margin-left: 710px;
+    line-height: 89px;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+}
+.regional-conditions .temps{
+    position: absolute;
+    font-family: 'mainfont';
+    margin-top: 44px;
+    line-height: 89px;
+    width: 1140px;
+    text-align: right;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+}
+#lowerline {
+    position: absolute;
+    height: 10px;
+    width: 100%;
+    background-color: #FFF;
+    margin-top: 58.40%;
+    z-index: 30000;
+}
+#lowerbar {
+    width: 1140px;
+    height: 250px;
+    margin-left: 10%;
+    margin-top: 850.953px;
+}
+#date-time * {
+    position:relative;
+    font-family: 'smallfont';
+    font-size: 28px;
+    line-height: 40px;
+    font-size: 65.1px;
+    width: 1140px;
+    text-shadow:
+    2.5px 2.5px 0 #000,
+    -2.5px 2.5px 0 #000,
+    -2.5px -2.5px 0 #000,
+    2.5px -2.5px 0 #000;
+}
+#date {
+    position: absolute;
+    white-space: pre-wrap;
+}
+#time {
+    position: absolute;
+    text-align: right;
+}
+#lowerinfotext {
+    position: absolute;
+    font-family: 'mainfont';
+    text-align: left;
+    white-space: pre-wrap;
+    font-size: 65.1px;
+    margin-top: 40px;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+}
+#marqueeholder {
+    position: absolute;
+    overflow: hidden;
+    white-space:nowrap;
+    width: 70%;
+    height: 100%;
+    margin-left:5%;
+    font-family: 'mainfont';
+    font-size: 65.1px;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+}
+#marqueetext {
+    white-space: pre-wrap;
+    font-family: 'mainfont';
+    font-size: 65.1px;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+}
+.in-progress {
+    position: absolute;
+    width: 1140px;
+    height: 660px;
+    font-size: 65.1px;
+}
+.in-progress .text {
+    font-family: 'mainfont';
+    text-align: center;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+}
