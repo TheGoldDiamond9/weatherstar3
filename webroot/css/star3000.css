@@ -103,15 +103,15 @@ html * {
     margin-left: 10%;
     margin-top: 6%;
     width: 1140px;
-    height: 755px;
-    z-index: 25001
+    height: 765px;
+    z-index: 25005
 }
 #bulletin-container #bulletin {
     font-family: 'mainfont';
     overflow: hidden;
     font-size: 65.1px;
     width: 100%;
-    height: 755px;
+    height: 765px;
     line-height: 89px;
     text-shadow:
     3px 3px 0 #000,
@@ -119,6 +119,7 @@ html * {
     -3px -3px 0 #000,
     3px -3px 0 #000;
     white-space: pre-wrap;
+    z-index: 25006
 }
 #travel-background {
     position: absolute;
@@ -511,6 +512,17 @@ html * {
     width: 1140px;
     text-align: right;
 }
+.almanac .normal-precip {
+    position: absolute;
+    width: 100%;
+    margin-top: 495px;
+}
+.almanac .normal-precip-info {
+    position: absolute;
+    width: 100%;
+    margin-top: 495px;
+    text-align: right;
+}
 .regional-forecast {
     position: absolute;
     width: 1140px;
@@ -715,7 +727,7 @@ html * {
     width: 100%;
     background-color: #FFF;
     margin-top: 58.40%;
-    z-index: 30000;
+    z-index: 25001;
 }
 #lowerbar {
     width: 1140px;
