@@ -245,149 +245,6 @@
             });
       }
 
-      function getRegionalLocs(lat,lon, onInit, whichReset) {
-        $.getJSON('https://api.weather.com/v3/location/near?geocode=' + lat + ',' + lon + '&product=observation&format=json&apiKey=' + api_key, function(data) {
-          console.log('https://api.weather.com/v3/location/near?geocode=' + lat + ',' + lon + '&product=observation&format=json&apiKey=' + api_key);
-                var feature = data.location, geo, station, dist, ti=0;
-          var rminRadiusMiles = 100, rmaxRadiusMiles = 200;
-          rgetLocLoop(0);
-                function rgetLocLoop(i) {
-            $.getJSON("https://api.weather.com/v3/location/point?geocode="+ feature.latitude[i] + "," + feature.longitude[i] + "&language=en-US&format=json&apiKey=" + api_key, function(dataii){
-                      console.log("https://api.weather.com/v3/location/point?geocode="+ feature.latitude[i] + "," + feature.longitude[i] + "&language=en-US&format=json&apiKey=" + api_key);
-            latgeo = feature.latitude[i];
-                      longeo = feature.longitude[i];
-                      dist = feature.distanceMi[i];
-            displayname = dataii.location.displayName
-            displaystate = dataii.location.adminDistrictCode
-             if (displayname == maincitycoords.displayname || displayname == state) {
-              if ((dataii.location.locale.locale3 != maincitycoords.displayname && dataii.location.locale.locale3) || (dataii.location.locale.locale4 != maincitycoords.displayname && dataii.location.locale.locale4)) {
-                displayname = (dataii.location.locale.locale3 != maincitycoords.displayname && dataii.location.locale.locale3) ? dataii.location.locale.locale3 : dataii.location.locale.locale4
-                displaystate = dataii.location.adminDistrictCode
-              } else {
-                if (feature.latitude.length == (i + 1)) {ronExtraAjaxFinish()} else {rgetLocLoop(i + 1)}
-                return
-              }
-            }
-            for (var li = 0; li < regionalList.length; li++) {
-              if (displayname == regionalList[li].displayname) {
-                if ((dataii.location.locale.locale3 != regionalList[li].displayname && dataii.location.locale.locale3) || (dataii.location.locale.locale4 != regionalList[li].displayname && dataii.location.locale.locale4)) {
-                  displayname = (dataii.location.locale.locale3 != regionalList[li].displayname && dataii.location.locale.locale3) ? dataii.location.locale.locale3 : dataii.location.locale.locale4
-                  displaystate = dataii.location.adminDistrictCode
-                } else {
-                  if (feature.latitude.length == (i + 1)) {ronExtraAjaxFinish()} else {rgetLocLoop(i + 1)}
-                  return
-                }
-              }
-            }
-            if (i!=0) {
-              regionalList.push({lat: latgeo, lon:longeo, distance:dist, stationUrl:feature.stationId[i], name:displayname, displayname:displayname, statecode:displaystate});
-            };
-            displayname = dataii.location.displayName
-            displaystate = dataii.location.adminDistrictCode
-            if (displayname == maincitycoords.displayname || displayname == state) {
-                if (feature.latitude.length == (i + 1)) {ronExtraAjaxFinish()} else {rgetLocLoop(i + 1)}
-                return
-            }
-            for (var li = 0; li < locList.length; li++) {
-              if (displayname == locList[li].displayname) {
-                if (feature.latitude.length == (i + 1)) {ronExtraAjaxFinish()} else {rgetLocLoop(i + 1)}
-                return
-              }
-            }
-                    if (dist >= rminRadiusMiles && dist <= rmaxRadiusMiles) {
-              if (ti < 3) {
-                  locList.push({lat: latgeo, lon:longeo, distance:dist, stationUrl:feature.stationId[i], name:displayname, displayname:displayname, state:displaystate});
-              } else {
-                ti = ti - 1
-              }
-            }
-            //for the 8 city slide
-            if (i < data.location.stationName.length && (regionalList.length < 8 || locList.length < locationSettings.extraLocations.maxLocations)) {
-              ti = ti + 1
-              i = i + 1
-              rgetLocLoop(i)
-            } else {
-              ronExtraAjaxFinish()
-            };
-          }).fail(function(){
-            if (feature.latitude.length >= (i + 1) || i >= 9) {ronExtraAjaxFinish()} else {rgetLocLoop(i + 1)}
-          })
-                }
-    
-                // sort list by distance
-        function ronExtraAjaxFinish() {
-                  locList.sort(function(a, b) {
-                      return parseInt(a.distance) - parseInt(b.distance);
-                  });
-            locList.forEach((loc, i) => {
-              loc.orderNum = ((locationSettings.extraLocations.locationOrderNum[i]) ? locationSettings.extraLocations.locationOrderNum[i] : locationSettings.extraLocations.maxLocations + i)
-            });
-            regionalList.forEach((loc, i) => {
-              loc.orderNum = ((locationSettings.regionalInfoLocs.locationOrderNum[i])? locationSettings.regionalInfoLocs.locationOrderNum[i] : locationSettings.regionalInfoLocs.maxLocations + i)
-            });
-            if (locationSettings.extraLocations.useAutoLocations == false){locList = []}
-            if (locationSettings.regionalInfoLocs.useAutoLocations == false){regionalList = []}
-            function raddConfigLocsLoop(i) {
-              eloc = locationSettings.extraLocations.locs[i]
-              if (eloc.searchQuery.type) {
-                if (eloc.searchQuery.type == "geocode") {
-                  $.getJSON("https://api.weather.com/v3/location/point?geocode="+ eloc.searchQuery.val + "&language=en-US&format=json&apiKey=" + api_key, function(data) {
-                    console.log("https://api.weather.com/v3/location/point?geocode="+ eloc.searchQuery.val + "&language=en-US&format=json&apiKey=" + api_key);
-                    locList.push({lat: data.location.latitude, lon:data.location.longitude, orderNum: ((eloc.orderNum) ? eloc.orderNum : i), distance:null, stationUrl:null, name:data.location.displayName, statecode: data.location.adminDistrictCode, displayname:((eloc.displayName) ? eloc.displayName : data.location.displayName)});
-                    if (i < locationSettings.extraLocations.locs.length-1) {raddConfigLocsLoop(i + 1)} else {rsortFinishedLocList()}
-                  }).fail(function(){if (i < locationSettings.extraLocations.locs.length-1) {raddConfigLocsLoop(i + 1)} else {rsortFinishedLocList()}});
-                } else {
-                  $.getJSON("https://api.weather.com/v3/location/search?query="+eloc.searchQuery.val+"&locationType="+eloc.searchQuery.type+"&fuzzyMatch="+eloc.searchQuery.fuzzy+((eloc.searchQuery.country) ? "&countryCode="+eloc.searchQuery.country : "")+((eloc.searchQuery.state) ? "&adminDistrictCode="+eloc.searchQuery.state : "")+"&language=en-US&format=json&apiKey=" + api_key, function(data) {
-                    console.log("https://api.weather.com/v3/location/search?query="+eloc.searchQuery.val+"&locationType="+eloc.searchQuery.type+"&fuzzyMatch="+eloc.searchQuery.fuzzy+((eloc.searchQuery.country) ? "&countryCode="+eloc.searchQuery.country : "")+((eloc.searchQuery.state) ? "&adminDistrictCode="+eloc.searchQuery.state : "")+"&language=en-US&format=json&apiKey=" + api_key);
-                      cidx = ((eloc.searchQuery.searchResultNum && eloc.searchQuery.searchResultNum < data.location.placeId.length) ? eloc.searchQuery.searchResultNum : 0)
-                      locList.push({lat: data.location.latitude[cidx], lon:data.location.longitude[cidx], orderNum: ((eloc.orderNum) ? eloc.orderNum : i), distance:null, stationUrl:null, name:data.location.displayName[cidx], statecode: data.location.adminDistrictCode[cidx], displayname:((eloc.displayName) ? eloc.displayName : data.location.displayName[cidx])});
-                      if (i < locationSettings.extraLocations.locs.length-1) {raddConfigLocsLoop(i + 1)} else {rsortFinishedLocList()}
-                  }).fail(function(){if (i < locationSettings.extraLocations.locs.length-1) {raddConfigLocsLoop(i + 1)} else {rsortFinishedLocList()}});
-                }
-              } else {if (i < locationSettings.extraLocations.locs.length-1) {raddConfigLocsLoop(i + 1)} else {rsortFinishedLocList()}}
-            }
-            raddConfigLocsLoop(0)
-            function raddConfigAroundLocsLoop(i) {
-              eloc = locationSettings.regionalInfoLocs.locs[i]
-              if (eloc.searchQuery.type) {
-                if (eloc.searchQuery.type == "geocode") {
-                  $.getJSON("https://api.weather.com/v3/location/point?geocode="+ eloc.searchQuery.val + "&language=en-US&format=json&apiKey=" + api_key, function(data) {
-                    console.log("https://api.weather.com/v3/location/point?geocode="+ eloc.searchQuery.val + "&language=en-US&format=json&apiKey=" + api_key);
-                    regionalList.push({lat: data.location.latitude, lon:data.location.longitude, orderNum: ((eloc.orderNum) ? eloc.orderNum : i), distance:null, stationUrl:null, name:data.location.displayName, statecode: data.location.adminDistrictCode, displayname:((eloc.displayName) ? eloc.displayName : data.location.displayName)});
-                    if (i < locationSettings.regionalInfoLocs.locs.length-1) {raddConfigAroundLocsLoop(i + 1)} else {sortFinishedAroundLocList()}
-                  }).fail(function(){if (i < locationSettings.regionalInfoLocs.locs.length-1) {raddConfigAroundLocsLoop(i + 1)} else {sortFinishedAroundLocList()}});
-                } else {
-                  $.getJSON("https://api.weather.com/v3/location/search?query="+eloc.searchQuery.val+"&locationType="+eloc.searchQuery.type+"&fuzzyMatch="+eloc.searchQuery.fuzzy+((eloc.searchQuery.country) ? "&countryCode="+eloc.searchQuery.country : "")+((eloc.searchQuery.state) ? "&adminDistrictCode="+eloc.searchQuery.state : "")+"&language=en-US&format=json&apiKey=" + api_key, function(data) {
-                    console.log("https://api.weather.com/v3/location/search?query="+eloc.searchQuery.val+"&locationType="+eloc.searchQuery.type+"&fuzzyMatch="+eloc.searchQuery.fuzzy+((eloc.searchQuery.country) ? "&countryCode="+eloc.searchQuery.country : "")+((eloc.searchQuery.state) ? "&adminDistrictCode="+eloc.searchQuery.state : "")+"&language=en-US&format=json&apiKey=" + api_key);
-                      cidx = ((eloc.searchQuery.searchResultNum && eloc.searchQuery.searchResultNum < data.location.placeId.length) ? eloc.searchQuery.searchResultNum : 0)
-                      regionalList.push({lat: data.location.latitude[cidx], lon:data.location.longitude[cidx], orderNum: ((eloc.orderNum) ? eloc.orderNum : i), distance:null, stationUrl:null, name:data.location.displayName[cidx], statecode: data.location.adminDistrictCode[cidx], displayname:((eloc.displayName) ? eloc.displayName : data.location.displayName[cidx])});
-                      if (i < locationSettings.regionalInfoLocs.locs.length-1) {raddConfigAroundLocsLoop(i + 1)} else {sortFinishedAroundLocList()}
-                  }).fail(function(){if (i < locationSettings.regionalInfoLocs.locs.length-1) {raddConfigAroundLocsLoop(i + 1)} else {sortFinishedAroundLocList()}});
-                }
-              } else {if (i < locationSettings.regionalInfoLocs.locs.length-1) {raddConfigAroundLocsLoop(i + 1)} else {sortFinishedAroundLocList()}}
-            }
-            raddConfigAroundLocsLoop(0)
-            function rsortFinishedLocList() {
-              locList.sort(function(a, b) {
-                        return parseInt(a.orderNum) - parseInt(b.orderNum);
-                    });
-              locList.splice(locationSettings.extraLocations.maxLocations)
-              grabCitySlidesData()
-            }
-            function sortFinishedAroundLocList() {
-              regionalList.sort(function(a, b) {
-                        return parseInt(a.orderNum) - parseInt(b.orderNum);
-                    });
-              regionalList.splice((locationSettings.regionalInfoLocs.maxLocations < 8)?locationSettings.regionalInfoLocs.maxLocations:8)
-              grabRegionalData()
-            }
-                // set the station for location 0
-                //_locations[0].stationUrl = locList[0].stationUrl
-          //start datapull
-        }
-            });
-      }
-
       function getStatePopularCities(state, onInit) {
         $.getJSON("https://examples.opendatasoft.com/api/records/1.0/search/?dataset=largest-us-cities&q=&sort=population&facet=city&facet=state&refine.state=" + state, function(data) {
           if (data !== undefined && data.records.length != 0) {
@@ -443,7 +300,7 @@
           {name:"",cond:"",icon:"",high:"",low:"",windspeed:""}
         ]},*/
         weatherLocs:[]
-      }, almanactod: {noReport:false,displayname:"",date:"",avghigh:"",avglow:"",rechigh:"",reclow:"",rechighyear:"",reclowyear:"",sunrise:"",sunset:"",moonphases:[
+      }, almanactod: {noReport:false,displayname:"",date:"",avghigh:"",avglow:"",rechigh:"",reclow:"",rechighyear:"",reclowyear:"",sunrise:"",sunset:"",avgprecip:"",moonphases:[
         {name:"NEW",date:"Feb 10"},
         {name:"FIRST",date:"Feb 16"},
         {name:"FULL",date:"Feb 21"},
@@ -1126,6 +983,7 @@
     function grabalmanacSlidesData() {
       urltod = 'https://api.weather.com/v3/aggcommon/v3-wx-almanac-daily-1day;v3-wx-observations-current?geocode=' + maincitycoords.lat + ',' + maincitycoords.lon + "&format=json&language=en-US&units=e" + "&day=" + dateFns.format(new Date(), "D") + "&month=" + dateFns.format(new Date(),"M") + "&apiKey=" + api_key
         $.getJSON(urltod, function(data) {
+          console.log(urltod)
           if (data == null) {
             weatherInfo.almanactod.displayname = maincitycoords.displayname
             weatherInfo.almanactod.noReport = true
@@ -1140,6 +998,7 @@
             weatherInfo.almanactod.reclowyear = data["v3-wx-almanac-daily-1day"].almanacRecordYearMin[0]
             weatherInfo.almanactod.sunset = dateFns.format(new Date(data["v3-wx-observations-current"].sunsetTimeLocal),"h:mm a")
             weatherInfo.almanactod.sunrise = dateFns.format(new Date(data["v3-wx-observations-current"].sunriseTimeLocal),"h:mm a")
+            weatherInfo.almanactod.avgprecip = data["v3-wx-almanac-daily-1day"].precipitationAverage[0]
           }
         }).fail(function() {
           weatherInfo.almanactod.displayname = maincitycoords.displayname
