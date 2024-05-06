@@ -53,13 +53,13 @@ function hourlyObservation() {
     $('#slide-title-text').css('text-align', 'center');
     $('#slide-title-text').css('font-family', 'mainfont');
     $('#slide-title-text').text('LATEST HOURLY OBSERVATIONS');
-    let town1 = weatherInfo.currentCond.city8slides.cities[0].displayname.replaceAll('Township', 'TWP').substring(0,14);
-    let town2 = weatherInfo.currentCond.city8slides.cities[1].displayname.replaceAll('Township', 'TWP').substring(0,14);
-    let town3 = weatherInfo.currentCond.city8slides.cities[2].displayname.replaceAll('Township', 'TWP').substring(0,14);
-    let town4 = weatherInfo.currentCond.city8slides.cities[3].displayname.replaceAll('Township', 'TWP').substring(0,14);
-    let town5 = weatherInfo.currentCond.city8slides.cities[4].displayname.replaceAll('Township', 'TWP').substring(0,14);
-    let town6 = weatherInfo.currentCond.city8slides.cities[5].displayname.replaceAll('Township', 'TWP').substring(0,14);
-    let town7 = weatherInfo.currentCond.city8slides.cities[6].displayname.replaceAll('Township', 'TWP').substring(0,14);
+    let town1 = weatherInfo.currentCond.city8slides.cities[0].displayname.replaceAll('Township', 'TWP').replaceAll('Airport', 'ARPT').substring(0,14);
+    let town2 = weatherInfo.currentCond.city8slides.cities[1].displayname.replaceAll('Township', 'TWP').replaceAll('Airport', 'ARPT').substring(0,14);
+    let town3 = weatherInfo.currentCond.city8slides.cities[2].displayname.replaceAll('Township', 'TWP').replaceAll('Airport', 'ARPT').substring(0,14);
+    let town4 = weatherInfo.currentCond.city8slides.cities[3].displayname.replaceAll('Township', 'TWP').replaceAll('Airport', 'ARPT').substring(0,14);
+    let town5 = weatherInfo.currentCond.city8slides.cities[4].displayname.replaceAll('Township', 'TWP').replaceAll('Airport', 'ARPT').substring(0,14);
+    let town6 = weatherInfo.currentCond.city8slides.cities[5].displayname.replaceAll('Township', 'TWP').replaceAll('Airport', 'ARPT').substring(0,14);
+    let town7 = weatherInfo.currentCond.city8slides.cities[6].displayname.replaceAll('Township', 'TWP').replaceAll('Airport', 'ARPT').substring(0,14);
     $('.hourly-observations .cities .city-1').text(town1);
     $('.hourly-observations .cities .city-2').text(town2);
     $('.hourly-observations .cities .city-3').text(town3);
@@ -219,17 +219,22 @@ function bulletin() {
     $('#bulletin-container').fadeIn(0);
     $('#bulletin-container #bulletin').fadeIn(0);
     $('#bulletin-background').fadeIn(0);
-    //$('#lowerline').css('background-color', '#26007C')
+    //$('#lowerline').css('background-color', '#FFF')
+    // /*
     if (weatherInfo.bulletin.marqueewarnings[0].significance == "Y" || weatherInfo.bulletin.marqueewarnings[0].significance == "S") {
-        $('#bulletin-background').css('background-color', '#6A3C0A');
+        $('#bulletin-background').css('background-color', '#6A3C0A'); //advisory color and etc
+        $('#lowerline').css('background-color', '#6A3C0A');
     } else if (weatherInfo.bulletin.marqueewarnings[0].significance == "A") {
-        $('#bulletin-background').css('background-color', '#e5dd20');
+        $('#bulletin-background').css('background-color', '#6A3C0A'); //watch color
+        $('#lowerline').css('background-color', '#6A3C0A');
     }	else if (weatherInfo.bulletin.marqueewarnings[0].significance == "W") {
-        $('#bulletin-background').css('background-color', '#330912');
+        $('#bulletin-background').css('background-color', '#330912'); //warning color
+        $('#lowerline').css('background-color', '#330912');
     }
+    // */
     $('#bulletin-container #bulletin').text(weatherInfo.bulletin.marqueewarnings[0].desc);
     $('#bulletin-container #bulletin').marquee({speed: 110, direction: "up", pauseOnHover: false});
-	$('#bulletin-container #bulletin').on('finished', function() {$('#bulletin-container').fadeOut(0), $('#bulletin-container #bulletin').fadeOut(0), $('#bulletin-background').fadeOut(0)/*, $('#lowerline').css('background-color', '#FFF')*/});
+	$('#bulletin-container #bulletin').on('finished', function() {$('#bulletin-container').fadeOut(0), $('#bulletin-container #bulletin').fadeOut(0), $('#bulletin-background').fadeOut(0), $('#lowerline').css('background-color', '#FFF')});
 }
 function concludeLoop() {
     showSlides();
@@ -326,13 +331,18 @@ function travelForecast() {
 }
 function almanac() {
     var altoday = new Date();
-    const alweekday = ["SUNDAY","MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SATURDAY"];
+    const alweekday = ["SUNDAY","MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SATURDAY","SUNDAY","MONDAY"];
 
     const a = new Date();
     let alday = alweekday[a.getDay()];
     let atd = a.getDay() + 1;
-    if (atd == 7) {atd == 0};
+    if (atd == 7) {atd = 0};
     let altomorrowday = alweekday[atd]
+
+    const almonth = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+    const d = new Date();
+    let almonthname = almonth[d.getMonth()];
     
     $('#slide-title-text').css('text-align', 'center');
     $('#slide-title-text').css('font-family', 'mainfont');
@@ -348,6 +358,8 @@ function almanac() {
     $('.almanac .day-2-info .sunset').text(weatherInfo.almanactom.sunset);
     $('.almanac .day-2-info .low').text(weatherInfo.almanactom.avglow + ' °F');
     $('.almanac .day-2-info .high').text(weatherInfo.almanactom.avghigh + ' °F');
+    $('.almanac .normal-precip').text('NORMAL ' + almonthname + ' PRECIP');
+    $('.almanac .normal-precip-info').text(weatherInfo.almanactod.avgprecip + ' IN')
 
 
     $('.almanac').fadeIn(0);
@@ -360,13 +372,13 @@ function regionalForecast() {
     $('#slide-title-text').css('text-align', 'center');
     $('#slide-title-text').css('font-family', 'mainfont');
     $('#slide-title-text').text('FORECAST ACROSS THE REGION');
-    let rtown1 = weatherInfo.currentCond.city8slides.cities[0].displayname.replaceAll('Township', 'TWP').substring(0,14);
-    let rtown2 = weatherInfo.currentCond.city8slides.cities[1].displayname.replaceAll('Township', 'TWP').substring(0,14);
-    let rtown3 = weatherInfo.currentCond.city8slides.cities[2].displayname.replaceAll('Township', 'TWP').substring(0,14);
-    let rtown4 = weatherInfo.currentCond.city8slides.cities[3].displayname.replaceAll('Township', 'TWP').substring(0,14);
-    let rtown5 = weatherInfo.currentCond.city8slides.cities[4].displayname.replaceAll('Township', 'TWP').substring(0,14);
-    let rtown6 = weatherInfo.currentCond.city8slides.cities[5].displayname.replaceAll('Township', 'TWP').substring(0,14);
-    let rtown7 = weatherInfo.currentCond.city8slides.cities[6].displayname.replaceAll('Township', 'TWP').substring(0,14);
+    let rtown1 = weatherInfo.currentCond.city8slides.cities[0].displayname.replaceAll('Township', 'TWP').replaceAll('Airport', 'ARPT').substring(0,14);
+    let rtown2 = weatherInfo.currentCond.city8slides.cities[1].displayname.replaceAll('Township', 'TWP').replaceAll('Airport', 'ARPT').substring(0,14);
+    let rtown3 = weatherInfo.currentCond.city8slides.cities[2].displayname.replaceAll('Township', 'TWP').replaceAll('Airport', 'ARPT').substring(0,14);
+    let rtown4 = weatherInfo.currentCond.city8slides.cities[3].displayname.replaceAll('Township', 'TWP').replaceAll('Airport', 'ARPT').substring(0,14);
+    let rtown5 = weatherInfo.currentCond.city8slides.cities[4].displayname.replaceAll('Township', 'TWP').replaceAll('Airport', 'ARPT').substring(0,14);
+    let rtown6 = weatherInfo.currentCond.city8slides.cities[5].displayname.replaceAll('Township', 'TWP').replaceAll('Airport', 'ARPT').substring(0,14);
+    let rtown7 = weatherInfo.currentCond.city8slides.cities[6].displayname.replaceAll('Township', 'TWP').replaceAll('Airport', 'ARPT').substring(0,14);
     $('.regional-forecast .cities .city-1').text(rtown1);
     $('.regional-forecast .cities .city-2').text(rtown2);
     $('.regional-forecast .cities .city-3').text(rtown3);
@@ -416,13 +428,13 @@ function regionalConditions() {
     $('#slide-title-text').css('font-family', 'mainfont');
     $('#slide-title-text').text('CONDITIONS ACROSS THE REGION');
 
-    let retown1 = weatherInfo.currentCond.regionallocs.cities[0].displayname.replaceAll('Township', 'TWP').substring(0,15);
-    let retown2 = weatherInfo.currentCond.regionallocs.cities[1].displayname.replaceAll('Township', 'TWP').substring(0,15);
-    let retown3 = weatherInfo.currentCond.regionallocs.cities[2].displayname.replaceAll('Township', 'TWP').substring(0,15);
-    let retown4 = weatherInfo.currentCond.regionallocs.cities[3].displayname.replaceAll('Township', 'TWP').substring(0,15);
-    let retown5 = weatherInfo.currentCond.regionallocs.cities[4].displayname.replaceAll('Township', 'TWP').substring(0,15);
-    let retown6 = weatherInfo.currentCond.regionallocs.cities[5].displayname.replaceAll('Township', 'TWP').substring(0,15);
-    let retown7 = weatherInfo.currentCond.regionallocs.cities[6].displayname.replaceAll('Township', 'TWP').substring(0,15);
+    let retown1 = weatherInfo.currentCond.regionallocs.cities[0].displayname.replaceAll('Township', 'TWP').replaceAll('Airport', 'ARPT').substring(0,15);
+    let retown2 = weatherInfo.currentCond.regionallocs.cities[1].displayname.replaceAll('Township', 'TWP').replaceAll('Airport', 'ARPT').substring(0,15);
+    let retown3 = weatherInfo.currentCond.regionallocs.cities[2].displayname.replaceAll('Township', 'TWP').replaceAll('Airport', 'ARPT').substring(0,15);
+    let retown4 = weatherInfo.currentCond.regionallocs.cities[3].displayname.replaceAll('Township', 'TWP').replaceAll('Airport', 'ARPT').substring(0,15);
+    let retown5 = weatherInfo.currentCond.regionallocs.cities[4].displayname.replaceAll('Township', 'TWP').replaceAll('Airport', 'ARPT').substring(0,15);
+    let retown6 = weatherInfo.currentCond.regionallocs.cities[5].displayname.replaceAll('Township', 'TWP').replaceAll('Airport', 'ARPT').substring(0,15);
+    let retown7 = weatherInfo.currentCond.regionallocs.cities[6].displayname.replaceAll('Township', 'TWP').replaceAll('Airport', 'ARPT').substring(0,15);
     $('.regional-conditions .cities .city-1').text(retown1 + weatherInfo.currentCond.regionallocs.cities[0].statecode);
     $('.regional-conditions .cities .city-2').text(retown2 + weatherInfo.currentCond.regionallocs.cities[1].statecode);
     $('.regional-conditions .cities .city-3').text(retown3 + weatherInfo.currentCond.regionallocs.cities[2].statecode);
@@ -488,7 +500,8 @@ function loopBulletin() {
     setInterval(() => {if (weatherInfo.bulletin.marqueewarnings[0].desc.length != 0) {bulletin()}}, 420000);
 }
 function flavorTest() {
-    setTimeout(() => {travelForecast()}, 1);
+    setTimeout(() => {almanac()}, 1);
+    setTimeout(() => {almanac()}, slideLength);
 }
 function flavorA() {
     setTimeout(() => {currentConditions()}, 1);
