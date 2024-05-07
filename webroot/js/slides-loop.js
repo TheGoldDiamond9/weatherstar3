@@ -106,7 +106,6 @@ function hourlyObservation() {
 }
 function dayPartForecast() {
     var alerttext = weatherInfo.bulletin.weatherLocs[0].pages[0]
-    console.log(alerttext);
     function dtimeOneBulletin() {
         $('.daypart-forecast .forecast-1-bulletin').fadeIn(0);
         $('.daypart-forecast .forecast-1-bulletin .forecast1').fadeIn(0);
@@ -465,7 +464,7 @@ function gFunc() {
 }*/
 function loopBulletin() {
     //console.log("bulletin disabled")
-    //setTimeout(() => {if (weatherInfo.bulletin.marqueewarnings[0].desc.length != 0) {bulletin()}}, 5000);
+    setTimeout(() => {if (weatherInfo.bulletin.marqueewarnings[0].desc.length != 0) {bulletin()}}, 5000);
     setInterval(() => {if (weatherInfo.bulletin.marqueewarnings[0].desc.length != 0) {bulletin()}}, 420000);
 }
 function flavorTest() {
