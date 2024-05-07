@@ -106,6 +106,7 @@ function hourlyObservation() {
 }
 function dayPartForecast() {
     var alerttext = weatherInfo.bulletin.weatherLocs[0].pages[0]
+    console.log(alerttext);
     function dtimeOneBulletin() {
         $('.daypart-forecast .forecast-1-bulletin').fadeIn(0);
         $('.daypart-forecast .forecast-1-bulletin .forecast1').fadeIn(0);
@@ -155,42 +156,6 @@ function dayPartForecast() {
     setTimeout(function() {
        $('.daypart-forecast').fadeOut(0);
     }, 4 * slideLengthFinal);
-}
-function dayGpartForecast() {
-    function gtimeOneBulletin() {
-        $('.daypart-forecast .forecast-1-bulletin').fadeIn(0);
-        $('.daypart-forecast .forecast-1-bulletin .forecast1').fadeIn(0);
-        $('.daypart-forecast .forecast-1').fadeOut(0);
-        $('.daypart-forecast .forecast-1-bulletin .daypartalert').text(alerttext);
-        $('.daypart-forecast .forecast-1-bulletin .forecast1').text('\n \n \n' + weatherInfo.dayDesc.lowerbar.day[0].name + '...' + weatherInfo.dayDesc.lowerbar.day[0].desc);
-    }
-    function gtimeOne() {
-        $('.daypart-forecast .forecast-1-bulletin').fadeOut(0);
-        $('.daypart-forecast .forecast-1').fadeIn(0);
-        $('.daypart-forecast .forecast-1').text(weatherInfo.dayDesc.lowerbar.day[0].name + '...' + weatherInfo.dayDesc.lowerbar.day[0].desc);
-    }
-    function gtimeTwo() {
-        $('.daypart-forecast .forecast-1').text(weatherInfo.dayDesc.lowerbar.day[1].name + '...' + weatherInfo.dayDesc.lowerbar.day[1].desc);
-    }
-    function gtimeThree() {
-        $('.daypart-forecast .forecast-1').text(weatherInfo.dayDesc.lowerbar.day[2].name + '...' + weatherInfo.dayDesc.lowerbar.day[2].desc);
-    }
-    function gtimeFour() {
-        $('.daypart-forecast .forecast-1').text(weatherInfo.dayDesc.lowerbar.day[3].name + '...' + weatherInfo.dayDesc.lowerbar.day[3].desc);
-    }
-    $('#slide-title-text').css('text-align', 'center');
-    $('#slide-title-text').css('font-family', 'smallfont');
-    $('#slide-title-text').text('YOUR NWS FORECAST');
-    if (alerttext == null) {setTimeout(() => {gtimeOne()}, 1);} else {setTimeout(() => {gtimeOneBulletin()}, 1);}
-    setTimeout(() => {gtimeTwo(), $('#slide-title-text').text('NAT\'L WEATHER SERVICE FORECAST')}, slideLengthFinal);
-    setTimeout(() => {gtimeThree()}, 2 * slideLengthFinal);
-    setTimeout(() => {gtimeFour()}, 3 * slideLengthFinal);
-
-
-    $('.daypart-forecast').fadeIn(0);
-    setTimeout(function() {
-        $('.daypart-forecast').fadeOut(0);
-     }, 4 * slideLengthFinal);
 }
 function extendedForecast() {
     $('#slide-title-text').css('text-align', 'center');
@@ -360,8 +325,11 @@ function almanac() {
     $('.almanac .day-2-info .low').text(weatherInfo.almanactom.avglow + ' °F');
     $('.almanac .day-2-info .high').text(weatherInfo.almanactom.avghigh + ' °F');
     $('.almanac .normal-precip').text('NORMAL ' + almonthname + ' PRECIP');
-    $('.almanac .normal-precip-info').text(weatherInfo.almanactod.avgprecip + ' IN')
-
+    if (weatherInfo.almanactod.avgprecip == null) {
+        $('.almanac .normal-precip-info').text('NO REPORT')
+    } else {
+        $('.almanac .normal-precip-info').text(weatherInfo.almanactod.avgprecip + ' IN')
+    }
 
     $('.almanac').fadeIn(0);
     setTimeout(function() {
@@ -497,7 +465,7 @@ function gFunc() {
 }*/
 function loopBulletin() {
     //console.log("bulletin disabled")
-    setTimeout(() => {if (weatherInfo.bulletin.marqueewarnings[0].desc.length != 0) {bulletin()}}, 5000);
+    //setTimeout(() => {if (weatherInfo.bulletin.marqueewarnings[0].desc.length != 0) {bulletin()}}, 5000);
     setInterval(() => {if (weatherInfo.bulletin.marqueewarnings[0].desc.length != 0) {bulletin()}}, 420000);
 }
 function flavorTest() {
@@ -544,8 +512,8 @@ function flavorF() {
     setTimeout(() => {showSlides()}, (3+4) * slideLength);
 }
 function flavorG() {
-    setTimeout(() => {dayGpartForecast()}, 1);
-    setTimeout(() => {showSlides()}, 4 * slideLength);
+    setTimeout(() => {dayPartForecast()}, 1);
+    setInterval(() => {dayPartForecast()}, 4 * slideLength);
 }
 function flavorH() {
     setTimeout(() => {dayPartForecast()}, 1);
