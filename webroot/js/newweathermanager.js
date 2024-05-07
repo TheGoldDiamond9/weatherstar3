@@ -909,7 +909,7 @@
                   weatherInfo.fiveDay.lowerbar.day[hi - daycorrection].name = ajaxedLoc["v3-wx-forecast-daily-5day"].dayOfWeek[hi]
                   weatherInfo.fiveDay.lowerbar.day[hi - daycorrection].windspeed = ajaxedLoc["v3-wx-forecast-daily-5day"].daypart[0].windSpeed[hidp]
                   weatherInfo.fiveDay.lowerbar.day[hi - daycorrection].icon = ajaxedLoc["v3-wx-forecast-daily-5day"].daypart[0].iconCode[hidp]
-                  weatherInfo.fiveDay.lowerbar.day[hi - daycorrection].cond = ajaxedLoc["v3-wx-forecast-daily-5day"].daypart[0].wxPhraseLong[hidp].replace('Scattered ', "Sct'd ").replace('Thunderstorms',"T'Storms").replace('Thundershowers',"T'Showers").replace('/',', ');
+                  weatherInfo.fiveDay.lowerbar.day[hi - daycorrection].cond = ajaxedLoc["v3-wx-forecast-daily-5day"].daypart[0].wxPhraseLong[hidp].replace('Thunderstorms',"T'Storms").replace('Thundershowers',"T'Showers").replace('/',', ');
                   weatherInfo.fiveDay.lowerbar.day[hi - daycorrection].high = ajaxedLoc["v3-wx-forecast-daily-5day"].temperatureMax[hi]
                   weatherInfo.fiveDay.lowerbar.day[hi - daycorrection].low = ajaxedLoc["v3-wx-forecast-daily-5day"].temperatureMin[hi]
                   weatherInfo.fiveDay.lowerbar.day[hi - daycorrection].desc = ajaxedLoc["v3-wx-forecast-daily-5day"].narrative[hi]
