@@ -452,10 +452,16 @@ html * {
     font-size: 65.1px;
     overflow: hidden;
 }
-.extended-forecast .forecast-1 {
+.extended-forecast .days {
     position: absolute;
-    width: 1140px;
-    height: 635px;
+    width: 100%;
+    height: 89px;
+    margin-top: 89px;
+}
+.extended-forecast .day-1 {
+    position: absolute;
+    width: 380px;
+    height: 89px;
     font-size: 65.1px;
     font-family: 'mainfont';
     text-shadow:
@@ -464,7 +470,175 @@ html * {
     -3px -3px 0 #000,
     3px -3px 0 #000;
     line-height: 89px;
-    overflow: hidden;
+}
+.extended-forecast .day-2 {
+    position: absolute;
+    width: 380px;
+    height: 89px;
+    font-size: 65.1px;
+    font-family: 'mainfont';
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+    line-height: 89px;
+    margin-left: 380px;
+}
+.extended-forecast .day-3 {
+    position: absolute;
+    width: 380px;
+    height: 89px;
+    font-size: 65.1px;
+    font-family: 'mainfont';
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+    line-height: 89px;
+    margin-left: 760px;
+}
+.extended-forecast .extended-conditions {
+    position: absolute;
+    width: 100%;
+    height: 178px;
+    margin-top: 178px;
+}
+.extended-forecast .extended-conditions .con-1 {
+    position: absolute;
+    width: 300px;
+    height: 89px;
+    font-size: 65.1px;
+    font-family: 'mainfont';
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+    line-height: 89px;
+}
+.extended-forecast .extended-conditions .con-2 {
+    position: absolute;
+    width: 300px;
+    height: 89px;
+    font-size: 65.1px;
+    font-family: 'mainfont';
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+    line-height: 89px;
+    margin-left: 380px;
+}
+.extended-forecast .extended-conditions .con-3 {
+    position: absolute;
+    width: 300px;
+    height: 89px;
+    font-size: 65.1px;
+    font-family: 'mainfont';
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+    line-height: 89px;
+    margin-left: 760px;
+}
+.extended-forecast .extended-los {
+    position: absolute;
+    width: 100%;
+    height: 89px;
+    margin-top: 445px;
+}
+.extended-forecast .extended-los .lo-1 {
+    position: absolute;
+    width: 380px;
+    height: 89px;
+    font-size: 65.1px;
+    font-family: 'mainfont';
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+    line-height: 89px;
+}
+.extended-forecast .extended-los .lo-2 {
+    position: absolute;
+    width: 380px;
+    height: 89px;
+    font-size: 65.1px;
+    font-family: 'mainfont';
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+    line-height: 89px;
+    margin-left: 380px;
+}
+.extended-forecast .extended-los .lo-3{
+    position: absolute;
+    width: 380px;
+    height: 89px;
+    font-size: 65.1px;
+    font-family: 'mainfont';
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+    line-height: 89px;
+    margin-left: 760px;
+}
+.extended-forecast .extended-his {
+    position: absolute;
+    width: 100%;
+    height: 89px;
+    margin-top: 534px;
+}
+.extended-forecast .extended-his .hi-1 {
+    position: absolute;
+    width: 380px;
+    height: 89px;
+    font-size: 65.1px;
+    font-family: 'mainfont';
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+    line-height: 89px;
+}
+.extended-forecast .extended-his .hi-2 {
+    position: absolute;
+    width: 380px;
+    height: 89px;
+    font-size: 65.1px;
+    font-family: 'mainfont';
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+    line-height: 89px;
+    margin-left: 380px;
+}
+.extended-forecast .extended-his .hi-3{
+    position: absolute;
+    width: 380px;
+    height: 89px;
+    font-size: 65.1px;
+    font-family: 'mainfont';
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+    line-height: 89px;
+    margin-left: 760px;
 }
 .almanac {
     position: absolute;
