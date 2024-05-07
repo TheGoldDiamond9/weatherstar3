@@ -1,4 +1,4 @@
-//first num difference is 4 for daypart and extended
+//first num difference is 4 for daypart
 function Slides() {
     var idx = 0;
     var bul = 1;
@@ -193,27 +193,28 @@ function dayGpartForecast() {
      }, 4 * slideLengthFinal);
 }
 function extendedForecast() {
-    function dayOne() {
-        $('.extended-forecast .forecast-1').text(weatherInfo.fiveDay.lowerbar.day[0].name + '...' + weatherInfo.fiveDay.lowerbar.day[0].desc);
-    }
-    function dayTwo() {
-        $('.extended-forecast .forecast-1').text(weatherInfo.fiveDay.lowerbar.day[1].name + '...' + weatherInfo.fiveDay.lowerbar.day[1].desc);
-    }
-    function dayThree() {
-        $('.extended-forecast .forecast-1').text(weatherInfo.fiveDay.lowerbar.day[2].name + '...' + weatherInfo.fiveDay.lowerbar.day[2].desc);
-    }
     $('#slide-title-text').css('text-align', 'center');
-    $('#slide-title-text').css('font-family', 'smallfont');
-    $('#slide-title-text').text('YOUR NWS EXTENDED FORECAST');
-    setTimeout(() => {dayOne()}, 1);
-    setTimeout(() => {dayTwo()}, slideLengthFinal);
-    setTimeout(() => {dayThree()}, 2 * slideLengthFinal);
+    $('#slide-title-text').css('font-family', 'mainfont');
+    $('#slide-title-text').text('EXTENDED FORECAST');
+
+    $('.extended-forecast .days .day-1').text(weatherInfo.fiveDay.lowerbar.day[0].name);
+    $('.extended-forecast .days .day-2').text(weatherInfo.fiveDay.lowerbar.day[1].name);
+    $('.extended-forecast .days .day-3').text(weatherInfo.fiveDay.lowerbar.day[2].name);
+    $('.extended-forecast .extended-conditions .con-1').text(weatherInfo.fiveDay.lowerbar.day[0].cond);
+    $('.extended-forecast .extended-conditions .con-2').text(weatherInfo.fiveDay.lowerbar.day[1].cond);
+    $('.extended-forecast .extended-conditions .con-3').text(weatherInfo.fiveDay.lowerbar.day[2].cond);
+    $('.extended-forecast .extended-los .lo-1').text('LO: ' + weatherInfo.fiveDay.lowerbar.day[0].low);
+    $('.extended-forecast .extended-los .lo-2').text('LO: ' + weatherInfo.fiveDay.lowerbar.day[1].low);
+    $('.extended-forecast .extended-los .lo-3').text('LO: ' + weatherInfo.fiveDay.lowerbar.day[2].low);
+    $('.extended-forecast .extended-his .hi-1').text('HI: ' + weatherInfo.fiveDay.lowerbar.day[0].high);
+    $('.extended-forecast .extended-his .hi-2').text('HI: ' + weatherInfo.fiveDay.lowerbar.day[1].high);
+    $('.extended-forecast .extended-his .hi-3').text('HI: ' + weatherInfo.fiveDay.lowerbar.day[2].high);
 
 
     $('.extended-forecast').fadeIn(0);
     setTimeout(function() {
        $('.extended-forecast').fadeOut(0);
-    }, 3 * slideLengthFinal);
+    }, slideLengthFinal);
 }
 function bulletin() {
     $('#bulletin-container').fadeIn(0);
@@ -500,8 +501,8 @@ function loopBulletin() {
     setInterval(() => {if (weatherInfo.bulletin.marqueewarnings[0].desc.length != 0) {bulletin()}}, 420000);
 }
 function flavorTest() {
-    setTimeout(() => {almanac()}, 1);
-    setTimeout(() => {almanac()}, slideLength);
+    setTimeout(() => {extendedForecast()}, 1);
+    setTimeout(() => {regionalConditions()}, slideLength);
 }
 function flavorA() {
     setTimeout(() => {currentConditions()}, 1);
@@ -513,14 +514,14 @@ function flavorB() {
     setTimeout(() => {hourlyObservation()}, 1);
     setTimeout(() => {almanac()}, slideLength);
     setTimeout(() => {extendedForecast()}, 2 * slideLength);
-    setTimeout(() => {regionalConditions()}, (3+3) * slideLength);
-    setTimeout(() => {showSlides()}, (3+4) * slideLength);
+    setTimeout(() => {regionalConditions()}, 3 * slideLength);
+    setTimeout(() => {showSlides()}, 4 * slideLength);
 }
 function flavorC() {
     setTimeout(() => {regionalConditions()}, 1);
-    setTimeout(() => {extendedForecast()}, slideLength);
-    setTimeout(() => {regionalForecast()}, (3+1) * slideLength);
-    setTimeout(() => {showSlides()}, (3+2) * slideLength);
+    setTimeout(() => {dayPartForecast()}, slideLength);
+    setTimeout(() => {regionalForecast()}, (4+1) * slideLength);
+    setTimeout(() => {showSlides()}, (4+2) * slideLength);
 }
 function flavorD() {
     setTimeout(() => {hourlyObservation()}, 1);
@@ -532,8 +533,8 @@ function flavorD() {
 function flavorE() {
     setTimeout(() => {dayPartForecast()}, 1);
     setTimeout(() => {extendedForecast()}, (3+1)* slideLength);
-    setTimeout(() => {hourlyObservation()}, (3+4) * slideLength);
-    setTimeout(() => {showSlides()}, (3+5) * slideLength);
+    setTimeout(() => {hourlyObservation()}, (3+2) * slideLength);
+    setTimeout(() => {showSlides()}, (3+3) * slideLength);
 }
 function flavorF() {
     setTimeout(() => {currentConditions()}, 1);
@@ -564,12 +565,12 @@ function flavorJ() {
 }
 function flavorK() {
     setTimeout(() => {currentConditions()}, 1);
-    setTimeout(() => {hourlyObservation()}, slideLength);
-    setTimeout(() => {regionalConditions()}, 2 * slideLength);
-    setTimeout(() => {regionalForecast()}, 3 * slideLength);
-    setTimeout(() => {dayPartForecast()}, 4 * slideLength);
-    setTimeout(() => {extendedForecast()}, (3+5) * slideLength);
-    setTimeout(() => {showSlides()}, ((3+3)+5) * slideLength);
+    setTimeout(() => {almanac()}, slideLength);
+    setTimeout(() => {regionalForecast()}, 2 * slideLength);
+    setTimeout(() => {dayPartForecast()}, 3 * slideLength);
+    setTimeout(() => {extendedForecast()}, (3+4) * slideLength);
+    setTimeout(() => {hourlyObservation()}, (3+5) * slideLength);
+    setTimeout(() => {showSlides()}, (3+6) * slideLength);
 }
 function flavorL() {
     setTimeout(() => {currentConditions()}, 1), 
@@ -579,7 +580,7 @@ function flavorL() {
     setTimeout(() => {almanac()}, (4 * slideLength)),
     setTimeout(() => {dayPartForecast()}, (5 * slideLength)),
     setTimeout(() => {extendedForecast()}, ((3+6) * slideLength))
-    setTimeout(() => {showSlides()}, (((3+3)+6) * slideLength));
+    setTimeout(() => {showSlides()}, ((3+7) * slideLength));
 }
 function flavorM() {
     setTimeout(() => {travelForecast()}, 1);
@@ -589,16 +590,16 @@ function flavorM() {
     //setTimeout(() => {travelForecast()}, ((3+2)+3) * slideLength);
 }
 //function flavorN() {
-//
+
 //}
 //function flavorO() {
-//
+
 //}
 function flavorP() {
     setTimeout(() => {dayPartForecast()}, 1)
     setTimeout(() => {extendedForecast()}, 4 * slideLength)
-    setTimeout(() => {currentConditions()}, (4+3) * slideLength)
-    setTimeout(() => {showSlides()}, (4+4) * slideLength)
+    setTimeout(() => {currentConditions()}, 5 * slideLength)
+    setTimeout(() => {showSlides()}, 6 * slideLength)
 }
 function flavorQ() {
     setTimeout(() => {currentConditions()}, 1)
