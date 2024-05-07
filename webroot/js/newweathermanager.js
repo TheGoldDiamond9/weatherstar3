@@ -698,9 +698,9 @@
                     dateFns.format(new Date(expiretime), "h:mm");
                     if (dateFns.isToday(expiretime) != true) {
                       var numday = dateFns.getDay(expiretime);
-                      displayday = {"0":"SUN","1":"MON","2":"TUE","3":"WED","4":"THU","5":"FRI","6":"SAT"}[numday] + ".";
+                      displayday = {"0":" SUN","1":" MON","2":" TUE","3":" WED","4":" THU","5":" FRI","6":" SAT"}[numday] + ".";
                     } else {
-                      displayday = "Today."
+                      displayday = " Today."
                     }
                     return dateFns.format(new Date(expiretime), "h:mm A ") + displayday
                   }
