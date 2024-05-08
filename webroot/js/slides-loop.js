@@ -34,7 +34,7 @@ function currentConditions() {
        $('#slide-title-text').text('CONDITIONS AT ' + maincitycoords.name);
        $('.current-condition').text(weatherInfo.currentCond.sidebar.cond);
        $('.current-temperature').text('TEMP:  ' + weatherInfo.currentCond.sidebar.temp + '°F');
-       $('.current-windchill').text('WIND CHILL: ' + weatherInfo.currentCond.sidebar.windChill + '°F');
+       $('.current-windchill').text(weatherInfo.currentCond.sidebar.feelslike.type + ': ' + weatherInfo.currentCond.sidebar.feelslike.val + '°F');
        $('.current-humidity').text('HUMIDITY:  ' + weatherInfo.currentCond.sidebar.humid + '%');
        $('.current-dewpoint').text('DEWPOINT: ' + weatherInfo.currentCond.sidebar.dewpt + '°F');
        $('.current-pressure').text('BAROMETRIC PRESSURE: ' + weatherInfo.currentCond.sidebar.pressure + ' ' + weatherInfo.currentCond.sidebar.pressureTrend);
@@ -439,6 +439,16 @@ function regionalConditions() {
       $('.regional-conditions').fadeOut(0);
     }, slideLengthFinal);
 }
+function outlook() {
+    $('#slide-title-text').css('text-align', 'center');
+    $('#slide-title-text').css('font-family', 'mainfont');
+    $('#slide-title-text').text('NAT\'L WEATHER SERVICE OUTLOOK');
+
+    $('.outlook').fadeIn(0);
+    setTimeout(function() {
+      $('.outlook').fadeOut(0);
+    }, slideLengthFinal);
+}
 function gFunc() {
     $('.gholder').fadeIn(0);
     setTimeout(function() {
@@ -528,7 +538,9 @@ function flavorI() {
     setTimeout(() => {showSlides()}, 3 * slideLength);
 }
 function flavorJ() {
-    setTimeout(() => {inProgress()}, 1);
+    setTimeout(() => {outlook()}, 1);
+    setTimeout(() => {almanac()}, slideLength);
+    setTimeout(() => {showSlides()}, 2 * slideLength);
 }
 function flavorK() {
     setTimeout(() => {currentConditions()}, 1);
