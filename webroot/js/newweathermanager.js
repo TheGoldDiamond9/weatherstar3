@@ -757,6 +757,7 @@
       url += `${maincitycoords.lat},${maincitycoords.lon};`
       url += "&language=en-US&units=e&format=json&apiKey=" + api_key
       $.getJSON(url, function(data) {
+        console.log(url);
             var ajaxedLoc = data[0]
             if (ajaxedLoc == null) {
               weatherInfo.currentCond.sidebar.displayname = maincitycoords.displayname
@@ -785,7 +786,7 @@
                 weatherInfo.currentCond.sidebar.visibility = ajaxedLoc["v3-wx-observations-current"].visibility
                 weatherInfo.currentCond.sidebar.uvidx = ajaxedLoc["v3-wx-observations-current"].uvDescription
                 weatherInfo.currentCond.sidebar.ceiling = ajaxedLoc["v3-wx-observations-current"].cloudCeiling
-                weatherInfo.currentCond.sidebar.feelslike.type = ((ajaxedLoc["v3-wx-observations-current"].temperature != ajaxedLoc["v3-wx-observations-current"].temperatureHeatIndex) ? "heat index" : ((ajaxedLoc["v3-wx-observations-current"].temperatureWindChill != ajaxedLoc["v3-wx-observations-current"].temperature) ? "wind chill" : "dontdisplay"))
+                weatherInfo.currentCond.sidebar.feelslike.type = ((ajaxedLoc["v3-wx-observations-current"].temperature >= 65 ? "HEAT INDEX" : "WIND CHILL"))
                 weatherInfo.currentCond.sidebar.feelslike.val = ajaxedLoc["v3-wx-observations-current"].temperatureFeelsLike
                 weatherInfo.currentCond.sidebar.windChill = ajaxedLoc["v3-wx-observations-current"].temperatureWindChill
                 weatherInfo.currentCond.sidebar.displayname = maincitycoords.displayname
