@@ -698,7 +698,7 @@
                     dateFns.format(new Date(expiretime), "h:mm");
                     if (dateFns.isToday(expiretime) != true) {
                       var numday = dateFns.getDay(expiretime);
-                      displayday = {"0":" SUN","1":" MON","2":" TUE","3":" WED","4":" THU","5":" FRI","6":" SAT"}[numday] + ".";
+                      displayday = {"0":"SUN","1":"MON","2":"TUE","3":"WED","4":"THU","5":"FRI","6":"SAT"}[numday] + ".";
                     } else {
                       displayday = " Today."
                     }
@@ -714,7 +714,7 @@
                 
                 function splitLines() {
     
-                   var warningsplitstr = bulletintext.split(/(?![^\n]{1,40}$)([^\n]{1,40})\s/g)
+                   var warningsplitstr = bulletintext.split(/(?![^\n]{1,40000}$)([^\n]{1,40000})\s/g)
                    warningsplitstr.pop()
                    warningsplitstr.pop()
                    var warningpageidx = 0;
