@@ -1,4 +1,4 @@
-//first num difference is 4 for daypart
+//first num difference is 3 for daypart
 function Slides() {
     var idx = 0;
     var bul = 1;
@@ -28,6 +28,9 @@ function inProgress() {
     $('.in-progress').fadeIn(0);
 }
 function currentConditions() {
+    const month = ["JANUARY PRECIPITATION: ","FEBRUARY PRECIPITATION: ","MARCH PRECIPITATION: ","APRIL PRECIPITATION: ","MAY PRECIPITATION: ","JUNE PRECIPITATION: ","JULY PRECIPITATION: ","AUGUST PRECIPITATION: ","SEPTEMBER PRECIPITATION: ","OCTOBER PRECIPITATION: ","NOVEMBER PRECIPITATION: ","DECEMBER PRECIPITATION: "];
+    const d = new Date();
+    let monthname = month[d.getMonth()];
     //title and info
        $('#slide-title-text').css('text-align', 'left');
        $('#slide-title-text').css('font-family', 'mainfont');
@@ -41,6 +44,7 @@ function currentConditions() {
        $('.current-wind').text('WIND: ' + weatherInfo.currentCond.sidebar.wind);
        $('.current-visibility2').text(weatherInfo.currentCond.sidebar.visibility + ' MI.');
        if (weatherInfo.currentCond.sidebar.ceiling != null) {$('.current-ceiling').text('CEILING: ' + weatherInfo.currentCond.sidebar.ceiling +' FT.')} else {$('.current-ceiling').text('CEILING:UNLIMITED')};
+       $('.current-month-precip').text(monthname + weatherInfo.currentCond.sidebar.monthToDatePrecip);
 
        //fade in and out
        $('.info-cc').fadeIn(0);
@@ -139,22 +143,18 @@ function dayPartForecast() {
     function dtimeThree() {
         $('.daypart-forecast .forecast-1').text(weatherInfo.dayDesc.lowerbar.day[2].name + '...' + weatherInfo.dayDesc.lowerbar.day[2].desc);
     }
-    function dtimeFour() {
-        $('.daypart-forecast .forecast-1').text(weatherInfo.dayDesc.lowerbar.day[3].name + '...' + weatherInfo.dayDesc.lowerbar.day[3].desc);
-    }
     $('#slide-title-text').css('text-align', 'center');
     $('#slide-title-text').css('font-family', 'smallfont');
     $('#slide-title-text').text('YOUR NWS FORECAST');
     if (alerttext == null) {setTimeout(() => {dtimeOne()}, 1);} else {setTimeout(() => {dtimeOneBulletin()}, 1);}
     setTimeout(() => {dtimeTwo(), $('#slide-title-text').text('NAT\'L WEATHER SERVICE FORECAST')}, slideLengthFinal);
     setTimeout(() => {dtimeThree()}, 2 * slideLengthFinal);
-    setTimeout(() => {dtimeFour()}, 3 * slideLengthFinal);
 
 
     $('.daypart-forecast').fadeIn(0);
     setTimeout(function() {
        $('.daypart-forecast').fadeOut(0);
-    }, 4 * slideLengthFinal);
+    }, 3 * slideLengthFinal);
 }
 function extendedForecast() {
     $('#slide-title-text').css('text-align', 'center');
@@ -190,8 +190,8 @@ function bulletin() {
         $('#bulletin-background').css('background-color', '#6A3C0A'); //advisory color and etc
         $('#lowerline').css('background-color', '#6A3C0A');
     } else if (weatherInfo.bulletin.marqueewarnings[0].significance == "A") {
-        $('#bulletin-background').css('background-color', '#6A3C0A'); //watch color
-        $('#lowerline').css('background-color', '#6A3C0A');
+        $('#bulletin-background').css('background-color', '#bfaa2d'); //watch color
+        $('#lowerline').css('background-color', '#bfaa2d');
     }	else if (weatherInfo.bulletin.marqueewarnings[0].significance == "W") {
         $('#bulletin-background').css('background-color', '#330912'); //warning color
         $('#lowerline').css('background-color', '#330912');
@@ -283,12 +283,12 @@ function travelForecast() {
     $('#travel-container #travel-content .lows .low-23').text(weatherInfo.travel.cities[22].days[1].low);
     $('#travel-container #travel-content .lows .low-24').text(weatherInfo.travel.cities[23].days[1].low);
 
-    //$('#travel-container').marquee({speed: 110, direction: 'up', pauseOnHover: false});
+    $('#travel-container').marquee({speed: 110, direction: 'up', pauseOnHover: false});
    //$('#travel-container #travel-content').marquee({speed: 110, direction: 'up', pauseOnHover: false});
-    $('#travel-container #travel-title-container').marquee({speed: 110, direction: 'up', pauseOnHover: false});
+    //$('#travel-container #travel-title-container').marquee({speed: 110, direction: 'up', pauseOnHover: false});
     //$('#travel-container #travel-title-container').on('finished', function() {$('#travel-container #travel-title-container').fadeOut(0)});
-    $('#travel-container #travel-content .cities').marquee({speed: 49, direction: 'up', pauseOnHover: false});
-    $('#travel-container #travel-content .weathers').marquee({speed: 20, direction: 'up', pauseOnHover: false});
+    //$('#travel-container #travel-content .cities').marquee({speed: 49, direction: 'up', pauseOnHover: false});
+    //$('#travel-container #travel-content .weathers').marquee({speed: 20, direction: 'up', pauseOnHover: false});
    // $('#travel-container #travel-content .his').marquee({/*speed: 110,*/ direction: 'up', pauseOnHover: false});
   //  $('#travel-container #travel-content .lows').marquee({/*speed: 110,*/ direction: 'up', pauseOnHover: false});
     //{speed: 110,  direction: 'up', pauseOnHover: false}
@@ -484,8 +484,8 @@ function flavorTest() {
 function flavorA() {
     setTimeout(() => {currentConditions()}, 1);
     setTimeout(() => {dayPartForecast()}, slideLength);
-    setTimeout(() => {hourlyObservation()}, (3+2) * slideLength);
-    setTimeout(() => {showSlides()}, (3+3) * slideLength);
+    setTimeout(() => {hourlyObservation()}, (2+2) * slideLength);
+    setTimeout(() => {showSlides()}, (2+3) * slideLength);
 }
 function flavorB() {
     setTimeout(() => {hourlyObservation()}, 1);
@@ -497,39 +497,39 @@ function flavorB() {
 function flavorC() {
     setTimeout(() => {regionalConditions()}, 1);
     setTimeout(() => {dayPartForecast()}, slideLength);
-    setTimeout(() => {regionalForecast()}, (4+1) * slideLength);
-    setTimeout(() => {showSlides()}, (4+2) * slideLength);
+    setTimeout(() => {regionalForecast()}, (3+1) * slideLength);
+    setTimeout(() => {showSlides()}, (3+2) * slideLength);
 }
 function flavorD() {
     setTimeout(() => {hourlyObservation()}, 1);
     setTimeout(() => {almanac()}, slideLength);
     setTimeout(() => {dayPartForecast()}, 2 * slideLength);
-    setTimeout(() => {regionalConditions()}, (3+3) * slideLength);
-    setTimeout(() => {showSlides()}, (3+4) * slideLength);
+    setTimeout(() => {regionalConditions()}, (2+3) * slideLength);
+    setTimeout(() => {showSlides()}, (2+4) * slideLength);
 }
 function flavorE() {
     setTimeout(() => {dayPartForecast()}, 1);
-    setTimeout(() => {extendedForecast()}, (3+1)* slideLength);
-    setTimeout(() => {hourlyObservation()}, (3+2) * slideLength);
-    setTimeout(() => {showSlides()}, (3+3) * slideLength);
+    setTimeout(() => {extendedForecast()}, (2+1)* slideLength);
+    setTimeout(() => {hourlyObservation()}, (2+2) * slideLength);
+    setTimeout(() => {showSlides()}, (2+3) * slideLength);
 }
 function flavorF() {
     setTimeout(() => {currentConditions()}, 1);
     setTimeout(() => {regionalConditions()}, slideLength);
     setTimeout(() => {dayPartForecast()}, 2 * slideLength);
-    setTimeout(() => {almanac()}, (3+3) * slideLength);
-    setTimeout(() => {showSlides()}, (3+4) * slideLength);
+    setTimeout(() => {almanac()}, (2+3) * slideLength);
+    setTimeout(() => {showSlides()}, (2+4) * slideLength);
 }
 function flavorG() {
     setTimeout(() => {dayPartForecast()}, 1);
-    setInterval(() => {dayPartForecast()}, 4 * slideLength);
+    setInterval(() => {dayPartForecast()}, 3 * slideLength);
 }
 function flavorH() {
     setTimeout(() => {dayPartForecast()}, 1);
-    setTimeout(() => {regionalForecast()}, (3+1) * slideLength);
-    setTimeout(() => {almanac()}, (3+2) * slideLength);
-    setTimeout(() => {regionalConditions()}, (3+3) * slideLength);
-    setTimeout(() => {showSlides()}, (3+4) * slideLength);
+    setTimeout(() => {regionalForecast()}, (2+1) * slideLength);
+    setTimeout(() => {almanac()}, (2+2) * slideLength);
+    setTimeout(() => {regionalConditions()}, (2+3) * slideLength);
+    setTimeout(() => {showSlides()}, (2+4) * slideLength);
 }
 function flavorI() {
     setTimeout(() => {currentConditions()}, 1);
@@ -547,19 +547,19 @@ function flavorK() {
     setTimeout(() => {almanac()}, slideLength);
     setTimeout(() => {regionalForecast()}, 2 * slideLength);
     setTimeout(() => {dayPartForecast()}, 3 * slideLength);
-    setTimeout(() => {extendedForecast()}, (3+4) * slideLength);
-    setTimeout(() => {hourlyObservation()}, (3+5) * slideLength);
-    setTimeout(() => {showSlides()}, (3+6) * slideLength);
+    setTimeout(() => {extendedForecast()}, (2+4) * slideLength);
+    setTimeout(() => {hourlyObservation()}, (2+5) * slideLength);
+    setTimeout(() => {showSlides()}, (2+6) * slideLength);
 }
 function flavorL() {
     setTimeout(() => {currentConditions()}, 1), 
     setTimeout(() => {hourlyObservation()}, slideLength), 
-    setTimeout(() => {regionalConditions()}, (2 * slideLength)), 
-    setTimeout(() => {regionalForecast()}, (3 * slideLength)), 
-    setTimeout(() => {almanac()}, (4 * slideLength)),
-    setTimeout(() => {dayPartForecast()}, (5 * slideLength)),
-    setTimeout(() => {extendedForecast()}, ((3+6) * slideLength))
-    setTimeout(() => {showSlides()}, ((3+7) * slideLength));
+    setTimeout(() => {regionalConditions()}, 2 * slideLength), 
+    setTimeout(() => {regionalForecast()}, 3 * slideLength), 
+    setTimeout(() => {almanac()}, 4 * slideLength),
+    setTimeout(() => {dayPartForecast()}, 5 * slideLength),
+    setTimeout(() => {extendedForecast()}, (2+6) * slideLength)
+    setTimeout(() => {showSlides()}, (2+7) * slideLength);
 }
 function flavorM() {
     setTimeout(() => {travelForecast()}, 1);
@@ -597,55 +597,58 @@ function showSlides() {
         }
         
     } 
-    if (apperanceSettings.flavor == 'A') {
+    else if (apperanceSettings.flavor == 'A') {
         flavorA();
     } 
-    if (apperanceSettings.flavor == 'B') {
+    else if (apperanceSettings.flavor == 'B') {
         flavorB();
     } 
-    if (apperanceSettings.flavor == 'C') {
+    else if (apperanceSettings.flavor == 'C') {
         flavorC();
     } 
-    if (apperanceSettings.flavor == 'D') {
+    else if (apperanceSettings.flavor == 'D') {
         flavorD();
     }
-    if (apperanceSettings.flavor == 'E') {
+    else if (apperanceSettings.flavor == 'E') {
         flavorE();
-    };
-    if (apperanceSettings.flavor == 'F') {
+    }
+    else if (apperanceSettings.flavor == 'F') {
         flavorF();
-    };
-    if (apperanceSettings.flavor == 'G') {
+    }
+    else if (apperanceSettings.flavor == 'G') {
         flavorG();
-    };
-    if (apperanceSettings.flavor == 'H') {
+    }
+    else if (apperanceSettings.flavor == 'H') {
         flavorH();
-    };
-    if (apperanceSettings.flavor == 'I') {
+    }
+    else if (apperanceSettings.flavor == 'I') {
         flavorI();
-    };
-    if (apperanceSettings.flavor == 'J') {
+    }
+    else if (apperanceSettings.flavor == 'J') {
         flavorJ();
-    };
-    if (apperanceSettings.flavor == 'K') {
+    }
+    else if (apperanceSettings.flavor == 'K') {
         flavorK();
-    };
-    if (apperanceSettings.flavor == 'L') {
+    }
+    else if (apperanceSettings.flavor == 'L') {
         flavorL();
-    };
-    if (apperanceSettings.flavor == 'M') {
+    }
+    else if (apperanceSettings.flavor == 'M') {
         flavorM();
-    };
-    if (apperanceSettings.flavor == 'N') {
+    }
+    else if (apperanceSettings.flavor == 'N') {
         flavorN();
-    };
-    if (apperanceSettings.flavor == 'O') {
+    }
+    else if (apperanceSettings.flavor == 'O') {
         flavorO();
-    };
-    if (apperanceSettings.flavor == 'P') {
+    }
+    else if (apperanceSettings.flavor == 'P') {
         flavorP();
-    };
-    if (apperanceSettings.flavor == 'Q') {
+    }
+    else if (apperanceSettings.flavor == 'Q') {
         flavorQ();
+    }
+    else {
+        flavorL();
     };
 }
