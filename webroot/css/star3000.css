@@ -30,12 +30,16 @@
     display: block;
     max-height: 100%;
     max-width: 100%
-  }
+}
+a, body, div, h1, html, p {
+    margin: 0;
+    padding: 0;
+}
 html * {
     box-sizing: border-box;
     font-size: 100%
 }
-  body, html {
+body, html {
     color: #FFF;
     height: 100%;
     background-color: #000;
@@ -218,7 +222,7 @@ html * {
 .info-cc .current-windchill {
     position: absolute;
     margin-top: 90px;
-    width: 1100px;
+    width: 1140px;
     text-align: right;
 }
 .info-cc .current-humidity {
@@ -258,6 +262,11 @@ html * {
     margin-top: 450px;
     width: 1140px;
     text-align: right;
+}
+.info-cc .current-month-precip {
+    position: absolute;
+    margin-top: 540px;
+    width: 11400px;
 }
 .hourly-observations {
     position: absolute;
@@ -894,6 +903,35 @@ html * {
     -3px 3px 0 #000,
     -3px -3px 0 #000,
     3px -3px 0 #000;
+}
+.outlook {
+    position: absolute;
+    width: 1140px;
+    height: 620px;
+    font-size: 65.1px;
+    line-height: 89px;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+    margin-top: 40px;
+    overflow: hidden;
+}
+.outlook .month {
+    position: absolute;
+    width: 1140px;
+    height: 89px;
+    text-align: center;
+    font-family: 'mainfont';
+}
+.outlook .outlook-desc {
+    position: absolute;
+    width: 1140px;
+    height: 445px;
+    text-align: left;
+    font-family: 'mainfont';
+    margin-top: 178px;
 }
 #lowerline {
     position: absolute;
