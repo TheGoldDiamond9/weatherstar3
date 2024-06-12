@@ -35,10 +35,11 @@
           maincitycoords.displayname = data.location.displayName[0]
           state = data.location.adminDistrict[0];
           //init data
-          getStatePopularCities(state, true)
+          //getStatePopularCities(state, true)
           grabalmanacSlidesData()
           grabHealthData()
           grabSideandLowerBarData()
+          GetMonthPrecipitation()
         });
       } else if (locationSettings.mainLocation.searchQuery && configFailed != true) {
         if (locationSettings.mainLocation.searchQuery.type == "geocode") {
@@ -55,10 +56,11 @@
             trafficcoords1.lon = data.location.longitude-=0.3885
             trafficcoords2.lat = data.location.latitude+=0.3885
             trafficcoords2.lon = data.location.longitude+=0.3885
-            getStatePopularCities(state, true)
+            //getStatePopularCities(state, true)
             grabalmanacSlidesData()
             grabHealthData()
             grabSideandLowerBarData()
+            GetMonthPrecipitation()
             grabTrafficData()
           });
         } else {
@@ -77,10 +79,11 @@
               $("#locationname").text("location name: "+maincitycoords.displayname)
               state = data.location.adminDistrict[cidx];
     
-              getStatePopularCities(state, true)
+              //getStatePopularCities(state, true)
               grabalmanacSlidesData()
               grabHealthData()
               grabSideandLowerBarData()
+              GetMonthPrecipitation()
               grabTrafficData()
           });
         }
@@ -101,10 +104,11 @@
     
           state = data.regionName
           //init data
-          getStatePopularCities(state, true)
+          //getStatePopularCities(state, true)
           grabalmanacSlidesData()
           grabHealthData()
           grabSideandLowerBarData()
+          GetMonthPrecipitation()
           grabTrafficData()
         });
     
@@ -245,6 +249,149 @@
             });
       }
 
+      function getRegionalLocs(lat,lon, onInit, whichReset) {
+        $.getJSON('https://api.weather.com/v3/location/near?geocode=' + lat + ',' + lon + '&product=observation&format=json&apiKey=' + api_key, function(data) {
+          //console.log('https://api.weather.com/v3/location/near?geocode=' + lat + ',' + lon + '&product=observation&format=json&apiKey=' + api_key);
+                var feature = data.location, geo, station, dist, ti=0;
+          var rminRadiusMiles = 100, rmaxRadiusMiles = 200;
+          rgetLocLoop(0);
+                function rgetLocLoop(i) {
+            $.getJSON("https://api.weather.com/v3/location/point?geocode="+ feature.latitude[i] + "," + feature.longitude[i] + "&language=en-US&format=json&apiKey=" + api_key, function(dataii){
+                      //console.log("https://api.weather.com/v3/location/point?geocode="+ feature.latitude[i] + "," + feature.longitude[i] + "&language=en-US&format=json&apiKey=" + api_key);
+            latgeo = feature.latitude[i];
+                      longeo = feature.longitude[i];
+                      dist = feature.distanceMi[i];
+            displayname = dataii.location.displayName
+            displaystate = dataii.location.adminDistrictCode
+             if (displayname == maincitycoords.displayname || displayname == state) {
+              if ((dataii.location.locale.locale3 != maincitycoords.displayname && dataii.location.locale.locale3) || (dataii.location.locale.locale4 != maincitycoords.displayname && dataii.location.locale.locale4)) {
+                displayname = (dataii.location.locale.locale3 != maincitycoords.displayname && dataii.location.locale.locale3) ? dataii.location.locale.locale3 : dataii.location.locale.locale4
+                displaystate = dataii.location.adminDistrictCode
+              } else {
+                if (feature.latitude.length == (i + 1)) {ronExtraAjaxFinish()} else {rgetLocLoop(i + 1)}
+                return
+              }
+            }
+            for (var li = 0; li < regionalList.length; li++) {
+              if (displayname == regionalList[li].displayname) {
+                if ((dataii.location.locale.locale3 != regionalList[li].displayname && dataii.location.locale.locale3) || (dataii.location.locale.locale4 != regionalList[li].displayname && dataii.location.locale.locale4)) {
+                  displayname = (dataii.location.locale.locale3 != regionalList[li].displayname && dataii.location.locale.locale3) ? dataii.location.locale.locale3 : dataii.location.locale.locale4
+                  displaystate = dataii.location.adminDistrictCode
+                } else {
+                  if (feature.latitude.length == (i + 1)) {ronExtraAjaxFinish()} else {rgetLocLoop(i + 1)}
+                  return
+                }
+              }
+            }
+            if (i!=0) {
+              regionalList.push({lat: latgeo, lon:longeo, distance:dist, stationUrl:feature.stationId[i], name:displayname, displayname:displayname, statecode:displaystate});
+            };
+            displayname = dataii.location.displayName
+            displaystate = dataii.location.adminDistrictCode
+            if (displayname == maincitycoords.displayname || displayname == state) {
+                if (feature.latitude.length == (i + 1)) {ronExtraAjaxFinish()} else {rgetLocLoop(i + 1)}
+                return
+            }
+            for (var li = 0; li < locList.length; li++) {
+              if (displayname == locList[li].displayname) {
+                if (feature.latitude.length == (i + 1)) {ronExtraAjaxFinish()} else {rgetLocLoop(i + 1)}
+                return
+              }
+            }
+                    if (dist >= rminRadiusMiles && dist <= rmaxRadiusMiles) {
+              if (ti < 3) {
+                  locList.push({lat: latgeo, lon:longeo, distance:dist, stationUrl:feature.stationId[i], name:displayname, displayname:displayname, state:displaystate});
+              } else {
+                ti = ti - 1
+              }
+            }
+            //for the 8 city slide
+            if (i < data.location.stationName.length && (regionalList.length < 8 || locList.length < locationSettings.extraLocations.maxLocations)) {
+              ti = ti + 1
+              i = i + 1
+              rgetLocLoop(i)
+            } else {
+              ronExtraAjaxFinish()
+            };
+          }).fail(function(){
+            if (feature.latitude.length >= (i + 1) || i >= 9) {ronExtraAjaxFinish()} else {rgetLocLoop(i + 1)}
+          })
+                }
+    
+                // sort list by distance
+        function ronExtraAjaxFinish() {
+                  locList.sort(function(a, b) {
+                      return parseInt(a.distance) - parseInt(b.distance);
+                  });
+            locList.forEach((loc, i) => {
+              loc.orderNum = ((locationSettings.extraLocations.locationOrderNum[i]) ? locationSettings.extraLocations.locationOrderNum[i] : locationSettings.extraLocations.maxLocations + i)
+            });
+            regionalList.forEach((loc, i) => {
+              loc.orderNum = ((locationSettings.regionalInfoLocs.locationOrderNum[i])? locationSettings.regionalInfoLocs.locationOrderNum[i] : locationSettings.regionalInfoLocs.maxLocations + i)
+            });
+            if (locationSettings.extraLocations.useAutoLocations == false){locList = []}
+            if (locationSettings.regionalInfoLocs.useAutoLocations == false){regionalList = []}
+            function raddConfigLocsLoop(i) {
+              eloc = locationSettings.extraLocations.locs[i]
+              if (eloc.searchQuery.type) {
+                if (eloc.searchQuery.type == "geocode") {
+                  $.getJSON("https://api.weather.com/v3/location/point?geocode="+ eloc.searchQuery.val + "&language=en-US&format=json&apiKey=" + api_key, function(data) {
+                    console.log("https://api.weather.com/v3/location/point?geocode="+ eloc.searchQuery.val + "&language=en-US&format=json&apiKey=" + api_key);
+                    locList.push({lat: data.location.latitude, lon:data.location.longitude, orderNum: ((eloc.orderNum) ? eloc.orderNum : i), distance:null, stationUrl:null, name:data.location.displayName, statecode: data.location.adminDistrictCode, displayname:((eloc.displayName) ? eloc.displayName : data.location.displayName)});
+                    if (i < locationSettings.extraLocations.locs.length-1) {raddConfigLocsLoop(i + 1)} else {rsortFinishedLocList()}
+                  }).fail(function(){if (i < locationSettings.extraLocations.locs.length-1) {raddConfigLocsLoop(i + 1)} else {rsortFinishedLocList()}});
+                } else {
+                  $.getJSON("https://api.weather.com/v3/location/search?query="+eloc.searchQuery.val+"&locationType="+eloc.searchQuery.type+"&fuzzyMatch="+eloc.searchQuery.fuzzy+((eloc.searchQuery.country) ? "&countryCode="+eloc.searchQuery.country : "")+((eloc.searchQuery.state) ? "&adminDistrictCode="+eloc.searchQuery.state : "")+"&language=en-US&format=json&apiKey=" + api_key, function(data) {
+                    console.log("https://api.weather.com/v3/location/search?query="+eloc.searchQuery.val+"&locationType="+eloc.searchQuery.type+"&fuzzyMatch="+eloc.searchQuery.fuzzy+((eloc.searchQuery.country) ? "&countryCode="+eloc.searchQuery.country : "")+((eloc.searchQuery.state) ? "&adminDistrictCode="+eloc.searchQuery.state : "")+"&language=en-US&format=json&apiKey=" + api_key);
+                      cidx = ((eloc.searchQuery.searchResultNum && eloc.searchQuery.searchResultNum < data.location.placeId.length) ? eloc.searchQuery.searchResultNum : 0)
+                      locList.push({lat: data.location.latitude[cidx], lon:data.location.longitude[cidx], orderNum: ((eloc.orderNum) ? eloc.orderNum : i), distance:null, stationUrl:null, name:data.location.displayName[cidx], statecode: data.location.adminDistrictCode[cidx], displayname:((eloc.displayName) ? eloc.displayName : data.location.displayName[cidx])});
+                      if (i < locationSettings.extraLocations.locs.length-1) {raddConfigLocsLoop(i + 1)} else {rsortFinishedLocList()}
+                  }).fail(function(){if (i < locationSettings.extraLocations.locs.length-1) {raddConfigLocsLoop(i + 1)} else {rsortFinishedLocList()}});
+                }
+              } else {if (i < locationSettings.extraLocations.locs.length-1) {raddConfigLocsLoop(i + 1)} else {rsortFinishedLocList()}}
+            }
+            raddConfigLocsLoop(0)
+            function raddConfigAroundLocsLoop(i) {
+              eloc = locationSettings.regionalInfoLocs.locs[i]
+              if (eloc.searchQuery.type) {
+                if (eloc.searchQuery.type == "geocode") {
+                  $.getJSON("https://api.weather.com/v3/location/point?geocode="+ eloc.searchQuery.val + "&language=en-US&format=json&apiKey=" + api_key, function(data) {
+                    console.log("https://api.weather.com/v3/location/point?geocode="+ eloc.searchQuery.val + "&language=en-US&format=json&apiKey=" + api_key);
+                    regionalList.push({lat: data.location.latitude, lon:data.location.longitude, orderNum: ((eloc.orderNum) ? eloc.orderNum : i), distance:null, stationUrl:null, name:data.location.displayName, statecode: data.location.adminDistrictCode, displayname:((eloc.displayName) ? eloc.displayName : data.location.displayName)});
+                    if (i < locationSettings.regionalInfoLocs.locs.length-1) {raddConfigAroundLocsLoop(i + 1)} else {sortFinishedAroundLocList()}
+                  }).fail(function(){if (i < locationSettings.regionalInfoLocs.locs.length-1) {raddConfigAroundLocsLoop(i + 1)} else {sortFinishedAroundLocList()}});
+                } else {
+                  $.getJSON("https://api.weather.com/v3/location/search?query="+eloc.searchQuery.val+"&locationType="+eloc.searchQuery.type+"&fuzzyMatch="+eloc.searchQuery.fuzzy+((eloc.searchQuery.country) ? "&countryCode="+eloc.searchQuery.country : "")+((eloc.searchQuery.state) ? "&adminDistrictCode="+eloc.searchQuery.state : "")+"&language=en-US&format=json&apiKey=" + api_key, function(data) {
+                    console.log("https://api.weather.com/v3/location/search?query="+eloc.searchQuery.val+"&locationType="+eloc.searchQuery.type+"&fuzzyMatch="+eloc.searchQuery.fuzzy+((eloc.searchQuery.country) ? "&countryCode="+eloc.searchQuery.country : "")+((eloc.searchQuery.state) ? "&adminDistrictCode="+eloc.searchQuery.state : "")+"&language=en-US&format=json&apiKey=" + api_key);
+                      cidx = ((eloc.searchQuery.searchResultNum && eloc.searchQuery.searchResultNum < data.location.placeId.length) ? eloc.searchQuery.searchResultNum : 0)
+                      regionalList.push({lat: data.location.latitude[cidx], lon:data.location.longitude[cidx], orderNum: ((eloc.orderNum) ? eloc.orderNum : i), distance:null, stationUrl:null, name:data.location.displayName[cidx], statecode: data.location.adminDistrictCode[cidx], displayname:((eloc.displayName) ? eloc.displayName : data.location.displayName[cidx])});
+                      if (i < locationSettings.regionalInfoLocs.locs.length-1) {raddConfigAroundLocsLoop(i + 1)} else {sortFinishedAroundLocList()}
+                  }).fail(function(){if (i < locationSettings.regionalInfoLocs.locs.length-1) {raddConfigAroundLocsLoop(i + 1)} else {sortFinishedAroundLocList()}});
+                }
+              } else {if (i < locationSettings.regionalInfoLocs.locs.length-1) {raddConfigAroundLocsLoop(i + 1)} else {sortFinishedAroundLocList()}}
+            }
+            raddConfigAroundLocsLoop(0)
+            function rsortFinishedLocList() {
+              locList.sort(function(a, b) {
+                        return parseInt(a.orderNum) - parseInt(b.orderNum);
+                    });
+              locList.splice(locationSettings.extraLocations.maxLocations)
+              grabCitySlidesData()
+            }
+            function sortFinishedAroundLocList() {
+              regionalList.sort(function(a, b) {
+                        return parseInt(a.orderNum) - parseInt(b.orderNum);
+                    });
+              regionalList.splice((locationSettings.regionalInfoLocs.maxLocations < 8)?locationSettings.regionalInfoLocs.maxLocations:8)
+              grabRegionalData()
+            }
+                // set the station for location 0
+                //_locations[0].stationUrl = locList[0].stationUrl
+          //start datapull
+        }
+            });
+      }
+
       function getStatePopularCities(state, onInit) {
         $.getJSON("https://examples.opendatasoft.com/api/records/1.0/search/?dataset=largest-us-cities&q=&sort=population&facet=city&facet=state&refine.state=" + state, function(data) {
           if (data !== undefined && data.records.length != 0) {
@@ -266,7 +413,7 @@
     
   
     var weatherInfo = { currentCond: {
-      sidebar: {noReport:false,displayname:"",temp:"",cond:"",condshort:"",icon:"",humid:"",dewpt:"",pressure:"",wind:"",windspeed:"",gust:"",feelslike:{type:"",val:""},visibility:"",uvidx:"",ceiling:"",windChill:""},
+      sidebar: {noReport:false,displayname:"",airport:"",temp:"",cond:"",condshort:"",icon:"",humid:"",dewpt:"",pressure:"",wind:"",windspeed:"",gust:"",feelslike:{type:"",val:""},visibility:"",uvidx:"",ceiling:"",windChill:"", monthToDatePrecip:"NO REPORT"},
       //loc:{noReport:"",displayname:"",temp:"",cond:"",icon:"",humid:"",dewpt:"",pressure:"",pressureTrend:"",wind:"",windspeed:"",gust:"",feelslike:{type:"",val:""},},
       weatherLocs:[],
       //cityLoc:{noReport:false,displayname:"",temp:"",icon:"",wind:"",windspeed:""}
@@ -700,7 +847,7 @@
                       var numday = dateFns.getDay(expiretime);
                       displayday = {"0":"SUN","1":"MON","2":"TUE","3":"WED","4":"THU","5":"FRI","6":"SAT"}[numday] + ".";
                     } else {
-                      displayday = " Today."
+                      displayday = "Today."
                     }
                     return dateFns.format(new Date(expiretime), "h:mm A ") + displayday
                   }
@@ -757,7 +904,7 @@
       url += `${maincitycoords.lat},${maincitycoords.lon};`
       url += "&language=en-US&units=e&format=json&apiKey=" + api_key
       $.getJSON(url, function(data) {
-        console.log(url);
+        //console.log(url);
             var ajaxedLoc = data[0]
             if (ajaxedLoc == null) {
               weatherInfo.currentCond.sidebar.displayname = maincitycoords.displayname
@@ -984,7 +1131,7 @@
     function grabalmanacSlidesData() {
       urltod = 'https://api.weather.com/v3/aggcommon/v3-wx-almanac-daily-1day;v3-wx-observations-current?geocode=' + maincitycoords.lat + ',' + maincitycoords.lon + "&format=json&language=en-US&units=e" + "&day=" + dateFns.format(new Date(), "D") + "&month=" + dateFns.format(new Date(),"M") + "&apiKey=" + api_key
         $.getJSON(urltod, function(data) {
-          console.log(urltod)
+          //console.log(urltod)
           if (data == null) {
             weatherInfo.almanactod.displayname = maincitycoords.displayname
             weatherInfo.almanactod.noReport = true
@@ -1345,9 +1492,126 @@
     
           });
       };
+      $.ajaxCORS = function (e)
+{
+    // If error 403 is being returned from the server, you may need to update the switch block under HOST CHECK in the CORS codebase.
+
+    var Type = e.type;
+    var DataType = e.dataType;
+    var CrossDomain = e.crossDomain;
+    var Cache = e.cache;
+    var Success = e.success;
+    var Error = e.error;
+    var Url = e.url;
+
+    var Methods = [
+        //{
+        //    Url: "https://crossorigin.me/",
+        //    EncodeURIComponent: false,
+        //},
+        //{
+        //    Url: "http://anyorigin.com/go?url=",
+        //    EncodeURIComponent: false,
+        //},
+        //{
+        //    Url: "http://www.whateverorigin.org/get?url=",
+        //    EncodeURIComponent: true,
+        //},
+
+        // Make this one last
+        {
+            Url: "cors/?u=",
+            EncodeURIComponent: true,
+        },
+    ];
+    var MethodIndex = 0;
+
+    function DoAjax()
+    {
+        var Method = Methods[MethodIndex];
+        Url = Method.Url;
+        
+        if (Method.EncodeURIComponent == true)
+        {
+            Url += encodeURIComponent(e.url);
+        }
+        else
+        {
+            Url += e.url;
+        }
+
+        //console.log("CORS: " + e.url);
+
+        $.ajax({
+            type: Type,
+            url: Url,
+            dataType: DataType,
+            crossDomain: CrossDomain,
+            cache: Cache,
+            success: Success,
+            error: function (xhr, error, errorThrown)
+            {
+                MethodIndex++;
+
+                if (MethodIndex > Methods.length - 1)
+                {
+                    if (Error) Error(xhr, error, errorThrown);
+                    return;
+                }
+
+                DoAjax();
+            }
+        });
+    };
+    DoAjax();
+
+};
+      function GetMonthPrecipitation () {
+    var Now = new Date();
+
+    var Url = "https://api.weather.com/v3/location/near?apiKey=" + api_key + "&geocode=";
+    Url += maincitycoords.lat + "%2C";
+    Url += maincitycoords.lon;
+    Url += "&product=airport&subproduct=major&format=json";
+    //console.log(Url);
+    $.getJSON(Url, function(data) {
+      var AirportName = data.location.airportName[0];
+      var AirportCode = data.location.iataCode[0];
+
+      //console.log(AirportCode);
+
+      var SecUrl = "https://forecast.weather.gov/product.php?site=NWS&issuedby=";
+      SecUrl += AirportCode;
+      SecUrl += "&product=CLI&format=txt&version=1&glossary=1&highlight=off";
+      //console.log(SecUrl)
+
+            /*$.ajaxCORS({
+                type: "GET",
+                url: SecUrl,
+                dataType: "text",
+                crossDomain: true,
+                cache: false,
+                success: function (text) {
+                  console.log(text);
+
+                    //WeatherParameters.WeatherMonthlyTotalsParser = new WeatherMonthlyTotalsParser(text);
+                    //console.log(WeatherParameters.WeatherMonthlyTotalsParser);
+
+                    //WeatherParameters.WeatherMonthlyTotals = new WeatherMonthlyTotals(WeatherParameters.WeatherMonthlyTotalsParser);
+                    //console.log(WeatherParameters.WeatherMonthlyTotals);
+                    //PopulateCurrentConditions(WeatherParameters.WeatherMonthlyTotals);
+                },
+                error: function (xhr, error, errorThrown) {
+                    console.error("GetMonthPrecipitation failed: " + errorThrown);
+                }
+            });*/
+})
+};
+
     //loop data collection, slide loops data functions is done based on full cycle
     setInterval(function(){
       grabSideandLowerBarData();
+      GetMonthPrecipitation();
       pullCCTickerData();
     }, 300000)
     
