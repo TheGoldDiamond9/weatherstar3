@@ -13,11 +13,11 @@ function Slides() {
         $('#lowerline').fadeOut(0)}, 2)
     } else {
          showSlides();
-    setTimeout(() => {$('#title-container').fadeIn(0),
-    $('#slide-title-text').fadeIn(0),
-    $('#info-slides-container').fadeIn(0)}, 2)
-    console.log('FLAVOR ' + apperanceSettings.flavor)
-    //loopBulletin();
+        setTimeout(() => {$('#title-container').fadeIn(0),
+        $('#slide-title-text').fadeIn(0),
+        $('#info-slides-container').fadeIn(0)}, 2)
+        console.log('FLAVOR ' + apperanceSettings.flavor)
+        loopBulletin();
 }
     }
    
@@ -459,27 +459,10 @@ function gFunc() {
       $('.gholder').fadeOut(0);
     }, 1);
 }
-/*function showSlides() {
-    //$('#title-container').fadeIn(0);
-   // $('#slide-title-text').fadeIn(0);
-   // $('#info-slides-container').fadeIn(0);
-    $('#lowerline').fadeIn(0);
-    $('#lowerbar').fadeIn(0);
-    setTimeout(() => {currentConditions()}, 1);
-    setTimeout(() => {hourlyObservation()}, slideLength);
-    setTimeout(() => {dayPartForecast()}, 2 * slideLength);
-    setTimeout(() => {extendedForecast()}, (3+3) * slideLength);
-    //setTimeout(() => {travelForecast()}, 1);
-    
-    setTimeout(() => {almanac()}, ((3+3)+3) * slideLength);
-    setTimeout(() => {regionalForecast()}, ((3+3)+4) * slideLength);
-    setTimeout(() => {regionalConditions()}, ((3+3)+5) * slideLength);
-    setTimeout(() => {showSlides()}, ((3+3)+6) * slideLength);
-}*/
 function loopBulletin() {
     //console.log("bulletin disabled")
-    setTimeout(() => {if (weatherInfo.bulletin.marqueewarnings[0].desc.length != 0) {bulletin()}}, 5000);
-    setInterval(() => {if (weatherInfo.bulletin.marqueewarnings[0].desc.length != 0) {bulletin()}}, 420000);
+    setTimeout(() => {if (weatherInfo.bulletin.marqueewarnings[0] != undefined) {bulletin()}}, 5000);
+    setInterval(() => {if (weatherInfo.bulletin.marqueewarnings[0] != undefined) {bulletin()}}, 420000);
 }
 function flavorTest() {
     setTimeout(() => {extendedForecast()}, 1);
