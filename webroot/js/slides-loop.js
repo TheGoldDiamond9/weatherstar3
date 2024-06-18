@@ -9,7 +9,8 @@ function Slides() {
     if (apperanceSettings.onlyLDLMode == true) {
         setTimeout(() => {$('#title-container').fadeOut(0),
         $('#slide-title-text').fadeOut(0),
-        $('#info-slides-container').fadeOut(0)}, 2)
+        $('#info-slides-container').fadeOut(0),
+        $('#lowerline').fadeOut(0)}, 2)
     } else {
          showSlides();
     setTimeout(() => {$('#title-container').fadeIn(0),
