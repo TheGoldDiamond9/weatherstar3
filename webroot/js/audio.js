@@ -22,7 +22,6 @@ function WeatherAudio() {
 			shuffle(musicarr);
 		};
 
-		setTimeout (() => startPlaying(musicarr, true), 5000);
 
 		function buildMusicArray(arr) {
 
@@ -150,8 +149,20 @@ function WeatherAudio() {
 			$player=$temp2; $preloader=$temp1;
 
 			$player.jPlayer("play");
+
+			$(document).mousedown( function() {
+				if (!mobilePlaying) {
+					$player.jPlayer("play");
+					$player.jPlayer("playHead", 100);
+					mobilePlaying = true;
+				}
+			});
 		}
+
+
+
 	}
+	setTimeout (() => startPlaying(musicarr, true), 5000);
 
 
 
