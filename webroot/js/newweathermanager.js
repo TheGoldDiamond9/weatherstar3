@@ -1617,7 +1617,7 @@
     
     //startup();
     setTimeout(() => {startup();}, 2)
-    setTimeout(() => {Slides(), marqueeSettings(), $('#startup-screen').fadeOut(0), $player.jPlayer("play"), $player.jPlayer("playHead", 100), mobilePlaying = true}, 5000);
+    setTimeout(() => {Slides(), marqueeSettings(), $('#startup-screen').fadeOut(0)}, 5000);
 
     function simulateReboot() {
       weatherInfo.reboot = true
