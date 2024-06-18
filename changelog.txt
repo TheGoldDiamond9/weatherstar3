@@ -3,3 +3,4 @@
  -  Added new song "Brighter Days" by Trammell Starks
  -  Added new variable in config.js file to toggle the option to loop the emulator or not
  -  Fixed some LDL issues and accuracies
+ -  Bulletin crawl temporarily disabled due to emulator freezing
