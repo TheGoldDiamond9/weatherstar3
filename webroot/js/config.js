@@ -1,5 +1,6 @@
 var api_key = 'YOUR_API_KEY';
 var apperanceSettings = {
+    loop: true,
     flavor: "L", //Upper case letter from A-Q. Default is L
     marqueeType: "", //Default is both. Set to 'observations' for only observations, 'ad' for only advertisements, 'both' for alternation between observations and advertisements.
     // end all ads with "                                                      |"
