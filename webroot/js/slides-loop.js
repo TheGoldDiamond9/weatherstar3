@@ -1,4 +1,4 @@
-//first num difference is 3 for daypart
+//first num difference is 4 for daypart
 function Slides() {
     var idx = 0;
     var bul = 1;
@@ -16,7 +16,7 @@ function Slides() {
     $('#slide-title-text').fadeIn(0),
     $('#info-slides-container').fadeIn(0)}, 2)
     console.log('FLAVOR ' + apperanceSettings.flavor)
-    loopBulletin();
+    //loopBulletin();
 }
     }
    
@@ -283,15 +283,18 @@ function travelForecast() {
     $('#travel-container #travel-content .lows .low-23').text(weatherInfo.travel.cities[22].days[1].low);
     $('#travel-container #travel-content .lows .low-24').text(weatherInfo.travel.cities[23].days[1].low);
 
-    $('#travel-container').marquee({speed: 110, direction: 'up', pauseOnHover: false});
+    //$('#travel-container').marquee({speed: 110, direction: 'up', pauseOnHover: false});
    //$('#travel-container #travel-content').marquee({speed: 110, direction: 'up', pauseOnHover: false});
+
     //$('#travel-container #travel-title-container').marquee({speed: 110, direction: 'up', pauseOnHover: false});
     //$('#travel-container #travel-title-container').on('finished', function() {$('#travel-container #travel-title-container').fadeOut(0)});
-    //$('#travel-container #travel-content .cities').marquee({speed: 49, direction: 'up', pauseOnHover: false});
-    //$('#travel-container #travel-content .weathers').marquee({speed: 20, direction: 'up', pauseOnHover: false});
+   
+    $('#travel-container #travel-content .cities').marquee({speed: 49, direction: 'up', pauseOnHover: false});
+   // $('#travel-container #travel-content .weathers').marquee({speed: 10, direction: 'up', pauseOnHover: false});
    // $('#travel-container #travel-content .his').marquee({/*speed: 110,*/ direction: 'up', pauseOnHover: false});
   //  $('#travel-container #travel-content .lows').marquee({/*speed: 110,*/ direction: 'up', pauseOnHover: false});
     //{speed: 110,  direction: 'up', pauseOnHover: false}
+
 	//$('#travel-container').on('finished', function() {$('#travel-container').fadeOut(0), $('#travel-background').fadeOut(0)});
 }
 function almanac() {
@@ -485,40 +488,40 @@ function flavorA() {
     setTimeout(() => {currentConditions()}, 1);
     setTimeout(() => {dayPartForecast()}, slideLength);
     setTimeout(() => {hourlyObservation()}, (2+2) * slideLength);
-    setTimeout(() => {showSlides()}, (2+3) * slideLength);
+    setTimeout(() => {loopSlides()}, (2+3) * slideLength);
 }
 function flavorB() {
     setTimeout(() => {hourlyObservation()}, 1);
     setTimeout(() => {almanac()}, slideLength);
     setTimeout(() => {extendedForecast()}, 2 * slideLength);
     setTimeout(() => {regionalConditions()}, 3 * slideLength);
-    setTimeout(() => {showSlides()}, 4 * slideLength);
+    setTimeout(() => {loopSlides()}, 4 * slideLength);
 }
 function flavorC() {
     setTimeout(() => {regionalConditions()}, 1);
     setTimeout(() => {dayPartForecast()}, slideLength);
     setTimeout(() => {regionalForecast()}, (3+1) * slideLength);
-    setTimeout(() => {showSlides()}, (3+2) * slideLength);
+    setTimeout(() => {loopSlides()}, (3+2) * slideLength);
 }
 function flavorD() {
     setTimeout(() => {hourlyObservation()}, 1);
     setTimeout(() => {almanac()}, slideLength);
     setTimeout(() => {dayPartForecast()}, 2 * slideLength);
     setTimeout(() => {regionalConditions()}, (2+3) * slideLength);
-    setTimeout(() => {showSlides()}, (2+4) * slideLength);
+    setTimeout(() => {loopSlides()}, (2+4) * slideLength);
 }
 function flavorE() {
     setTimeout(() => {dayPartForecast()}, 1);
     setTimeout(() => {extendedForecast()}, (2+1)* slideLength);
     setTimeout(() => {hourlyObservation()}, (2+2) * slideLength);
-    setTimeout(() => {showSlides()}, (2+3) * slideLength);
+    setTimeout(() => {loopSlides()}, (2+3) * slideLength);
 }
 function flavorF() {
     setTimeout(() => {currentConditions()}, 1);
     setTimeout(() => {regionalConditions()}, slideLength);
     setTimeout(() => {dayPartForecast()}, 2 * slideLength);
     setTimeout(() => {almanac()}, (2+3) * slideLength);
-    setTimeout(() => {showSlides()}, (2+4) * slideLength);
+    setTimeout(() => {loopSlides()}, (2+4) * slideLength);
 }
 function flavorG() {
     setTimeout(() => {dayPartForecast()}, 1);
@@ -529,18 +532,18 @@ function flavorH() {
     setTimeout(() => {regionalForecast()}, (2+1) * slideLength);
     setTimeout(() => {almanac()}, (2+2) * slideLength);
     setTimeout(() => {regionalConditions()}, (2+3) * slideLength);
-    setTimeout(() => {showSlides()}, (2+4) * slideLength);
+    setTimeout(() => {loopSlides()}, (2+4) * slideLength);
 }
 function flavorI() {
     setTimeout(() => {currentConditions()}, 1);
     setTimeout(() => {hourlyObservation()}, slideLength);
     setTimeout(() => {regionalConditions()}, 2 * slideLength);
-    setTimeout(() => {showSlides()}, 3 * slideLength);
+    setTimeout(() => {loopSlides()}, 3 * slideLength);
 }
 function flavorJ() {
     setTimeout(() => {outlook()}, 1);
     setTimeout(() => {almanac()}, slideLength);
-    setTimeout(() => {showSlides()}, 2 * slideLength);
+    setTimeout(() => {loopSlides()}, 2 * slideLength);
 }
 function flavorK() {
     setTimeout(() => {currentConditions()}, 1);
@@ -549,7 +552,7 @@ function flavorK() {
     setTimeout(() => {dayPartForecast()}, 3 * slideLength);
     setTimeout(() => {extendedForecast()}, (2+4) * slideLength);
     setTimeout(() => {hourlyObservation()}, (2+5) * slideLength);
-    setTimeout(() => {showSlides()}, (2+6) * slideLength);
+    setTimeout(() => {loopSlides()}, (2+6) * slideLength);
 }
 function flavorL() {
     setTimeout(() => {currentConditions()}, 1), 
@@ -559,7 +562,7 @@ function flavorL() {
     setTimeout(() => {almanac()}, 4 * slideLength),
     setTimeout(() => {dayPartForecast()}, 5 * slideLength),
     setTimeout(() => {extendedForecast()}, (2+6) * slideLength)
-    setTimeout(() => {showSlides()}, (2+7) * slideLength);
+    setTimeout(() => {loopSlides()}, (2+7) * slideLength);
 }
 function flavorM() {
     setTimeout(() => {travelForecast()}, 1);
@@ -578,24 +581,21 @@ function flavorP() {
     setTimeout(() => {dayPartForecast()}, 1)
     setTimeout(() => {extendedForecast()}, 4 * slideLength)
     setTimeout(() => {currentConditions()}, 5 * slideLength)
-    setTimeout(() => {showSlides()}, 6 * slideLength)
+    setTimeout(() => {loopSlides()}, 6 * slideLength)
 }
 function flavorQ() {
     setTimeout(() => {currentConditions()}, 1)
     setTimeout(() => {almanac()}, slideLength)
     setTimeout(() => {dayPartForecast()}, 2 * slideLength)
     setTimeout(() => {regionalConditions()}, (2+4) * slideLength)
-    setTimeout(() => {showSlides()}, (3+4) * slideLength)
+    setTimeout(() => {loopSlides()}, (3+4) * slideLength)
 }
 function showSlides() {
     $('#lowerline').fadeIn(0);
     $('#lowerbar').fadeIn(0);
     i = 10
     if (apperanceSettings.flavor == 'TEST') {
-        while (i=10) {
-            flavorTest();
-        }
-        
+        flavorTest();
     } 
     else if (apperanceSettings.flavor == 'A') {
         flavorA();
@@ -651,4 +651,68 @@ function showSlides() {
     else {
         flavorL();
     };
+}
+function loopSlides() {
+    i = 10
+    if (apperanceSettings.loop == true) {
+        if (apperanceSettings.flavor == 'TEST') {
+            flavorTest();
+        } 
+        else if (apperanceSettings.flavor == 'A') {
+            flavorA();
+        } 
+        else if (apperanceSettings.flavor == 'B') {
+            flavorB();
+        } 
+        else if (apperanceSettings.flavor == 'C') {
+            flavorC();
+        } 
+        else if (apperanceSettings.flavor == 'D') {
+            flavorD();
+        }
+        else if (apperanceSettings.flavor == 'E') {
+            flavorE();
+        }
+        else if (apperanceSettings.flavor == 'F') {
+            flavorF();
+        }
+        else if (apperanceSettings.flavor == 'G') {
+            flavorG();
+        }
+        else if (apperanceSettings.flavor == 'H') {
+            flavorH();
+        }
+        else if (apperanceSettings.flavor == 'I') {
+            flavorI();
+        }
+        else if (apperanceSettings.flavor == 'J') {
+            flavorJ();
+        }
+        else if (apperanceSettings.flavor == 'K') {
+            flavorK();
+        }
+        else if (apperanceSettings.flavor == 'L') {
+            flavorL();
+        }
+        else if (apperanceSettings.flavor == 'M') {
+            flavorM();
+        }
+        else if (apperanceSettings.flavor == 'N') {
+            flavorN();
+        }
+        else if (apperanceSettings.flavor == 'O') {
+            flavorO();
+        }
+        else if (apperanceSettings.flavor == 'P') {
+            flavorP();
+        }
+        else if (apperanceSettings.flavor == 'Q') {
+            flavorQ();
+        }
+        else {
+            flavorL();
+        };
+    } else {
+        $('#main').fadeOut(0)
+    }
 }
