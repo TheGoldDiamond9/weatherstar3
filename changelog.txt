@@ -1,2 +1,5 @@
 = June 18, 2024 @ 4:19 P.M =
-  Changelog created
+ -  Changelog created
+ -  Music will start automatically
+ -  Added new song "Brighter Days" by Trammell Starks
+ -  Added new variable in config.js file to toggle the option to loop the emulator or not
