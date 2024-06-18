@@ -1,4 +1,5 @@
-= June 18, 2024 @ 4:19 P.M =
+= June 18, 2024 =
  -  Changelog created
  -  Added new song "Brighter Days" by Trammell Starks
  -  Added new variable in config.js file to toggle the option to loop the emulator or not
+ -  Fixed some LDL issues and accuracies
