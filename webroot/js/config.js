@@ -3,7 +3,6 @@ var apperanceSettings = {
     loop: true,
     flavor: "L", //Upper case letter from A-Q. Default is L
     marqueeType: "", //Default is both. Set to 'observations' for only observations, 'ad' for only advertisements, 'both' for alternation between observations and advertisements.
-    // end all ads with "                                                      |"
     marqueeAd:  "With Comcast Spotlight, utilize the impact of interactive advertising. Specifically target areas of New Jersey on TV with commercials on networks like ESPN and TNT - and on the internet at XFINITY.com and FoxNews.com. For your custom advertising solution, call 244-2122.",
     onlyLDLMode: false,
 }
