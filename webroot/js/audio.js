@@ -21,7 +21,6 @@ function WeatherAudio() {
 		if (audioSettings.shuffle == true) {
 			shuffle(musicarr);
 		};
-		console.log(musicarr);
 
 		setTimeout (() => startPlaying(musicarr, true), 5000);
 
@@ -151,20 +150,8 @@ function WeatherAudio() {
 			$player=$temp2; $preloader=$temp1;
 
 			$player.jPlayer("play");
-
-			$(document).mousedown( function() {
-				if (!mobilePlaying) {
-					$player.jPlayer("play");
-					$player.jPlayer("playHead", 100);
-					mobilePlaying = true;
-				}
-			});
 		}
-
-
-
 	}
-
 
 
 
