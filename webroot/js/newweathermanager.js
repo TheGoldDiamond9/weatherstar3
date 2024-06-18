@@ -336,13 +336,13 @@
               if (eloc.searchQuery.type) {
                 if (eloc.searchQuery.type == "geocode") {
                   $.getJSON("https://api.weather.com/v3/location/point?geocode="+ eloc.searchQuery.val + "&language=en-US&format=json&apiKey=" + api_key, function(data) {
-                    console.log("https://api.weather.com/v3/location/point?geocode="+ eloc.searchQuery.val + "&language=en-US&format=json&apiKey=" + api_key);
+                    //console.log("https://api.weather.com/v3/location/point?geocode="+ eloc.searchQuery.val + "&language=en-US&format=json&apiKey=" + api_key);
                     locList.push({lat: data.location.latitude, lon:data.location.longitude, orderNum: ((eloc.orderNum) ? eloc.orderNum : i), distance:null, stationUrl:null, name:data.location.displayName, statecode: data.location.adminDistrictCode, displayname:((eloc.displayName) ? eloc.displayName : data.location.displayName)});
                     if (i < locationSettings.extraLocations.locs.length-1) {raddConfigLocsLoop(i + 1)} else {rsortFinishedLocList()}
                   }).fail(function(){if (i < locationSettings.extraLocations.locs.length-1) {raddConfigLocsLoop(i + 1)} else {rsortFinishedLocList()}});
                 } else {
                   $.getJSON("https://api.weather.com/v3/location/search?query="+eloc.searchQuery.val+"&locationType="+eloc.searchQuery.type+"&fuzzyMatch="+eloc.searchQuery.fuzzy+((eloc.searchQuery.country) ? "&countryCode="+eloc.searchQuery.country : "")+((eloc.searchQuery.state) ? "&adminDistrictCode="+eloc.searchQuery.state : "")+"&language=en-US&format=json&apiKey=" + api_key, function(data) {
-                    console.log("https://api.weather.com/v3/location/search?query="+eloc.searchQuery.val+"&locationType="+eloc.searchQuery.type+"&fuzzyMatch="+eloc.searchQuery.fuzzy+((eloc.searchQuery.country) ? "&countryCode="+eloc.searchQuery.country : "")+((eloc.searchQuery.state) ? "&adminDistrictCode="+eloc.searchQuery.state : "")+"&language=en-US&format=json&apiKey=" + api_key);
+                    //console.log("https://api.weather.com/v3/location/search?query="+eloc.searchQuery.val+"&locationType="+eloc.searchQuery.type+"&fuzzyMatch="+eloc.searchQuery.fuzzy+((eloc.searchQuery.country) ? "&countryCode="+eloc.searchQuery.country : "")+((eloc.searchQuery.state) ? "&adminDistrictCode="+eloc.searchQuery.state : "")+"&language=en-US&format=json&apiKey=" + api_key);
                       cidx = ((eloc.searchQuery.searchResultNum && eloc.searchQuery.searchResultNum < data.location.placeId.length) ? eloc.searchQuery.searchResultNum : 0)
                       locList.push({lat: data.location.latitude[cidx], lon:data.location.longitude[cidx], orderNum: ((eloc.orderNum) ? eloc.orderNum : i), distance:null, stationUrl:null, name:data.location.displayName[cidx], statecode: data.location.adminDistrictCode[cidx], displayname:((eloc.displayName) ? eloc.displayName : data.location.displayName[cidx])});
                       if (i < locationSettings.extraLocations.locs.length-1) {raddConfigLocsLoop(i + 1)} else {rsortFinishedLocList()}
@@ -356,13 +356,13 @@
               if (eloc.searchQuery.type) {
                 if (eloc.searchQuery.type == "geocode") {
                   $.getJSON("https://api.weather.com/v3/location/point?geocode="+ eloc.searchQuery.val + "&language=en-US&format=json&apiKey=" + api_key, function(data) {
-                    console.log("https://api.weather.com/v3/location/point?geocode="+ eloc.searchQuery.val + "&language=en-US&format=json&apiKey=" + api_key);
+                    //console.log("https://api.weather.com/v3/location/point?geocode="+ eloc.searchQuery.val + "&language=en-US&format=json&apiKey=" + api_key);
                     regionalList.push({lat: data.location.latitude, lon:data.location.longitude, orderNum: ((eloc.orderNum) ? eloc.orderNum : i), distance:null, stationUrl:null, name:data.location.displayName, statecode: data.location.adminDistrictCode, displayname:((eloc.displayName) ? eloc.displayName : data.location.displayName)});
                     if (i < locationSettings.regionalInfoLocs.locs.length-1) {raddConfigAroundLocsLoop(i + 1)} else {sortFinishedAroundLocList()}
                   }).fail(function(){if (i < locationSettings.regionalInfoLocs.locs.length-1) {raddConfigAroundLocsLoop(i + 1)} else {sortFinishedAroundLocList()}});
                 } else {
                   $.getJSON("https://api.weather.com/v3/location/search?query="+eloc.searchQuery.val+"&locationType="+eloc.searchQuery.type+"&fuzzyMatch="+eloc.searchQuery.fuzzy+((eloc.searchQuery.country) ? "&countryCode="+eloc.searchQuery.country : "")+((eloc.searchQuery.state) ? "&adminDistrictCode="+eloc.searchQuery.state : "")+"&language=en-US&format=json&apiKey=" + api_key, function(data) {
-                    console.log("https://api.weather.com/v3/location/search?query="+eloc.searchQuery.val+"&locationType="+eloc.searchQuery.type+"&fuzzyMatch="+eloc.searchQuery.fuzzy+((eloc.searchQuery.country) ? "&countryCode="+eloc.searchQuery.country : "")+((eloc.searchQuery.state) ? "&adminDistrictCode="+eloc.searchQuery.state : "")+"&language=en-US&format=json&apiKey=" + api_key);
+                    //console.log("https://api.weather.com/v3/location/search?query="+eloc.searchQuery.val+"&locationType="+eloc.searchQuery.type+"&fuzzyMatch="+eloc.searchQuery.fuzzy+((eloc.searchQuery.country) ? "&countryCode="+eloc.searchQuery.country : "")+((eloc.searchQuery.state) ? "&adminDistrictCode="+eloc.searchQuery.state : "")+"&language=en-US&format=json&apiKey=" + api_key);
                       cidx = ((eloc.searchQuery.searchResultNum && eloc.searchQuery.searchResultNum < data.location.placeId.length) ? eloc.searchQuery.searchResultNum : 0)
                       regionalList.push({lat: data.location.latitude[cidx], lon:data.location.longitude[cidx], orderNum: ((eloc.orderNum) ? eloc.orderNum : i), distance:null, stationUrl:null, name:data.location.displayName[cidx], statecode: data.location.adminDistrictCode[cidx], displayname:((eloc.displayName) ? eloc.displayName : data.location.displayName[cidx])});
                       if (i < locationSettings.regionalInfoLocs.locs.length-1) {raddConfigAroundLocsLoop(i + 1)} else {sortFinishedAroundLocList()}
@@ -1617,7 +1617,7 @@
     
     //startup();
     setTimeout(() => {startup();}, 2)
-    setTimeout(() => {Slides(), marqueeSettings(), $('#startup-screen').fadeOut(0)}, 5000);
+    setTimeout(() => {Slides(), marqueeSettings(), $('#startup-screen').fadeOut(0), $player.jPlayer("play"), $player.jPlayer("playHead", 100), mobilePlaying = true}, 5000);
 
     function simulateReboot() {
       weatherInfo.reboot = true
