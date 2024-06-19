@@ -17,7 +17,7 @@ function Slides() {
         $('#slide-title-text').fadeIn(0),
         $('#info-slides-container').fadeIn(0)}, 2)
         console.log('FLAVOR ' + apperanceSettings.flavor)
-        //loopBulletin();
+        loopBulletin();
 }
     }
    
@@ -185,22 +185,17 @@ function bulletin() {
     $('#bulletin-container').fadeIn(0);
     $('#bulletin-container #bulletin').fadeIn(0);
     $('#bulletin-background').fadeIn(0);
-    //$('#lowerline').css('background-color', '#FFF')
-    // /*
-    if (weatherInfo.bulletin.marqueewarnings[0].significance == "Y" || weatherInfo.bulletin.marqueewarnings[0].significance == "S") {
-        $('#bulletin-background').css('background-color', '#6A3C0A'); //advisory color and etc
-        $('#lowerline').css('background-color', '#6A3C0A');
-    } else if (weatherInfo.bulletin.marqueewarnings[0].significance == "A") {
+    $('#lowerline').fadeOut(0);
+    if (weatherInfo.bulletin.marqueewarnings[0].significance == "A") {
         $('#bulletin-background').css('background-color', '#bfaa2d'); //watch color
-        $('#lowerline').css('background-color', '#bfaa2d');
     }	else if (weatherInfo.bulletin.marqueewarnings[0].significance == "W") {
         $('#bulletin-background').css('background-color', '#330912'); //warning color
-        $('#lowerline').css('background-color', '#330912');
+    } else {
+        $('#bulletin-background').css('background-color', '#6A3C0A'); //advisory color and etc
     }
-    // */
     $('#bulletin-container #bulletin').text(weatherInfo.bulletin.marqueewarnings[0].desc);
     $('#bulletin-container #bulletin').marquee({speed: 110, direction: "up", pauseOnHover: false});
-	$('#bulletin-container #bulletin').on('finished', function() {$('#bulletin-container').fadeOut(0), $('#bulletin-container #bulletin').fadeOut(0), $('#bulletin-background').fadeOut(0), $('#lowerline').css('background-color', '#FFF')});
+	$('#bulletin-container #bulletin').on('finished', function() {$('#bulletin-container').fadeOut(0), $('#bulletin-container #bulletin').fadeOut(0), $('#bulletin-background').fadeOut(0), $('#lowerline').fadeIn(0)});
 }
 function concludeLoop() {
     showSlides();
