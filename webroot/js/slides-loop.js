@@ -17,7 +17,7 @@ function Slides() {
         $('#slide-title-text').fadeIn(0),
         $('#info-slides-container').fadeIn(0)}, 2)
         console.log('FLAVOR ' + apperanceSettings.flavor)
-        //loopBulletin();
+        loopBulletin();
 }
     }
    
