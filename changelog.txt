@@ -1,6 +1,7 @@
 = June 20, 2024 =
  -  Added more location name abbreviations
  -  Fixed protruding location names
+NEW FILES TO GET: slides-loops.js, newweathermanager.js
 = June 19, 2024 =
  -  Fixed a bug with the bulletin and bottom white line
  -  Fixed a bug where certain slides wouldn't show data if there were less than 7 locations
