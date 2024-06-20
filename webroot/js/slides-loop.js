@@ -17,7 +17,7 @@ function Slides() {
         $('#slide-title-text').fadeIn(0),
         $('#info-slides-container').fadeIn(0)}, 2)
         console.log('FLAVOR ' + apperanceSettings.flavor)
-        loopBulletin();
+        //loopBulletin();
 }
     }
    
@@ -58,13 +58,16 @@ function hourlyObservation() {
     $('#slide-title-text').css('text-align', 'center');
     $('#slide-title-text').css('font-family', 'mainfont');
     $('#slide-title-text').text('LATEST HOURLY OBSERVATIONS');
-    let town1 = weatherInfo.currentCond.city8slides.cities[0].displayname.replaceAll('Township', 'TWP').replaceAll('Airport', 'ARPT').substring(0,14);
-    let town2 = weatherInfo.currentCond.city8slides.cities[1].displayname.replaceAll('Township', 'TWP').replaceAll('Airport', 'ARPT').substring(0,14);
-    let town3 = weatherInfo.currentCond.city8slides.cities[2].displayname.replaceAll('Township', 'TWP').replaceAll('Airport', 'ARPT').substring(0,14);
-    let town4 = weatherInfo.currentCond.city8slides.cities[3].displayname.replaceAll('Township', 'TWP').replaceAll('Airport', 'ARPT').substring(0,14);
-    let town5 = weatherInfo.currentCond.city8slides.cities[4].displayname.replaceAll('Township', 'TWP').replaceAll('Airport', 'ARPT').substring(0,14);
-    let town6 = weatherInfo.currentCond.city8slides.cities[5].displayname.replaceAll('Township', 'TWP').replaceAll('Airport', 'ARPT').substring(0,14);
-    let town7 = weatherInfo.currentCond.city8slides.cities[6].displayname.replaceAll('Township', 'TWP').replaceAll('Airport', 'ARPT').substring(0,14);
+    var town1, town2, town3, town4, town5, town6, town7;
+    var cond1, cond2, cond3, cond4, cond5, cond6, cond7;
+
+    town1 = ((weatherInfo.currentCond.city8slides.cities[0] == undefined ? "" : weatherInfo.currentCond.city8slides.cities[0].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').substring(0,15)));
+    town2 = ((weatherInfo.currentCond.city8slides.cities[1] == undefined ? "" : weatherInfo.currentCond.city8slides.cities[1].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').substring(0,15)));
+    town3 = ((weatherInfo.currentCond.city8slides.cities[2] == undefined ? "" : weatherInfo.currentCond.city8slides.cities[2].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').substring(0,15)));
+    town4 = ((weatherInfo.currentCond.city8slides.cities[3] == undefined ? "" : weatherInfo.currentCond.city8slides.cities[3].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').substring(0,15)));
+    town5 = ((weatherInfo.currentCond.city8slides.cities[4] == undefined ? "" : weatherInfo.currentCond.city8slides.cities[4].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').substring(0,15)));
+    town6 = ((weatherInfo.currentCond.city8slides.cities[5] == undefined ? "" : weatherInfo.currentCond.city8slides.cities[5].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').substring(0,15)));
+    town7 = ((weatherInfo.currentCond.city8slides.cities[6] == undefined ? "" : weatherInfo.currentCond.city8slides.cities[6].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').substring(0,15)));
     $('.hourly-observations .cities .city-1').text(town1);
     $('.hourly-observations .cities .city-2').text(town2);
     $('.hourly-observations .cities .city-3').text(town3);
@@ -73,21 +76,21 @@ function hourlyObservation() {
     $('.hourly-observations .cities .city-6').text(town6);
     $('.hourly-observations .cities .city-7').text(town7);
    
-    $('.hourly-observations .temps .temp-1').text(weatherInfo.currentCond.city8slides.cities[0].temp);
-    $('.hourly-observations .temps .temp-2').text(weatherInfo.currentCond.city8slides.cities[1].temp);
-    $('.hourly-observations .temps .temp-3').text(weatherInfo.currentCond.city8slides.cities[2].temp);
-    $('.hourly-observations .temps .temp-4').text(weatherInfo.currentCond.city8slides.cities[3].temp);
-    $('.hourly-observations .temps .temp-5').text(weatherInfo.currentCond.city8slides.cities[4].temp);
-    $('.hourly-observations .temps .temp-6').text(weatherInfo.currentCond.city8slides.cities[5].temp);
-    $('.hourly-observations .temps .temp-7').text(weatherInfo.currentCond.city8slides.cities[6].temp);
+    if (town1 != "") {$('.hourly-observations .temps .temp-1').text(weatherInfo.currentCond.city8slides.cities[0].temp)} else {$('.hourly-observations .temps .temp-1').text(town1)};
+    if (town2 != "") {$('.hourly-observations .temps .temp-2').text(weatherInfo.currentCond.city8slides.cities[1].temp)} else {$('.hourly-observations .temps .temp-2').text(town2)};
+    if (town3 != "") {$('.hourly-observations .temps .temp-3').text(weatherInfo.currentCond.city8slides.cities[2].temp)} else {$('.hourly-observations .temps .temp-3').text(town3)};
+    if (town4 != "") {$('.hourly-observations .temps .temp-4').text(weatherInfo.currentCond.city8slides.cities[3].temp)} else {$('.hourly-observations .temps .temp-4').text(town4)};
+    if (town5 != "") {$('.hourly-observations .temps .temp-5').text(weatherInfo.currentCond.city8slides.cities[4].temp)} else {$('.hourly-observations .temps .temp-5').text(town5)};
+    if (town6 != "") {$('.hourly-observations .temps .temp-6').text(weatherInfo.currentCond.city8slides.cities[5].temp)} else {$('.hourly-observations .temps .temp-6').text(town6)};
+    if (town7 != "") {$('.hourly-observations .temps .temp-7').text(weatherInfo.currentCond.city8slides.cities[6].temp)} else {$('.hourly-observations .temps .temp-7').text(town7)};
 
-    let cond1 = weatherInfo.currentCond.city8slides.cities[0].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9);
-    let cond2 = weatherInfo.currentCond.city8slides.cities[1].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9);
-    let cond3 = weatherInfo.currentCond.city8slides.cities[2].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9);
-    let cond4 = weatherInfo.currentCond.city8slides.cities[3].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9);
-    let cond5 = weatherInfo.currentCond.city8slides.cities[4].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9);
-    let cond6 = weatherInfo.currentCond.city8slides.cities[5].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9);
-    let cond7 = weatherInfo.currentCond.city8slides.cities[6].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9);
+    cond1 = ((town1 == "" ? "" : weatherInfo.currentCond.city8slides.cities[0].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9)));
+    cond2 = ((town2 == "" ? "" : weatherInfo.currentCond.city8slides.cities[1].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9)));
+    cond3 = ((town3 == "" ? "" : weatherInfo.currentCond.city8slides.cities[2].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9)));
+    cond4 = ((town4 == "" ? "" : weatherInfo.currentCond.city8slides.cities[3].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9)));
+    cond5 = ((town5 == "" ? "" : weatherInfo.currentCond.city8slides.cities[4].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9)));
+    cond6 = ((town6 == "" ? "" : weatherInfo.currentCond.city8slides.cities[5].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9)));
+    cond7 = ((town7 == "" ? "" : weatherInfo.currentCond.city8slides.cities[6].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9)));
     $('.hourly-observations .weathers .weather-1').text(cond1);
     $('.hourly-observations .weathers .weather-2').text(cond2);
     $('.hourly-observations .weathers .weather-3').text(cond3);
@@ -96,13 +99,13 @@ function hourlyObservation() {
     $('.hourly-observations .weathers .weather-6').text(cond6);
     $('.hourly-observations .weathers .weather-7').text(cond7);
 
-    $('.hourly-observations .winds .wind-1').text(weatherInfo.currentCond.city8slides.cities[0].wind);
-    $('.hourly-observations .winds .wind-2').text(weatherInfo.currentCond.city8slides.cities[1].wind);
-    $('.hourly-observations .winds .wind-3').text(weatherInfo.currentCond.city8slides.cities[2].wind);
-    $('.hourly-observations .winds .wind-4').text(weatherInfo.currentCond.city8slides.cities[3].wind);
-    $('.hourly-observations .winds .wind-5').text(weatherInfo.currentCond.city8slides.cities[4].wind);
-    $('.hourly-observations .winds .wind-6').text(weatherInfo.currentCond.city8slides.cities[5].wind);
-    $('.hourly-observations .winds .wind-7').text(weatherInfo.currentCond.city8slides.cities[6].wind);
+    if (town1 != "") {$('.hourly-observations .winds .wind-1').text(weatherInfo.currentCond.city8slides.cities[0].wind)} else {$('.hourly-observations .winds .wind-1').text(town1)};
+    if (town2 != "") {$('.hourly-observations .winds .wind-2').text(weatherInfo.currentCond.city8slides.cities[1].wind)} else {$('.hourly-observations .winds .wind-2').text(town2)};
+    if (town3 != "") {$('.hourly-observations .winds .wind-3').text(weatherInfo.currentCond.city8slides.cities[2].wind)} else {$('.hourly-observations .winds .wind-3').text(town3)};
+    if (town4 != "") {$('.hourly-observations .winds .wind-4').text(weatherInfo.currentCond.city8slides.cities[3].wind)} else {$('.hourly-observations .winds .wind-4').text(town4)};
+    if (town5 != "") {$('.hourly-observations .winds .wind-5').text(weatherInfo.currentCond.city8slides.cities[4].wind)} else {$('.hourly-observations .winds .wind-5').text(town5)};
+    if (town6 != "") {$('.hourly-observations .winds .wind-6').text(weatherInfo.currentCond.city8slides.cities[5].wind)} else {$('.hourly-observations .winds .wind-6').text(town6)};
+    if (town7 != "") {$('.hourly-observations .winds .wind-7').text(weatherInfo.currentCond.city8slides.cities[6].wind)} else {$('.hourly-observations .winds .wind-7').text(town7)};
     
     $('.hourly-observations').fadeIn(0);
     setTimeout(function() {
@@ -339,13 +342,16 @@ function regionalForecast() {
     $('#slide-title-text').css('text-align', 'center');
     $('#slide-title-text').css('font-family', 'mainfont');
     $('#slide-title-text').text('FORECAST ACROSS THE REGION');
-    let rtown1 = weatherInfo.currentCond.city8slides.cities[0].displayname.replaceAll('Township', 'TWP').replaceAll('Airport', 'ARPT').substring(0,14);
-    let rtown2 = weatherInfo.currentCond.city8slides.cities[1].displayname.replaceAll('Township', 'TWP').replaceAll('Airport', 'ARPT').substring(0,14);
-    let rtown3 = weatherInfo.currentCond.city8slides.cities[2].displayname.replaceAll('Township', 'TWP').replaceAll('Airport', 'ARPT').substring(0,14);
-    let rtown4 = weatherInfo.currentCond.city8slides.cities[3].displayname.replaceAll('Township', 'TWP').replaceAll('Airport', 'ARPT').substring(0,14);
-    let rtown5 = weatherInfo.currentCond.city8slides.cities[4].displayname.replaceAll('Township', 'TWP').replaceAll('Airport', 'ARPT').substring(0,14);
-    let rtown6 = weatherInfo.currentCond.city8slides.cities[5].displayname.replaceAll('Township', 'TWP').replaceAll('Airport', 'ARPT').substring(0,14);
-    let rtown7 = weatherInfo.currentCond.city8slides.cities[6].displayname.replaceAll('Township', 'TWP').replaceAll('Airport', 'ARPT').substring(0,14);
+    var rtown1, rtown2, rtown3, rtown4, rtown5, rtown6, rtown7;
+    var rcond1, rcond2, rcond3, rcond4, rcond5, rcond6, rcond7;
+
+    rtown1 = ((weatherInfo.currentCond.city8slides.cities[0] == undefined ? "" : weatherInfo.currentCond.city8slides.cities[0].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').substring(0,14)));
+    rtown2 = ((weatherInfo.currentCond.city8slides.cities[1] == undefined ? "" : weatherInfo.currentCond.city8slides.cities[1].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').substring(0,14)));
+    rtown3 = ((weatherInfo.currentCond.city8slides.cities[2] == undefined ? "" : weatherInfo.currentCond.city8slides.cities[2].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').substring(0,14)));
+    rtown4 = ((weatherInfo.currentCond.city8slides.cities[3] == undefined ? "" : weatherInfo.currentCond.city8slides.cities[3].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').substring(0,14)));
+    rtown5 = ((weatherInfo.currentCond.city8slides.cities[4] == undefined ? "" : weatherInfo.currentCond.city8slides.cities[4].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').substring(0,14)));
+    rtown6 = ((weatherInfo.currentCond.city8slides.cities[5] == undefined ? "" : weatherInfo.currentCond.city8slides.cities[5].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').substring(0,14)));
+    rtown7 = ((weatherInfo.currentCond.city8slides.cities[6] == undefined ? "" : weatherInfo.currentCond.city8slides.cities[6].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').substring(0,14)));
     $('.regional-forecast .cities .city-1').text(rtown1);
     $('.regional-forecast .cities .city-2').text(rtown2);
     $('.regional-forecast .cities .city-3').text(rtown3);
@@ -354,13 +360,13 @@ function regionalForecast() {
     $('.regional-forecast .cities .city-6').text(rtown6);
     $('.regional-forecast .cities .city-7').text(rtown7);
 
-    let rcond1 = weatherInfo.currentCond.city8slides.cities[0].wxforecast.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9);
-    let rcond2 = weatherInfo.currentCond.city8slides.cities[1].wxforecast.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9);
-    let rcond3 = weatherInfo.currentCond.city8slides.cities[2].wxforecast.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9);
-    let rcond4 = weatherInfo.currentCond.city8slides.cities[3].wxforecast.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9);
-    let rcond5 = weatherInfo.currentCond.city8slides.cities[4].wxforecast.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9);
-    let rcond6 = weatherInfo.currentCond.city8slides.cities[5].wxforecast.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9);
-    let rcond7 = weatherInfo.currentCond.city8slides.cities[6].wxforecast.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9);
+    rcond1 = ((rtown1 == "" ? "" : weatherInfo.currentCond.city8slides.cities[0].wxforecast.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9)));
+    rcond2 = ((rtown2 == "" ? "" : weatherInfo.currentCond.city8slides.cities[1].wxforecast.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9)));
+    rcond3 = ((rtown3 == "" ? "" : weatherInfo.currentCond.city8slides.cities[2].wxforecast.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9)));
+    rcond4 = ((rtown4 == "" ? "" : weatherInfo.currentCond.city8slides.cities[3].wxforecast.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9)));
+    rcond5 = ((rtown5 == "" ? "" : weatherInfo.currentCond.city8slides.cities[4].wxforecast.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9)));
+    rcond6 = ((rtown6 == "" ? "" : weatherInfo.currentCond.city8slides.cities[5].wxforecast.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9)));   
+    rcond7 = ((rtown7 == "" ? "" : weatherInfo.currentCond.city8slides.cities[6].wxforecast.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9)));   
     $('.regional-forecast .weathers .weather-1').text(rcond1);
     $('.regional-forecast .weathers .weather-2').text(rcond2);
     $('.regional-forecast .weathers .weather-3').text(rcond3);
@@ -369,21 +375,21 @@ function regionalForecast() {
     $('.regional-forecast .weathers .weather-6').text(rcond6);
     $('.regional-forecast .weathers .weather-7').text(rcond7);
    
-    $('.regional-forecast .lows .low-1').text(weatherInfo.currentCond.city8slides.cities[0].low);
-    $('.regional-forecast .lows .low-2').text(weatherInfo.currentCond.city8slides.cities[1].low);
-    $('.regional-forecast .lows .low-3').text(weatherInfo.currentCond.city8slides.cities[2].low);
-    $('.regional-forecast .lows .low-4').text(weatherInfo.currentCond.city8slides.cities[3].low);
-    $('.regional-forecast .lows .low-5').text(weatherInfo.currentCond.city8slides.cities[4].low);
-    $('.regional-forecast .lows .low-6').text(weatherInfo.currentCond.city8slides.cities[5].low);
-    $('.regional-forecast .lows .low-7').text(weatherInfo.currentCond.city8slides.cities[6].low);
+    if (rtown1 != "") {$('.regional-forecast .lows .low-1').text(weatherInfo.currentCond.city8slides.cities[0].low)} else {$('.regional-forecast .lows .low-1').text(rtown1)};
+    if (rtown2 != "") {$('.regional-forecast .lows .low-2').text(weatherInfo.currentCond.city8slides.cities[1].low)} else {$('.regional-forecast .lows .low-2').text(rtown2)};
+    if (rtown3 != "") {$('.regional-forecast .lows .low-3').text(weatherInfo.currentCond.city8slides.cities[2].low)} else {$('.regional-forecast .lows .low-3').text(rtown3)};
+    if (rtown4 != "") {$('.regional-forecast .lows .low-4').text(weatherInfo.currentCond.city8slides.cities[3].low)} else {$('.regional-forecast .lows .low-4').text(rtown4)};
+    if (rtown5 != "") {$('.regional-forecast .lows .low-5').text(weatherInfo.currentCond.city8slides.cities[4].low)} else {$('.regional-forecast .lows .low-5').text(rtown5)};
+    if (rtown6 != "") {$('.regional-forecast .lows .low-6').text(weatherInfo.currentCond.city8slides.cities[5].low)} else {$('.regional-forecast .lows .low-6').text(rtown6)};
+    if (rtown7 != "") {$('.regional-forecast .lows .low-7').text(weatherInfo.currentCond.city8slides.cities[6].low)} else {$('.regional-forecast .lows .low-7').text(rtown7)};
 
-    $('.regional-forecast .highs .hi-1').text(weatherInfo.currentCond.city8slides.cities[0].hi);
-    $('.regional-forecast .highs .hi-2').text(weatherInfo.currentCond.city8slides.cities[1].hi);
-    $('.regional-forecast .highs .hi-3').text(weatherInfo.currentCond.city8slides.cities[2].hi);
-    $('.regional-forecast .highs .hi-4').text(weatherInfo.currentCond.city8slides.cities[3].hi);
-    $('.regional-forecast .highs .hi-5').text(weatherInfo.currentCond.city8slides.cities[4].hi);
-    $('.regional-forecast .highs .hi-6').text(weatherInfo.currentCond.city8slides.cities[5].hi);
-    $('.regional-forecast .highs .hi-7').text(weatherInfo.currentCond.city8slides.cities[6].hi);
+    if (rtown1 != "") {$('.regional-forecast .highs .hi-1').text(weatherInfo.currentCond.city8slides.cities[0].hi)} else {$('.regional-forecast .highs .hi-1').text(rtown1)};
+    if (rtown2 != "") {$('.regional-forecast .highs .hi-2').text(weatherInfo.currentCond.city8slides.cities[1].hi)} else {$('.regional-forecast .highs .hi-2').text(rtown2)};
+    if (rtown3 != "") {$('.regional-forecast .highs .hi-3').text(weatherInfo.currentCond.city8slides.cities[2].hi)} else {$('.regional-forecast .highs .hi-3').text(rtown3)};
+    if (rtown4 != "") {$('.regional-forecast .highs .hi-4').text(weatherInfo.currentCond.city8slides.cities[3].hi)} else {$('.regional-forecast .highs .hi-4').text(rtown4)};
+    if (rtown5 != "") {$('.regional-forecast .highs .hi-5').text(weatherInfo.currentCond.city8slides.cities[4].hi)} else {$('.regional-forecast .highs .hi-5').text(rtown5)};
+    if (rtown6 != "") {$('.regional-forecast .highs .hi-6').text(weatherInfo.currentCond.city8slides.cities[5].hi)} else {$('.regional-forecast .highs .hi-6').text(rtown6)};
+    if (rtown7 != "") {$('.regional-forecast .highs .hi-7').text(weatherInfo.currentCond.city8slides.cities[6].hi)} else {$('.regional-forecast .highs .hi-7').text(rtown7)};
 
     $('.regional-forecast').fadeIn(0);
     setTimeout(function() {
@@ -394,29 +400,31 @@ function regionalConditions() {
     $('#slide-title-text').css('text-align', 'center');
     $('#slide-title-text').css('font-family', 'mainfont');
     $('#slide-title-text').text('CONDITIONS ACROSS THE REGION');
+    var retown1, retown2, retown3, retown4, retown5, retown6, retown7;
+    var recond1, recond2, recond3, recond4, recond5, recond6, recond7;
 
-    let retown1 = weatherInfo.currentCond.regionallocs.cities[0].displayname.replaceAll('Township', 'TWP').replaceAll('Airport', 'ARPT').substring(0,15);
-    let retown2 = weatherInfo.currentCond.regionallocs.cities[1].displayname.replaceAll('Township', 'TWP').replaceAll('Airport', 'ARPT').substring(0,15);
-    let retown3 = weatherInfo.currentCond.regionallocs.cities[2].displayname.replaceAll('Township', 'TWP').replaceAll('Airport', 'ARPT').substring(0,15);
-    let retown4 = weatherInfo.currentCond.regionallocs.cities[3].displayname.replaceAll('Township', 'TWP').replaceAll('Airport', 'ARPT').substring(0,15);
-    let retown5 = weatherInfo.currentCond.regionallocs.cities[4].displayname.replaceAll('Township', 'TWP').replaceAll('Airport', 'ARPT').substring(0,15);
-    let retown6 = weatherInfo.currentCond.regionallocs.cities[5].displayname.replaceAll('Township', 'TWP').replaceAll('Airport', 'ARPT').substring(0,15);
-    let retown7 = weatherInfo.currentCond.regionallocs.cities[6].displayname.replaceAll('Township', 'TWP').replaceAll('Airport', 'ARPT').substring(0,15);
-    $('.regional-conditions .cities .city-1').text(retown1 + weatherInfo.currentCond.regionallocs.cities[0].statecode);
-    $('.regional-conditions .cities .city-2').text(retown2 + weatherInfo.currentCond.regionallocs.cities[1].statecode);
-    $('.regional-conditions .cities .city-3').text(retown3 + weatherInfo.currentCond.regionallocs.cities[2].statecode);
-    $('.regional-conditions .cities .city-4').text(retown4 + weatherInfo.currentCond.regionallocs.cities[3].statecode);
-    $('.regional-conditions .cities .city-5').text(retown5 + weatherInfo.currentCond.regionallocs.cities[4].statecode);
-    $('.regional-conditions .cities .city-6').text(retown6 + weatherInfo.currentCond.regionallocs.cities[5].statecode);
-    $('.regional-conditions .cities .city-7').text(retown7 + weatherInfo.currentCond.regionallocs.cities[6].statecode);
+    retown1 = ((weatherInfo.currentCond.regionallocs.cities[0] == undefined ? "" : weatherInfo.currentCond.regionallocs.cities[0].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').substring(0,15)));
+    retown2 = ((weatherInfo.currentCond.regionallocs.cities[1] == undefined ? "" : weatherInfo.currentCond.regionallocs.cities[1].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').substring(0,15)));
+    retown3 = ((weatherInfo.currentCond.regionallocs.cities[2] == undefined ? "" : weatherInfo.currentCond.regionallocs.cities[2].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').substring(0,15)));
+    retown4 = ((weatherInfo.currentCond.regionallocs.cities[3] == undefined ? "" : weatherInfo.currentCond.regionallocs.cities[3].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').substring(0,15)));
+    retown5 = ((weatherInfo.currentCond.regionallocs.cities[4] == undefined ? "" : weatherInfo.currentCond.regionallocs.cities[4].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').substring(0,15)));
+    retown6 = ((weatherInfo.currentCond.regionallocs.cities[5] == undefined ? "" : weatherInfo.currentCond.regionallocs.cities[5].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').substring(0,15)));
+    retown7 = ((weatherInfo.currentCond.regionallocs.cities[6] == undefined ? "" : weatherInfo.currentCond.regionallocs.cities[6].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').substring(0,15)));
+    if (retown1 != "") {$('.regional-conditions .cities .city-1').text(retown1 + weatherInfo.currentCond.regionallocs.cities[0].statecode)} else {$('.regional-conditions .cities .city-1').text(retown1)};
+    if (retown2 != "") {$('.regional-conditions .cities .city-2').text(retown2 + weatherInfo.currentCond.regionallocs.cities[1].statecode)} else {$('.regional-conditions .cities .city-2').text(retown2)};
+    if (retown3 != "") {$('.regional-conditions .cities .city-3').text(retown3 + weatherInfo.currentCond.regionallocs.cities[2].statecode)} else {$('.regional-conditions .cities .city-3').text(retown3)};
+    if (retown4 != "") {$('.regional-conditions .cities .city-4').text(retown4 + weatherInfo.currentCond.regionallocs.cities[3].statecode)} else {$('.regional-conditions .cities .city-4').text(retown4)};
+    if (retown5 != "") {$('.regional-conditions .cities .city-5').text(retown5 + weatherInfo.currentCond.regionallocs.cities[4].statecode)} else {$('.regional-conditions .cities .city-5').text(retown5)};
+    if (retown6 != "") {$('.regional-conditions .cities .city-6').text(retown6 + weatherInfo.currentCond.regionallocs.cities[5].statecode)} else {$('.regional-conditions .cities .city-6').text(retown6)};
+    if (retown7 != "") {$('.regional-conditions .cities .city-7').text(retown7 + weatherInfo.currentCond.regionallocs.cities[6].statecode)} else {$('.regional-conditions .cities .city-7').text(retown7)};
 
-    let recond1 = weatherInfo.currentCond.regionallocs.cities[0].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9);
-    let recond2 = weatherInfo.currentCond.regionallocs.cities[1].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9);
-    let recond3 = weatherInfo.currentCond.regionallocs.cities[2].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9);
-    let recond4 = weatherInfo.currentCond.regionallocs.cities[3].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9);
-    let recond5 = weatherInfo.currentCond.regionallocs.cities[4].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9);
-    let recond6 = weatherInfo.currentCond.regionallocs.cities[5].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9);
-    let recond7 = weatherInfo.currentCond.regionallocs.cities[6].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9);
+    recond1 = ((retown1 == "" ? "" : weatherInfo.currentCond.regionallocs.cities[0].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9)));   
+    recond2 = ((retown2 == "" ? "" : weatherInfo.currentCond.regionallocs.cities[1].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9)));   
+    recond3 = ((retown3 == "" ? "" : weatherInfo.currentCond.regionallocs.cities[2].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9)));   
+    recond4 = ((retown4 == "" ? "" : weatherInfo.currentCond.regionallocs.cities[3].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9)));   
+    recond5 = ((retown5 == "" ? "" : weatherInfo.currentCond.regionallocs.cities[4].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9)));   
+    recond6 = ((retown6 == "" ? "" : weatherInfo.currentCond.regionallocs.cities[5].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9)));   
+    recond7 = ((retown7 == "" ? "" : weatherInfo.currentCond.regionallocs.cities[6].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9)));   
     $('.regional-conditions .weathers .weather-1').text(recond1);
     $('.regional-conditions .weathers .weather-2').text(recond2);
     $('.regional-conditions .weathers .weather-3').text(recond3);
@@ -425,13 +433,13 @@ function regionalConditions() {
     $('.regional-conditions .weathers .weather-6').text(recond6);
     $('.regional-conditions .weathers .weather-7').text(recond7);
 
-    $('.regional-conditions .temps .temp-1').text( weatherInfo.currentCond.regionallocs.cities[0].temp);
-    $('.regional-conditions .temps .temp-2').text( weatherInfo.currentCond.regionallocs.cities[1].temp);
-    $('.regional-conditions .temps .temp-3').text( weatherInfo.currentCond.regionallocs.cities[2].temp);
-    $('.regional-conditions .temps .temp-4').text( weatherInfo.currentCond.regionallocs.cities[3].temp);
-    $('.regional-conditions .temps .temp-5').text( weatherInfo.currentCond.regionallocs.cities[4].temp);
-    $('.regional-conditions .temps .temp-6').text( weatherInfo.currentCond.regionallocs.cities[5].temp);
-    $('.regional-conditions .temps .temp-7').text( weatherInfo.currentCond.regionallocs.cities[6].temp);
+    if (retown1 != "") {$('.regional-conditions .temps .temp-1').text( weatherInfo.currentCond.regionallocs.cities[0].temp)} else {$('.regional-conditions .temps .temp-1').text(retown1)};
+    if (retown2 != "") {$('.regional-conditions .temps .temp-2').text( weatherInfo.currentCond.regionallocs.cities[1].temp)} else {$('.regional-conditions .temps .temp-2').text(retown2)};
+    if (retown3 != "") {$('.regional-conditions .temps .temp-3').text( weatherInfo.currentCond.regionallocs.cities[2].temp)} else {$('.regional-conditions .temps .temp-3').text(retown3)};
+    if (retown4 != "") {$('.regional-conditions .temps .temp-4').text( weatherInfo.currentCond.regionallocs.cities[3].temp)} else {$('.regional-conditions .temps .temp-4').text(retown4)};
+    if (retown5 != "") {$('.regional-conditions .temps .temp-5').text( weatherInfo.currentCond.regionallocs.cities[4].temp)} else {$('.regional-conditions .temps .temp-5').text(retown5)};
+    if (retown6 != "") {$('.regional-conditions .temps .temp-6').text( weatherInfo.currentCond.regionallocs.cities[5].temp)} else {$('.regional-conditions .temps .temp-6').text(retown6)};
+    if (retown7 != "") {$('.regional-conditions .temps .temp-7').text( weatherInfo.currentCond.regionallocs.cities[6].temp)} else {$('.regional-conditions .temps .temp-7').text(retown7)};
 
     $('.regional-conditions').fadeIn(0);
     setTimeout(function() {
