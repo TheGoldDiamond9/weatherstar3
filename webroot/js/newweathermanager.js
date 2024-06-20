@@ -30,9 +30,9 @@
           getRegionalLocs(data.location.latitude[0],data.location.longitude[0],true);
           maincitycoords.lat = data.location.latitude[0]
           maincitycoords.lon = data.location.longitude[0]
-          maincitycoords.name = data.location.displayName[0]
+          maincitycoords.name = data.location.displayName[0].replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').replaceAll('County', 'CNTY').replaceAll('Airforce Base', 'A.F.B.').substring(0,17);
           $("#locationname").text("location name: "+data.location.displayName[0])
-          maincitycoords.displayname = data.location.displayName[0]
+          maincitycoords.displayname = data.location.displayName[0].replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').replaceAll('County', 'CNTY').replaceAll('Airforce Base', 'A.F.B.').substring(0,17);
           state = data.location.adminDistrict[0];
           //init data
           //getStatePopularCities(state, true)
@@ -596,7 +596,7 @@
           regional8sldieslocs.wind = ((ajaxedLoc["v3-wx-observations-current"].windDirectionCardinal == "CALM" || ajaxedLoc["v3-wx-observations-current"].windSpeed == 0) ? 'Calm' :  ajaxedLoc["v3-wx-observations-current"].windDirectionCardinal) + ((ajaxedLoc["v3-wx-observations-current"].windSpeed === 0) ? '' : ajaxedLoc["v3-wx-observations-current"].windSpeed)
           regional8sldieslocs.windspeed = ajaxedLoc["v3-wx-observations-current"].windSpeed
           regional8sldieslocs.displayname = (regionalList[i].displayname)
-          regional8sldieslocs.statecode = ", " + (regionalList[i].statecode)
+          regional8sldieslocs.statecode = ((regionalList[i].statecode != null ? ", " + (regionalList[i].statecode) : ""))
           regional8sldieslocs.wxforecast = ajaxedLoc["v3-wx-forecast-daily-5day"].daypart[0].wxPhraseShort[1]
           regional8sldieslocs.low = ajaxedLoc["v3-wx-forecast-daily-5day"].temperatureMin[1]
           regional8sldieslocs.hi = ajaxedLoc["v3-wx-forecast-daily-5day"].temperatureMax[1]
