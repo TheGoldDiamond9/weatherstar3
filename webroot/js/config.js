@@ -9,7 +9,7 @@ var apperanceSettings = {
 function startup() {setTimeout(() => {$('#startup-text').text('LOADING WEATHERSTAR 3000... \n FLAVOR ' + apperanceSettings.flavor);}, 2)};
 var audioSettings = {
     enableMusic: true, //Something is wrong if you set this to false.
-    order: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21],
+    order: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22],
     shuffle: false, //Shuffle audio. Default is false.
     randomStart: true, //Starts the order from a random spot. Default is true.
   }
