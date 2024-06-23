@@ -61,13 +61,13 @@ function hourlyObservation() {
     var town1, town2, town3, town4, town5, town6, town7;
     var cond1, cond2, cond3, cond4, cond5, cond6, cond7;
 
-    town1 = ((weatherInfo.currentCond.city8slides.cities[0] == undefined ? "" : weatherInfo.currentCond.city8slides.cities[0].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').substring(0,15)));
-    town2 = ((weatherInfo.currentCond.city8slides.cities[1] == undefined ? "" : weatherInfo.currentCond.city8slides.cities[1].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').substring(0,15)));
-    town3 = ((weatherInfo.currentCond.city8slides.cities[2] == undefined ? "" : weatherInfo.currentCond.city8slides.cities[2].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').substring(0,15)));
-    town4 = ((weatherInfo.currentCond.city8slides.cities[3] == undefined ? "" : weatherInfo.currentCond.city8slides.cities[3].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').substring(0,15)));
-    town5 = ((weatherInfo.currentCond.city8slides.cities[4] == undefined ? "" : weatherInfo.currentCond.city8slides.cities[4].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').substring(0,15)));
-    town6 = ((weatherInfo.currentCond.city8slides.cities[5] == undefined ? "" : weatherInfo.currentCond.city8slides.cities[5].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').substring(0,15)));
-    town7 = ((weatherInfo.currentCond.city8slides.cities[6] == undefined ? "" : weatherInfo.currentCond.city8slides.cities[6].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').substring(0,15)));
+    town1 = ((weatherInfo.currentCond.city8slides.cities[0] == undefined ? "" : weatherInfo.currentCond.city8slides.cities[0].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').replaceAll('Airforce Base', 'A.F.B.').substring(0,15)));
+    town2 = ((weatherInfo.currentCond.city8slides.cities[1] == undefined ? "" : weatherInfo.currentCond.city8slides.cities[1].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').replaceAll('Airforce Base', 'A.F.B.').substring(0,15)));
+    town3 = ((weatherInfo.currentCond.city8slides.cities[2] == undefined ? "" : weatherInfo.currentCond.city8slides.cities[2].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').replaceAll('Airforce Base', 'A.F.B.').substring(0,15)));
+    town4 = ((weatherInfo.currentCond.city8slides.cities[3] == undefined ? "" : weatherInfo.currentCond.city8slides.cities[3].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').replaceAll('Airforce Base', 'A.F.B.').substring(0,15)));
+    town5 = ((weatherInfo.currentCond.city8slides.cities[4] == undefined ? "" : weatherInfo.currentCond.city8slides.cities[4].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').replaceAll('Airforce Base', 'A.F.B.').substring(0,15)));
+    town6 = ((weatherInfo.currentCond.city8slides.cities[5] == undefined ? "" : weatherInfo.currentCond.city8slides.cities[5].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').replaceAll('Airforce Base', 'A.F.B.').substring(0,15)));
+    town7 = ((weatherInfo.currentCond.city8slides.cities[6] == undefined ? "" : weatherInfo.currentCond.city8slides.cities[6].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').replaceAll('Airforce Base', 'A.F.B.').substring(0,15)));
     $('.hourly-observations .cities .city-1').text(town1);
     $('.hourly-observations .cities .city-2').text(town2);
     $('.hourly-observations .cities .city-3').text(town3);
@@ -168,9 +168,9 @@ function extendedForecast() {
     $('.extended-forecast .days .day-1').text(weatherInfo.fiveDay.lowerbar.day[0].name);
     $('.extended-forecast .days .day-2').text(weatherInfo.fiveDay.lowerbar.day[1].name);
     $('.extended-forecast .days .day-3').text(weatherInfo.fiveDay.lowerbar.day[2].name);
-    $('.extended-forecast .extended-conditions .con-1').text(weatherInfo.fiveDay.lowerbar.day[0].cond);
-    $('.extended-forecast .extended-conditions .con-2').text(weatherInfo.fiveDay.lowerbar.day[1].cond);
-    $('.extended-forecast .extended-conditions .con-3').text(weatherInfo.fiveDay.lowerbar.day[2].cond);
+    $('.extended-forecast .extended-conditions .con-1').text(weatherInfo.fiveDay.lowerbar.day[0].cond.replaceAll('PM', 'Afternoon').replaceAll('AM', 'Morning'));
+    $('.extended-forecast .extended-conditions .con-2').text(weatherInfo.fiveDay.lowerbar.day[1].cond.replaceAll('PM', 'Afternoon').replaceAll('AM', 'Morning'));
+    $('.extended-forecast .extended-conditions .con-3').text(weatherInfo.fiveDay.lowerbar.day[2].cond.replaceAll('PM', 'Afternoon').replaceAll('AM', 'Morning'));
     $('.extended-forecast .extended-los .lo-1').text('LO: ' + weatherInfo.fiveDay.lowerbar.day[0].low);
     $('.extended-forecast .extended-los .lo-2').text('LO: ' + weatherInfo.fiveDay.lowerbar.day[1].low);
     $('.extended-forecast .extended-los .lo-3').text('LO: ' + weatherInfo.fiveDay.lowerbar.day[2].low);
@@ -345,13 +345,13 @@ function regionalForecast() {
     var rtown1, rtown2, rtown3, rtown4, rtown5, rtown6, rtown7;
     var rcond1, rcond2, rcond3, rcond4, rcond5, rcond6, rcond7;
 
-    rtown1 = ((weatherInfo.currentCond.city8slides.cities[0] == undefined ? "" : weatherInfo.currentCond.city8slides.cities[0].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').substring(0,14)));
-    rtown2 = ((weatherInfo.currentCond.city8slides.cities[1] == undefined ? "" : weatherInfo.currentCond.city8slides.cities[1].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').substring(0,14)));
-    rtown3 = ((weatherInfo.currentCond.city8slides.cities[2] == undefined ? "" : weatherInfo.currentCond.city8slides.cities[2].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').substring(0,14)));
-    rtown4 = ((weatherInfo.currentCond.city8slides.cities[3] == undefined ? "" : weatherInfo.currentCond.city8slides.cities[3].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').substring(0,14)));
-    rtown5 = ((weatherInfo.currentCond.city8slides.cities[4] == undefined ? "" : weatherInfo.currentCond.city8slides.cities[4].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').substring(0,14)));
-    rtown6 = ((weatherInfo.currentCond.city8slides.cities[5] == undefined ? "" : weatherInfo.currentCond.city8slides.cities[5].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').substring(0,14)));
-    rtown7 = ((weatherInfo.currentCond.city8slides.cities[6] == undefined ? "" : weatherInfo.currentCond.city8slides.cities[6].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').substring(0,14)));
+    rtown1 = ((weatherInfo.currentCond.city8slides.cities[0] == undefined ? "" : weatherInfo.currentCond.city8slides.cities[0].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').replaceAll('Airforce Base', 'A.F.B.').substring(0,14)));
+    rtown2 = ((weatherInfo.currentCond.city8slides.cities[1] == undefined ? "" : weatherInfo.currentCond.city8slides.cities[1].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').replaceAll('Airforce Base', 'A.F.B.').substring(0,14)));
+    rtown3 = ((weatherInfo.currentCond.city8slides.cities[2] == undefined ? "" : weatherInfo.currentCond.city8slides.cities[2].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').replaceAll('Airforce Base', 'A.F.B.').substring(0,14)));
+    rtown4 = ((weatherInfo.currentCond.city8slides.cities[3] == undefined ? "" : weatherInfo.currentCond.city8slides.cities[3].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').replaceAll('Airforce Base', 'A.F.B.').substring(0,14)));
+    rtown5 = ((weatherInfo.currentCond.city8slides.cities[4] == undefined ? "" : weatherInfo.currentCond.city8slides.cities[4].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').replaceAll('Airforce Base', 'A.F.B.').substring(0,14)));
+    rtown6 = ((weatherInfo.currentCond.city8slides.cities[5] == undefined ? "" : weatherInfo.currentCond.city8slides.cities[5].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').replaceAll('Airforce Base', 'A.F.B.').substring(0,14)));
+    rtown7 = ((weatherInfo.currentCond.city8slides.cities[6] == undefined ? "" : weatherInfo.currentCond.city8slides.cities[6].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').replaceAll('Airforce Base', 'A.F.B.').substring(0,14)));
     $('.regional-forecast .cities .city-1').text(rtown1);
     $('.regional-forecast .cities .city-2').text(rtown2);
     $('.regional-forecast .cities .city-3').text(rtown3);
@@ -403,13 +403,13 @@ function regionalConditions() {
     var retown1, retown2, retown3, retown4, retown5, retown6, retown7;
     var recond1, recond2, recond3, recond4, recond5, recond6, recond7;
 
-    retown1 = ((weatherInfo.currentCond.regionallocs.cities[0] == undefined ? "" : weatherInfo.currentCond.regionallocs.cities[0].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').substring(0,15)));
-    retown2 = ((weatherInfo.currentCond.regionallocs.cities[1] == undefined ? "" : weatherInfo.currentCond.regionallocs.cities[1].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').substring(0,15)));
-    retown3 = ((weatherInfo.currentCond.regionallocs.cities[2] == undefined ? "" : weatherInfo.currentCond.regionallocs.cities[2].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').substring(0,15)));
-    retown4 = ((weatherInfo.currentCond.regionallocs.cities[3] == undefined ? "" : weatherInfo.currentCond.regionallocs.cities[3].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').substring(0,15)));
-    retown5 = ((weatherInfo.currentCond.regionallocs.cities[4] == undefined ? "" : weatherInfo.currentCond.regionallocs.cities[4].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').substring(0,15)));
-    retown6 = ((weatherInfo.currentCond.regionallocs.cities[5] == undefined ? "" : weatherInfo.currentCond.regionallocs.cities[5].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').substring(0,15)));
-    retown7 = ((weatherInfo.currentCond.regionallocs.cities[6] == undefined ? "" : weatherInfo.currentCond.regionallocs.cities[6].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').substring(0,15)));
+    retown1 = ((weatherInfo.currentCond.regionallocs.cities[0] == undefined ? "" : weatherInfo.currentCond.regionallocs.cities[0].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').replaceAll('Airforce Base', 'A.F.B.').substring(0,15)));
+    retown2 = ((weatherInfo.currentCond.regionallocs.cities[1] == undefined ? "" : weatherInfo.currentCond.regionallocs.cities[1].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').replaceAll('Airforce Base', 'A.F.B.').substring(0,15)));
+    retown3 = ((weatherInfo.currentCond.regionallocs.cities[2] == undefined ? "" : weatherInfo.currentCond.regionallocs.cities[2].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').replaceAll('Airforce Base', 'A.F.B.').substring(0,15)));
+    retown4 = ((weatherInfo.currentCond.regionallocs.cities[3] == undefined ? "" : weatherInfo.currentCond.regionallocs.cities[3].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').replaceAll('Airforce Base', 'A.F.B.').substring(0,15)));
+    retown5 = ((weatherInfo.currentCond.regionallocs.cities[4] == undefined ? "" : weatherInfo.currentCond.regionallocs.cities[4].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').replaceAll('Airforce Base', 'A.F.B.').substring(0,15)));
+    retown6 = ((weatherInfo.currentCond.regionallocs.cities[5] == undefined ? "" : weatherInfo.currentCond.regionallocs.cities[5].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').replaceAll('Airforce Base', 'A.F.B.').substring(0,15)));
+    retown7 = ((weatherInfo.currentCond.regionallocs.cities[6] == undefined ? "" : weatherInfo.currentCond.regionallocs.cities[6].displayname.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').replaceAll('Airforce Base', 'A.F.B.').substring(0,15)));
     if (retown1 != "") {$('.regional-conditions .cities .city-1').text(retown1 + weatherInfo.currentCond.regionallocs.cities[0].statecode)} else {$('.regional-conditions .cities .city-1').text(retown1)};
     if (retown2 != "") {$('.regional-conditions .cities .city-2').text(retown2 + weatherInfo.currentCond.regionallocs.cities[1].statecode)} else {$('.regional-conditions .cities .city-2').text(retown2)};
     if (retown3 != "") {$('.regional-conditions .cities .city-3').text(retown3 + weatherInfo.currentCond.regionallocs.cities[2].statecode)} else {$('.regional-conditions .cities .city-3').text(retown3)};
