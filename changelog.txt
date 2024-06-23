@@ -1,3 +1,8 @@
+= June 23, 2024 =
+ -  Added new song "Strawberries & Champagne"  by Network Music Ensemble
+ -  Added new song "Rock II" by Jeff Lorber
+ -  Added new song "Castles in the Ar" by Don McLean
+FILES TO GET/CHANGE: Track 23.mp3, Track 24.mp3, Track 25.mp3, config.js
 = June 22, 2024 =
  -  Added new song "Craig" by Ficara
 NEW FILES TO GET: Track 22.mp3, config.js
