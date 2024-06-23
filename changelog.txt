@@ -2,7 +2,8 @@
  -  Added new song "Strawberries & Champagne"  by Network Music Ensemble
  -  Added new song "Rock II" by Jeff Lorber
  -  Added new song "Castles in the Ar" by Don McLean
-FILES TO GET/CHANGE: Track 23.mp3, Track 24.mp3, Track 25.mp3, config.js
+ -  Changed the text for extended forecast's AM and PM abbreviations
+FILES TO GET/CHANGE: Track 23.mp3, Track 24.mp3, Track 25.mp3, config.js, slides-loops.js
 = June 22, 2024 =
  -  Added new song "Craig" by Ficara
 NEW FILES TO GET: Track 22.mp3, config.js
