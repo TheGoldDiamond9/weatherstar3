@@ -1,5 +1,6 @@
 = July 24, 2024 =
  -  Added NWS zone to Local Forecast Segment
+ - Re-enabled bulletin warning crawl and fixed freezing bug
 FILES TO GET/CHANGE: newweathermanager.js, slides-loops.js
 = June 23, 2024 =
  -  Added 3 gradient backgrounds that can be used by swapping out the "template-4k" file line in index.html for the gradient's file.
