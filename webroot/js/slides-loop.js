@@ -149,7 +149,7 @@ function dayPartForecast() {
     }
     $('#slide-title-text').css('text-align', 'center');
     $('#slide-title-text').css('font-family', 'smallfont');
-    $('#slide-title-text').text('YOUR NWS FORECAST');
+    $('#slide-title-text').text('YOUR NWS FORECAST -- ZONE ' + weatherInfo.NWS.zone);
     if (alerttext == null) {setTimeout(() => {dtimeOne()}, 1);} else {setTimeout(() => {dtimeOneBulletin()}, 1);}
     setTimeout(() => {dtimeTwo(), $('#slide-title-text').text('NAT\'L WEATHER SERVICE FORECAST')}, slideLengthFinal);
     setTimeout(() => {dtimeThree()}, 2 * slideLengthFinal);
