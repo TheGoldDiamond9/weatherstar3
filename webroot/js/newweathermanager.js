@@ -17,6 +17,7 @@
     //location pull
     var maincitycoords = {name:"",lat:"",lon:""}, marinelocation,
     locList = [], regionalList = [], citySlideList = [], state, ccTickerCitiesList = [];
+    console.log(maincitycoords);
     
     
       //If there is a location inputted, use that.
@@ -419,6 +420,9 @@
       //cityLoc:{noReport:false,displayname:"",temp:"",icon:"",wind:"",windspeed:""}
       city8slides:{noReport:false, cities:[]},
       regionallocs: {noReport:false, cities:[]},
+    }, NWS: {
+      secURL:"",
+      zone:"",
     }, dayPart: {
       lowerbar:{noReport:false,displayname:"",daytitle:"",hour:[{time:"",cond:"",icon:"",temp:"",wind:"",windspeed:""},{time:"",cond:"",icon:"",temp:"",wind:"",windspeed:""},{time:"",cond:"",icon:"",temp:"",wind:"",windspeed:""},{time:"",cond:"",icon:"",temp:"",wind:"",windspeed:""},]},
       /*loc:{noReport:"",displayname:"",daytitle:"",hour:[
@@ -660,6 +664,12 @@
       weatherInfo.dayDesc.weatherLocs = [];
       weatherInfo.fiveDay.weatherLocs = [];
       weatherInfo.bulletin.weatherLocs = [];*/
+      var NWSurl1 = "https://api.weather.gov/points/" + maincitycoords.lat + "," + maincitycoords.lon;
+
+      $.getJSON(NWSurl1, function(data) {
+        weatherInfo.NWS.zone = data.properties.forecastZone.substr(-6)
+      })
+
       var url = "https://api.weather.com/v3/aggcommon/v3alertsHeadlines;v3-wx-forecast-daily-5day;v3-wx-observations-current;v3-wx-forecast-hourly-2day?geocodes="
       url += `${maincitycoords.lat},${maincitycoords.lon};`
       locList.forEach((loc, i) => {
