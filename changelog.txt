@@ -1,3 +1,10 @@
+= July 25, 2024 =
+ -  Added Travel Forecast
+ -  Added Outlook (unfinished)
+ -  Fixed bugs
+ -  Added Flavors M, N, and O
+ -  Added Month precipitation to Current Conditions and LDL (unfinished)
+ FILES TO GET/CHANGE: newweathermanager.js, index.html, star3000.css, slides-loops.js, config.js
 = July 24, 2024 =
  -  Added NWS zone to Local Forecast Segment
  - Re-enabled bulletin warning crawl and fixed freezing bug
