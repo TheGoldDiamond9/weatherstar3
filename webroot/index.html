@@ -1,362 +1,263 @@
 <!DOCTYPE html>
+
 <html lang="en">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<title>Weather Star 3000</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-<link rel="stylesheet" href="css/star3000.css"/>
-</head>
-<body>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="js/jplayer/jquery.jplayer.min.js"></script>
-    <script src='http://joeiddon.github.io/perlin/perlin.js'></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery.marquee@1.5.0/jquery.marquee.min.js" type="text/javascript"></script>
-    <script type="text/javascript" src="js/config.js"></script>
-    <script type="text/javascript" src="js/date_fns.min.js"></script>
-    <script tpye="text/javascript" src="js/utils.js"></script>
-    <script type="text/javascript" src="js/settings.js"></script>
-    <script type="text/javascript" src="js/cors.js"></script>
-    <script type="text/javascript" src="js/main.js"></script>
-    <script type="text/javascript" src="js/newweathermanager.js"></script>
-    <script type="text/javascript" src="js/groupull.js"></script>
-    <script type="text/javascript" src="js/slides-loop.js"></script>
-    <script tpye="text/javascript" src="js/audio.js"></script>
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Weather Star 3000</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="css/star3000.css"/>
+    </head>
+    <body>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/javascript" src="js/jplayer/jquery.jplayer.min.js"></script>
+        <script type="text/javascript" src="js/date_fns.min.js"></script>
+        <script src='http://joeiddon.github.io/perlin/perlin.js'></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery.marquee@1.5.0/jquery.marquee.min.js" type="text/javascript"></script>
 
-    <div id="main" class="container">
-        <img id="template" src="images/template-4k.png" alt="template"></img>
-        <div id="bulletin-background" style="display: none"></div>
-        <div id="travel-background" style="display: none"></div>
+        <script type="text/javascript" src="js/config.js"></script>
+        <script type="text/javascript" src="js/utils.js"></script>
+        <script type="text/javascript" src="js/audio.js"></script>
+        <script type="text/javascript" src="js/groupull.js"></script>
+        <script type="text/javascript" src="js/loops.js"></script>
+        <script type="text/javascript" src="js/slides-loop.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
+        <script type="text/javascript" src="js/newweathermanager.js"></script>
 
-        <div id="startup-screen">
-            <div id="startup-text">LOADING WEATHER STAR 3000...</div>
-        </div>
-        <div id="title-container" style="display: none;">
-           <div id="slide-title-text" style="display: none;">CONDITIONS AT </div>
-        </div>
-    
-        <div id="bulletin-container">
-            <div id="bulletin" height="765" style="display: none"></div>
-        </div>
-        <div id="travel-container" style="display: none">
-            <div id="travel-title-container">
-                <div id="travel-title-text">TRAVEL CITIES FORECAST</div>
-            </div>
+        <div id="main" class="container">
+            <img id="template" src="images/template-4k.png" alt="template"></img>
+            <div id="bulletin-background" style="display: none"></div>
+            <div id="travel-background" style="display: none"></div>
 
-            <div id="travel-content">
-                <div class="cities">
-                    <div class="city-header">CITY</div>
-                    <div class="city-1">ATLANTA</div>
-                    <div class="city-2">BALTIMORE</div>
-                    <div class="city-3">BOSTON</div>
-                    <div class="city-4">BUFFALO</div>
-                    <div class="city-5">CHARLOTTE</div>
-                    <div class="city-6">CINCINNATI</div>
-                    <div class="city-7">DENVER</div>
-                    <div class="city-8">DETROIT</div>
-                    <div class="city-9">HARTFORD</div>
-                    <div class="city-10">INDIANAPOLIS</div>
-                    <div class="city-11">LOUISVILLE</div>
-                    <div class="city-12">MILWAUKEE</div>
-                    <div class="city-13">NASHVILLE</div>
-                    <div class="city-14">NEW ORLEANS</div>
-                    <div class="city-15">NORFOLK</div>
-                    <div class="city-16">OKLAHOMA CITY</div>
-                    <div class="city-17">OMAHA</div>
-                    <div class="city-18">PHILADELPHIA</div>
-                    <div class="city-19">PORTLAND</div>
-                    <div class="city-20">RALEIGH</div>
-                    <div class="city-21">SACRAMENTO</div>
-                    <div class="city-22">ST. LOUIS</div>
-                    <div class="city-23">SALT LAKE CITY</div>
-                    <div class="city-24">SAN ANTONIO</div>
+            <div id="startup-screen">
+                <div id="startup-text">LOADING WEATHER STAR 3000...</div>
+            </div>
+            <div id="title-container" style="display: none;">
+               <div id="slide-title-text" style="display: none;">CONDITIONS AT </div>
+            </div>
+        
+            <div id="bulletin-container">
+                <div id="bulletin" height="765" style="display: none"></div>
+            </div>
+            <div id="travel-container" style="display: none">
+                <div id="travel-title-container">
+                    <div id="travel-title-text">TRAVEL CITIES FORECAST</div>
                 </div>
-                <div class="weathers">
-                    <div class="weather-header">WEATHER</div>
-                    <div class="weather-1">WEATHER1</div>
-                    <div class="weather-2">WEATHER2</div>
-                    <div class="weather-3">WEATHER3</div>
-                    <div class="weather-4">WEATHER4</div>
-                    <div class="weather-5">WEATHER5</div>
-                    <div class="weather-6">WEATHER6</div>
-                    <div class="weather-7">WEATHER7</div>
-                    <div class="weather-8">WEATHER8</div>
-                    <div class="weather-9">WEATHER9</div>
-                    <div class="weather-10">WEATHER10</div>
-                    <div class="weather-11">WEATHER11</div>
-                    <div class="weather-12">WEATHER12</div>
-                    <div class="weather-13">WEATHER13</div>
-                    <div class="weather-14">WEATHER14</div>
-                    <div class="weather-15">WEATHER15</div>
-                    <div class="weather-16">WEATHER16</div>
-                    <div class="weather-17">WEATHER17</div>
-                    <div class="weather-18">WEATHER18</div>
-                    <div class="weather-19">WEATHER19</div>
-                    <div class="weather-20">WEATHER20</div>
-                    <div class="weather-21">WEATHER21</div>
-                    <div class="weather-22">WEATHER22</div>
-                    <div class="weather-23">WEATHER23</div>
-                    <div class="weather-24">WEATHER24</div>
+                <div id="travel-content">
+                    <div class="cities"></div>
+                    <div class="weathers"></div>
+                    <div class="his"></div>
+                    <div class="lows"></div>
                 </div>
-                <div class="his">
-                    <div class="hi-header">HI</div>
-                    <div class="hi-1">H1</div>
-                    <div class="hi-2">H2</div>
-                    <div class="hi-3">H3</div>
-                    <div class="hi-4">H4</div>
-                    <div class="hi-5">H5</div>
-                    <div class="hi-6">H6</div>
-                    <div class="hi-7">H7</div>
-                    <div class="hi-8">H8</div>
-                    <div class="hi-9">H9</div>
-                    <div class="hi-10">H10</div>
-                    <div class="hi-11">H11</div>
-                    <div class="hi-12">H12</div>
-                    <div class="hi-13">H13</div>
-                    <div class="hi-14">H14</div>
-                    <div class="hi-15">H15</div>
-                    <div class="hi-16">H16</div>
-                    <div class="hi-17">H17</div>
-                    <div class="hi-18">H18</div>
-                    <div class="hi-19">H19</div>
-                    <div class="hi-20">H20</div>
-                    <div class="hi-21">H21</div>
-                    <div class="hi-22">H22</div>
-                    <div class="hi-23">H23</div>
-                    <div class="hi-24">H24</div>
+            </div>
+            <div id="info-slides-container" style="display: none;">
+                <div class="info-cc" style="display: none;">
+                    <div class="current-condition">LIGHT RAIN</div>
+                    <div class="current-temperature">TEMP:  59°F</div>
+                    <div class="current-windchill">WIND CHILL: 32°F</div>
+                    <div class="current-humidity">HUMIDITY:  90%</div>
+                    <div class="current-dewpoint">DEWPOINT:  56°F</div>
+                    <div class="current-pressure">BAROMETRIC PRESSURE:  30.06 IN.</div>
+                    <div class="current-wind">WIND:  SE  5 MPH</div>
+                    <div class="current-visibility1">VISIB:</div>
+                    <div class="current-visibility2">7 MI.</div>
+                    <div class="current-ceiling">CEILING:  3500 FT.</div>
+                    <div class="current-month-precip">MAY PRECIPITATION</div>
                 </div>
-                <div class="lows">
-                    <div class="low-header">LOW</div>
-                    <div class="low-1">L1</div>
-                    <div class="low-2">L2</div>
-                    <div class="low-3">L3</div>
-                    <div class="low-4">L4</div>
-                    <div class="low-5">L5</div>
-                    <div class="low-6">L6</div>
-                    <div class="low-7">L7</div>
-                    <div class="low-8">L8</div>
-                    <div class="low-9">L9</div>
-                    <div class="low-10">L10</div>
-                    <div class="low-11">L11</div>
-                    <div class="low-12">L12</div>
-                    <div class="low-13">L13</div>
-                    <div class="low-14">L14</div>
-                    <div class="low-15">L15</div>
-                    <div class="low-16">L16</div>
-                    <div class="low-17">L17</div>
-                    <div class="low-18">L18</div>
-                    <div class="low-19">L19</div>
-                    <div class="low-20">L20</div>
-                    <div class="low-21">L21</div>
-                    <div class="low-22">L22</div>
-                    <div class="low-23">L23</div>
-                    <div class="low-24">L24</div>
+                <div class="gholder" style="display: none;">
+                </div>
+                <div class="in-progress" style="display: none;">
+                    <div class="text">CHECK BACK LATER FOR UPDATES</div>
+                </div>
+                <div class="hourly-observations" style="display: none;">
+                    <div class="header-1">LOCATION</div>
+                    <div class="header-2">°F</div>
+                    <div class="header-3">WEATHER</div>
+                    <div class="header-4">WIND</div>
+                    <div class="cities">
+                        <div class="city-1">CITY 1</div>
+                        <div class="city-2">CITY 2</div>
+                        <div class="city-3">CITY 3</div>
+                        <div class="city-4">CITY 4</div>
+                        <div class="city-5">CITY 5</div>
+                        <div class="city-6">CITY 6</div>
+                        <div class="city-7">CITY 7</div>
+                    </div>
+                    <div class="temps">
+                        <div class="temp-1">T1</div>
+                        <div class="temp-2">T2</div>
+                        <div class="temp-3">T3</div>
+                        <div class="temp-4">T4</div>
+                        <div class="temp-5">T5</div>
+                        <div class="temp-6">T6</div>
+                        <div class="temp-7">T7</div>
+                    </div>
+                    <div class="weathers">
+                        <div class="weather-1">WEATHER1</div>
+                        <div class="weather-2">WEATHER2</div>
+                        <div class="weather-3">WEATHER3</div>
+                        <div class="weather-4">WEATHER4</div>
+                        <div class="weather-5">WEATHER5</div>
+                        <div class="weather-6">WEATHER6</div>
+                        <div class="weather-7">WEATHER7</div>
+                    </div>
+                    <div class="winds">
+                        <div class="wind-1">W1</div>
+                        <div class="wind-2">W2</div>
+                        <div class="wind-3">W3</div>
+                        <div class="wind-4">W4</div>
+                        <div class="wind-5">W5</div>
+                        <div class="wind-6">W6</div>
+                        <div class="wind-7">W7</div>
+                    </div>
+                </div>
+                <div class="daypart-forecast" style="display: none;">
+                    <div class="forecast-1-bulletin" style="display: none;">
+                        <div class="border1"></div>
+                        <div class="border2"></div>
+                        <div class="daypartalert">SEVERE THUNDERSTORM WATCH IN EFFECT TIL NOON</div>
+                        <div class="forecast1">DAYPART TIME...DESCRIPTION</div>
+                    </div>
+                    <div class="forecast-1">DAYPART TIME...DESCRIPTION</div>
+                </div>
+                <div class="almanac" style="display: none;">
+                    <div class="header">
+                        <div class="header-1">TUESDAY</div>
+                        <div class="header-2">WEDNESDAY</div>
+                    </div>
+                    <div class="sideheader">
+                        <div class="sunrise">SUNRISE</div>
+                        <div class="sunset">SUNSET</div>
+                        <div class="normal-low">NORMAL LOW</div>
+                        <div class="normal-high">NORMAL HIGH</div>
+                    </div>
+                    <div class="day-1-info">
+                        <div class="sunrise">9:99 AM</div>
+                        <div class="sunset">9:99 PM</div>
+                        <div class="low">10 °F</div>
+                        <div class="high">90 °F</div>
+                    </div>
+                    <div class="day-2-info">
+                        <div class="sunrise">10:99 AM</div>
+                        <div class="sunset">10:99 PM</div>
+                        <div class="low">0 °F</div>
+                        <div class="high">100 °F</div>
+                    </div>
+                    <div class="normal-precip">NORMAL APRIL PRECIP</div>
+                    <div class="normal-precip-info">4.4 IN</div>
+                </div> 
+                <div class="extended-forecast" style="display: none">
+                    <div class="days">
+                        <div class="day-1">WEDNESDAY</div>
+                        <div class="day-2">WEDNESDAY</div>
+                        <div class="day-3">WEDNESDAY</div>
+                    </div>
+                    <div class="extended-conditions">
+                        <div class="con-1">PARTLY CLOUDY</div>
+                        <div class="con-2">CLOUDY</div>
+                        <div class="con-3">SUNNY</div>
+                    </div>
+                    <div class="extended-los">
+                        <div class="lo-1">LO: 11</div>
+                        <div class="lo-2">LO: 11</div>
+                        <div class="lo-3">LO: 11</div>
+                    </div>
+                    <div class="extended-his">
+                        <div class="hi-1">HI: 91</div>
+                        <div class="hi-2">HI: 91</div>
+                        <div class="hi-3">HI: 91</div>
+                    </div>
+                </div>
+                <div class="regional-forecast" style="display: none;">
+                    <div class="header-1">CITY</div>
+                    <div class="header-2">WEATHER</div>
+                    <div class="header-3">LOW</div>
+                    <div class="header-4">HI</div>
+                    <div class="cities">
+                        <div class="city-1">CITY 1</div>
+                        <div class="city-2">CITY 2</div>
+                        <div class="city-3">CITY 3</div>
+                        <div class="city-4">CITY 4</div>
+                        <div class="city-5">CITY 5</div>
+                        <div class="city-6">CITY 6</div>
+                        <div class="city-7">CITY 7</div>
+                    </div>
+                    <div class="weathers">
+                        <div class="weather-1">WEATHER1</div>
+                        <div class="weather-2">WEATHER2</div>
+                        <div class="weather-3">WEATHER3</div>
+                        <div class="weather-4">WEATHER4</div>
+                        <div class="weather-5">WEATHER5</div>
+                        <div class="weather-6">WEATHER6</div>
+                        <div class="weather-7">WEATHER7</div>
+                    </div>
+                    <div class="lows">
+                        <div class="low-1">L1</div>
+                        <div class="low-2">L2</div>
+                        <div class="low-3">L3</div>
+                        <div class="low-4">L4</div>
+                        <div class="low-5">L5</div>
+                        <div class="low-6">L6</div>
+                        <div class="low-7">L7</div>
+                    </div>
+                    <div class="highs">
+                        <div class="hi-1">H1</div>
+                        <div class="hi-2">H2</div>
+                        <div class="hi-3">H3</div>
+                        <div class="hi-4">H4</div>
+                        <div class="hi-5">H5</div>
+                        <div class="hi-6">H6</div>
+                        <div class="hi-7">H7</div>
+                    </div>
+                </div>
+                <div class="regional-conditions" style="display: none;">
+                    <div class="header-1">CITY</div>
+                    <div class="header-2">WEATHER</div>
+                    <div class="header-3">°F</div>
+                    <div class="cities">
+                        <div class="city-1">CITY 1</div>
+                        <div class="city-2">CITY 2</div>
+                        <div class="city-3">CITY 3</div>
+                        <div class="city-4">CITY 4</div>
+                        <div class="city-5">CITY 5</div>
+                        <div class="city-6">CITY 6</div>
+                        <div class="city-7">CITY 7</div>
+                    </div>
+                    <div class="weathers">
+                        <div class="weather-1">WEATHER1</div>
+                        <div class="weather-2">WEATHER2</div>
+                        <div class="weather-3">WEATHER3</div>
+                        <div class="weather-4">WEATHER4</div>
+                        <div class="weather-5">WEATHER5</div>
+                        <div class="weather-6">WEATHER6</div>
+                        <div class="weather-7">WEATHER7</div>
+                    </div>
+                    <div class="temps">
+                        <div class="temp-1">T1</div>
+                        <div class="temp-2">T2</div>
+                        <div class="temp-3">T3</div>
+                        <div class="temp-4">T4</div>
+                        <div class="temp-5">T5</div>
+                        <div class="temp-6">T6</div>
+                        <div class="temp-7">T7</div>
+                    </div>
+                </div>
+                <div class="outlook" style="display: none;">
+                    <div class="month">JANUARY</div>
+                    <div class="outlook-desc">NO REPORT</div>
+                </div>
+            </div>
+            <div id="lowerline" style="display: none;"></div>
+            <div id="lowerbar" style="display: none">
+                <div id="date-time">
+                    <div id="date"></div>
+                    <div id="time"></div>
+                </div>
+                <div id="lowerinfotext">LOWER DETAIL</div>
+                <div id="marqueeholder" width="1140" style="display:none">
+                    <div id="marqueetext">YOUR AD HERE</div>
                 </div>
             </div>
         </div>
-        <div id="info-slides-container" style="display: none;">
-            <div class="info-cc" style="display: none;">
-                <div class="current-condition">LIGHT RAIN</div>
-                <div class="current-temperature">TEMP:  59°F</div>
-                <div class="current-windchill">WIND CHILL: 32°F</div>
-                <div class="current-humidity">HUMIDITY:  90%</div>
-                <div class="current-dewpoint">DEWPOINT:  56°F</div>
-                <div class="current-pressure">BAROMETRIC PRESSURE:  30.06 IN.</div>
-                <div class="current-wind">WIND:  SE  5 MPH</div>
-                <div class="current-visibility1">VISIB:</div>
-                <div class="current-visibility2">7 MI.</div>
-                <div class="current-ceiling">CEILING:  3500 FT.</div>
-            </div>
-            <div class="gholder" style="display: none;">
-            </div>
-            <div class="in-progress" style="display: none;">
-                <div class="text">CHECK BACK LATER FOR UPDATES</div>
-            </div>
-            <div class="hourly-observations" style="display: none;">
-                <div class="header-1">LOCATION</div>
-                <div class="header-2">°F</div>
-                <div class="header-3">WEATHER</div>
-                <div class="header-4">WIND</div>
-                <div class="cities">
-                    <div class="city-1">CITY 1</div>
-                    <div class="city-2">CITY 2</div>
-                    <div class="city-3">CITY 3</div>
-                    <div class="city-4">CITY 4</div>
-                    <div class="city-5">CITY 5</div>
-                    <div class="city-6">CITY 6</div>
-                    <div class="city-7">CITY 7</div>
-                </div>
-                <div class="temps">
-                    <div class="temp-1">T1</div>
-                    <div class="temp-2">T2</div>
-                    <div class="temp-3">T3</div>
-                    <div class="temp-4">T4</div>
-                    <div class="temp-5">T5</div>
-                    <div class="temp-6">T6</div>
-                    <div class="temp-7">T7</div>
-                </div>
-                <div class="weathers">
-                    <div class="weather-1">WEATHER1</div>
-                    <div class="weather-2">WEATHER2</div>
-                    <div class="weather-3">WEATHER3</div>
-                    <div class="weather-4">WEATHER4</div>
-                    <div class="weather-5">WEATHER5</div>
-                    <div class="weather-6">WEATHER6</div>
-                    <div class="weather-7">WEATHER7</div>
-                </div>
-                <div class="winds">
-                    <div class="wind-1">W1</div>
-                    <div class="wind-2">W2</div>
-                    <div class="wind-3">W3</div>
-                    <div class="wind-4">W4</div>
-                    <div class="wind-5">W5</div>
-                    <div class="wind-6">W6</div>
-                    <div class="wind-7">W7</div>
-                </div>
-            </div>
-            <div class="daypart-forecast" style="display: none;">
-                <div class="forecast-1-bulletin" style="display: none;">
-                    <div class="border1"></div>
-                    <div class="border2"></div>
-                    <div class="daypartalert">SEVERE THUNDERSTORM WATCH IN EFFECT TIL NOON</div>
-                    <div class="forecast1">DAYPART TIME...DESCRIPTION</div>
-                </div>
-                <div class="forecast-1">DAYPART TIME...DESCRIPTION</div>
-            </div>
-            <div class="almanac" style="display: none;">
-                <div class="header">
-                    <div class="header-1">TUESDAY</div>
-                    <div class="header-2">WEDNESDAY</div>
-                </div>
-                <div class="sideheader">
-                    <div class="sunrise">SUNRISE</div>
-                    <div class="sunset">SUNSET</div>
-                    <div class="normal-low">NORMAL LOW</div>
-                    <div class="normal-high">NORMAL HIGH</div>
-                </div>
-                <div class="day-1-info">
-                    <div class="sunrise">9:99 AM</div>
-                    <div class="sunset">9:99 PM</div>
-                    <div class="low">10 °F</div>
-                    <div class="high">90 °F</div>
-                </div>
-                <div class="day-2-info">
-                    <div class="sunrise">10:99 AM</div>
-                    <div class="sunset">10:99 PM</div>
-                    <div class="low">0 °F</div>
-                    <div class="high">100 °F</div>
-                </div>
-                <div class="normal-precip">NORMAL APRIL PRECIP</div>
-                <div class="normal-precip-info">4.4 IN</div>
-            </div> 
-            <div class="extended-forecast" style="display: none">
-                <div class="days">
-                    <div class="day-1">WEDNESDAY</div>
-                    <div class="day-2">WEDNESDAY</div>
-                    <div class="day-3">WEDNESDAY</div>
-                </div>
-                <div class="extended-conditions">
-                    <div class="con-1">PARTLY CLOUDY</div>
-                    <div class="con-2">CLOUDY</div>
-                    <div class="con-3">SUNNY</div>
-                </div>
-                <div class="extended-los">
-                    <div class="lo-1">LO: 11</div>
-                    <div class="lo-2">LO: 11</div>
-                    <div class="lo-3">LO: 11</div>
-                </div>
-                <div class="extended-his">
-                    <div class="hi-1">HI: 91</div>
-                    <div class="hi-2">HI: 91</div>
-                    <div class="hi-3">HI: 91</div>
-                </div>
-            </div>
-            <div class="regional-forecast" style="display: none;">
-                <div class="header-1">CITY</div>
-                <div class="header-2">WEATHER</div>
-                <div class="header-3">LOW</div>
-                <div class="header-4">HI</div>
-                <div class="cities">
-                    <div class="city-1">CITY 1</div>
-                    <div class="city-2">CITY 2</div>
-                    <div class="city-3">CITY 3</div>
-                    <div class="city-4">CITY 4</div>
-                    <div class="city-5">CITY 5</div>
-                    <div class="city-6">CITY 6</div>
-                    <div class="city-7">CITY 7</div>
-                </div>
-                <div class="weathers">
-                    <div class="weather-1">WEATHER1</div>
-                    <div class="weather-2">WEATHER2</div>
-                    <div class="weather-3">WEATHER3</div>
-                    <div class="weather-4">WEATHER4</div>
-                    <div class="weather-5">WEATHER5</div>
-                    <div class="weather-6">WEATHER6</div>
-                    <div class="weather-7">WEATHER7</div>
-                </div>
-                <div class="lows">
-                    <div class="low-1">L1</div>
-                    <div class="low-2">L2</div>
-                    <div class="low-3">L3</div>
-                    <div class="low-4">L4</div>
-                    <div class="low-5">L5</div>
-                    <div class="low-6">L6</div>
-                    <div class="low-7">L7</div>
-                </div>
-                <div class="highs">
-                    <div class="hi-1">H1</div>
-                    <div class="hi-2">H2</div>
-                    <div class="hi-3">H3</div>
-                    <div class="hi-4">H4</div>
-                    <div class="hi-5">H5</div>
-                    <div class="hi-6">H6</div>
-                    <div class="hi-7">H7</div>
-                </div>
-            </div>
-            <div class="regional-conditions" style="display: none;">
-                <div class="header-1">CITY</div>
-                <div class="header-2">WEATHER</div>
-                <div class="header-3">°F</div>
-                <div class="cities">
-                    <div class="city-1">CITY 1</div>
-                    <div class="city-2">CITY 2</div>
-                    <div class="city-3">CITY 3</div>
-                    <div class="city-4">CITY 4</div>
-                    <div class="city-5">CITY 5</div>
-                    <div class="city-6">CITY 6</div>
-                    <div class="city-7">CITY 7</div>
-                </div>
-                <div class="weathers">
-                    <div class="weather-1">WEATHER1</div>
-                    <div class="weather-2">WEATHER2</div>
-                    <div class="weather-3">WEATHER3</div>
-                    <div class="weather-4">WEATHER4</div>
-                    <div class="weather-5">WEATHER5</div>
-                    <div class="weather-6">WEATHER6</div>
-                    <div class="weather-7">WEATHER7</div>
-                </div>
-                <div class="temps">
-                    <div class="temp-1">T1</div>
-                    <div class="temp-2">T2</div>
-                    <div class="temp-3">T3</div>
-                    <div class="temp-4">T4</div>
-                    <div class="temp-5">T5</div>
-                    <div class="temp-6">T6</div>
-                    <div class="temp-7">T7</div>
-                </div>
-            </div>
-        </div>
-        <div id="lowerline" style="display: none;"></div>
-        <div id="lowerbar" style="display: none">
-            <div id="date-time">
-                <div id="date"></div>
-                <div id="time"></div>
-            </div>
-            <div id="lowerinfotext">LOWER DETAIL</div>
-            <div id="marqueeholder" width="1140" style="display:none">
-                <div id="marqueetext">YOUR AD HERE</div>
-            </div>
-        </div>
-    </div>
-</body>
+    </body>
 </html>
