@@ -1,3 +1,4 @@
+var travelForecastLength = 61999;
 //first num difference is 4 for daypart
 function Slides() {
     var idx = 0;
@@ -206,95 +207,128 @@ function concludeLoop() {
 function travelForecast() {
     $('#travel-container').fadeIn(0);
     $('#travel-background').fadeIn(0);
+    $('#travel-container #travel-title-container').fadeIn(0);
 
-    $('#travel-container #travel-content .weathers .weather-1').text(weatherInfo.travel.cities[0].days[1].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9));
-    $('#travel-container #travel-content .weathers .weather-2').text(weatherInfo.travel.cities[1].days[1].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9));
-    $('#travel-container #travel-content .weathers .weather-3').text(weatherInfo.travel.cities[2].days[1].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9));
-    $('#travel-container #travel-content .weathers .weather-4').text(weatherInfo.travel.cities[3].days[1].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9));
-    $('#travel-container #travel-content .weathers .weather-5').text(weatherInfo.travel.cities[4].days[1].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9));
-    $('#travel-container #travel-content .weathers .weather-6').text(weatherInfo.travel.cities[5].days[1].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9));
-    $('#travel-container #travel-content .weathers .weather-7').text(weatherInfo.travel.cities[6].days[1].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9));
-    $('#travel-container #travel-content .weathers .weather-8').text(weatherInfo.travel.cities[7].days[1].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9));
-    $('#travel-container #travel-content .weathers .weather-9').text(weatherInfo.travel.cities[8].days[1].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9));
-    $('#travel-container #travel-content .weathers .weather-10').text(weatherInfo.travel.cities[9].days[1].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9));
-    $('#travel-container #travel-content .weathers .weather-11').text(weatherInfo.travel.cities[10].days[1].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9));
-    $('#travel-container #travel-content .weathers .weather-12').text(weatherInfo.travel.cities[11].days[1].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9));
-    $('#travel-container #travel-content .weathers .weather-13').text(weatherInfo.travel.cities[12].days[1].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9));
-    $('#travel-container #travel-content .weathers .weather-14').text(weatherInfo.travel.cities[13].days[1].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9));
-    $('#travel-container #travel-content .weathers .weather-15').text(weatherInfo.travel.cities[14].days[1].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9));
-    $('#travel-container #travel-content .weathers .weather-16').text(weatherInfo.travel.cities[15].days[1].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9));
-    $('#travel-container #travel-content .weathers .weather-17').text(weatherInfo.travel.cities[16].days[1].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9));
-    $('#travel-container #travel-content .weathers .weather-18').text(weatherInfo.travel.cities[17].days[1].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9));
-    $('#travel-container #travel-content .weathers .weather-19').text(weatherInfo.travel.cities[18].days[1].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9));
-    $('#travel-container #travel-content .weathers .weather-20').text(weatherInfo.travel.cities[19].days[1].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9));
-    $('#travel-container #travel-content .weathers .weather-21').text(weatherInfo.travel.cities[20].days[1].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9));
-    $('#travel-container #travel-content .weathers .weather-22').text(weatherInfo.travel.cities[21].days[1].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9));
-    $('#travel-container #travel-content .weathers .weather-23').text(weatherInfo.travel.cities[22].days[1].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9));
-    $('#travel-container #travel-content .weathers .weather-24').text(weatherInfo.travel.cities[23].days[1].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9));
+    $('#travel-container #travel-content .cities').text('CITY\n' + weatherInfo.travel.cities[0].displayname
+        + weatherInfo.travel.cities[1].displayname
+        + weatherInfo.travel.cities[2].displayname
+        + weatherInfo.travel.cities[3].displayname
+        + weatherInfo.travel.cities[4].displayname
+        + weatherInfo.travel.cities[5].displayname
+        + weatherInfo.travel.cities[6].displayname
+        + weatherInfo.travel.cities[7].displayname
+        + weatherInfo.travel.cities[8].displayname
+        + weatherInfo.travel.cities[9].displayname
+        + weatherInfo.travel.cities[10].displayname
+        + weatherInfo.travel.cities[11].displayname
+        + weatherInfo.travel.cities[12].displayname
+        + weatherInfo.travel.cities[13].displayname
+        + weatherInfo.travel.cities[14].displayname
+        + weatherInfo.travel.cities[15].displayname
+        + weatherInfo.travel.cities[16].displayname
+        + weatherInfo.travel.cities[17].displayname
+        + weatherInfo.travel.cities[18].displayname
+        + weatherInfo.travel.cities[19].displayname
+        + weatherInfo.travel.cities[20].displayname
+        + weatherInfo.travel.cities[21].displayname
+        + weatherInfo.travel.cities[22].displayname
+        + weatherInfo.travel.cities[23].displayname + '\n'  + '\n'  + '\n'  + '\n'
+    )
 
-    $('#travel-container #travel-content .his .hi-1').text(weatherInfo.travel.cities[0].days[1].high);
-    $('#travel-container #travel-content .his .hi-2').text(weatherInfo.travel.cities[1].days[1].high);
-    $('#travel-container #travel-content .his .hi-3').text(weatherInfo.travel.cities[2].days[1].high);
-    $('#travel-container #travel-content .his .hi-4').text(weatherInfo.travel.cities[3].days[1].high);
-    $('#travel-container #travel-content .his .hi-5').text(weatherInfo.travel.cities[4].days[1].high);
-    $('#travel-container #travel-content .his .hi-6').text(weatherInfo.travel.cities[5].days[1].high);
-    $('#travel-container #travel-content .his .hi-7').text(weatherInfo.travel.cities[6].days[1].high);
-    $('#travel-container #travel-content .his .hi-8').text(weatherInfo.travel.cities[7].days[1].high);
-    $('#travel-container #travel-content .his .hi-9').text(weatherInfo.travel.cities[8].days[1].high);
-    $('#travel-container #travel-content .his .hi-10').text(weatherInfo.travel.cities[9].days[1].high);
-    $('#travel-container #travel-content .his .hi-11').text(weatherInfo.travel.cities[10].days[1].high);
-    $('#travel-container #travel-content .his .hi-12').text(weatherInfo.travel.cities[11].days[1].high);
-    $('#travel-container #travel-content .his .hi-13').text(weatherInfo.travel.cities[12].days[1].high);
-    $('#travel-container #travel-content .his .hi-14').text(weatherInfo.travel.cities[13].days[1].high);
-    $('#travel-container #travel-content .his .hi-15').text(weatherInfo.travel.cities[14].days[1].high);
-    $('#travel-container #travel-content .his .hi-16').text(weatherInfo.travel.cities[15].days[1].high);
-    $('#travel-container #travel-content .his .hi-17').text(weatherInfo.travel.cities[16].days[1].high);
-    $('#travel-container #travel-content .his .hi-18').text(weatherInfo.travel.cities[17].days[1].high);
-    $('#travel-container #travel-content .his .hi-19').text(weatherInfo.travel.cities[18].days[1].high);
-    $('#travel-container #travel-content .his .hi-20').text(weatherInfo.travel.cities[19].days[1].high);
-    $('#travel-container #travel-content .his .hi-21').text(weatherInfo.travel.cities[20].days[1].high);
-    $('#travel-container #travel-content .his .hi-22').text(weatherInfo.travel.cities[21].days[1].high);
-    $('#travel-container #travel-content .his .hi-23').text(weatherInfo.travel.cities[22].days[1].high);
-    $('#travel-container #travel-content .his .hi-24').text(weatherInfo.travel.cities[23].days[1].high);
+    $('#travel-container #travel-content .weathers').text('WEATHER\n' + weatherInfo.travel.cities[0].days[1].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9) + '\n'
+        + weatherInfo.travel.cities[1].days[1].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9) + '\n'
+        + weatherInfo.travel.cities[2].days[1].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9) + '\n'
+        + weatherInfo.travel.cities[3].days[1].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9) + '\n'
+        + weatherInfo.travel.cities[4].days[1].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9) + '\n'
+        + weatherInfo.travel.cities[5].days[1].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9) + '\n'
+        + weatherInfo.travel.cities[6].days[1].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9) + '\n'
+        + weatherInfo.travel.cities[7].days[1].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9) + '\n'
+        + weatherInfo.travel.cities[8].days[1].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9) + '\n'
+        + weatherInfo.travel.cities[9].days[1].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9) + '\n'
+        + weatherInfo.travel.cities[10].days[1].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9) + '\n'
+        + weatherInfo.travel.cities[11].days[1].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9) + '\n'
+        + weatherInfo.travel.cities[12].days[1].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9) + '\n'
+        + weatherInfo.travel.cities[13].days[1].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9) + '\n'
+        + weatherInfo.travel.cities[14].days[1].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9) + '\n'
+        + weatherInfo.travel.cities[15].days[1].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9) + '\n'
+        + weatherInfo.travel.cities[16].days[1].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9) + '\n'
+        + weatherInfo.travel.cities[17].days[1].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9) + '\n'
+        + weatherInfo.travel.cities[18].days[1].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9) + '\n'
+        + weatherInfo.travel.cities[19].days[1].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9) + '\n'
+        + weatherInfo.travel.cities[20].days[1].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9) + '\n'
+        + weatherInfo.travel.cities[21].days[1].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9) + '\n'
+        + weatherInfo.travel.cities[22].days[1].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9) + '\n'
+        + weatherInfo.travel.cities[23].days[1].condition.replaceAll('Shower', 'SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').substring(0,9) + '\n'  + '\n'  + '\n'  + '\n'
+    )
 
-    $('#travel-container #travel-content .lows .low-1').text(weatherInfo.travel.cities[0].days[1].low);
-    $('#travel-container #travel-content .lows .low-2').text(weatherInfo.travel.cities[1].days[1].low);
-    $('#travel-container #travel-content .lows .low-3').text(weatherInfo.travel.cities[2].days[1].low);
-    $('#travel-container #travel-content .lows .low-4').text(weatherInfo.travel.cities[3].days[1].low);
-    $('#travel-container #travel-content .lows .low-5').text(weatherInfo.travel.cities[4].days[1].low);
-    $('#travel-container #travel-content .lows .low-6').text(weatherInfo.travel.cities[5].days[1].low);
-    $('#travel-container #travel-content .lows .low-7').text(weatherInfo.travel.cities[6].days[1].low);
-    $('#travel-container #travel-content .lows .low-8').text(weatherInfo.travel.cities[7].days[1].low);
-    $('#travel-container #travel-content .lows .low-9').text(weatherInfo.travel.cities[8].days[1].low);
-    $('#travel-container #travel-content .lows .low-10').text(weatherInfo.travel.cities[9].days[1].low);
-    $('#travel-container #travel-content .lows .low-11').text(weatherInfo.travel.cities[10].days[1].low);
-    $('#travel-container #travel-content .lows .low-12').text(weatherInfo.travel.cities[11].days[1].low);
-    $('#travel-container #travel-content .lows .low-13').text(weatherInfo.travel.cities[12].days[1].low);
-    $('#travel-container #travel-content .lows .low-14').text(weatherInfo.travel.cities[13].days[1].low);
-    $('#travel-container #travel-content .lows .low-15').text(weatherInfo.travel.cities[14].days[1].low);
-    $('#travel-container #travel-content .lows .low-16').text(weatherInfo.travel.cities[15].days[1].low);
-    $('#travel-container #travel-content .lows .low-17').text(weatherInfo.travel.cities[16].days[1].low);
-    $('#travel-container #travel-content .lows .low-18').text(weatherInfo.travel.cities[17].days[1].low);
-    $('#travel-container #travel-content .lows .low-19').text(weatherInfo.travel.cities[18].days[1].low);
-    $('#travel-container #travel-content .lows .low-20').text(weatherInfo.travel.cities[19].days[1].low);
-    $('#travel-container #travel-content .lows .low-21').text(weatherInfo.travel.cities[20].days[1].low);
-    $('#travel-container #travel-content .lows .low-22').text(weatherInfo.travel.cities[21].days[1].low);
-    $('#travel-container #travel-content .lows .low-23').text(weatherInfo.travel.cities[22].days[1].low);
-    $('#travel-container #travel-content .lows .low-24').text(weatherInfo.travel.cities[23].days[1].low);
+    $('#travel-container #travel-content .his').text('HI\n' + weatherInfo.travel.cities[0].days[1].high + '\n'
+        + weatherInfo.travel.cities[1].days[1].high + '\n'
+        + weatherInfo.travel.cities[2].days[1].high + '\n'
+        + weatherInfo.travel.cities[3].days[1].high + '\n'
+        + weatherInfo.travel.cities[4].days[1].high + '\n'
+        + weatherInfo.travel.cities[5].days[1].high + '\n'
+        + weatherInfo.travel.cities[6].days[1].high + '\n'
+        + weatherInfo.travel.cities[7].days[1].high + '\n'
+        + weatherInfo.travel.cities[8].days[1].high + '\n'
+        + weatherInfo.travel.cities[9].days[1].high + '\n'
+        + weatherInfo.travel.cities[10].days[1].high + '\n'
+        + weatherInfo.travel.cities[11].days[1].high + '\n'
+        + weatherInfo.travel.cities[12].days[1].high + '\n'
+        + weatherInfo.travel.cities[13].days[1].high + '\n'
+        + weatherInfo.travel.cities[14].days[1].high + '\n'
+        + weatherInfo.travel.cities[15].days[1].high + '\n'
+        + weatherInfo.travel.cities[16].days[1].high + '\n'
+        + weatherInfo.travel.cities[17].days[1].high + '\n'
+        + weatherInfo.travel.cities[18].days[1].high + '\n'
+        + weatherInfo.travel.cities[19].days[1].high + '\n'
+        + weatherInfo.travel.cities[20].days[1].high + '\n'
+        + weatherInfo.travel.cities[21].days[1].high + '\n'
+        + weatherInfo.travel.cities[22].days[1].high + '\n'
+        + weatherInfo.travel.cities[23].days[1].high + '\n'  + '\n'  + '\n'  + '\n'
+    )
 
-    //$('#travel-container').marquee({speed: 110, direction: 'up', pauseOnHover: false});
-   //$('#travel-container #travel-content').marquee({speed: 110, direction: 'up', pauseOnHover: false});
+    $('#travel-container #travel-content .lows').text('LOW\n' + weatherInfo.travel.cities[0].days[1].high + '\n'
+        + weatherInfo.travel.cities[1].days[1].low + '\n'
+        + weatherInfo.travel.cities[2].days[1].low + '\n'
+        + weatherInfo.travel.cities[3].days[1].low + '\n'
+        + weatherInfo.travel.cities[4].days[1].low + '\n'
+        + weatherInfo.travel.cities[5].days[1].low + '\n'
+        + weatherInfo.travel.cities[6].days[1].low + '\n'
+        + weatherInfo.travel.cities[7].days[1].low + '\n'
+        + weatherInfo.travel.cities[8].days[1].low + '\n'
+        + weatherInfo.travel.cities[9].days[1].low + '\n'
+        + weatherInfo.travel.cities[10].days[1].low + '\n'
+        + weatherInfo.travel.cities[11].days[1].low + '\n'
+        + weatherInfo.travel.cities[12].days[1].low + '\n'
+        + weatherInfo.travel.cities[13].days[1].low + '\n'
+        + weatherInfo.travel.cities[14].days[1].low + '\n'
+        + weatherInfo.travel.cities[15].days[1].low + '\n'
+        + weatherInfo.travel.cities[16].days[1].low + '\n'
+        + weatherInfo.travel.cities[17].days[1].low + '\n'
+        + weatherInfo.travel.cities[18].days[1].low + '\n'
+        + weatherInfo.travel.cities[19].days[1].low + '\n'
+        + weatherInfo.travel.cities[20].days[1].low + '\n'
+        + weatherInfo.travel.cities[21].days[1].low + '\n'
+        + weatherInfo.travel.cities[22].days[1].low + '\n'
+        + weatherInfo.travel.cities[23].days[1].low + '\n'  + '\n'  + '\n'  + '\n'
+    )
 
-    //$('#travel-container #travel-title-container').marquee({speed: 110, direction: 'up', pauseOnHover: false});
-    //$('#travel-container #travel-title-container').on('finished', function() {$('#travel-container #travel-title-container').fadeOut(0)});
+    $('#travel-container #travel-title-container').marquee({speed: 110, direction: 'up', pauseOnHover: false});
+    $('#travel-container #travel-title-container').on('finished', function() {$('#travel-container #travel-title-container').marquee('destroy'), $('#travel-container #travel-title-container').fadeOut(0)});
    
-    $('#travel-container #travel-content .cities').marquee({speed: 49, direction: 'up', pauseOnHover: false});
-   // $('#travel-container #travel-content .weathers').marquee({speed: 10, direction: 'up', pauseOnHover: false});
-   // $('#travel-container #travel-content .his').marquee({/*speed: 110,*/ direction: 'up', pauseOnHover: false});
-  //  $('#travel-container #travel-content .lows').marquee({/*speed: 110,*/ direction: 'up', pauseOnHover: false});
-    //{speed: 110,  direction: 'up', pauseOnHover: false}
+    $('#travel-content .cities').marquee({speed: 110, direction: 'up', pauseOnHover: false});
+    $('#travel-content .cities').on('finished', function() {$('#travel-content .cities').fadeOut(0)});
+    $('#travel-content .weathers').marquee({speed: 110, direction: 'up', pauseOnHover: false});
+    $('#travel-content .weathers').on('finished', function() {$('#travel-content .weathers').fadeOut(0)});
+    $('#travel-content .his').marquee({speed: 94.6, direction: 'up', pauseOnHover: false});
+    $('#travel-content .his').on('finished', function() {$('#travel-content .his').fadeOut(0)});
+    $('#travel-content .lows').marquee({speed: 110, direction: 'up', pauseOnHover: false});
+    $('#travel-content .lows').on('finished', function() {$('#travel-content .lows').fadeOut(0)});
+    //$('#travel-content .lows').on('finished', function() {$('#travel-content .lows').fadeOut(0), $('#travel-container').fadeOut(0), $('#travel-background').fadeOut(0)});
+    setTimeout(function() {
+        $('#travel-container').fadeOut(0), $('#travel-background').fadeOut(0);
+    }, travelForecastLength);
 
-	//$('#travel-container').on('finished', function() {$('#travel-container').fadeOut(0), $('#travel-background').fadeOut(0)});
 }
 function almanac() {
     var altoday = new Date();
@@ -450,6 +484,11 @@ function outlook() {
     $('#slide-title-text').css('text-align', 'center');
     $('#slide-title-text').css('font-family', 'mainfont');
     $('#slide-title-text').text('NAT\'L WEATHER SERVICE OUTLOOK');
+    const omonth = ["JANUARY","FEBRUARY","MARCH","APRIL","MAY","JUNE","JULY","AUGUST","SEPTEMBER","OCTOBER","NOVEMBER","DECEMBER"];
+    const od = new Date();
+    let omonthname = omonth[od.getMonth()];
+
+    $('.outlook .month').text(omonthname);
 
     $('.outlook').fadeIn(0);
     setTimeout(function() {
@@ -552,18 +591,49 @@ function flavorL() {
     setTimeout(() => {loopSlides()}, (2+7) * slideLength);
 }
 function flavorM() {
-    setTimeout(() => {travelForecast()}, 1);
-    //setTimeout(() => {currentConditions()}, 1);
-    //setTimeout(() => {dayPartForecast()}, slideLength);
-    //setTimeout(() => {extendedForecast()}, (3+2) * slideLength);
-    //setTimeout(() => {travelForecast()}, ((3+2)+3) * slideLength);
+    setTimeout(() => {currentConditions()}, 1);
+    setTimeout(() => {dayPartForecast()}, 1 * slideLength);
+    setTimeout(() => {extendedForecast()}, (3+1) * slideLength);
+    setTimeout(() => {travelForecast()}, (3+2) * slideLength);
+    setTimeout(() => {loopSlides()}, ((3+2) * slideLength) + travelForecastLength);
 }
-//function flavorN() {
-
-//}
-//function flavorO() {
-
-//}
+function flavorN() {
+    setTimeout(() => {currentConditions()}, 1);
+    setTimeout(() => {hourlyObservation()}, slideLength);
+    setTimeout(() => {regionalConditions()}, 2 * slideLength);
+    setTimeout(() => {dayPartForecast()}, 3 * slideLength);
+    setTimeout(() => {almanac()}, (3+3) *slideLength);
+    setTimeout(() => {regionalForecast()}, (3+4)*slideLength);
+    setTimeout(() => {travelForecast()}, (3+5)*slideLength);
+    setTimeout(() => {extendedForecast()}, ((3+5)*slideLength) + travelForecastLength);
+    setTimeout(() => {outlook()}, ((3+6)*slideLength) + travelForecastLength);
+    setTimeout(() => {currentConditions()}, ((3+7)*slideLength) + travelForecastLength);
+    setTimeout(() => {dayPartForecast()}, ((3+8)*slideLength) + travelForecastLength);
+    setTimeout(() => {extendedForecast()}, (((3+8)+3)*slideLength) + travelForecastLength);
+    setTimeout(() => {travelForecast()}, (((3+9)+3)*slideLength) + travelForecastLength);
+    setTimeout(() => {loopSlides()}, (((3+9)+3)*slideLength) + (2* travelForecastLength));
+}
+function flavorO() {
+    setTimeout(() => {currentConditions()}, 1);
+    setTimeout(() => {hourlyObservation()}, slideLength);
+    setTimeout(() => {regionalConditions()}, 2 * slideLength);
+    setTimeout(() => {dayPartForecast()}, 3 * slideLength);
+    setTimeout(() => {almanac()}, (3+3) *slideLength);
+    setTimeout(() => {regionalForecast()}, (3+4)*slideLength);
+    setTimeout(() => {travelForecast()}, (3+5)*slideLength);
+    setTimeout(() => {extendedForecast()}, ((3+5)*slideLength) + travelForecastLength);
+    setTimeout(() => {outlook()}, ((3+6)*slideLength) + travelForecastLength);
+    setTimeout(() => {currentConditions()}, ((3+7)*slideLength) + travelForecastLength);
+    setTimeout(() => {hourlyObservation()}, ((3+8)*slideLength) + travelForecastLength);
+    setTimeout(() => {regionalConditions()}, ((3+9)*slideLength) + travelForecastLength);
+    setTimeout(() => {dayPartForecast()}, ((3+10)*slideLength) + travelForecastLength);
+    setTimeout(() => {almanac()}, (((3+10)+3)*slideLength) + travelForecastLength);
+    setTimeout(() => {regionalForecast()}, (((3+11)+3)*slideLength) + travelForecastLength);
+    setTimeout(() => {travelForecast()}, (((3+12)+3)*slideLength) + travelForecastLength);
+    setTimeout(() => {extendedForecast()}, (((3+12)+3)*slideLength) + (2*travelForecastLength));
+    setTimeout(() => {outlook()}, (((3+13)+3)*slideLength) + (2*travelForecastLength));
+    setTimeout(() => {loopSlides()}, (((3+14)+3)*slideLength) + (2*travelForecastLength));
+}
 function flavorP() {
     setTimeout(() => {dayPartForecast()}, 1)
     setTimeout(() => {extendedForecast()}, 4 * slideLength)
@@ -636,7 +706,7 @@ function showSlides() {
         flavorQ();
     }
     else {
-        flavorL();
+        flavorN();
     };
 }
 function loopSlides() {
@@ -697,7 +767,7 @@ function loopSlides() {
             flavorQ();
         }
         else {
-            flavorL();
+            flavorN();
         };
     } else {
         $('#main').fadeOut(0)
