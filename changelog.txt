@@ -1,3 +1,4 @@
+Make sure to report any bugs or issues in the Issues tab
 = July 25, 2024 =
  -  Added Travel Forecast
  -  Added Outlook (unfinished)
