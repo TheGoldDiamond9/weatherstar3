@@ -516,29 +516,29 @@
       ]},
       travel:{noReport:false,cities:[
        {displayname:"ATLANTA\n",lat:"33.7488",lon:"-84.3877",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
-       {displayname:"BALTIMORE\n",lat:"39.2904",lon:"-76.6122",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+       {displayname:"BISMARCK\n",lat:"46.8042",lon:"-100.7878",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+       {displayname:"BOISE\n",lat:"43.6150",lon:"-116.2023",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
        {displayname:"BOSTON\n",lat:"42.3601",lon:"-71.0589",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
        {displayname:"BUFFALO\n",lat:"42.8864",lon:"-78.8784",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
-       {displayname:"CHARLOTTE\n",lat:"35.2271",lon:"-80.8431",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+       {displayname:"CHICAGO\n",lat:"41.8781",lon:"-87.6298",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
        {displayname:"CINCINNATI\n",lat:"39.1031",lon:"-84.5120",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+       {displayname:"DALLAS\n",lat:"32.7767",lon:"-96.7970",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
        {displayname:"DENVER\n",lat:"39.7392",lon:"-104.9903",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
        {displayname:"DETROIT\n",lat:"42.3314",lon:"-83.0458",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
-       {displayname:"HARTFORD\n",lat:"41.7658",lon:"-72.6734",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
-       {displayname:"INDIANAPOLIS\n",lat:"39.7684",lon:"-86.1581",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
-       {displayname:"LOUISVILLE\n",lat:"38.2527",lon:"-85.7585",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
-       {displayname:"MILWAUKEE\n",lat:"43.0389",lon:"-87.9065",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+       {displayname:"KANSAS CITY\n",lat:"39.0997",lon:"-94.5786",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+       {displayname:"LOS ANGELES\n",lat:"34.0549",lon:"-118.2426",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+       {displayname:"MINNEAPOLIS\n",lat:"44.9778",lon:"-93.2650",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
        {displayname:"NASHVILLE\n",lat:"36.1627",lon:"-86.7816",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
        {displayname:"NEW ORLEANS\n",lat:"29.9511",lon:"-90.0715",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
-       {displayname:"NORFOLK\n",lat:"36.8508",lon:"-76.2859",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
-       {displayname:"OKLAHOMA CITY\n",lat:"35.4676",lon:"-97.5164",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
-       {displayname:"OMAHA\n",lat:"41.2565",lon:"-95.9345",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
-       {displayname:"PHILADELPHIA\n",lat:"39.9526",lon:"-75.1652",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+       {displayname:"NEW YORK CITY\n",lat:"40.7128",lon:"-74.0060",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+       {displayname:"PHOENIX\n",lat:"33.4484",lon:"-112.0740",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
        {displayname:"PORTLAND\n",lat:"45.5152",lon:"-122.6784",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
        {displayname:"RALEIGH\n",lat:"35.7796",lon:"-78.6382",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+       {displayname:"RAPID CITY\n",lat:"44.0805",lon:"-103.2310",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
        {displayname:"SACRAMENTO\n",lat:"38.5816",lon:"-121.4944",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
-       {displayname:"ST. LOUIS\n",lat:"38.6270",lon:"-90.1994",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
        {displayname:"SALT LAKE CITY\n",lat:"40.7608",lon:"-111.8910",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
-       {displayname:"SAN ANTONIO\n",lat:"29.4252",lon:"-98.4946",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+       {displayname:"TAMPA\n",lat:"27.9517",lon:"-82.4588",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+       {displayname:"WASHINGTON DC\n",lat:"38.9072",lon:"-77.0369",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
      ]},
      international:{noReport:false,cities:[
       {displayname:"Toronto",lat:"43.6510",lon:"-79.3470",days:[{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
@@ -1584,7 +1584,7 @@
     Url += maincitycoords.lon;
     Url += "&product=airport&subproduct=major&format=json";
     //console.log(Url);
-    /*$.getJSON(Url, function(data) {
+    $.getJSON(Url, function(data) {
       var AirportName = data.location.airportName[0];
       var AirportCode = data.location.iataCode[0];
 
@@ -1595,7 +1595,7 @@
       SecUrl += "&product=CLI&format=txt&version=1&glossary=1&highlight=off";
       console.log(SecUrl)
 
-            $.ajaxCORS({
+            /*$.ajaxCORS({
                 type: "GET",
                 url: SecUrl,
                 dataType: "text",
@@ -1614,8 +1614,8 @@
                 error: function (xhr, error, errorThrown) {
                     console.error("GetMonthPrecipitation failed: " + errorThrown);
                 }
-            });
-})*/
+            });*/
+})
 };
 
     //loop data collection, slide loops data functions is done based on full cycle
