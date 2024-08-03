@@ -1,4 +1,8 @@
 Make sure to report any bugs or issues in the Issues tab
+= August 2, 2024 =
+ -  Attempted to fix flavor G
+ -  Added time lengths under the flavor functions in slides-loops.js
+FILES TO GET/CHANGE: slides-loops.js
 = July 27, 2024 =
  -  Changed Travel Forecast cities
 FILES TO GET/CHANGE: newweathermanager.js
