@@ -63,6 +63,18 @@ body, html {
     text-align: center;
     white-space: pre-wrap;
 }
+#startup-credits {
+    font-family: 'smallfont';
+    font-size: 65.1px;
+    text-shadow:
+    2.5px 2.5px 0 #000,
+    -2.5px 2.5px 0 #000,
+    -2.5px -2.5px 0 #000,
+    2.5px -2.5px 0 #000;
+    text-align: center;
+    margin-top: 20px;
+    line-height: 55px;
+}
 .header {
     text-shadow:
     2.5px 2.5px 0 #000,
@@ -80,7 +92,7 @@ body, html {
     position:absolute;
     margin-top: 6%;
     margin-left: 10%;
-    width: 1140px;
+    width: 80%;
     height: 90px;
 }
 #slide-title-text {
@@ -107,7 +119,7 @@ body, html {
     overflow: hidden;
     margin-left: 10%;
     margin-top: 6%;
-    width: 1140px;
+    width: 80%;
     height: 765px;
     z-index: 25005
 }
@@ -139,14 +151,14 @@ body, html {
     overflow: hidden;
     margin-left: 10%;
     margin-top: 6%;
-    width: 1140px;
+    width: 80%;
     height: 755px;
     z-index: 15001;
 }
 #travel-container #travel-title-container {
     position:absolute;
     text-align: center;
-    width: 1140px;
+    width: 100%;
     height: 755px;
     font-size: 89px;
     text-shadow:
@@ -160,7 +172,7 @@ body, html {
     margin-top: 303px;
     font-family: 'largefont';
     font-size: 65px;
-    width: 1140px;
+    width: 100%;
     height: 750px;
     line-height: 135px;
     text-shadow:
@@ -185,7 +197,7 @@ body, html {
 #travel-container #travel-content .his {
     position: absolute;
     padding-right: 160px;
-    width: 1140px;
+    width: 100%;
     height: 100%;
     text-align: right;
     white-space: pre-wrap;
@@ -201,7 +213,7 @@ body, html {
     position:absolute;
     margin-left: 10%;
     margin-top: 12.3%;
-    width: 1140px;
+    width: 80%;
     height: 660px;
 }
 .info-cc {
@@ -213,8 +225,8 @@ body, html {
     -3px 3px 0 #000,
     -3px -3px 0 #000,
     3px -3px 0 #000;
-    width: 1140px;
-    height: 660px;
+    width: 100%;
+    height: 100%;
 }
 .info-cc .current-condition {
     position: absolute;
@@ -227,7 +239,7 @@ body, html {
 .info-cc .current-windchill {
     position: absolute;
     margin-top: 90px;
-    width: 1140px;
+    width: 100%;
     text-align: right;
 }
 .info-cc .current-humidity {
@@ -238,7 +250,7 @@ body, html {
 .info-cc .current-dewpoint {
     position: absolute;
     margin-top: 180px;
-    width: 1140px;
+    width: 100%;
     text-align: right;
 }
 .info-cc .current-pressure {
@@ -265,18 +277,18 @@ body, html {
 .info-cc .current-ceiling {
     position: absolute;
     margin-top: 450px;
-    width: 1140px;
+    width: 100%;
     text-align: right;
 }
 .info-cc .current-month-precip {
     position: absolute;
     margin-top: 540px;
-    width: 11400px;
+    width: 100%;
 }
 .hourly-observations {
     position: absolute;
-    width: 1140px;
-    height: 660px;
+    width: 100%;
+    height: 100%;
     font-size: 65.1px;
 }
 .hourly-observations .header-1 {
@@ -294,10 +306,10 @@ body, html {
 .hourly-observations .header-2 {
     position:absolute;
     font-family: 'smallfont';
-    text-align: center;
+    text-align: right;
     font-size: 65.1px;
     line-height: 52px;
-    width: 1140px;
+    width: 604px;
     text-shadow:
     2.5px 2.5px 0 #000,
     -2.5px 2.5px 0 #000,
@@ -307,11 +319,11 @@ body, html {
 .hourly-observations .header-3 {
     position:absolute;
     font-family: 'smallfont';
-    text-align: center;
+    text-align: left;
     font-size: 65.1px;
     line-height: 52px;
-    width: 1140px;
-    padding-left: 380px;
+    width: 100%;
+    padding-left: 630px;
     text-shadow:
     2.5px 2.5px 0 #000,
     -2.5px 2.5px 0 #000,
@@ -324,7 +336,7 @@ body, html {
     text-align: right;
     font-size: 65.1px;
     line-height: 52px;
-    width: 1140px;
+    width: 100%;
     text-shadow:
     2.5px 2.5px 0 #000,
     -2.5px 2.5px 0 #000,
@@ -334,7 +346,7 @@ body, html {
 .hourly-observations .cities{
     position: absolute;
     font-family: 'mainfont';
-    width: 1140px;
+    width: 100%;
     text-align: left;
     margin-top: 44px;
     line-height: 89px;
@@ -360,8 +372,8 @@ body, html {
 .hourly-observations .weathers{
     position: absolute;
     font-family: 'mainfont';
-    margin-left: 630px;
-    width: 600px;
+    padding-left: 630px;
+    width: 100%;
     text-align: left;
     margin-top: 44px;
     line-height: 89px;
@@ -376,7 +388,7 @@ body, html {
     font-family: 'mainfont';
     margin-top: 44px;
     line-height: 89px;
-    width: 1140px;
+    width: 100%;
     text-align: right;
     text-shadow:
     3px 3px 0 #000,
@@ -386,15 +398,15 @@ body, html {
 }
 .daypart-forecast {
     position: absolute;
-    width: 1140px;
-    height: 635px;
+    width: 100%;
+    height: 96%;
     font-size: 65.1px;
     overflow: hidden;
 }
 .daypart-forecast .forecast-1-bulletin .border1 {
     position: absolute;
     line-height: 89px;
-    width: 10px;
+    width: 100%;
     font-family: 'mainfont';
     font-size: 65.1px;
     text-shadow:
@@ -402,12 +414,12 @@ body, html {
     -3px 3px 0 #000,
     -3px -3px 0 #000,
     3px -3px 0 #000;
+    white-space: pre-wrap;
 }
 .daypart-forecast .forecast-1-bulletin .border2 {
     position: absolute;
     line-height: 89px;
-    margin-left: 1090px;
-    width: 10px;
+    width: 100%;
     font-family: 'mainfont';
     font-size: 65.1px;
     text-align: right;
@@ -416,13 +428,14 @@ body, html {
     -3px 3px 0 #000,
     -3px -3px 0 #000,
     3px -3px 0 #000;
+    white-space: pre-wrap;
 }
 .daypart-forecast .forecast-1-bulletin .daypartalert {
     position: relative;
     white-space: pre-wrap;
     line-height: 89px;
     margin-left: 40px;
-    width: 1060px;
+    width: 93%;
     font-family: 'mainfont';
     font-size: 65.1px;
     text-align: center;
@@ -436,7 +449,7 @@ body, html {
     position: relative;
     line-height: 89px;
     white-space: pre-wrap;
-    width: 1140px;
+    width: 100%;
     font-family: 'mainfont';
     font-size: 65.1px;
     text-shadow:
@@ -447,8 +460,8 @@ body, html {
 }
 .daypart-forecast .forecast-1 {
     position: absolute;
-    width: 1140px;
-    height: 635px;
+    width: 100%;
+    height: 100%;
     font-size: 65.1px;
     font-family: 'mainfont';
     text-shadow:
@@ -461,8 +474,8 @@ body, html {
 }
 .extended-forecast {
     position: absolute;
-    width: 1140px;
-    height: 635px;
+    width: 100%;
+    height: 100%;
     font-size: 65.1px;
     overflow: hidden;
 }
@@ -474,7 +487,7 @@ body, html {
 }
 .extended-forecast .day-1 {
     position: absolute;
-    width: 380px;
+    width: 33.33%;
     height: 89px;
     font-size: 65.1px;
     font-family: 'mainfont';
@@ -487,7 +500,7 @@ body, html {
 }
 .extended-forecast .day-2 {
     position: absolute;
-    width: 380px;
+    width: 33.33%;
     height: 89px;
     font-size: 65.1px;
     font-family: 'mainfont';
@@ -501,7 +514,7 @@ body, html {
 }
 .extended-forecast .day-3 {
     position: absolute;
-    width: 380px;
+    width: 33.34%;
     height: 89px;
     font-size: 65.1px;
     font-family: 'mainfont';
@@ -516,12 +529,12 @@ body, html {
 .extended-forecast .extended-conditions {
     position: absolute;
     width: 100%;
-    height: 178px;
+    height: 100%;
     margin-top: 178px;
 }
 .extended-forecast .extended-conditions .con-1 {
     position: absolute;
-    width: 300px;
+    width: 33.33%;
     height: 89px;
     font-size: 65.1px;
     font-family: 'mainfont';
@@ -534,7 +547,7 @@ body, html {
 }
 .extended-forecast .extended-conditions .con-2 {
     position: absolute;
-    width: 300px;
+    width: 33.33%;
     height: 89px;
     font-size: 65.1px;
     font-family: 'mainfont';
@@ -548,7 +561,7 @@ body, html {
 }
 .extended-forecast .extended-conditions .con-3 {
     position: absolute;
-    width: 300px;
+    width: 33.34%;
     height: 89px;
     font-size: 65.1px;
     font-family: 'mainfont';
@@ -568,7 +581,7 @@ body, html {
 }
 .extended-forecast .extended-los .lo-1 {
     position: absolute;
-    width: 380px;
+    width: 33.33%;
     height: 89px;
     font-size: 65.1px;
     font-family: 'mainfont';
@@ -581,7 +594,7 @@ body, html {
 }
 .extended-forecast .extended-los .lo-2 {
     position: absolute;
-    width: 380px;
+    width: 33.33%;
     height: 89px;
     font-size: 65.1px;
     font-family: 'mainfont';
@@ -595,7 +608,7 @@ body, html {
 }
 .extended-forecast .extended-los .lo-3{
     position: absolute;
-    width: 380px;
+    width: 33.34%;
     height: 89px;
     font-size: 65.1px;
     font-family: 'mainfont';
@@ -615,7 +628,7 @@ body, html {
 }
 .extended-forecast .extended-his .hi-1 {
     position: absolute;
-    width: 380px;
+    width: 33.33%;
     height: 89px;
     font-size: 65.1px;
     font-family: 'mainfont';
@@ -628,7 +641,7 @@ body, html {
 }
 .extended-forecast .extended-his .hi-2 {
     position: absolute;
-    width: 380px;
+    width: 33.33%;
     height: 89px;
     font-size: 65.1px;
     font-family: 'mainfont';
@@ -642,7 +655,7 @@ body, html {
 }
 .extended-forecast .extended-his .hi-3{
     position: absolute;
-    width: 380px;
+    width: 33.34%;
     height: 89px;
     font-size: 65.1px;
     font-family: 'mainfont';
@@ -656,8 +669,8 @@ body, html {
 }
 .almanac {
     position: absolute;
-    width: 1140px;
-    height: 660px;
+    width: 100%;
+    height: 100%;
     font-size: 65.1px;
     font-family: 'mainfont';
     text-shadow:
@@ -670,7 +683,7 @@ body, html {
 }
 .almanac .header {
     position:absolute;
-    width: 1140px;
+    width: 100%;
     height: 100px;
 }
 .almanac .header .header-1 {
@@ -680,7 +693,7 @@ body, html {
 }
 .almanac .header .header-2 {
     position:absolute;
-    width: 1140px;
+    width: 100%;
     text-align: right;
 }
 .almanac .sideheader {
@@ -697,7 +710,7 @@ body, html {
 .almanac .day-2-info {
     position:absolute;
     margin-top: 90px;
-    width: 1140px;
+    width: 100%;
     text-align: right;
 }
 .almanac .normal-precip {
@@ -713,8 +726,8 @@ body, html {
 }
 .regional-forecast {
     position: absolute;
-    width: 1140px;
-    height: 660px;
+    width: 100%;
+    height: 100%;
     font-size: 65.1px;
 }
 .regional-forecast .header-1 {
@@ -732,11 +745,11 @@ body, html {
 .regional-forecast .header-2 {
     position:absolute;
     font-family: 'smallfont';
-    text-align: center;
+    text-align: left;
     font-size: 65.1px;
     line-height: 52px;
-    width: 1140px;
-    padding-left: 160px;
+    width: 100%;
+    padding-left: 530px;
     text-shadow:
     2.5px 2.5px 0 #000,
     -2.5px 2.5px 0 #000,
@@ -746,11 +759,10 @@ body, html {
 .regional-forecast .header-3 {
     position:absolute;
     font-family: 'smallfont';
-    text-align: center;
+    text-align: right;
     font-size: 65.1px;
     line-height: 52px;
-    width: 1140px;
-    padding-left: 730px;
+    width: 990px;
     text-shadow:
     2.5px 2.5px 0 #000,
     -2.5px 2.5px 0 #000,
@@ -763,7 +775,7 @@ body, html {
     text-align: right;
     font-size: 65.1px;
     line-height: 52px;
-    width: 1140px;
+    width: 100%;
     text-shadow:
     2.5px 2.5px 0 #000,
     -2.5px 2.5px 0 #000,
@@ -773,7 +785,7 @@ body, html {
 .regional-forecast .cities{
     position: absolute;
     font-family: 'mainfont';
-    width: 1140px;
+    width: 100%;
     text-align: left;
     margin-top: 44px;
     line-height: 89px;
@@ -786,10 +798,10 @@ body, html {
 .regional-forecast .weathers{
     position: absolute;
     font-family: 'mainfont';
-    width: 820px;
+    width: 100%;
     text-align: left;
     margin-top: 44px;
-    margin-left: 530px;
+    padding-left: 530px;
     line-height: 89px;
     text-shadow:
     3px 3px 0 #000,
@@ -815,7 +827,7 @@ body, html {
     font-family: 'mainfont';
     margin-top: 44px;
     line-height: 89px;
-    width: 1140px;
+    width: 100%;
     text-align: right;
     text-shadow:
     3px 3px 0 #000,
@@ -825,8 +837,8 @@ body, html {
 }
 .regional-conditions {
     position: absolute;
-    width: 1140px;
-    height: 660px;
+    width: 100%;
+    height: 100%;
     font-size: 65.1px;
 }
 .regional-conditions .header-1 {
@@ -861,8 +873,7 @@ body, html {
     text-align: right;
     font-size: 65.1px;
     line-height: 52px;
-    width: 1140px;
-    padding-left: 730px;
+    width: 100%;
     text-shadow:
     2.5px 2.5px 0 #000,
     -2.5px 2.5px 0 #000,
@@ -872,7 +883,7 @@ body, html {
 .regional-conditions .cities{
     position: absolute;
     font-family: 'mainfont';
-    width: 1140px;
+    width: 100%;
     text-align: left;
     margin-top: 44px;
     line-height: 89px;
@@ -885,10 +896,10 @@ body, html {
 .regional-conditions .weathers{
     position: absolute;
     font-family: 'mainfont';
-    width: 820px;
+    width: 100%;
     text-align: left;
     margin-top: 44px;
-    margin-left: 710px;
+    padding-left: 710px;
     line-height: 89px;
     text-shadow:
     3px 3px 0 #000,
@@ -901,7 +912,7 @@ body, html {
     font-family: 'mainfont';
     margin-top: 44px;
     line-height: 89px;
-    width: 1140px;
+    width: 100%;
     text-align: right;
     text-shadow:
     3px 3px 0 #000,
@@ -911,7 +922,7 @@ body, html {
 }
 .outlook {
     position: absolute;
-    width: 1140px;
+    width: 100%;
     height: 620px;
     font-size: 65.1px;
     line-height: 89px;
@@ -925,14 +936,14 @@ body, html {
 }
 .outlook .month {
     position: absolute;
-    width: 1140px;
+    width: 100%;
     height: 89px;
     text-align: center;
     font-family: 'mainfont';
 }
 .outlook .outlook-desc {
     position: absolute;
-    width: 1140px;
+    width: 100%;
     height: 445px;
     text-align: left;
     font-family: 'mainfont';
@@ -947,7 +958,7 @@ body, html {
     z-index: 25001;
 }
 #lowerbar {
-    width: 1140px;
+    width: 80%;
     height: 250px;
     margin-left: 10%;
     margin-top: 850.953px;
@@ -958,7 +969,7 @@ body, html {
     font-size: 28px;
     line-height: 40px;
     font-size: 65.1px;
-    width: 1140px;
+    width: 80%;
     text-shadow:
     2.5px 2.5px 0 #000,
     -2.5px 2.5px 0 #000,
@@ -968,6 +979,7 @@ body, html {
 #date {
     position: absolute;
     white-space: pre-wrap;
+    text-align: left;
 }
 #time {
     position: absolute;
@@ -1013,8 +1025,8 @@ body, html {
 }
 .in-progress {
     position: absolute;
-    width: 1140px;
-    height: 660px;
+    width: 100%;
+    height: 100%;
     font-size: 65.1px;
 }
 .in-progress .text {
