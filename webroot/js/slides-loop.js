@@ -119,7 +119,7 @@ function dayPartForecast() {
         $('.daypart-forecast .forecast-1-bulletin').fadeIn(0);
         $('.daypart-forecast .forecast-1-bulletin .forecast1').fadeIn(0);
         $('.daypart-forecast .forecast-1').fadeOut(0);
-        $('.daypart-forecast .forecast-1-bulletin .daypartalert').text(alerttext.replaceAll('. ', '.\n'));
+        $('.daypart-forecast .forecast-1-bulletin .daypartalert').text(alerttext.replaceAll('. ', '.\n').replaceAll('until', 'TIL'));
         let divHeight = $('.daypart-forecast .forecast-1-bulletin .daypartalert')[0].clientHeight;
         let bulHeight =  89;
         let lines = divHeight / bulHeight;
