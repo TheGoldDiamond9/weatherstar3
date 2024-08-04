@@ -1,4 +1,7 @@
 Make sure to report any bugs or issues in the Issues tab
+= August 4, 2024 =
+ -  Adjusted and fixed sizes of slides and texts etc.
+FILES TO GET/CHANGE: star3000.css, slides-loops.js
 = August 2, 2024 =
  -  Attempted to fix flavor G
  -  Added time lengths under the flavor functions in slides-loops.js
