@@ -1,4 +1,4 @@
-var travelForecastLength = 61999;
+var travelForecastLength = 62999;
 //first num difference is 4 for daypart
 function Slides() {
     var idx = 0;
@@ -119,20 +119,20 @@ function dayPartForecast() {
         $('.daypart-forecast .forecast-1-bulletin').fadeIn(0);
         $('.daypart-forecast .forecast-1-bulletin .forecast1').fadeIn(0);
         $('.daypart-forecast .forecast-1').fadeOut(0);
-        $('.daypart-forecast .forecast-1-bulletin .daypartalert').text(alerttext);
+        $('.daypart-forecast .forecast-1-bulletin .daypartalert').text(alerttext.replaceAll('. ', '.\n'));
         let divHeight = $('.daypart-forecast .forecast-1-bulletin .daypartalert')[0].clientHeight;
         let bulHeight =  89;
         let lines = divHeight / bulHeight;
         if (lines == 0) {$('.daypart-forecast .forecast-1-bulletin .border1').text(''),$('.daypart-forecast .forecast-1-bulletin .border2').text('')};  
         if (lines == 1) {$('.daypart-forecast .forecast-1-bulletin .border1').text('*'),$('.daypart-forecast .forecast-1-bulletin .border2').text('*')};  
-        if (lines == 2) {$('.daypart-forecast .forecast-1-bulletin .border1').text('* *'),$('.daypart-forecast .forecast-1-bulletin .border2').text('* *')}; 
-        if (lines == 3) {$('.daypart-forecast .forecast-1-bulletin .border1').text('* * *'),$('.daypart-forecast .forecast-1-bulletin .border2').text('* * *')}; 
-        if (lines == 4) {$('.daypart-forecast .forecast-1-bulletin .border1').text('* * * *'),$('.daypart-forecast .forecast-1-bulletin .border2').text('* * * *')}; 
-        if (lines == 5) {$('.daypart-forecast .forecast-1-bulletin .border1').text('* * * * *'),$('.daypart-forecast .forecast-1-bulletin .border2').text('* * * * *')}; 
-        if (lines == 6) {$('.daypart-forecast .forecast-1-bulletin .border1').text('* * * * * *'),$('.daypart-forecast .forecast-1-bulletin .border2').text('* * * * * *')}; 
-        if (lines == 7) {$('.daypart-forecast .forecast-1-bulletin .border1').text('* * * * * * *'),$('.daypart-forecast .forecast-1-bulletin .border2').text('* * * * * * *')}; 
-        if (lines == 8) {$('.daypart-forecast .forecast-1-bulletin .border1').text('* * * * * * * *'),$('.daypart-forecast .forecast-1-bulletin .border2').text('* * * * * * * *')}; 
-        if (lines == 9) {$('.daypart-forecast .forecast-1-bulletin .border1').text('* * * * * * * * *'),$('.daypart-forecast .forecast-1-bulletin .border2').text('* * * * * * * * *')};
+        if (lines == 2) {$('.daypart-forecast .forecast-1-bulletin .border1').text('*\n*'),$('.daypart-forecast .forecast-1-bulletin .border2').text('*\n *')}; 
+        if (lines == 3) {$('.daypart-forecast .forecast-1-bulletin .border1').text('*\n*\n*'),$('.daypart-forecast .forecast-1-bulletin .border2').text('*\n *\n *')}; 
+        if (lines == 4) {$('.daypart-forecast .forecast-1-bulletin .border1').text('*\n*\n*\n*'),$('.daypart-forecast .forecast-1-bulletin .border2').text('*\n *\n *\n *')}; 
+        if (lines == 5) {$('.daypart-forecast .forecast-1-bulletin .border1').text('*\n*\n*\n*\n*'),$('.daypart-forecast .forecast-1-bulletin .border2').text('*\n *\n *\n *\n *')}; 
+        if (lines == 6) {$('.daypart-forecast .forecast-1-bulletin .border1').text('*\n*\n*\n*\n*\n*'),$('.daypart-forecast .forecast-1-bulletin .border2').text('*\n *\n *\n *\n *\n *')}; 
+        if (lines == 7) {$('.daypart-forecast .forecast-1-bulletin .border1').text('*\n*\n*\n*\n*\n*\n*'),$('.daypart-forecast .forecast-1-bulletin .border2').text('*\n *\n *\n *\n *\n *\n *')}; 
+        if (lines == 8) {$('.daypart-forecast .forecast-1-bulletin .border1').text('*\n*\n*\n*\n*\n*\n*\n*'),$('.daypart-forecast .forecast-1-bulletin .border2').text('*\n *\n *\n *\n *\n *\n *\n *')}; 
+        if (lines == 9) {$('.daypart-forecast .forecast-1-bulletin .border1').text('*\n*\n*\n*\n*\n*\n*\n*\n*'),$('.daypart-forecast .forecast-1-bulletin .border2').text('*\n *\n *\n *\n *\n *\n *\n *\n *')};
         $('.daypart-forecast .forecast-1-bulletin .forecast1').text(weatherInfo.dayDesc.lowerbar.day[0].name + '...' + weatherInfo.dayDesc.lowerbar.day[0].desc);
     }
     function dtimeOne() {
@@ -320,7 +320,7 @@ function travelForecast() {
     $('#travel-content .cities').on('finished', function() {$('#travel-content .cities').fadeOut(0)});
     $('#travel-content .weathers').marquee({speed: 110, direction: 'up', pauseOnHover: false});
     $('#travel-content .weathers').on('finished', function() {$('#travel-content .weathers').fadeOut(0)});
-    $('#travel-content .his').marquee({speed: 94.6, direction: 'up', pauseOnHover: false});
+    $('#travel-content .his').marquee({speed: 94.7, direction: 'up', pauseOnHover: false});//94.7
     $('#travel-content .his').on('finished', function() {$('#travel-content .his').fadeOut(0)});
     $('#travel-content .lows').marquee({speed: 110, direction: 'up', pauseOnHover: false});
     $('#travel-content .lows').on('finished', function() {$('#travel-content .lows').fadeOut(0)});
@@ -508,8 +508,9 @@ function loopBulletin() {
 }
 function flavorTest() {
     setTimeout(() => {travelForecast()}, 1);
-    setTimeout(() => {regionalConditions()}, travelForecastLength);
-    setTimeout(() => {loopSlides()}, travelForecastLength + slideLength);
+    setTimeout(() => {currentConditions()}, travelForecastLength);
+    setTimeout(() => {extendedForecast()}, travelForecastLength + slideLength);
+    setTimeout(() => {loopSlides()}, travelForecastLength + (2*slideLength));
 }
 function flavorA() {
     setTimeout(() => {currentConditions()}, 1);
