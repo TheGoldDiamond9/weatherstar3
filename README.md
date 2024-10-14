@@ -1,6 +1,10 @@
 # Weather Star 3000 Emulator
 Weather Star 3000 emulation in HTML/JS/CSS
 
+Website: https://www.weatherstar3000.net
+Insert location after the .net
+For eexample: https://www.weatherstar3000.net/?Pittsburgh PA
+
 ### This is in Beta
 
 ## Installation Instructions:
