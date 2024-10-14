@@ -1626,8 +1626,11 @@
     }, 300000)
     
     //startup();
+    //startup();
     setTimeout(() => {startup();}, 2)
-    setTimeout(() => {Slides(), marqueeSettings(), $('#startup-screen').fadeOut(0)}, 5000);
+    setTimeout(() => {if (maincitycoords.name != "") {
+      Slides(), marqueeSettings(), $('#startup-screen').fadeOut(0)
+    }}, 5000);
 
     function simulateReboot() {
       weatherInfo.reboot = true
