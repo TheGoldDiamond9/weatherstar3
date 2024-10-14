@@ -1,4 +1,4 @@
-var api_key = 'YOUR_API_KEY';
+var api_key = 'YOUR API KEY';
 var apperanceSettings = {
     loop: true,
     flavor: "N", //Upper case letter from A-Q. Default is N
@@ -6,7 +6,15 @@ var apperanceSettings = {
     marqueeAd:  "With Comcast Spotlight, utilize the impact of interactive advertising. Specifically target areas of New Jersey on TV with commercials on networks like ESPN and TNT - and on the internet at XFINITY.com and FoxNews.com. For your custom advertising solution, call 244-2122.",
     onlyLDLMode: false,
 }
-function startup() {setTimeout(() => {$('#startup-text').text('LOADING WEATHERSTAR 3000... \n FLAVOR ' + apperanceSettings.flavor);}, 2)};
+function startup() {
+  console.log(maincitycoords.name)
+  setTimeout(() => { if (maincitycoords.name == "") {
+    $('#startup-text').text('');
+    $('#startup-credits').text('PLEASE INSERT A LOCATION (WEATHERSTAR3000.NET/LOCATIONNAME) OR REFRESH THE PAGE');
+  } else {
+    $('#startup-text').text('LOADING WEATHERSTAR 3000... \n FLAVOR ' + apperanceSettings.flavor);
+  }}, 2)
+};
 var audioSettings = {
     enableMusic: true, //Something is wrong if you set this to false.
     order: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25],
@@ -22,7 +30,7 @@ var audioSettings = {
         country:"US", //Two letter country code. //Recommend using "US".
         state:"", //Two letter state code.
         val:"", //for geocode "lat,lon"
-        searchResultNum:2,//Defaults to 0. Use if the first result for a particular location sucks.
+        searchResultNum:0,//Defaults to 0. Use if the first result for a particular location sucks.
       }
     },
     extraLocations: {
