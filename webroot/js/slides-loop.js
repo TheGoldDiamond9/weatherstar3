@@ -320,7 +320,7 @@ function travelForecast() {
     $('#travel-content .cities').on('finished', function() {$('#travel-content .cities').fadeOut(0)});
     $('#travel-content .weathers').marquee({speed: 110, direction: 'up', pauseOnHover: false});
     $('#travel-content .weathers').on('finished', function() {$('#travel-content .weathers').fadeOut(0)});
-    $('#travel-content .his').marquee({speed: 94.7, direction: 'up', pauseOnHover: false});//94.7
+    $('#travel-content .his').marquee({speed: 110, direction: 'up', pauseOnHover: false});
     $('#travel-content .his').on('finished', function() {$('#travel-content .his').fadeOut(0)});
     $('#travel-content .lows').marquee({speed: 110, direction: 'up', pauseOnHover: false});
     $('#travel-content .lows').on('finished', function() {$('#travel-content .lows').fadeOut(0)});
@@ -671,7 +671,7 @@ function showSlides() {
     $('#lowerline').fadeIn(0);
     $('#lowerbar').fadeIn(0);
     i = 10
-    if (apperanceSettings.flavor == 'TEST') {
+    if (apperanceSettings.flavor == 'Z') {
         flavorTest();
     } 
     else if (apperanceSettings.flavor == 'A') {
@@ -732,7 +732,7 @@ function showSlides() {
 function loopSlides() {
     i = 10
     if (apperanceSettings.loop == true) {
-        if (apperanceSettings.flavor == 'TEST') {
+        if (apperanceSettings.flavor == 'Z') {
             flavorTest();
         } 
         else if (apperanceSettings.flavor == 'A') {
