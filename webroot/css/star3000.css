@@ -196,7 +196,7 @@ body, html {
 }
 #travel-container #travel-content .his {
     position: absolute;
-    padding-right: 160px;
+    transform: translate(-160px, 0px);
     width: 100%;
     height: 100%;
     text-align: right;
