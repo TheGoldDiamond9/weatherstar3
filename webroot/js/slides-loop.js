@@ -287,7 +287,7 @@ function travelForecast() {
         + weatherInfo.travel.cities[23].days[1].high + '\n'  + '\n'  + '\n'  + '\n'
     )
 
-    $('#travel-container #travel-content .lows').text('LOW\n' + weatherInfo.travel.cities[0].days[1].high + '\n'
+    $('#travel-container #travel-content .lows').text('LOW\n' + weatherInfo.travel.cities[0].days[1].low + '\n'
         + weatherInfo.travel.cities[1].days[1].low + '\n'
         + weatherInfo.travel.cities[2].days[1].low + '\n'
         + weatherInfo.travel.cities[3].days[1].low + '\n'
