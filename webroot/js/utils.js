@@ -59,8 +59,6 @@ function degToCompass(deg){
     return arr[(val % 8)];
 }
 
-
-
 function distance(lat1, lon1, lat2, lon2) {
 	var radlat1 = Math.PI * lat1/180,
 		radlat2 = Math.PI * lat2/180,
@@ -139,7 +137,72 @@ function getCCicon(imgDiv,ccCode, windData){
 	$(imgDiv).css('background-image', `url("/images/icons${apperanceSettings.iconSet}sprite.png`)
 	$(imgDiv).css('background-position-x', `${(100/37)*icon}%`)
 }
-
+function degtoOneLetter(deg){
+	if (deg >= 0 && deg <= 45 ) {
+		return "N"
+	} else if (deg > 45 && deg <= 135) {
+		return "E"
+	} else if (deg > 135 && deg <= 225) {
+		return "S"
+	} else if (deg > 225 && deg <= 315) {
+		return "W"
+	} else if (deg > 315) {
+		return "N"
+	}
+}
+function degtoTwoLetter(deg) {
+	if (deg >= 0 && deg <= 22.5) {
+		return "N "
+	} else if (deg > 22.5 && deg <= 67.5) {
+		return "NE"
+	} else if (deg > 67.5 && deg <= 112.5) {
+		return "E "
+	} else if (deg > 112.5 && deg <= 157.5) {
+		return "SE"
+	} else if (deg > 157.5 && deg <= 202.5) {
+		return "S "
+	} else if (deg > 202.5 && deg <= 247.5) {
+		return "SW"
+	} else if (deg > 247.5 && deg <= 292.5) {
+		return "W "
+	} else if (deg > 292.5 && deg <= 337.5) {
+		return "NW"
+	} else if (deg > 337.5) {
+		return "N "
+	}
+}
+function simpWind(div, word, num, speed) {
+	var tspeed = speed
+	var lspeed = speed.toString()
+	var tlength = lspeed.length + word.length
+	if (word == "CALM" || word == "Calm" || word == "calm") {
+		div.text("CALM")
+	} else {
+		if (tlength == 2) {
+			div.text(word + " " + " " + tspeed)
+		} else if (tlength == 3) {
+			div.text(word + " " + tspeed)
+		} else if (tlength == 4) {
+			div.text(word + tspeed)
+		} else if (tlength == 5) {
+			if (lspeed.length == 3) {
+				div.text(degtoOneLetter(num) + tspeed)
+			} else if (lspeed.length == 2) {
+				div.text(degtoTwoLetter(num) + tspeed)
+			}
+		} else if (tlength == 6) {
+			div.text(degtoOneLetter(num) + tspeed)
+		}
+	}
+}
+function locReplace (loc) {
+	return loc.replaceAll('Township', 'TWP').replaceAll('Fort', 'FT').replaceAll('Airport', 'ARPT').replaceAll('Airforce Base', 'A.F.B.')
+}
+function condReplace (cond) {
+	var p
+	p = (cond.indexOf("/") == -1 ? p = 9 : p = cond.indexOf("/"))
+	return cond.substring(0, p)
+}
 function getWarningPosition(warning) {
 var warnpos = { "Tsunami Warning":	1,
 "Tornado Warning":	2,
