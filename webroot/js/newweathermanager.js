@@ -1516,7 +1516,7 @@
     Url += maincitycoords.lat + "%2C";
     Url += maincitycoords.lon;
     Url += "&product=airport&subproduct=major&format=json";
-    //console.log(Url);
+    console.log(Url);
     $.getJSON(Url, function(data) {
       var AirportName = data.location.airportName[0];
       var AirportCode = data.location.iataCode[0];
@@ -1554,14 +1554,12 @@
     //loop data collection, slide loops data functions is done based on full cycle
     setInterval(function(){
       grabSideandLowerBarData();
-      GetMonthPrecipitation();
-      //pullCCTickerData();
     }, 300000)
     
     //startup();
     setTimeout(() => {startup();}, 2)
     setTimeout(() => {if (maincitycoords.name != "") {
-      Slides(), marqueeSettings(), $('#startup-screen').fadeOut(0)
+      slideKickOff(), marqueeSettings(), $('#startup-screen').fadeOut(0)
     }}, 5000);
     
     function simulateReboot() {
