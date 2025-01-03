@@ -1,7 +1,6 @@
 var api_key = 'YOUR_API_KEY';
 var apperanceSettings = {
     loop: true,
-    flavor: "N", //Upper case letter from A-Q. Default is N
     marqueeType: "", //Default is both. Set to 'none' to hide the lower detai information, Set to 'observations' for only observations, 'ad' for only advertisements, 'both' for alternation between observations and advertisements.
     marqueeAd:  ["If you are interested in TWC, EAS, or anything weather/tech related, join Mist Weather Media! https://discord.gg/hV2w5sZQxz"],
     onlyLDLMode: false,
@@ -12,9 +11,28 @@ function startup() {
     $('#startup-credits').text('PLEASE INSERT A LOCATION (WEATHERSTAR3000.NET/?LOCATIONNAME), WAIT FOR THE SITE TO LOAD, OR REFRESH THE PAGE');
   } else {
     $('#startup-credits').text('Code and pictures produced mostly by Joe Molinelli. Non blue and non gradient backgrounds given genorously by "COLSTER". Thank you for using this emulator.');
-    $('#startup-text').text('LOADING WEATHERSTAR 3000... \n FLAVOR ' + apperanceSettings.flavor);
+    $('#startup-text').text('LOADING WEATHERSTAR 3000...');
   }}, 1000)
 };
+var slideSettings = {
+  order:[
+    {slideLineup:[
+      {function:"currentConditions"},
+      {function:"hourlyObservation"},
+      {function:"regionalConditions"},
+      {function:"dayPartForecast"},
+      {function:"almanac"},
+      {function:"regionalForecast"},
+      {function:"travelForecast"},
+      {function:"extendedForecast"},
+      {function:"outlook"},
+      {function:"currentConditions"},
+      {function:"dayPartForecast"},
+      {function:"extendedForecast"},
+      {function:"travelForecast"},
+    ]}
+  ]   
+}
 var audioSettings = {
     enableMusic: true, //Something is wrong if you set this to false.
     order: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29],
@@ -370,3 +388,4 @@ var weatherInfoSettings = {
     ]},
     ccticker: {noReportCC:false,noReportFC:false,noReportAC:false,arrow:"",ccLocs:[],ccairportdelays:[]},
   }
+  
