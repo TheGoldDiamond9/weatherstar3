@@ -6,7 +6,7 @@ Insert location after the .net
 For eexample: https://www.weatherstar3000.net/?Pittsburgh PA
 
 ### This is in Beta
-
+Visit the Disocrd: mistwx.com/discord
 ## Installation Instructions:
 
 ## NOTE: AUTOMATIC LOCATION FINDING DOES NOT WORK
