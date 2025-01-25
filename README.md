@@ -1,4 +1,4 @@
-# Weather Star 3000 Emulator
+# Weather Star 3000 Simulator
 Weather Star 3000 emulation in HTML/JS/CSS
 
 Code mostly made by me, rest of the code used in other open source projects.
