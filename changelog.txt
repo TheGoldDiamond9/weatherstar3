@@ -1,4 +1,10 @@
 Make sure to report any bugs or issues in the Issues tab
+= January 25, 2025 =
+ -  MASSIVE (LOOOOWWWWWW) overall update, entire simulator rewritten from ground up, many bugs were fixed and many festures were added.
+ -  Fixed regional locations to have its own set of locations that work
+ -  Fixed auto location grabbing
+ -  Added location setting, you can set your own main, regional, and local airrounding cities.
+ FILES TO GET/CHANGE: the entire webroot folder
 = August 5, 2024 =
  -  Re-enabled bulletin, I accidentally disabled it
 FILES TO GET/CHANGE: slides-loops.js
