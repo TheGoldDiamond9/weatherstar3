@@ -1,7 +1,7 @@
 # Weather Star 3000 Simulator
 Weather Star 3000 emulation in HTML/JS/CSS
 
-## NEW UPDAYE JANUARY 25, 2025
+## NEW UPDATE JANUARY 25, 2025t
 
 Code mostly made by me, rest of the code used in other open source projects.
 Images made by COLSTERGit (COLSTER)
