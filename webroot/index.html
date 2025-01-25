@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Weather Star 3000</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="star3000.css"/>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6TCLVSM0WZ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6TCLVSM0WZ');
+</script>
+    </head>
+    <body>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/javascript" src="/js/jquery.jplayer.min.js"></script>
+        
+        <script type="text/javascript" src="js/date_fns.min.js"></script>
+        <script src='http://joeiddon.github.io/perlin/perlin.js'></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery.marquee@1.5.0/jquery.marquee.min.js" type="text/javascript"></script>
+
+        <script type="text/javascript" src="js/config.js"></script>
+        <script type="text/javascript" src="js/audio.js"></script>
+        <script type="text/javascript" src="js/extras.js"></script>
+        <script type="text/javascript" src="js/slides.js"></script>
+        <script type="text/javascript" src="js/crawl.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
+        <script type="text/javascript" src="js/location.js"></script>
+        <script type="text/javascript" src="js/data.js"></script>
+
+        <div id="main" class="container">
+
+            <div id="startup-screen">
+                <div id="startup-text">LOADING WEATHER STAR 3000...</div>
+                <div id="startup-credits">Code and pictures produced almost completely by Joe Molinelli, with also the help of some open source projects.  Non blue and non gradient backgrounds given genorously by "COLSTER". Thank you for using this emulator.</div>
+            </div>
+
+            <img id="template" src="images/template.png" alt="template"></img>
+            <div id="bulletin-background" style="display: none"></div>
+            <div id="travel-background" style="display: none"></div>
+
+            <div id="title-container">
+               <div id="slide-title-text"></div>
+            </div>
+        
+            <div id="bulletin-container">
+                <div id="bulletin" height="765" style="display: none"></div>
+            </div>
+            <div id="travel-container" style="display: none">
+                <div id="travel-title-container">
+                    <div id="travel-title-text">TRAVEL CITIES FORECAST</div>
+                </div>
+                <div id="travel-content">
+                    <div class="cities"></div>
+                    <div class="weathers"></div>
+                    <div class="his"></div>
+                    <div class="lows"></div>
+                </div>
+            </div>
+            <div id="slides">
+                <div class="info-cc" style="display: none;">
+                    <div class="current-condition"></div>
+                    <div class="current-temperature"></div>
+                    <div class="current-windchill"></div>
+                    <div class="current-humidity"></div>
+                    <div class="current-dewpoint"></div>
+                    <div class="current-pressure"></div>
+                    <div class="current-wind"></div>
+                    <div class="current-visibility1">VISIB:</div>
+                    <div class="current-visibility2"></div>
+                    <div class="current-ceiling"></div>
+                    <div class="current-month-precip"></div>
+                </div>
+                <div class="gholder" style="display: none;">
+                </div>
+                <div class="in-progress" style="display: none;">
+                    <div class="text">CHECK BACK LATER FOR UPDATES</div>
+                </div>
+                <div class="hourly-observations" style="display: none;">
+                    <div class="header-1">LOCATION</div>
+                    <div class="header-2">°F</div>
+                    <div class="header-3">WEATHER</div>
+                    <div class="header-4">WIND</div>
+                    <div class="cities">
+                        <div class="city-1"></div>
+                        <div class="city-2"></div>
+                        <div class="city-3"></div>
+                        <div class="city-4"></div>
+                        <div class="city-5"></div>
+                        <div class="city-6"></div>
+                        <div class="city-7"></div>
+                    </div>
+                    <div class="temps">
+                        <div class="temp-1"></div>
+                        <div class="temp-2"></div>
+                        <div class="temp-3"></div>
+                        <div class="temp-4"></div>
+                        <div class="temp-5"></div>
+                        <div class="temp-6"></div>
+                        <div class="temp-7"></div>
+                    </div>
+                    <div class="weathers">
+                        <div class="weather-1"></div>
+                        <div class="weather-2"></div>
+                        <div class="weather-3"></div>
+                        <div class="weather-4"></div>
+                        <div class="weather-5"></div>
+                        <div class="weather-6"></div>
+                        <div class="weather-7"></div>
+                    </div>
+                    <div class="winds">
+                        <div class="wind-1"></div>
+                        <div class="wind-2"></div>
+                        <div class="wind-3"></div>
+                        <div class="wind-4"></div>
+                        <div class="wind-5"></div>
+                        <div class="wind-6"></div>
+                        <div class="wind-7"></div>
+                    </div>
+                </div>
+                <div class="daypart-forecast" style="display: none;">
+                    <div class="forecast-1-bulletin" style="display: none;">
+                        <div class="border1"></div>
+                        <div class="border2"></div>
+                        <div class="daypartalert"></div>
+                        <div class="forecast1"></div>
+                    </div>
+                    <div class="forecast-1"></div>
+                </div>
+                <div class="almanac" style="display: none;">
+                    <div class="header">
+                        <div class="header-1"></div>
+                        <div class="header-2"></div>
+                    </div>
+                    <div class="sideheader">
+                        <div class="sunrise">SUNRISE</div>
+                        <div class="sunset">SUNSET</div>
+                        <div class="normal-low">NORMAL LOW</div>
+                        <div class="normal-high">NORMAL HIGH</div>
+                    </div>
+                    <div class="day-1-info">
+                        <div class="sunrise"></div>
+                        <div class="sunset"></div>
+                        <div class="low"></div>
+                        <div class="high"></div>
+                    </div>
+                    <div class="day-2-info">
+                        <div class="sunrise"></div>
+                        <div class="sunset"></div>
+                        <div class="low"></div>
+                        <div class="high"></div>
+                    </div>
+                    <div class="normal-precip"></div>
+                    <div class="normal-precip-info"></div>
+                </div> 
+                <div class="extended-forecast" style="display: none">
+                    <div class="days">
+                        <div class="day-1"></div>
+                        <div class="day-2"></div>
+                        <div class="day-3"></div>
+                    </div>
+                    <div class="extended-conditions">
+                        <div class="con-1"></div>
+                        <div class="con-2"></div>
+                        <div class="con-3"></div>
+                    </div>
+                    <div class="extended-los">
+                        <div class="lo-1"></div>
+                        <div class="lo-2"></div>
+                        <div class="lo-3"></div>
+                    </div>
+                    <div class="extended-his">
+                        <div class="hi-1"></div>
+                        <div class="hi-2"></div>
+                        <div class="hi-3"></div>
+                    </div>
+                </div>
+                <div class="regional-forecast" style="display: none;">
+                    <div class="header-1">CITY</div>
+                    <div class="header-2">WEATHER</div>
+                    <div class="header-3">LOW</div>
+                    <div class="header-4">HI</div>
+                    <div class="cities">
+                        <div class="city-1"></div>
+                        <div class="city-2"></div>
+                        <div class="city-3"></div>
+                        <div class="city-4"></div>
+                        <div class="city-5"></div>
+                        <div class="city-6"></div>
+                        <div class="city-7"></div>
+                    </div>
+                    <div class="weathers">
+                        <div class="weather-1"></div>
+                        <div class="weather-2"></div>
+                        <div class="weather-3"></div>
+                        <div class="weather-4"></div>
+                        <div class="weather-5"></div>
+                        <div class="weather-6"></div>
+                        <div class="weather-7"></div>
+                    </div>
+                    <div class="lows">
+                        <div class="low-1"></div>
+                        <div class="low-2"></div>
+                        <div class="low-3"></div>
+                        <div class="low-4"></div>
+                        <div class="low-5"></div>
+                        <div class="low-6"></div>
+                        <div class="low-7"></div>
+                    </div>
+                    <div class="highs">
+                        <div class="hi-1"></div>
+                        <div class="hi-2"></div>
+                        <div class="hi-3"></div>
+                        <div class="hi-4"></div>
+                        <div class="hi-5"></div>
+                        <div class="hi-6"></div>
+                        <div class="hi-7"></div>
+                    </div>
+                </div>
+                <div class="regional-conditions" style="display: none;">
+                    <div class="header-1">CITY</div>
+                    <div class="header-2">WEATHER</div>
+                    <div class="header-3">°F</div>
+                    <div class="cities">
+                        <div class="city-1"></div>
+                        <div class="city-2"></div>
+                        <div class="city-3"></div>
+                        <div class="city-4"></div>
+                        <div class="city-5"></div>
+                        <div class="city-6"></div>
+                        <div class="city-7"></div>
+                    </div>
+                    <div class="weathers">
+                        <div class="weather-1"></div>
+                        <div class="weather-2"></div>
+                        <div class="weather-3"></div>
+                        <div class="weather-4"></div>
+                        <div class="weather-5"></div>
+                        <div class="weather-6"></div>
+                        <div class="weather-7"></div>
+                    </div>
+                    <div class="temps">
+                        <div class="temp-1"></div>
+                        <div class="temp-2"></div>
+                        <div class="temp-3"></div>
+                        <div class="temp-4"></div>
+                        <div class="temp-5"></div>
+                        <div class="temp-6"></div>
+                        <div class="temp-7"></div>
+                    </div>
+                </div>
+                <div class="outlook" style="display: none;">
+                    <div class="month"></div>
+                    <div class="outlook-desc">NO REPORT</div>
+                </div>
+            </div>
+            <div id="lowerline" style="display:none"></div>
+            <div id="lowerbar" style="display:none">
+                <div id="date-time">
+                    <div id="date"></div>
+                    <div id="time"></div>
+                </div>
+                <div id="lowerinfotext" style="display:none"></div>
+                <div id="marqueeholder" width="1140" style="display:none">
+                    <div id="marqueetext"></div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

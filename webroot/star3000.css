@@ -1,0 +1,1066 @@
+@font-face {
+    font-family: 'mainfont';
+    src: url(/fonts/Star3000.woff) format("woff");
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'smallfont';
+    src: url(/fonts/Star3000Small.woff) format("woff");
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'largefont';
+    src: url(/fonts/Star3000Large.woff) format("woff");
+    font-weight: 700;
+    font-style: normal;
+}
+#main {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    overflow: hidden;
+    transform: translate(-50%, -50%);
+    width: 1440px;
+    height: 1080px;
+    will-change: transform;
+}
+#main>#template {
+    display: block;
+    max-height: 100%;
+    max-width: 100%
+}
+a, body, div, h1, html, p {
+    margin: 0;
+    padding: 0;
+}
+html * {
+    box-sizing: border-box;
+    font-size: 100%
+}
+body, html {
+    color: #FFF;
+    height: 100%;
+    background-color: #000;
+    font-size: 100%
+}
+#startup-screen {
+    position:absolute;
+    margin-left: 5%;
+    margin-top: 12.3%;
+    width: 90%;
+    height: 660px;
+}
+#startup-text {
+    font-family: 'mainfont';
+    font-size: 65.1px;
+    text-shadow:
+    2.5px 2.5px 0 #000,
+    -2.5px 2.5px 0 #000,
+    -2.5px -2.5px 0 #000,
+    2.5px -2.5px 0 #000;
+    text-align: center;
+    white-space: pre-wrap;
+}
+#startup-credits {
+    font-family: 'smallfont';
+    font-size: 65.1px;
+    text-shadow:
+    2.5px 2.5px 0 #000,
+    -2.5px 2.5px 0 #000,
+    -2.5px -2.5px 0 #000,
+    2.5px -2.5px 0 #000;
+    text-align: center;
+    margin-top: 20px;
+    line-height: 55px;
+}
+#startup-copyright {
+    font-family: 'mainfont';
+    font-size: 65.1px;
+    text-shadow:
+    2.5px 2.5px 0 #000,
+    -2.5px 2.5px 0 #000,
+    -2.5px -2.5px 0 #000,
+    2.5px -2.5px 0 #000;
+    text-align: center;
+    white-space: pre-wrap;
+}
+.header {
+    text-shadow:
+    2.5px 2.5px 0 #000,
+    -2.5px 2.5px 0 #000,
+    -2.5px -2.5px 0 #000,
+    2.5px -2.5px 0 #000;
+}
+#template {
+    position: absolute;
+    display: block;
+    max-height: 100%;
+    max-width: 100%;
+    z-index: -10;
+}
+#title-container {
+    position:absolute;
+    margin-top: 6%;
+    margin-left: 10%;
+    width: 80%;
+    height: 90px;
+}
+#slide-title-text {
+    position:absolute;
+    font-family: 'mainfont';
+    font-size: 65.1px;
+    width: 100%;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+    white-space: nowrap;
+}
+#bulletin-background {
+    position: absolute;
+    width: 100%;
+    height: 850px;
+    background-color: #330912;
+    z-index: 25000;
+}
+#bulletin-container {
+    position:absolute;
+    overflow: hidden;
+    margin-left: 10%;
+    margin-top: 6%;
+    width: 80%;
+    height: 769px;
+    z-index: 25005
+}
+#bulletin-container #bulletin {
+    font-family: 'mainfont';
+    overflow: hidden;
+    font-size: 65.1px;
+    width: 100%;
+    height: 769px;
+    line-height: 89px;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+    white-space: pre-wrap;
+    z-index: 25006
+}
+#travel-background {
+    position: absolute;
+    width: 100%;
+    height: 850px;
+    background-color: #4E4E50;
+    z-index: 15000;
+}
+#travel-container {
+    position:absolute;
+    font-family: 'mainfont';
+    overflow: hidden;
+    margin-left: 10%;
+    margin-top: 6%;
+    width: 80%;
+    height: 764px;
+    z-index: 15001;
+}
+#travel-container #travel-title-container {
+    position:absolute;
+    text-align: center;
+    width: 100%;
+    height: 759px;
+    font-size: 89px;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+}
+#travel-container #travel-content {
+    position: absolute;
+    margin-top: 303px;
+    font-family: 'largefont';
+    font-size: 65px;
+    width: 100%;
+    height: 750px;
+    line-height: 135px;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+}
+#travel-container #travel-content .cities {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    white-space: pre-wrap;
+}
+#travel-container #travel-content .weathers {
+    position: absolute;
+    margin-left: 530px;
+    width: 100%;
+    height: 100%;
+    white-space: pre-wrap;
+}
+#travel-container #travel-content .his {
+    position: absolute;
+    transform: translate(-160px, 0px);
+    width: 100%;
+    height: 100%;
+    text-align: right;
+    white-space: pre-wrap;
+}
+#travel-container #travel-content .lows {
+    position: absolute;
+    text-align: right;
+    width: 100%;
+    height: 100%;
+    white-space: pre-wrap;
+}
+#slides {
+    position:absolute;
+    margin-left: 10%;
+    margin-top: 12.3%;
+    width: 80%;
+    height: 660px;
+}
+.info-cc {
+    position: absolute;
+    font-family: 'mainfont';
+    font-size: 65.1px;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+    width: 100%;
+    height: 100%;
+}
+.info-cc .current-condition {
+    position: absolute;
+}
+.info-cc .current-temperature {
+    position: absolute;
+    white-space: pre-wrap;
+    margin-top: 90px;
+}
+.info-cc .current-windchill {
+    position: absolute;
+    margin-top: 90px;
+    width: 100%;
+    text-align: right;
+}
+.info-cc .current-humidity {
+    position: absolute;
+    white-space: pre-wrap;
+    margin-top: 180px;
+}
+.info-cc .current-dewpoint {
+    position: absolute;
+    margin-top: 180px;
+    width: 100%;
+    text-align: right;
+}
+.info-cc .current-pressure {
+    position: absolute;
+    margin-top: 270px;
+}
+.info-cc .current-wind {
+    position: absolute;
+    white-space: pre-wrap;
+    margin-top: 360px;
+}
+.info-cc .current-visibility1 {
+    position: absolute;
+    white-space: pre-wrap;
+    margin-top: 450px;
+}
+.info-cc .current-visibility2 {
+    position: absolute;
+    white-space: pre-wrap;
+    text-align: right;
+    width: 44%;
+    margin-top: 450px;
+}
+.info-cc .current-ceiling {
+    position: absolute;
+    margin-top: 450px;
+    width: 100%;
+    text-align: right;
+}
+.info-cc .current-month-precip {
+    position: absolute;
+    margin-top: 540px;
+    width: 100%;
+}
+.hourly-observations {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    font-size: 65.1px;
+}
+.hourly-observations .header-1 {
+    position:absolute;
+    font-family: 'smallfont';
+    text-align: left;
+    font-size: 65.1px;
+    line-height: 52px;
+    text-shadow:
+    2.5px 2.5px 0 #000,
+    -2.5px 2.5px 0 #000,
+    -2.5px -2.5px 0 #000,
+    2.5px -2.5px 0 #000;
+}
+.hourly-observations .header-2 {
+    position:absolute;
+    font-family: 'smallfont';
+    text-align: right;
+    font-size: 65.1px;
+    line-height: 52px;
+    width: 604px;
+    text-shadow:
+    2.5px 2.5px 0 #000,
+    -2.5px 2.5px 0 #000,
+    -2.5px -2.5px 0 #000,
+    2.5px -2.5px 0 #000;
+}
+.hourly-observations .header-3 {
+    position:absolute;
+    font-family: 'smallfont';
+    text-align: left;
+    font-size: 65.1px;
+    line-height: 52px;
+    width: 100%;
+    padding-left: 630px;
+    text-shadow:
+    2.5px 2.5px 0 #000,
+    -2.5px 2.5px 0 #000,
+    -2.5px -2.5px 0 #000,
+    2.5px -2.5px 0 #000;
+}
+.hourly-observations .header-4 {
+    position:absolute;
+    font-family: 'smallfont';
+    text-align: right;
+    font-size: 65.1px;
+    line-height: 52px;
+    width: 100%;
+    text-shadow:
+    2.5px 2.5px 0 #000,
+    -2.5px 2.5px 0 #000,
+    -2.5px -2.5px 0 #000,
+    2.5px -2.5px 0 #000;
+}
+.hourly-observations .cities{
+    position: absolute;
+    font-family: 'mainfont';
+    width: 100%;
+    text-align: left;
+    margin-top: 44px;
+    line-height: 89px;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+}
+.hourly-observations .temps{
+    position: absolute;
+    font-family: 'mainfont';
+    width: 604px;
+    text-align: right;
+    margin-top: 44px;
+    line-height: 89px;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+}
+.hourly-observations .weathers{
+    position: absolute;
+    font-family: 'mainfont';
+    padding-left: 630px;
+    width: 100%;
+    text-align: left;
+    margin-top: 44px;
+    line-height: 89px;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+}
+.hourly-observations .winds{
+    position: absolute;
+    font-family: 'mainfont';
+    margin-top: 44px;
+    line-height: 89px;
+    width: 100%;
+    text-align: right;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+}
+.hourly-observations .winds * {
+    white-space: pre-wrap;
+}
+.daypart-forecast {
+    position: absolute;
+    width: 100%;
+    height: 96%;
+    font-size: 65.1px;
+    overflow: hidden;
+}
+.daypart-forecast .forecast-1-bulletin .border1 {
+    position: absolute;
+    line-height: 89px;
+    width: 100%;
+    font-family: 'mainfont';
+    font-size: 65.1px;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+    white-space: pre-wrap;
+}
+.daypart-forecast .forecast-1-bulletin .border2 {
+    position: absolute;
+    line-height: 89px;
+    width: 100%;
+    font-family: 'mainfont';
+    font-size: 65.1px;
+    text-align: right;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+    white-space: pre-wrap;
+}
+.daypart-forecast .forecast-1-bulletin .daypartalert {
+    position: relative;
+    white-space: pre-wrap;
+    line-height: 89px;
+    margin-left: 40px;
+    width: 93%;
+    font-family: 'mainfont';
+    font-size: 65.1px;
+    text-align: center;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+}
+.daypart-forecast .forecast-1-bulletin .forecast1 {
+    position: relative;
+    line-height: 89px;
+    white-space: pre-wrap;
+    width: 100%;
+    font-family: 'mainfont';
+    font-size: 65.1px;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+}
+.daypart-forecast .forecast-1 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    font-size: 65.1px;
+    font-family: 'mainfont';
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+    line-height: 89px;
+    overflow: hidden;
+}
+.extended-forecast {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    font-size: 65.1px;
+    overflow: hidden;
+}
+.extended-forecast .days {
+    position: absolute;
+    width: 100%;
+    height: 89px;
+    padding-left: 50px;
+    margin-top: 89px;
+}
+.extended-forecast .day-1 {
+    position: absolute;
+    width: 33.33%;
+    height: 89px;
+    font-size: 65.1px;
+    font-family: 'mainfont';
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+    line-height: 89px;
+}
+.extended-forecast .day-2 {
+    position: absolute;
+    width: 33.33%;
+    height: 89px;
+    font-size: 65.1px;
+    font-family: 'mainfont';
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+    line-height: 89px;
+    margin-left: 380px;
+}
+.extended-forecast .day-3 {
+    position: absolute;
+    width: 33.34%;
+    height: 89px;
+    font-size: 65.1px;
+    font-family: 'mainfont';
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+    line-height: 89px;
+    margin-left: 760px;
+}
+.extended-forecast .extended-conditions {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding-left: 50px;
+    margin-top: 178px;
+}
+.extended-forecast .extended-conditions .con-1 {
+    position: absolute;
+    width: 33.33%;
+    height: 89px;
+    font-size: 65.1px;
+    font-family: 'mainfont';
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+    line-height: 89px;
+}
+.extended-forecast .extended-conditions .con-2 {
+    position: absolute;
+    width: 33.33%;
+    height: 89px;
+    font-size: 65.1px;
+    font-family: 'mainfont';
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+    line-height: 89px;
+    margin-left: 380px;
+}
+.extended-forecast .extended-conditions .con-3 {
+    position: absolute;
+    width: 33.34%;
+    height: 89px;
+    font-size: 65.1px;
+    font-family: 'mainfont';
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+    line-height: 89px;
+    margin-left: 760px;
+}
+.extended-forecast .extended-los {
+    position: absolute;
+    width: 100%;
+    height: 89px;
+    padding-left: 50px;
+    margin-top: 445px;
+}
+.extended-forecast .extended-los .lo-1 {
+    position: absolute;
+    width: 33.33%;
+    height: 89px;
+    font-size: 65.1px;
+    font-family: 'mainfont';
+    white-space: pre-wrap;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+    line-height: 89px;
+}
+.extended-forecast .extended-los .lo-2 {
+    position: absolute;
+    width: 33.33%;
+    height: 89px;
+    font-size: 65.1px;
+    font-family: 'mainfont';
+    white-space: pre-wrap;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+    line-height: 89px;
+    margin-left: 380px;
+}
+.extended-forecast .extended-los .lo-3{
+    position: absolute;
+    width: 33.34%;
+    height: 89px;
+    font-size: 65.1px;
+    font-family: 'mainfont';
+    white-space: pre-wrap;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+    line-height: 89px;
+    margin-left: 760px;
+}
+.extended-forecast .extended-his {
+    position: absolute;
+    width: 100%;
+    height: 89px;
+    padding-left: 50px;
+    margin-top: 534px;
+}
+.extended-forecast .extended-his .hi-1 {
+    position: absolute;
+    width: 33.33%;
+    height: 89px;
+    font-size: 65.1px;
+    font-family: 'mainfont';
+    white-space: pre-wrap;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+    line-height: 89px;
+}
+.extended-forecast .extended-his .hi-2 {
+    position: absolute;
+    width: 33.33%;
+    height: 89px;
+    font-size: 65.1px;
+    font-family: 'mainfont';
+    white-space: pre-wrap;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+    line-height: 89px;
+    margin-left: 380px;
+}
+.extended-forecast .extended-his .hi-3{
+    position: absolute;
+    width: 33.34%;
+    height: 89px;
+    font-size: 65.1px;
+    font-family: 'mainfont';
+    white-space: pre-wrap;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+    line-height: 89px;
+    margin-left: 760px;
+}
+.almanac {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    font-size: 65.1px;
+    font-family: 'mainfont';
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+    line-height: 89px;
+    margin-top: 40px;
+}
+.almanac .header {
+    position:absolute;
+    width: 100%;
+    height: 100px;
+}
+.almanac .header .header-1 {
+    position:absolute;
+    width: 745px;
+    text-align: right;
+}
+.almanac .header .header-2 {
+    position:absolute;
+    width: 100%;
+    text-align: right;
+}
+.almanac .sideheader {
+    position: absolute;
+    margin-top: 90px;
+    width: 430px;
+}
+.almanac .day-1-info {
+    position:absolute;
+    margin-top: 90px;
+    width: 745px;
+    text-align: right;
+}
+.almanac .day-2-info {
+    position:absolute;
+    margin-top: 90px;
+    width: 100%;
+    text-align: right;
+}
+.almanac .normal-precip {
+    position: absolute;
+    width: 100%;
+    margin-top: 495px;
+}
+.almanac .normal-precip-info {
+    position: absolute;
+    width: 100%;
+    margin-top: 495px;
+    text-align: right;
+}
+.regional-forecast {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    font-size: 65.1px;
+}
+.regional-forecast .header-1 {
+    position:absolute;
+    font-family: 'smallfont';
+    text-align: left;
+    font-size: 65.1px;
+    line-height: 52px;
+    text-shadow:
+    2.5px 2.5px 0 #000,
+    -2.5px 2.5px 0 #000,
+    -2.5px -2.5px 0 #000,
+    2.5px -2.5px 0 #000;
+}
+.regional-forecast .header-2 {
+    position:absolute;
+    font-family: 'smallfont';
+    text-align: left;
+    font-size: 65.1px;
+    line-height: 52px;
+    width: 100%;
+    padding-left: 530px;
+    text-shadow:
+    2.5px 2.5px 0 #000,
+    -2.5px 2.5px 0 #000,
+    -2.5px -2.5px 0 #000,
+    2.5px -2.5px 0 #000;
+}
+.regional-forecast .header-3 {
+    position:absolute;
+    font-family: 'smallfont';
+    text-align: right;
+    font-size: 65.1px;
+    line-height: 52px;
+    width: 990px;
+    text-shadow:
+    2.5px 2.5px 0 #000,
+    -2.5px 2.5px 0 #000,
+    -2.5px -2.5px 0 #000,
+    2.5px -2.5px 0 #000;
+}
+.regional-forecast .header-4 {
+    position:absolute;
+    font-family: 'smallfont';
+    text-align: right;
+    font-size: 65.1px;
+    line-height: 52px;
+    width: 100%;
+    text-shadow:
+    2.5px 2.5px 0 #000,
+    -2.5px 2.5px 0 #000,
+    -2.5px -2.5px 0 #000,
+    2.5px -2.5px 0 #000;
+}
+.regional-forecast .cities{
+    position: absolute;
+    font-family: 'mainfont';
+    width: 100%;
+    text-align: left;
+    margin-top: 44px;
+    line-height: 89px;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+}
+.regional-forecast .weathers{
+    position: absolute;
+    font-family: 'mainfont';
+    width: 100%;
+    text-align: left;
+    margin-top: 44px;
+    padding-left: 530px;
+    line-height: 89px;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+}
+.regional-forecast .lows{
+    position: absolute;
+    font-family: 'mainfont';
+    width: 990px;
+    text-align: right;
+    margin-top: 44px;
+    line-height: 89px;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+}
+.regional-forecast .highs{
+    position: absolute;
+    font-family: 'mainfont';
+    margin-top: 44px;
+    line-height: 89px;
+    width: 100%;
+    text-align: right;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+}
+.regional-conditions {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    font-size: 65.1px;
+}
+.regional-conditions .header-1 {
+    position:absolute;
+    font-family: 'smallfont';
+    text-align: left;
+    font-size: 65.1px;
+    line-height: 52px;
+    text-shadow:
+    2.5px 2.5px 0 #000,
+    -2.5px 2.5px 0 #000,
+    -2.5px -2.5px 0 #000,
+    2.5px -2.5px 0 #000;
+}
+.regional-conditions .header-2 {
+    position:absolute;
+    font-family: 'smallfont';
+    text-align: left;
+    font-size: 65.1px;
+    line-height: 52px;
+    width: 1140px;
+    padding-left: 710px;
+    text-shadow:
+    2.5px 2.5px 0 #000,
+    -2.5px 2.5px 0 #000,
+    -2.5px -2.5px 0 #000,
+    2.5px -2.5px 0 #000;
+}
+.regional-conditions .header-3 {
+    position:absolute;
+    font-family: 'smallfont';
+    text-align: right;
+    font-size: 65.1px;
+    line-height: 52px;
+    width: 100%;
+    text-shadow:
+    2.5px 2.5px 0 #000,
+    -2.5px 2.5px 0 #000,
+    -2.5px -2.5px 0 #000,
+    2.5px -2.5px 0 #000;
+}
+.regional-conditions .cities{
+    position: absolute;
+    font-family: 'mainfont';
+    width: 100%;
+    text-align: left;
+    margin-top: 44px;
+    line-height: 89px;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+}
+.regional-conditions .weathers{
+    position: absolute;
+    font-family: 'mainfont';
+    width: 100%;
+    text-align: left;
+    margin-top: 44px;
+    padding-left: 710px;
+    line-height: 89px;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+}
+.regional-conditions .temps{
+    position: absolute;
+    font-family: 'mainfont';
+    margin-top: 44px;
+    line-height: 89px;
+    width: 100%;
+    text-align: right;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+}
+.outlook {
+    position: absolute;
+    width: 100%;
+    height: 620px;
+    font-size: 65.1px;
+    line-height: 89px;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+    margin-top: 40px;
+    overflow: hidden;
+}
+.outlook .month {
+    position: absolute;
+    width: 100%;
+    height: 89px;
+    text-align: center;
+    font-family: 'mainfont';
+}
+.outlook .outlook-desc {
+    position: absolute;
+    width: 100%;
+    height: 445px;
+    text-align: left;
+    font-family: 'mainfont';
+    margin-top: 178px;
+}
+#lowerline {
+    position: absolute;
+    height: 6px;
+    width: 100%;
+    background-color: #FFF;
+    margin-top: 58.40%;
+    top: 4px;
+    z-index: 25001;
+}
+#lowerbar {
+    width: 80%;
+    height: 250px;
+    margin-left: 10%;
+    margin-top: 850.953px;
+}
+#date-time * {
+    position:relative;
+    font-family: 'smallfont';
+    font-size: 28px;
+    line-height: 40px;
+    font-size: 65.1px;
+    width: 80%;
+    text-shadow:
+    2.5px 2.5px 0 #000,
+    -2.5px 2.5px 0 #000,
+    -2.5px -2.5px 0 #000,
+    2.5px -2.5px 0 #000;
+}
+#date {
+    position: absolute;
+    white-space: pre-wrap;
+    text-align: left;
+}
+#time {
+    position: absolute;
+    text-align: right;
+}
+#lowerinfotext {
+    position: absolute;
+    font-family: 'mainfont';
+    text-align: left;
+    white-space: pre-wrap;
+    font-size: 65.1px;
+    margin-top: 40px;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+}
+#marqueeholder {
+    position: absolute;
+    overflow: hidden;
+    white-space:nowrap;
+    width: 70%;
+    height: 100%;
+    margin-left:5%;
+    font-family: 'mainfont';
+    font-size: 65.1px;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+}
+#marqueetext {
+    white-space: pre-wrap;
+    font-family: 'mainfont';
+    font-size: 65.1px;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+}
+.in-progress {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    font-size: 65.1px;
+}
+.in-progress .text {
+    font-family: 'mainfont';
+    text-align: center;
+    text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+}
