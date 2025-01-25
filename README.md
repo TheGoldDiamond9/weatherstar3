@@ -7,7 +7,7 @@ Images made by COLSTERGit (COLSTER)
 Website: https://www.weatherstar3000.net
 
 ### Visit the Discord Server
-Visit the Disocrd: mistwx.com/discord
+Visit the Disocrd: https://mistwx.com/discord
 
 Please note month to date precipitation and 30 day outlook are not functional, they will be sometime in the future.
 
