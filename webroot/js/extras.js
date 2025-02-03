@@ -1,5 +1,5 @@
 //  Fisher-Yates shuffle
-/*function shuffle (array) {
+function shuffle (array) {
 	var i = 0,
 	    j = 0,
 	    temp = null;
@@ -13,7 +13,7 @@
 
 	return array;
 }
-
+/*
 function getRandom(min, max) {
   return Math.random() * (max - min) + min;
 }
