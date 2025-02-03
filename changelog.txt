@@ -1,4 +1,7 @@
 Make sure to report any bugs or issues in the Issues tab
+= February 3, 2025 =
+ -  Improved audio system
+FILES TO GET/CHANGE: audio.js, extras.js, config.js
 = January 25, 2025 =
  -  MASSIVE (LOOOOWWWWWW) overall update, entire simulator rewritten from ground up, many bugs were fixed and many festures were added.
  -  Fixed regional locations to have its own set of locations that work
