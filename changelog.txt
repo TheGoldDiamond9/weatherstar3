@@ -1,4 +1,10 @@
 Make sure to report any bugs or issues in the Issues tab
+= February 4, 2025 =
+ -  Added License, now you can modify and distribute as you please! You must include credits by LAW
+ -  Significant visual imporvements
+ -  Audio fixes
+ - Travel Forecast bug fixed
+FILES TO GET/CHANGE: whole webroot folder
 = February 3, 2025 =
  -  Improved audio system
 FILES TO GET/CHANGE: audio.js, extras.js, config.js
