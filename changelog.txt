@@ -5,7 +5,7 @@ Make sure to report any bugs or issues in the Issues tab
  -  Audio fixes
  -  Added back the bulletin crawl screen
  - Travel Forecast bug fixed
-FILES TO GET/CHANGE: whole webroot folder
+FILES TO GET/CHANGE: whole webroot folder, maybe even the entire project
 = February 3, 2025 =
  -  Improved audio system
 FILES TO GET/CHANGE: audio.js, extras.js, config.js
