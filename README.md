@@ -1,6 +1,11 @@
 # Weather Star 3000 Simulator
 Weather Star 3000 emulation in HTML/JS/CSS
 
+Official Website: https://www.weatherstar3000.net
+
+### Visit the Discord Server
+Visit the Disocrd: https://mistwx.com/discord
+
 ## NEW MAJOR UPDATE FEBRUARY 4, 2025
 Check changelong.txt for more information
 
@@ -9,12 +14,7 @@ The license does not prohibit this, but I do not recommend making your own websi
 Code mostly made by me, rest of the code used in other open source projects.
 Images made by COLSTERGit (COLSTER)
 
-Official Website: https://www.weatherstar3000.net
-
-### Visit the Discord Server
-Visit the Disocrd: https://mistwx.com/discord
-
-Please note month to date precipitation and 30 day outlook are not functional, they will be sometime in the future.
+Please note 30 day outlook is not functional, it will be sometime in the future.
 
 ## Installation Instructions:
 ## Running locally (NODE.JS):
