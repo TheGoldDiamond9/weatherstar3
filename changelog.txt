@@ -1,6 +1,6 @@
 Make sure to report any bugs or issues in the Issues tab
 = February 4, 2025 =
- -  Added License, now you can modify and distribute as you please! You must include credits by LAW
+ -  Added License, now you can distribute this as you please! You must include credits by LAW
  -  Significant visual imporvements
  -  Audio fixes
  -  Added back the bulletin crawl screen
