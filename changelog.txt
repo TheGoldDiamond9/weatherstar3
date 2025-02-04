@@ -3,6 +3,7 @@ Make sure to report any bugs or issues in the Issues tab
  -  Added License, now you can modify and distribute as you please! You must include credits by LAW
  -  Significant visual imporvements
  -  Audio fixes
+ -  Added back the bulletin crawl screen
  - Travel Forecast bug fixed
 FILES TO GET/CHANGE: whole webroot folder
 = February 3, 2025 =
