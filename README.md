@@ -2,11 +2,14 @@
 Weather Star 3000 emulation in HTML/JS/CSS
 
 ## NEW MAJOR UPDATE FEBRUARY 4, 2025
+Check changelong.txt for more information
+
+The license does not prohibit this, but I do not recommend making your own website around this simulator. It is not nice.
 
 Code mostly made by me, rest of the code used in other open source projects.
 Images made by COLSTERGit (COLSTER)
 
-Website: https://www.weatherstar3000.net
+Official Website: https://www.weatherstar3000.net
 
 ### Visit the Discord Server
 Visit the Disocrd: https://mistwx.com/discord
