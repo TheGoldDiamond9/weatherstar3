@@ -836,7 +836,7 @@ body, html {
     height: 100%;
 }
 .regional-forecast .header {
-    white-space: pre-wrap;
+    white-space: pre;
     position:absolute;
     font-family: 'smallfont';
     line-height: 45px;
