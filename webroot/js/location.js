@@ -289,7 +289,7 @@ function locationGrab() {
           }
         }
       }).fail(function() {
-        $.getJSON("https://pro.ip-api.com/json/?key=AmUN9xAaQALVYu6&exposeDate=false", function(data) {
+        $.getJSON(, function(data) {
           locationConfig.mainCity.displayname = data.city
           locationConfig.mainCity.lat = data.lat
           locationConfig.mainCity.lon = data.lon
@@ -336,7 +336,7 @@ function locationGrab() {
         })
       })
     } else {
-      $.getJSON("https://pro.ip-api.com/json/?key=AmUN9xAaQALVYu6&exposeDate=false", function(data) {
+      $.getJSON("http://ip-api.com/json/", function(data) {
         locationConfig.mainCity.displayname = data.city
         locationConfig.mainCity.lat = data.lat
         locationConfig.mainCity.lon = data.lon
