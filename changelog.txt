@@ -1,4 +1,9 @@
 Make sure to report any bugs or issues in the Issues tab
+= February 6, 2025 =
+ -  Fixed wind glitch in current conditions and LDL when wind is calm
+ -  Fixed bulletin, hopefully for good
+ -  Fixes LDL, hopefullly for good
+FILES TO GET/CHANGE: entire js folder in webroot
 = February 4, 2025 =
  -  Added License, now you can modify and distribute this as you please! You must include credits by LAW
  -  Significant visual imporvements
