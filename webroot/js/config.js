@@ -7,7 +7,8 @@ var apperanceSettings = {
   //Default is both. Set to 'none' to hide the lower detail information, Set to 'observations' for only observations, 'ad' for only advertisements, 'both' for alternation between observations and advertisements.
   marqueeAd:  ["If you are interested in TWC, EAS, or anything weather/tech related, join Mist Weather Media! https://mistwx.com/discord"],
   onlyLDLMode: false,
-  startupTime: 5000//set to 0 if you want to skip, not recommended
+  startupTime: 5000,//set to 0 if you want to skip, not recommended
+  aspectRatio: 4/3//16/9, 4/3, or 3/2
 }
 
 var slideSettings = {
