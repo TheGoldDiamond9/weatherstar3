@@ -573,5 +573,5 @@ setTimeout(function() {
     $('#main').fadeIn(0);
     //$('#startup').fadeOut(0);
     //crawlCheck();
-  }, 250);
-}, apperanceSettings.startupTime)//28000 or 4000 befor
+  }, 1000);
+}, apperanceSettings.startupTime-1000)//28000 or 4000 befor
