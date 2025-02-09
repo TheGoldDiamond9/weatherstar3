@@ -1,4 +1,9 @@
 Make sure to report any bugs or issues in the Issues tab
+= February 8, 2025 =
+ -  Improved font spcing and aspect ratio.
+ -  You can now use your own aspect ratio, in config.js
+ -  Improved default blue and travel gray backgrounds
+FILES TO GET/CHANGE: star3000.css, main.js, config.js
 = February 6, 2025 =
  -  Fixed wind glitch in current conditions and LDL when wind is calm
  -  Fixed bulletin, hopefully for good
