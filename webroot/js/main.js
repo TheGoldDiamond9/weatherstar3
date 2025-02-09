@@ -1,29 +1,16 @@
-/*
-$(function(){
-	var winHeight = window.innerHeight
-	var winWidth = window.innerWidth
-	var aspectRatio = 4/3
-	var windowAspect = winWidth / winHeight
-	var scale = 0.5
-	console.log(winHeight)
-	console.log(winWidth)
-	console.log(aspectRatio)
-	console.log(windowAspect)
-	$('#main').css("height",winHeight+"px")
-	$('#main').css({transform: "translate(-50%, -50%) " + "scale(" + scale + ")"})
-	$(window).resize(function() {
-		//$('#main').css({transform: "translate(-50%, -50%) " + "scale(" + scale + ")"})
-	})
-});
-*/
 $(function(){
 	var $main = $("#main"),
 		$window = $( window ),
 	    mainHeight = $main.outerHeight(),
 	    mainWidth = $main.outerWidth(),
-	    mainAspect = 4/3,
+	    mainAspect = apperanceSettings.aspectRatio,
 	    resizeTimer;
 
+		if (apperanceSettings.aspectRatio == 4/3) {
+			$('body').css("transform", "scale(88.88%, 100%)")
+		} else if (apperanceSettings.aspectRatio == 16/9) {
+			$('body').css("transform", "scale(118.5%, 100%)")
+		}
 //calls rescale when window resizes
 	$(window).resize( function(e) {
 		clearTimeout(resizeTimer);
