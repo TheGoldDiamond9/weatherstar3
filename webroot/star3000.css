@@ -760,7 +760,7 @@ body, html {
 .almanac .sideheader {
     position: absolute;
     margin-top: 90px;
-    width: 430px;
+    width: 100%;
 }
 .almanac .day-1-info {
     position:absolute;
