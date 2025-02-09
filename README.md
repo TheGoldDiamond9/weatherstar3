@@ -6,7 +6,7 @@ Official Website: https://www.weatherstar3000.net
 ### Visit the Discord Server
 Visit the Disocrd: https://mistwx.com/discord
 
-## NEW MAJOR UPDATE FEBRUARY 4, 2025
+## NEW MAJOR UPDATE FEBRUARY 8, 2025
 Check changelong.txt for more information
 
 The license does not prohibit this, but I do not recommend making your own website around this simulator. It is not nice.
