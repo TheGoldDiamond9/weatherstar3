@@ -1,4 +1,7 @@
 Make sure to report any bugs or issues in the Issues tab
+= February 9, 2025 =
+ -  Fixed some bugs
+FILES TO GET/CHANGE: star3000.css, data.js
 = February 8, 2025 =
  -  Improved font spcing and aspect ratio.
  -  You can now use your own aspect ratio, in config.js
