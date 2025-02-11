@@ -894,6 +894,7 @@ body, html {
     font-family: 'mainfont';
     margin-top: 45px;
     right: 0px;
+    text-align: right;
     text-shadow:
     3px 3px 0 #000,
     -3px 3px 0 #000,
