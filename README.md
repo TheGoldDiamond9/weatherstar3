@@ -1,7 +1,7 @@
 # Weather Star 3000 Simulator
 Weather Star 3000 emulation in HTML/JS/CSS
 
-Official Website: https://www.weatherstar3000.net
+Official Website: https://3000.weatherstar.dev/
 
 ### Visit the Discord Server
 Visit the Disocrd: https://mistwx.com/discord
