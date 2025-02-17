@@ -6,6 +6,8 @@ Official Website: https://3000.weatherstar.dev/
 ### Visit the Discord Server
 Visit the Disocrd: https://mistwx.com/discord
 
+You can change location settings in the location.js file under the locationSettings variable
+
 ## NEW MAJOR UPDATE FEBRUARY 8, 2025
 Check changelong.txt for more information
 
