@@ -202,6 +202,7 @@ function slideKickOff() {
                 $('#travel-content .weathers').fadeIn(0)
                 $('#travel-content .his').fadeIn(0)
                 $('#travel-content .lows').fadeIn(0)
+		$('#slides').fadeOut(0)
 				
 				$('#travel-container #travel-content .cities').text("\n\nCITY")
 				$('#travel-container #travel-content .weathers').text("\n\nWEATHER")
@@ -233,6 +234,7 @@ function slideKickOff() {
 				setTimeout(function() {
                     $('#travel-container').fadeOut(0);
                     $('#travel-background').fadeOut(0);
+					$('#slides').fadeIn(0)
                     slideCallBack()
                 }, travelForecastLength);
             
