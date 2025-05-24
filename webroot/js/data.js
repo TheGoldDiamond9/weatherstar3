@@ -152,7 +152,7 @@ function grabData() {
           nearbyCitiesObj.noReport = false
           nearbyCitiesObj.cityname = locationConfig.surroundCities.cities[i].displayname
           nearbyCitiesObj.statename = locationConfig.surroundCities.cities[i].state
-          nearbyCitiesObj.condition = ajaxedLoc["v3-wx-observations-current"].wxPhraseShort.replaceAll(' Shower', ' SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').replaceAll('Partial', 'PART').replaceAll('Cldy', 'CLOUDY').replaceAll(' T-Storm', ' T-STM')
+          nearbyCitiesObj.condition = ajaxedLoc["v3-wx-observations-current"].wxPhraseShort.replaceAll(' Shower', ' SHWR',).replaceAll('Near', '',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').replaceAll('Partial', 'PART').replaceAll('Cldy', 'CLOUDY').replaceAll(' T-Storm', ' T-STM')
           nearbyCitiesObj.temp = ajaxedLoc["v3-wx-observations-current"].temperature
           nearbyCitiesObj.wind = ((ajaxedLoc["v3-wx-observations-current"].windDirectionCardinal == "CALM" || ajaxedLoc["v3-wx-observations-current"].windSpeed == 0) ? 'CALM' :  ajaxedLoc["v3-wx-observations-current"].windDirectionCardinal)
           nearbyCitiesObj.windspeed = ajaxedLoc["v3-wx-observations-current"].windSpeed
@@ -221,7 +221,7 @@ function grabData() {
           nearbyCitiesObjF.cityname = locationConfig.surroundCities.cities[i].displayname
           nearbyCitiesObjF.low = ajaxedLoc["v3-wx-forecast-daily-3day"].temperatureMin[fi]
           nearbyCitiesObjF.high = ajaxedLoc["v3-wx-forecast-daily-3day"].temperatureMax[fi]
-          nearbyCitiesObjF.condition = ajaxedLoc["v3-wx-forecast-daily-3day"].daypart[0].wxPhraseShort[ii].replaceAll(' Shower', ' SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').replaceAll('Partial', 'PART').replaceAll('Cldy', 'CLOUDY').replaceAll(' T-Storm', ' T-STM')
+          nearbyCitiesObjF.condition = ajaxedLoc["v3-wx-forecast-daily-3day"].daypart[0].wxPhraseShort[ii].replaceAll(' Shower', ' SHWR',).replaceAll('Near', '',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').replaceAll('Partial', 'PART').replaceAll('Cldy', 'CLOUDY').replaceAll(' T-Storm', ' T-STM')
           weatherData.nearbyCities.forecast.cities.push(nearbyCitiesObjF)
         } else {
           nearbyCitiesObjF.noReport = true
@@ -268,7 +268,7 @@ function grabData() {
           nearbyCitiesObj.noReport = false
           nearbyCitiesObj.cityname = locationConfig.regionalCities.cities[i].displayname
           nearbyCitiesObj.statename = locationConfig.regionalCities.cities[i].state
-          nearbyCitiesObj.condition = ajaxedLoc["v3-wx-observations-current"].wxPhraseShort.replaceAll(' Shower', ' SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').replaceAll('Partial', 'PART').replaceAll('Cldy', 'CLOUDY').replaceAll(' T-Storm', ' T-STM')
+          nearbyCitiesObj.condition = ajaxedLoc["v3-wx-observations-current"].wxPhraseShort.replaceAll(' Shower', ' SHWR',).replaceAll('Near', '',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').replaceAll('Partial', 'PART').replaceAll('Cldy', 'CLOUDY').replaceAll(' T-Storm', ' T-STM')
           nearbyCitiesObj.temp = ajaxedLoc["v3-wx-observations-current"].temperature
           nearbyCitiesObj.wind = ((ajaxedLoc["v3-wx-observations-current"].windDirectionCardinal == "CALM" || ajaxedLoc["v3-wx-observations-current"].windSpeed == 0) ? 'CALM' :  ajaxedLoc["v3-wx-observations-current"].windDirectionCardinal)
           nearbyCitiesObj.windspeed = ajaxedLoc["v3-wx-observations-current"].windSpeed
@@ -324,7 +324,7 @@ function grabData() {
         for (var hi = (ajaxedLoc["v3-wx-forecast-daily-5day"].daypart[0].daypartName[0] == null) ? 1 : 0, hidp = (ajaxedLoc["v3-wx-forecast-daily-5day"].daypart[0].daypartName[0] == null) ? 2 : 0; hi < 3; hi++, hidp = hidp + 2) {
           weatherData.travel.cities[i].days[0].high = ajaxedLoc["v3-wx-forecast-daily-5day"].temperatureMax[hi]
           weatherData.travel.cities[i].days[0].low = ajaxedLoc["v3-wx-forecast-daily-5day"].temperatureMin[hi]
-          weatherData.travel.cities[i].days[0].condition = ajaxedLoc["v3-wx-forecast-daily-5day"].daypart[0].wxPhraseShort[hidp].replaceAll(' Shower', ' SHWR',).replaceAll('Near', 'NR',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').replaceAll('Partial', 'PART').replaceAll('Cldy', 'CLOUDY').replaceAll(' T-Storm', ' T-STM')
+          weatherData.travel.cities[i].days[0].condition = ajaxedLoc["v3-wx-forecast-daily-5day"].daypart[0].wxPhraseShort[hidp].replaceAll(' Shower', ' SHWR',).replaceAll('Near', '',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').replaceAll('Partial', 'PART').replaceAll('Cldy', 'CLOUDY').replaceAll(' T-Storm', ' T-STM')
           weatherData.travel.cities[i].days[0].dayNight = ajaxedLoc["v3-wx-forecast-daily-5day"].daypart[0].dayOrNight[hidp]
         }
       })
