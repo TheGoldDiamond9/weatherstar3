@@ -85,7 +85,7 @@ function grabData() {
       try {
         weatherData.currentConditions.cityname = locationConfig.mainCity.displayname
         weatherData.currentConditions.cond = data.wxPhraseLong
-        weatherData.currentConditions.gusts = ((data.windGust != null || data.windGust != undefined) ? data.windGust + " Mph" : "None")
+        weatherData.currentConditions.gusts = ((data.windGust != null || data.windGust != undefined) ? data.windGust + " Mph" : "NONE")
         weatherData.currentConditions.humidity = data.relativeHumidity
         weatherData.currentConditions.pressure = data.pressureAltimeter.toFixed(2)
         weatherData.currentConditions.pressureTrend = ((data.pressureTendencyCode == 0) ? "IN." : (data.pressureTendencyCode == 1) ? "R" : (data.pressureTendencyCode == 2) ? "F" : (data.pressureTendencyCode == 3) ? "R" : (data.pressureTendencyCode == 4) ? "F" : "")
