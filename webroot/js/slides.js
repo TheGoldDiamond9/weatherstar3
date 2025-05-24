@@ -43,7 +43,8 @@ function slideKickOff() {
                 if (weatherData.currentConditions.wind == "CALM") {
                     $('.info-cc .current-wind').text('      ' + "CALM");
                 } else {
-                    $('.info-cc .current-wind').text('      ' + windWordSpacing(weatherData.currentConditions.wind) + " " + weatherData.currentConditions.windspeed + ' MPH');
+                 $('.info-cc .current-wind').text('      ' + windWordSpacing(weatherData.currentConditions.wind) + " " + weatherData.currentConditions.windspeed + ' MPH' + 
+                  ((weatherData.currentConditions.gusts != "NONE") ? ' GUSTS: ' + weatherData.currentConditions.gusts.replace(' Mph', ' MPH') : ''));
                 }
                 $('.info-cc .current-visibility').text(weatherData.currentConditions.visibility + ' MI.                  ');
                 if (weatherData.currentConditions.ceiling != null) {
