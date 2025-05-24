@@ -107,9 +107,11 @@ function crawlKickOff() {
                 $('#marqueeholder').fadeOut(0)
                 if (weatherData.currentConditions.wind == "CALM") {
                     $('#lowerinfotext').text('WIND: CALM')
-                } else {
-                    $('#lowerinfotext').text('WIND: ' + windWordSpacing(weatherData.currentConditions.wind) + " " + weatherData.currentConditions.windspeed + ' MPH')
-                }
+            } else {
+             $('#lowerinfotext').text('WIND: ' + windWordSpacing(weatherData.currentConditions.wind) + " " + 
+                weatherData.currentConditions.windspeed + ' MPH' + 
+              ((weatherData.currentConditions.gusts != "NONE") ? ' GUSTS: ' + weatherData.currentConditions.gusts.replace(' Mph', ' MPH') : ''));
+            }
                 setTimeout(function() {
                     crawlCallBack()
                 }, lowerDetailLength);
