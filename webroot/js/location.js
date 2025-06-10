@@ -1,8 +1,8 @@
 var locationSettings = {//This is what you can edit, anything under the lcationSettings object
   mainCity: {
-    autoFind: true, //set to false if you want to manually set the location
-    displayname:"",//set this to whatever you want the main location's name to be
-    type:"",//choose the following types from below:
+    autoFind: false, //set to false if you want to manually set the location
+    displayname:"KINGSLAND",//set this to whatever you want the main location's name to be
+    type:"geocode",//choose the following types from below:
     //geocode -- (coordinates)
     //postalKey -- (zip code)
     //iataCode -- (IATA airport code)
@@ -10,90 +10,90 @@ var locationSettings = {//This is what you can edit, anything under the lcationS
     //placeid -- (PLace ID)
     //canonicalCityId -- (Canonical City ID)
     //locud -- (Location ID)
-    val:"",//the value that goes with the type. Like if you select iataCode, the val would be JFK if you want JFK Airport. 
+    val:"30.7991,-81.6956",//the value that goes with the type. Like if you select iataCode, the val would be JFK if you want JFK Airport. 
     //===NOTES===
     //if you use geocode (coordinates), you must use the format "latitude,longitude" for the val
     //if you use postalKey (zipcode), you must put ":US" after the zip code. I may be wrong about this but to be safe put it after the code.
   },
   surroundCities: {
-    autoFind: true,
+    autoFind: false,
     //same guidelines as mainCity location settings as the seven nearby locations.
     cities:[//if you use less than 7 locations, please delete the unused cities objects.
       {
-        displayname:"",
-        type:"",
-        val:"",
+        displayname:"ST. MARYS",
+        type:"geocode",
+        val:"30.7297,-81.5465",
       },
       {
-        displayname:"",
-        type:"",
-        val:"",
+        displayname:"FERNANDINA BEACH",
+        type:"geocode", 
+        val:"30.6691,-81.4612",
       },
       {
-        displayname:"",
-        type:"",
-        val:"",
+        displayname:"BRUNSWICK",
+        type:"geocode",
+        val:"31.1499,-81.4915",
       },
       {
-        displayname:"",
-        type:"",
-        val:"",
+        displayname:"JEKYLL ISLAND",
+        type:"geocode",
+        val:"31.0740,-81.4207",
       },
       {
-        displayname:"",
-        type:"",
-        val:"",
+        displayname:"ST. SIMONS ISLAND",
+        type:"geocode",
+        val:"31.1547,-81.3904",
       },
       {
-        displayname:"",
-        type:"",
-        val:"",
+        displayname:"JACKSONVILLE",
+        type:"geocode",
+        val:"30.3322,-81.6557",
       },
       {
-        displayname:"",
-        type:"",
-        val:"",
+        displayname:"YULEE",
+        type:"geocode",
+        val:"30.6296,-81.5609",
       },
     ]
   },
   regionalCities: {
-    autoFind: true,
+    autoFind: false,
     //same guidelines as mainCity location settings as the seven nearby locations.
     cities:[//if you use less than 7 locations, please delete the unused cities objects.
       {
-        displayname:"",
-        type:"",
-        val:"",
+        displayname:"SAVANNAH",
+        type:"geocode",
+        val:"32.0835,-81.0998",
       },
       {
-        displayname:"",
-        type:"",
-        val:"",
+        displayname:"GAINESVILLE",
+        type:"geocode",
+        val:"29.6516,-82.3248",
       },
       {
-        displayname:"",
-        type:"",
-        val:"",
+        displayname:"TALLAHASSEE",
+        type:"geocode",
+        val:"30.4518,-84.2807",
       },
       {
-        displayname:"",
-        type:"",
-        val:"",
+        displayname:"VALDOSTA",
+        type:"geocode",
+        val:"30.8327,-83.2785",
       },
       {
-        displayname:"",
-        type:"",
-        val:"",
+        displayname:"WAYCROSS",
+        type:"geocode",
+        val:"31.2135,-82.3540",
       },
       {
-        displayname:"",
-        type:"",
-        val:"",
+        displayname:"LAKE CITY",
+        type:"geocode",
+        val:"30.1896,-82.6390",
       },
       {
-        displayname:"",
-        type:"",
-        val:"",
+        displayname:"TIFTON",
+        type:"geocode",
+        val:"31.4504,-83.5085",
       },
     ]
   }
@@ -241,13 +241,87 @@ var regionalCityList = {
 var selectedRagionalLocs = {}
 function locationGrab() {
   if (locationSettings.mainCity.autoFind == false) {
-    $.getJSON("https://api.weather.com/v3/location/point?" + locationSettings.mainCity.type + "=" + locationSettings.mainCity.val + "&language=en-US&format=json&apiKey=" + api_key, function(data) {
-      locationConfig.mainCity.displayname = ((locationConfig.mainCity.displayname != "") ? locationConfig.mainCity.displayname : data.location.displayName)
-      locationConfig.mainCity.lat = data.location.latitude
-      locationConfig.mainCity.lon = data.location.longitude
-      locationConfig.mainCity.state = data.location.adminDistrictCode
-      locationConfig.mainCity.stateFull = data.location.adminDistrict
-      locationConfig.mainCity.region = ((regionList[data.location.adminDistrictCode] == undefined) ? "none" : regionList[data.location.adminDistrictCode])
+    // Manual location lookup using fallback coordinates
+    let cityData = null;
+    
+    if (locationSettings.mainCity.type === "geocode") {
+      // For geocode format "lat,lon", split and use directly
+      const coords = locationSettings.mainCity.val.split(',');
+      cityData = {
+        displayname: locationSettings.mainCity.displayname || "CUSTOM LOCATION",
+        lat: parseFloat(coords[0]),
+        lon: parseFloat(coords[1]),
+        state: "US",
+        stateFull: "United States"
+      };
+    } else if (locationSettings.mainCity.type === "postalKey") {
+      // Try to find by zip code (limited support)
+      const zipCode = locationSettings.mainCity.val.replace(':US', '');
+      cityData = locationSearchFallback.getCityByZip ? locationSearchFallback.getCityByZip(zipCode) : null;
+    } else {
+      // Try to find by city name or other identifiers
+      const searchTerm = locationSettings.mainCity.val.toUpperCase();
+      cityData = locationSearchFallback.getCityCoordinates(searchTerm);
+    }
+    
+    if (cityData) {
+      locationConfig.mainCity.displayname = locationSettings.mainCity.displayname || cityData.displayname
+      locationConfig.mainCity.lat = cityData.lat
+      locationConfig.mainCity.lon = cityData.lon
+      locationConfig.mainCity.state = cityData.state || "US"
+      locationConfig.mainCity.stateFull = cityData.stateFull || "United States"
+      locationConfig.mainCity.region = ((regionList[cityData.state] == undefined) ? "none" : regionList[cityData.state])
+    } else {
+      // Fallback to default location
+      locationConfig.mainCity.displayname = "NEW YORK CITY"
+      locationConfig.mainCity.lat = 40.7128
+      locationConfig.mainCity.lon = -74.0060
+      locationConfig.mainCity.state = "NY"
+      locationConfig.mainCity.stateFull = "New York"
+      locationConfig.mainCity.region = "northeast"
+    }
+    
+    selectedRagionalLocs = regionalCityList[locationConfig.mainCity.region]
+    if (locationSettings.surroundCities.autoFind == true) {
+      autoSurroundingLocs()
+    } else {
+      manualSurroundingLocs()
+    }
+    if (locationSettings.regionalCities.autoFind == true) {
+      for (var ii = 0; ii < selectedRagionalLocs.length; ii++) {
+        regCitiesAuto(ii)
+      }
+    } else {
+      for (var ii = 0; ii < locationSettings.regionalCities.cities.length; ii++) {
+        regCitiesManual(ii)
+      }
+    }
+  } else {
+    if (window.location.search) {
+      // Extract query from URL search parameters
+      const urlParams = new URLSearchParams(window.location.search);
+      const queryname = urlParams.get('query') || urlParams.get('city') || "NEW YORK";
+      
+      // Use fallback coordinates for search
+      const cityData = locationSearchFallback.getCityCoordinates(queryname.toUpperCase());
+      
+      if (cityData) {
+        locationConfig.mainCity.displayname = cityData.displayname
+        locationConfig.mainCity.lat = cityData.lat
+        locationConfig.mainCity.lon = cityData.lon
+        locationConfig.mainCity.state = cityData.state || "US"
+        locationConfig.mainCity.stateFull = cityData.stateFull || "United States"
+        locationConfig.mainCity.region = ((regionList[cityData.state] == undefined) ? "none" : regionList[cityData.state])
+      } else {
+        // Fallback to default
+        locationConfig.mainCity.displayname = "NEW YORK CITY"
+        locationConfig.mainCity.lat = 40.7128
+        locationConfig.mainCity.lon = -74.0060
+        locationConfig.mainCity.state = "NY"
+        locationConfig.mainCity.stateFull = "New York"
+        locationConfig.mainCity.region = "northeast"
+      }
+      
       selectedRagionalLocs = regionalCityList[locationConfig.mainCity.region]
       if (locationSettings.surroundCities.autoFind == true) {
         autoSurroundingLocs()
@@ -263,87 +337,29 @@ function locationGrab() {
           regCitiesManual(ii)
         }
       }
-    })
-  } else {
-    if (window.location.search) {
-      $.getJSON("https://api.weather.com/v3/location/search?query=" + queryname +"&language=en-US&format=json&apiKey=" + api_key, function(data) {
-        locationConfig.mainCity.displayname = data.location.displayName[0]
-        locationConfig.mainCity.lat = data.location.latitude[0]
-        locationConfig.mainCity.lon = data.location.longitude[0]
-        locationConfig.mainCity.state = data.location.adminDistrictCode[0]
-        locationConfig.mainCity.stateFull = data.location.adminDistrict[0]
-        locationConfig.mainCity.region = ((regionList[data.location.adminDistrictCode[0]] == undefined) ? "none" : regionList[data.location.adminDistrictCode[0]])
-        selectedRagionalLocs = regionalCityList[locationConfig.mainCity.region]
-        if (locationSettings.surroundCities.autoFind == true) {
-          autoSurroundingLocs()
+    } else {
+      // Try IP-based geolocation, fall back to hardcoded coordinates
+      $.getJSON("https://pro.ip-api.com/json/?key=AmUN9xAaQALVYu6&exposeDate=false", function(data) {
+        // Try to match the detected city with our fallback coordinates
+        const cityData = locationSearchFallback.getCityCoordinates(data.city.toUpperCase());
+        
+        if (cityData) {
+          locationConfig.mainCity.displayname = cityData.displayname
+          locationConfig.mainCity.lat = cityData.lat
+          locationConfig.mainCity.lon = cityData.lon
+          locationConfig.mainCity.state = cityData.state || data.region
+          locationConfig.mainCity.stateFull = cityData.stateFull || data.regionName
         } else {
-          manualSurroundingLocs()
-        }
-        if (locationSettings.regionalCities.autoFind == true) {
-          for (var ii = 0; ii < selectedRagionalLocs.length; ii++) {
-            regCitiesAuto(ii)
-          }
-        } else {
-          for (var ii = 0; ii < locationSettings.regionalCities.cities.length; ii++) {
-            regCitiesManual(ii)
-          }
-        }
-      }).fail(function() {
-        $.getJSON("https://pro.ip-api.com/json/?key=AmUN9xAaQALVYu6&exposeDate=false", function(data) {
           locationConfig.mainCity.displayname = data.city
           locationConfig.mainCity.lat = data.lat
           locationConfig.mainCity.lon = data.lon
           locationConfig.mainCity.state = data.region
           locationConfig.mainCity.stateFull = data.regionName
-          locationConfig.mainCity.region = ((regionList[data.region] == undefined) ? "none" : regionList[data.region])
-          selectedRagionalLocs = regionalCityList[locationConfig.mainCity.region]
-          if (locationSettings.surroundCities.autoFind == true) {
-            autoSurroundingLocs()
-          } else {
-            manualSurroundingLocs()
-          }
-          if (locationSettings.regionalCities.autoFind == true) {
-            for (var ii = 0; ii < selectedRagionalLocs.length; ii++) {
-              regCitiesAuto(ii)
-            }
-          } else {
-            for (var ii = 0; ii < locationSettings.regionalCities.cities.length; ii++) {
-              regCitiesManual(ii)
-            }
-          }
-        }).fail(function() {
-          locationConfig.mainCity.displayname = undefined
-          locationConfig.mainCity.lat = undefined
-          locationConfig.mainCity.lon = undefined
-          locationConfig.mainCity.state = undefined
-          locationConfig.mainCity.stateFull = undefined
-          locationConfig.mainCity.region = "none"
-          selectedRagionalLocs = regionalCityList["none"]
-          if (locationSettings.surroundCities.autoFind == true) {
-            autoSurroundingLocs()
-          } else {
-            manualSurroundingLocs()
-          }
-          if (locationSettings.regionalCities.autoFind == true) {
-            for (var ii = 0; ii < selectedRagionalLocs.length; ii++) {
-              regCitiesAuto(ii)
-            }
-          } else {
-            for (var ii = 0; ii < locationSettings.regionalCities.cities.length; ii++) {
-              regCitiesManual(ii)
-            }
-          }
-        })
-      })
-    } else {
-      $.getJSON("https://pro.ip-api.com/json/?key=AmUN9xAaQALVYu6&exposeDate=false", function(data) {
-        locationConfig.mainCity.displayname = data.city
-        locationConfig.mainCity.lat = data.lat
-        locationConfig.mainCity.lon = data.lon
-        locationConfig.mainCity.state = data.region
-        locationConfig.mainCity.stateFull = data.regionName
-        locationConfig.mainCity.region = ((regionList[data.region] == undefined) ? "none" : regionList[data.region])
+        }
+        
+        locationConfig.mainCity.region = ((regionList[locationConfig.mainCity.state] == undefined) ? "none" : regionList[locationConfig.mainCity.state])
         selectedRagionalLocs = regionalCityList[locationConfig.mainCity.region]
+        
         if (locationSettings.surroundCities.autoFind == true) {
           autoSurroundingLocs()
         } else {
@@ -358,14 +374,15 @@ function locationGrab() {
             regCitiesManual(ii)
           }
         }
-      }).fail(function() {
-        locationConfig.mainCity.displayname = undefined
-        locationConfig.mainCity.lat = undefined
-        locationConfig.mainCity.lon = undefined
-        locationConfig.mainCity.state = undefined
-        locationConfig.mainCity.stateFull = undefined
-        locationConfig.mainCity.region = "none"
-        selectedRagionalLocs = regionalCityList["none"]
+      }).fail(function() {        // Complete fallback to New York City
+        locationConfig.mainCity.displayname = "NEW YORK CITY"
+        locationConfig.mainCity.lat = 40.7128
+        locationConfig.mainCity.lon = -74.0060
+        locationConfig.mainCity.state = "NY"
+        locationConfig.mainCity.stateFull = "New York"
+        locationConfig.mainCity.region = "northeast"
+        selectedRagionalLocs = regionalCityList["northeast"];
+        
         if (locationSettings.surroundCities.autoFind == true) {
           autoSurroundingLocs()
         } else {
@@ -386,44 +403,41 @@ function locationGrab() {
 }
 
 function autoSurroundingLocs() {
-  $.getJSON('https://api.weather.com/v3/location/near?geocode=' + locationConfig.mainCity.lat + ',' + locationConfig.mainCity.lon + '&product=observation&format=json&apiKey=' + api_key, function(data) {
-    surrCityList.lons = data.location.longitude
-    surrCityList.lats = data.location.latitude
-    surrCityList.amount = data.location.stationName.length
-    for (var i = 0; i < surrCityList.amount; i++) {
-      indivSurrCity(i);
-    }
-    setTimeout(() => {
-      locationConfig.surroundCities.citiesAmount = locationConfig.surroundCities.cities.length
-      if (locationConfig.surroundCities.citiesAmount > 7) {
-        locationConfig.surroundCities.citiesAmount = 7
-      }
-    }, 1000);
-    
-  })
+  // Generate surrounding cities based on regional city list
+  // Since we can't use TWC nearby API, use the regional cities for the same region
+  const regionCities = regionalCityList[locationConfig.mainCity.region] || [];
+  
+  locationConfig.surroundCities.cities = [];
+  locationConfig.surroundCities.citiesAmount = 0;
+  
+  // Take first 7 cities from the regional list, excluding the main city
+  let addedCount = 0;
+  for (let i = 0; i < regionCities.length && addedCount < 7; i++) {
+    const city = regionCities[i];
+    // Skip if it's too close to the main city (same coordinates)
+    if (Math.abs(parseFloat(city.lat) - parseFloat(locationConfig.mainCity.lat)) > 0.1 || 
+        Math.abs(parseFloat(city.lon) - parseFloat(locationConfig.mainCity.lon)) > 0.1) {
+      
+      const cityData = {
+        displayname: city.cityname,
+        lat: city.lat,
+        lon: city.lon,
+        state: locationConfig.mainCity.state,
+        stateFull: locationConfig.mainCity.stateFull
+      };
+      
+      locationConfig.surroundCities.cities.push(cityData);
+      addedCount++;
+    }  }
+  
+  locationConfig.surroundCities.citiesAmount = addedCount;
 }
-function autoSurroundingLocs() {
-  $.getJSON('https://api.weather.com/v3/location/near?geocode=' + locationConfig.mainCity.lat + ',' + locationConfig.mainCity.lon + '&product=observation&format=json&apiKey=' + api_key, function(data) {
-    surrCityList.lons = data.location.longitude
-    surrCityList.lats = data.location.latitude
-    surrCityList.amount = data.location.stationName.length
-    for (var i = 0; i < surrCityList.amount; i++) {
-      indivSurrCity(i);
-    }
-    setTimeout(() => {
-      locationConfig.surroundCities.citiesAmount = locationConfig.surroundCities.cities.length
-      if (locationConfig.surroundCities.citiesAmount > 7) {
-        locationConfig.surroundCities.citiesAmount = 7
-      }
-    }, 1000);
-    
-  })
-}
+
 function manualSurroundingLocs() {
   for (var i = 0; i < locationSettings.surroundCities.cities.length; i++) {
     manualIndivCities(i)
   }
-  locationConfig.surroundCities.citiesAmount =  locationSettings.surroundCities.cities.length
+  locationConfig.surroundCities.citiesAmount = locationSettings.surroundCities.cities.length
   if (locationConfig.surroundCities.citiesAmount > 7) {
     locationConfig.surroundCities.citiesAmount = 7
   }
@@ -431,65 +445,101 @@ function manualSurroundingLocs() {
 
 function manualIndivCities(i) {
   var cityData = {displayname:"",lat:"",lon:"",state:"",stateFull:""}
-    $.getJSON("https://api.weather.com/v3/location/point?" + locationSettings.surroundCities.cities[i].type + "=" + locationSettings.surroundCities.cities[i].val + "&language=en-US&format=json&apiKey=" + api_key, function(data) {
-      cityData.displayname = ((locationSettings.surroundCities.cities[i].displayname != "") ? locationSettings.surroundCities.cities[i].displayname : data.location.displayName)
-      cityData.lat = data.location.latitude
-      cityData.lon = data.location.longitude
-      cityData.state = data.location.adminDistrictCode
-      cityData.stateFull = data.location.adminDistrict
-    })
-    locationConfig.surroundCities.cities.push(cityData)
+  
+  // Use fallback coordinates instead of TWC API
+  let searchData = null;
+  
+  if (locationSettings.surroundCities.cities[i].type === "geocode") {
+    const coords = locationSettings.surroundCities.cities[i].val.split(',');
+    searchData = {
+      displayname: locationSettings.surroundCities.cities[i].displayname || "CUSTOM LOCATION",
+      lat: parseFloat(coords[0]),
+      lon: parseFloat(coords[1]),
+      state: "US",
+      stateFull: "United States"
+    };
+  } else {
+    // Try to find by name or other identifiers
+    const searchTerm = locationSettings.surroundCities.cities[i].val.toUpperCase();
+    searchData = locationSearchFallback.getCityCoordinates(searchTerm);
+  }
+  
+  if (searchData) {
+    cityData.displayname = locationSettings.surroundCities.cities[i].displayname || searchData.displayname
+    cityData.lat = searchData.lat
+    cityData.lon = searchData.lon
+    cityData.state = searchData.state || "US"
+    cityData.stateFull = searchData.stateFull || "United States"
+  } else {
+    // Fallback values
+    cityData.displayname = locationSettings.surroundCities.cities[i].displayname || "UNKNOWN CITY"
+    cityData.lat = "40.7128"
+    cityData.lon = "-74.0060"
+    cityData.state = "US"
+    cityData.stateFull = "United States"
+  }
+  
+  locationConfig.surroundCities.cities.push(cityData)
 }
 
 function indivSurrCity(i) {
-  var duploc = false
-  var cityData = {displayname:"",lat:"",lon:"",state:"",stateFull:""}
-  $.getJSON("https://api.weather.com/v3/location/point?geocode=" + surrCityList.lats[i] + "," + surrCityList.lons[i] + "&language=en-US&format=json&apiKey=" + api_key, function(data) {
-    cityData.displayname = data.location.displayName
-    cityData.lat = data.location.latitude
-    cityData.lon = data.location.longitude
-    cityData.state = data.location.adminDistrictCode
-    cityData.stateFull = data.location.adminDistrict
-  }).fail(function() {
-    cityData.displayname = ""
-    cityData.lat = ""
-    cityData.lon = ""
-    cityData.state = ""
-    cityData.stateFull = ""
-  })
-  setTimeout(() => {
-    if (cityData.displayname != locationConfig.mainCity.displayname) {
-      locationConfig.surroundCities.cities.push(cityData)
-    }
-    for (var ii = 0; ii < locationConfig.surroundCities.cities.length-1; ii++) {
-      if (cityData.displayname == locationConfig.surroundCities.cities[ii].displayname) {
-        locationConfig.surroundCities.cities.pop()
-        continue
-      }
-    }
-  }, 500);
+  // This function is no longer used since we replaced autoSurroundingLocs with regional cities
+  // Keeping for compatibility but making it a no-op
+  return;
 }
+
 function regCitiesAuto(i) {
   var cityData = {displayname:"",lat:"",lon:"",state:"",stateFull:""}
-  $.getJSON("https://api.weather.com/v3/location/point?geocode=" + selectedRagionalLocs[i].lat + "," + selectedRagionalLocs[i].lon + "&language=en-US&format=json&apiKey=" + api_key, function(data) {
+  
+  // Use the regional city data directly instead of making API calls
+  if (selectedRagionalLocs[i]) {
     cityData.displayname = selectedRagionalLocs[i].cityname
-    cityData.lat = data.location.latitude
-    cityData.lon = data.location.longitude
-    cityData.state = data.location.adminDistrictCode
-    cityData.stateFull = data.location.adminDistrict
-  })
+    cityData.lat = selectedRagionalLocs[i].lat
+    cityData.lon = selectedRagionalLocs[i].lon
+    cityData.state = locationConfig.mainCity.state
+    cityData.stateFull = locationConfig.mainCity.stateFull
+  }
+  
   locationConfig.regionalCities.cities.push(cityData)
   locationConfig.regionalCities.citiesAmount = i+1
 }
+
 function regCitiesManual(i) {
   var cityData = {displayname:"",lat:"",lon:"",state:"",stateFull:""}
-  $.getJSON("https://api.weather.com/v3/location/point?" + locationSettings.regionalCities.cities[i].type + "=" + locationSettings.regionalCities.cities[i].val + "&language=en-US&format=json&apiKey=" + api_key, function(data) {
-    cityData.displayname = ((locationSettings.regionalCities.cities[i].displayname != "") ? locationSettings.regionalCities.cities[i].displayname : data.location.displayName)
-    cityData.lat = data.location.latitude
-    cityData.lon = data.location.longitude
-    cityData.state = data.location.adminDistrictCode
-    cityData.stateFull = data.location.adminDistrict
-  })
+  
+  // Use fallback coordinates instead of TWC API
+  let searchData = null;
+  
+  if (locationSettings.regionalCities.cities[i].type === "geocode") {
+    const coords = locationSettings.regionalCities.cities[i].val.split(',');
+    searchData = {
+      displayname: locationSettings.regionalCities.cities[i].displayname || "CUSTOM LOCATION",
+      lat: parseFloat(coords[0]),
+      lon: parseFloat(coords[1]),
+      state: "US",
+      stateFull: "United States"
+    };
+  } else {
+    // Try to find by name or other identifiers
+    const searchTerm = locationSettings.regionalCities.cities[i].val.toUpperCase();
+    searchData = locationSearchFallback.getCityCoordinates(searchTerm);
+  }
+  
+  if (searchData) {
+    cityData.displayname = locationSettings.regionalCities.cities[i].displayname || searchData.displayname
+    cityData.lat = searchData.lat
+    cityData.lon = searchData.lon
+    cityData.state = searchData.state || "US"
+    cityData.stateFull = searchData.stateFull || "United States"
+  } else {
+    // Fallback values
+    cityData.displayname = locationSettings.regionalCities.cities[i].displayname || "UNKNOWN CITY"
+    cityData.lat = "40.7128"
+    cityData.lon = "-74.0060"
+    cityData.state = "US"
+    cityData.stateFull = "United States"
+  }
+  
   locationConfig.regionalCities.cities.push(cityData)
   locationConfig.regionalCities.citiesAmount = locationSettings.regionalCities.cities.length
 }
