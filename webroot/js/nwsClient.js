@@ -22,69 +22,96 @@ class NWSClient {
    * Make a request to the NWS API with proper headers
    * @param {string} endpoint - API endpoint
    * @returns {Promise} - Promise resolving to the response data
-   */
-  async makeRequest(endpoint) {
+   */  async makeRequest(endpoint) {
     const url = `${this.baseUrl}${endpoint}`;
+    console.log('Making request to:', url);
     
     // Check cache first
     if (this.cache.has(url)) {
       const cached = this.cache.get(url);
       if (Date.now() - cached.timestamp < 300000) { // 5 minutes cache
+        console.log('Returning cached data for:', url);
         return cached.data;
       }
     }
 
     try {
-      // Use jQuery for cross-origin requests
-      const response = await new Promise((resolve, reject) => {
-        $.ajax({
-          url: url,
-          method: 'GET',
-          headers: {
-            'User-Agent': this.userAgent,
-            'Accept': 'application/json'
-          },
-          success: resolve,
-          error: reject
-        });
+      // Use fetch with proper headers
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'User-Agent': this.userAgent,
+          'Accept': 'application/json'
+        }
       });
+
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      console.log('API response received for:', url, data);
 
       // Cache the response
       this.cache.set(url, {
-        data: response,
+        data: data,
         timestamp: Date.now()
       });
 
-      return response;
+      return data;
     } catch (error) {
-      console.error('NWS API request failed:', error);
+      console.error('NWS API request failed for:', url, error);
       throw error;
     }
   }
-
   /**
    * Get current weather observations for a location
    * @param {number} lat - Latitude
    * @param {number} lon - Longitude
    * @returns {Promise} - Current conditions data
-   */
-  async getCurrentConditions(lat, lon) {
+   */  async getCurrentConditions(lat, lon) {
     try {
+      console.log(`Getting current conditions for ${lat}, ${lon}`);
+      
       // First get the grid point info
       const pointData = await this.makeRequest(`/points/${lat},${lon}`);
+      console.log('Point data received:', pointData);
+      
       const gridId = pointData.properties.gridId;
       const gridX = pointData.properties.gridX;
       const gridY = pointData.properties.gridY;
+      console.log(`Grid info: ${gridId}, ${gridX}, ${gridY}`);
 
-      // Get the nearest weather station
+      // Get the nearest weather stations
       const stationsData = await this.makeRequest(`/gridpoints/${gridId}/${gridX},${gridY}/stations`);
+      console.log('Stations data received:', stationsData);
       
       if (stationsData.features && stationsData.features.length > 0) {
-        const stationId = stationsData.features[0].properties.stationIdentifier;
-        
-        // Get current observations from the station
-        const obsData = await this.makeRequest(`/stations/${stationId}/observations/latest`);
-        return this.formatCurrentConditions(obsData);
+        // Try multiple stations to find one with complete data
+        for (let i = 0; i < Math.min(3, stationsData.features.length); i++) {
+          const station = stationsData.features[i];
+          const stationId = station.properties.stationIdentifier;
+          console.log(`Trying station ${i + 1}:`, stationId);
+          
+          try {
+            // Get current observations from the station
+            const obsData = await this.makeRequest(`/stations/${stationId}/observations/latest`);
+            console.log(`Observation data for ${stationId}:`, obsData);
+            
+            const formattedData = this.formatCurrentConditions(obsData, stationId);
+            
+            // Check if this station has humidity data, if not try next station
+            if (formattedData.relativeHumidity !== null || i === 2) {
+              console.log(`Using station ${stationId} with data:`, formattedData);
+              return formattedData;
+            } else {
+              console.log(`Station ${stationId} has null humidity, trying next station...`);
+            }
+          } catch (stationError) {
+            console.error(`Error getting data from station ${stationId}:`, stationError);
+            // Continue to next station
+          }
+        }
       }
       
       throw new Error('No weather stations found for location');
@@ -138,17 +165,41 @@ class NWSClient {
       console.error('Error getting alerts:', error);
       return { alerts: [], alertsAmount: 0 };
     }
-  }
-
-  /**
+  }  /**
    * Format current conditions data to match expected structure
    */
-  formatCurrentConditions(obsData) {
+  formatCurrentConditions(obsData, stationId = 'unknown') {
     const props = obsData.properties;
     
+    // Debug logging to see what we're getting
+    console.log(`NWS Observation data from ${stationId}:`, props);
+    
+    // Calculate fallback humidity if null (estimate from temperature and dewpoint)
+    let humidity = null;
+    if (props.relativeHumidity?.value !== null && props.relativeHumidity?.value !== undefined) {
+      humidity = Math.round(props.relativeHumidity.value * 10) / 10;
+    } else if (props.temperature?.value && props.dewpoint?.value) {
+      // Calculate humidity from temperature and dewpoint using Magnus formula
+      const tempC = props.temperature.value;
+      const dewpointC = props.dewpoint.value;
+      const humidityCalc = Math.exp((17.625 * dewpointC) / (243.04 + dewpointC)) / 
+                          Math.exp((17.625 * tempC) / (243.04 + tempC)) * 100;
+      humidity = Math.round(humidityCalc * 10) / 10;
+      console.log(`Calculated humidity from temp/dewpoint: ${humidity}%`);
+    }
+    
+    // Fix character encoding for text descriptions
+    let wxPhraseLong = props.textDescription || '';
+    let wxPhraseShort = this.shortenCondition(wxPhraseLong);
+    
+    // Fix common encoding issues
+    wxPhraseLong = this.fixCharacterEncoding(wxPhraseLong);
+    wxPhraseShort = this.fixCharacterEncoding(wxPhraseShort);
+    
     return {
-      temperature: this.celsiusToFahrenheit(props.temperature?.value),      temperatureFeelsLike: this.celsiusToFahrenheit(props.heatIndex?.value || props.windChill?.value),
-      relativeHumidity: props.relativeHumidity?.value ? Math.round(props.relativeHumidity.value * 10) / 10 : null,
+      temperature: this.celsiusToFahrenheit(props.temperature?.value),
+      temperatureFeelsLike: this.celsiusToFahrenheit(props.heatIndex?.value || props.windChill?.value),
+      relativeHumidity: humidity,
       windSpeed: this.mpsToMph(props.windSpeed?.value),
       windDirection: props.windDirection?.value,
       windDirectionCardinal: this.degreeToCardinal(props.windDirection?.value),
@@ -158,8 +209,8 @@ class NWSClient {
       visibility: this.metersToMiles(props.visibility?.value),
       dewpoint: this.celsiusToFahrenheit(props.dewpoint?.value),
       cloudCeiling: this.metersToFeet(props.cloudLayers?.[0]?.base?.value),
-      wxPhraseLong: props.textDescription,
-      wxPhraseShort: this.shortenCondition(props.textDescription)
+      wxPhraseLong: wxPhraseLong,
+      wxPhraseShort: wxPhraseShort
     };
   }
 
@@ -214,6 +265,48 @@ class NWSClient {
       alerts: alerts,
       alertsAmount: alerts.length
     };
+  }
+  /**
+   * Format weather condition text for display
+   */
+  formatWeatherText(text) {
+    if (!text) return "";
+    
+    return text
+      .replace(/ Shower/g, ' SHWR')
+      .replace(/ Near /g, ' ')
+      .replace(/^Near /g, '')
+      .replace(/ Light /g, ' LGT ')
+      .replace(/^Light /g, 'LGT ')
+      .replace(/ Heavy /g, ' HVY ')
+      .replace(/^Heavy /g, 'HVY ')
+      .replace(/ Early /g, ' ERLY ')
+      .replace(/^Early /g, 'ERLY ')
+      .replace(/ Partial /g, ' PART ')
+      .replace(/^Partial /g, 'PART ')
+      .replace(/ Cldy/g, ' CLOUDY')
+      .replace(/^Cldy/g, 'CLOUDY')
+      .replace(/ T-Storm/g, ' T-STM')
+      .replace(/^T-Storm/g, 'T-STM')
+      .replace(/Thunderstorm/g, 'T-STORM')
+      .replace(/  +/g, ' ') // Remove multiple spaces
+      .trim();
+  }
+
+  /**
+   * Fix character encoding issues in text
+   */
+  fixCharacterEncoding(text) {
+    if (!text) return "";
+    
+    return text
+      .replace(/Â°/g, '°')  // Fix degree symbol encoding
+      .replace(/â€™/g, "'")  // Fix apostrophe encoding
+      .replace(/â€œ/g, '"')  // Fix opening quote encoding
+      .replace(/â€/g, '"')   // Fix closing quote encoding
+      .replace(/â€"/g, '-')  // Fix em dash encoding
+      .replace(/â€"/g, '-')  // Fix en dash encoding
+      .trim();
   }
 
   // Utility conversion functions

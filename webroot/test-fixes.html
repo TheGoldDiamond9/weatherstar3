@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Weather Fixes</title>
+    <style>
+        body { font-family: monospace; padding: 20px; background: #000; color: #0f0; }
+        .section { margin: 20px 0; padding: 10px; border: 1px solid #0f0; }
+        .success { color: #0f0; }
+        .error { color: #f00; }
+        .warning { color: #ff0; }
+    </style>
+</head>
+<body>
+    <h1>Weather Star 3000 - Fix Verification</h1>
+    
+    <div class="section">
+        <h2>Testing NWS API with Multiple Station Fallback</h2>
+        <div id="nws-test">Running tests...</div>
+    </div>
+
+    <div class="section">
+        <h2>Testing Character Encoding Fix</h2>
+        <div id="encoding-test">
+            <p>Original: "Temperature is 72Â° with humidity"</p>
+            <p id="fixed-text">Fixed: <span id="fixed-result"></span></p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Testing Humidity Calculation</h2>
+        <div id="humidity-test">
+            <p>Test scenario: Temp=72°F (22.2°C), Dewpoint=65°F (18.3°C)</p>
+            <p id="humidity-result"></p>
+        </div>
+    </div>
+
+    <script src="js/nwsClient.js"></script>
+    <script>
+        // Test character encoding fix
+        function testCharacterEncoding() {
+            const testText = "Temperature is 72Â° with humidity";
+            const fixed = window.nwsClient.fixCharacterEncoding(testText);
+            document.getElementById('fixed-result').textContent = `"${fixed}"`;
+            
+            if (fixed.includes('°') && !fixed.includes('Â°')) {
+                document.getElementById('fixed-result').className = 'success';
+            } else {
+                document.getElementById('fixed-result').className = 'error';
+            }
+        }
+
+        // Test humidity calculation
+        function testHumidityCalculation() {
+            const tempC = 22.2; // 72°F
+            const dewpointC = 18.3; // 65°F
+            
+            const humidityCalc = Math.exp((17.625 * dewpointC) / (243.04 + dewpointC)) / 
+                                Math.exp((17.625 * tempC) / (243.04 + tempC)) * 100;
+            const humidity = Math.round(humidityCalc * 10) / 10;
+            
+            document.getElementById('humidity-result').innerHTML = 
+                `<span class="success">Calculated humidity: ${humidity}%</span>`;
+        }
+
+        // Test NWS API with multiple stations
+        async function testNWSAPI() {
+            const testDiv = document.getElementById('nws-test');
+            testDiv.innerHTML = 'Testing NWS API with Kingsland, GA coordinates...';
+            
+            try {
+                const conditions = await window.nwsClient.getCurrentConditions(30.7991, -81.6956);
+                console.log('Test results:', conditions);
+                
+                if (conditions.noReport) {
+                    testDiv.innerHTML = '<span class="error">Failed: No report received</span>';
+                } else {
+                    const results = [
+                        `Temperature: ${conditions.temperature || 'NULL'}°F`,
+                        `Humidity: ${conditions.relativeHumidity || 'NULL'}%`,
+                        `Pressure: ${conditions.pressure || 'NULL'} in`,
+                        `Wind: ${conditions.windSpeed || 'NULL'} mph ${conditions.windDirectionCardinal || 'CALM'}`,
+                        `Conditions: ${conditions.wxPhraseShort || 'NULL'}`
+                    ];
+                    
+                    let status = 'success';
+                    if (!conditions.relativeHumidity) status = 'warning';
+                    if (!conditions.temperature) status = 'error';
+                    
+                    testDiv.innerHTML = `<div class="${status}">
+                        <strong>Current Conditions (${status}):</strong><br>
+                        ${results.join('<br>')}
+                    </div>`;
+                }
+            } catch (error) {
+                testDiv.innerHTML = `<span class="error">Error: ${error.message}</span>`;
+                console.error('Test error:', error);
+            }
+        }
+
+        // Run all tests
+        document.addEventListener('DOMContentLoaded', function() {
+            testCharacterEncoding();
+            testHumidityCalculation();
+            testNWSAPI();
+        });
+    </script>
+</body>
+</html>

@@ -80,23 +80,23 @@ var weatherData = {
 function grabData() {  function grabCurrentConditions() {
     // Use NWS API for current conditions
     nwsClient.getCurrentConditions(locationConfig.mainCity.lat, locationConfig.mainCity.lon)
-      .then(function(data) {        try {
-          console.log('Current conditions data received:', data);
+      .then(function(data) {
+        try {
           weatherData.currentConditions.cityname = locationConfig.mainCity.displayname
           weatherData.currentConditions.cond = data.wxPhraseLong || ""
-          weatherData.currentConditions.gusts = (data.windGust ? data.windGust + " MPH" : "NONE")
-          weatherData.currentConditions.humidity = (data.relativeHumidity !== null && data.relativeHumidity !== undefined) ? data.relativeHumidity + "%" : ""
-          weatherData.currentConditions.pressure = (data.pressure !== null && data.pressure !== undefined) ? data.pressure + " IN" : ""
+          weatherData.currentConditions.gusts = (data.windGust ? data.windGust + " Mph" : "NONE")
+          weatherData.currentConditions.humidity = data.relativeHumidity || ""
+          weatherData.currentConditions.pressure = data.pressure || ""
           weatherData.currentConditions.pressureTrend = data.pressureTendency || ""
-          weatherData.currentConditions.temp = (data.temperature !== null && data.temperature !== undefined) ? data.temperature + "°" : ""
+          weatherData.currentConditions.temp = data.temperature || ""
           weatherData.currentConditions.wind = data.windDirectionCardinal || "CALM"
           weatherData.currentConditions.windDirNum = data.windDirection || ""
-          weatherData.currentConditions.windspeed = (data.windSpeed !== null && data.windSpeed !== undefined) ? data.windSpeed + " MPH" : ""
-          weatherData.currentConditions.feelslike = (data.temperatureFeelsLike !== null && data.temperatureFeelsLike !== undefined) ? data.temperatureFeelsLike + "°" : ""
+          weatherData.currentConditions.windspeed = data.windSpeed || ""
+          weatherData.currentConditions.feelslike = data.temperatureFeelsLike || ""
           weatherData.currentConditions.feelsliketype = ((data.temperatureFeelsLike && data.temperatureFeelsLike < 65) ? "WIND CHILL: " : "HEAT INDEX: ")
-          weatherData.currentConditions.dewpoint = (data.dewpoint !== null && data.dewpoint !== undefined) ? data.dewpoint + "°" : ""
-          weatherData.currentConditions.visibility = (data.visibility !== null && data.visibility !== undefined) ? data.visibility + " MI" : ""
-          weatherData.currentConditions.ceiling = (data.cloudCeiling !== null && data.cloudCeiling !== undefined) ? data.cloudCeiling + " FT" : ""
+          weatherData.currentConditions.dewpoint = data.dewpoint || ""
+          weatherData.currentConditions.visibility = data.visibility || ""
+          weatherData.currentConditions.ceiling = data.cloudCeiling || ""
           weatherData.currentConditions.noReport = false
         } catch (error) {
           weatherData.currentConditions.cityname = locationConfig.mainCity.displayname
@@ -137,7 +137,8 @@ function grabData() {  function grabCurrentConditions() {
   }
   grabCurrentConditions();  function grabNearbyConditions() {
     weatherData.nearbyCities.conditions.cities = []
-      // Process each nearby city
+    
+    // Process each nearby city
     const promises = [];
     for (var i = 0; i < locationConfig.surroundCities.citiesAmount; i++) {
       const cityData = locationConfig.surroundCities.cities[i];
@@ -147,10 +148,10 @@ function grabData() {  function grabCurrentConditions() {
             noReport: false,
             cityname: cityData.displayname,
             statename: cityData.state,
-            temp: (data.temperature !== null && data.temperature !== undefined) ? data.temperature + "°" : "",
-            condition: weatherTextFormatter.formatCondition(data.wxPhraseShort),
+            temp: data.temperature || "",
+            condition: data.wxPhraseShort ? data.wxPhraseShort.replaceAll(' Shower', ' SHWR').replaceAll('Near', '').replaceAll('Light', 'LGT').replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').replaceAll('Partial', 'PART').replaceAll('Cldy', 'CLOUDY').replaceAll(' T-Storm', ' T-STM') : "",
             wind: data.windDirectionCardinal || "CALM",
-            windspeed: (data.windSpeed !== null && data.windSpeed !== undefined) ? data.windSpeed : "",
+            windspeed: data.windSpeed || "",
             windDirNum: data.windDirection || ""
           };
           return nearbyCitiesObj;
@@ -211,7 +212,7 @@ function grabData() {  function grabCurrentConditions() {
               cityname: cityData.displayname,
               low: todayPeriod.temperature || "",
               high: todayPeriod.temperature || "",
-              condition: todayPeriod.shortForecast ? weatherTextFormatter.formatCondition(todayPeriod.shortForecast) : ""
+              condition: todayPeriod.shortForecast ? todayPeriod.shortForecast.replaceAll(' Shower', ' SHWR').replaceAll('Near', '').replaceAll('Light', 'LGT').replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').replaceAll('Partial', 'PART').replaceAll('Cldy', 'CLOUDY').replaceAll(' T-Storm', ' T-STM') : ""
             };
             
             // Try to get both high and low from daily periods
@@ -263,7 +264,8 @@ function grabData() {  function grabCurrentConditions() {
   grabNearbyForecast()
   function grabRegionalConditions() {
     weatherData.regionalConditions.cities = []
-      // Process each regional city
+    
+    // Process each regional city
     const promises = [];
     for (var i = 0; i < locationConfig.regionalCities.citiesAmount; i++) {
       const cityData = locationConfig.regionalCities.cities[i];
@@ -273,10 +275,10 @@ function grabData() {  function grabCurrentConditions() {
             noReport: false,
             cityname: cityData.displayname,
             statename: cityData.state,
-            temp: (data.temperature !== null && data.temperature !== undefined) ? data.temperature + "°" : "",
-            condition: weatherTextFormatter.formatCondition(data.wxPhraseShort),
+            temp: data.temperature || "",
+            condition: data.wxPhraseShort ? data.wxPhraseShort.replaceAll(' Shower', ' SHWR').replaceAll('Near', '').replaceAll('Light', 'LGT').replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').replaceAll('Partial', 'PART').replaceAll('Cldy', 'CLOUDY').replaceAll(' T-Storm', ' T-STM') : "",
             wind: data.windDirectionCardinal || "CALM",
-            windspeed: (data.windSpeed !== null && data.windSpeed !== undefined) ? data.windSpeed : "",
+            windspeed: data.windSpeed || "",
             windDirNum: data.windDirection || ""
           };
           return nearbyCitiesObj;
@@ -328,7 +330,7 @@ function grabData() {  function grabCurrentConditions() {
             
             weatherData.travel.cities[i].days[0].high = todayPeriod.temperature || ""
             weatherData.travel.cities[i].days[0].low = ""
-            weatherData.travel.cities[i].days[0].condition = todayPeriod.shortForecast ? weatherTextFormatter.formatCondition(todayPeriod.shortForecast) : ""
+            weatherData.travel.cities[i].days[0].condition = todayPeriod.shortForecast ? todayPeriod.shortForecast.replaceAll(' Shower', ' SHWR').replaceAll('Near', '').replaceAll('Light', 'LGT').replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').replaceAll('Partial', 'PART').replaceAll('Cldy', 'CLOUDY').replaceAll(' T-Storm', ' T-STM') : ""
             weatherData.travel.cities[i].days[0].dayNight = todayPeriod.isDaytime ? "D" : "N"
             
             // Try to get low from night period

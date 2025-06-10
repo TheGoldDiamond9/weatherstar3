@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Direct NWS API Test</title>
+</head>
+<body>
+    <h1>Direct NWS API Test</h1>
+    <button onclick="testDirectAPI()">Test Direct API Call</button>
+    <button onclick="testWithConsoleLog()">Test with Console Logging</button>
+    <pre id="results"></pre>
+
+    <script>
+        async function testDirectAPI() {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.textContent = 'Testing direct API call...';
+            
+            try {
+                // Kingsland, GA coordinates
+                const pointsUrl = 'https://api.weather.gov/points/30.7991,-81.6956';
+                console.log('Calling:', pointsUrl);
+                
+                const pointsResponse = await fetch(pointsUrl, {
+                    headers: {
+                        'User-Agent': '(Weather Star 3000 Test, test@example.com)',
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (!pointsResponse.ok) {
+                    throw new Error(`Points API failed: ${pointsResponse.status} ${pointsResponse.statusText}`);
+                }
+                
+                const pointsData = await pointsResponse.json();
+                console.log('Points data:', pointsData);
+                
+                // Extract station info
+                const gridId = pointsData.properties.gridId;
+                const gridX = pointsData.properties.gridX;
+                const gridY = pointsData.properties.gridY;
+                
+                resultsDiv.textContent = `Points API Success!\nGrid: ${gridId}/${gridX},${gridY}\n\nFull response:\n` + JSON.stringify(pointsData, null, 2);
+                
+                // Now test stations
+                await testStations(gridId, gridX, gridY);
+                
+            } catch (error) {
+                console.error('Error:', error);
+                resultsDiv.textContent = 'ERROR:\n' + error.message + '\n\nStack:\n' + error.stack;
+            }
+        }
+        
+        async function testStations(gridId, gridX, gridY) {
+            try {
+                const stationsUrl = `https://api.weather.gov/gridpoints/${gridId}/${gridX},${gridY}/stations`;
+                console.log('Calling stations:', stationsUrl);
+                
+                const stationsResponse = await fetch(stationsUrl, {
+                    headers: {
+                        'User-Agent': '(Weather Star 3000 Test, test@example.com)',
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (!stationsResponse.ok) {
+                    throw new Error(`Stations API failed: ${stationsResponse.status} ${stationsResponse.statusText}`);
+                }
+                
+                const stationsData = await stationsResponse.json();
+                console.log('Stations data:', stationsData);
+                
+                if (stationsData.features && stationsData.features.length > 0) {
+                    const stationId = stationsData.features[0].properties.stationIdentifier;
+                    console.log('First station:', stationId);
+                    
+                    // Test observations
+                    await testObservations(stationId);
+                } else {
+                    console.log('No stations found');
+                }
+                
+            } catch (error) {
+                console.error('Stations error:', error);
+            }
+        }
+        
+        async function testObservations(stationId) {
+            try {
+                const obsUrl = `https://api.weather.gov/stations/${stationId}/observations/latest`;
+                console.log('Calling observations:', obsUrl);
+                
+                const obsResponse = await fetch(obsUrl, {
+                    headers: {
+                        'User-Agent': '(Weather Star 3000 Test, test@example.com)',
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (!obsResponse.ok) {
+                    throw new Error(`Observations API failed: ${obsResponse.status} ${obsResponse.statusText}`);
+                }
+                
+                const obsData = await obsResponse.json();
+                console.log('Observations data:', obsData);
+                
+                // Show the properties we're interested in
+                const props = obsData.properties;
+                console.log('Temperature:', props.temperature);
+                console.log('Humidity:', props.relativeHumidity);
+                console.log('Pressure:', props.barometricPressure);
+                console.log('Wind Speed:', props.windSpeed);
+                console.log('Visibility:', props.visibility);
+                console.log('Text Description:', props.textDescription);
+                
+            } catch (error) {
+                console.error('Observations error:', error);
+            }
+        }
+        
+        async function testWithConsoleLog() {
+            console.clear();
+            console.log('=== Starting comprehensive API test ===');
+            await testDirectAPI();
+        }
+    </script>
+</body>
+</html>

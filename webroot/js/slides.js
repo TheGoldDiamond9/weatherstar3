@@ -27,28 +27,26 @@ function slideKickOff() {
                 const month = ["JANUARY PRECIPITATION: ","FEBRUARY PRECIPITATION: ","MARCH PRECIPITATION: ","APRIL PRECIPITATION: ","MAY PRECIPITATION: ","JUNE PRECIPITATION: ","JULY PRECIPITATION: ","AUGUST PRECIPITATION: ","SEPTEMBER PRECIPITATION: ","OCTOBER PRECIPITATION: ","NOVEMBER PRECIPITATION: ","DECEMBER PRECIPITATION: "];
                 const d = new Date();
                 let monthname = month[d.getMonth()];
-                
-                $('.info-cc .current-condition').text(weatherData.currentConditions.cond);
-                $('.info-cc .current-temperature').text(weatherData.currentConditions.temp + '°F                     ');
-                if (weatherData.currentConditions.feelslike != weatherData.currentConditions.temp) {
-					$('.info-cc .text-windchill').text('               ' + weatherData.currentConditions.feelsliketype);
-                    $('.info-cc .current-windchill').text(weatherData.currentConditions.feelslike + '°F ');
+                  $('.info-cc .current-condition').text(weatherData.currentConditions.cond || '');
+                $('.info-cc .current-temperature').text((weatherData.currentConditions.temp || '') + '                     ');
+                if (weatherData.currentConditions.feelslike && weatherData.currentConditions.feelslike != weatherData.currentConditions.temp) {
+					$('.info-cc .text-windchill').text('               ' + (weatherData.currentConditions.feelsliketype || ''));
+                    $('.info-cc .current-windchill').text((weatherData.currentConditions.feelslike || '') + ' ');
 				} else {
 					$('.info-cc .text-windchill').text('');
                     $('.info-cc .current-windchill').text('');
 				};
-                $('.info-cc .current-humidity').text(weatherData.currentConditions.humidity + '%                  ');
-                $('.info-cc .current-dewpoint').text(weatherData.currentConditions.dewpoint + '°F ');
-                $('.info-cc .current-pressure').text('                     ' + weatherData.currentConditions.pressure + ' ' + weatherData.currentConditions.pressureTrend);
-                if (weatherData.currentConditions.wind == "CALM") {
+                $('.info-cc .current-humidity').text((weatherData.currentConditions.humidity || '') + '                  ');
+                $('.info-cc .current-dewpoint').text((weatherData.currentConditions.dewpoint || '') + ' ');
+                $('.info-cc .current-pressure').text('                     ' + (weatherData.currentConditions.pressure || '') + ' ' + (weatherData.currentConditions.pressureTrend || ''));                if (weatherData.currentConditions.wind == "CALM") {
                     $('.info-cc .current-wind').text('      ' + "CALM");
                 } else {
-                 $('.info-cc .current-wind').text('      ' + windWordSpacing(weatherData.currentConditions.wind) + " " + weatherData.currentConditions.windspeed + ' MPH' + 
-                  ((weatherData.currentConditions.gusts != "NONE") ? ' GUSTS: ' + weatherData.currentConditions.gusts.replace(' Mph', ' MPH') : ''));
+                 $('.info-cc .current-wind').text('      ' + windWordSpacing(weatherData.currentConditions.wind || 'CALM') + " " + (weatherData.currentConditions.windspeed || '') + 
+                  ((weatherData.currentConditions.gusts != "NONE" && weatherData.currentConditions.gusts) ? ' GUSTS: ' + weatherData.currentConditions.gusts.replace(' Mph', ' MPH') : ''));
                 }
-                $('.info-cc .current-visibility').text(weatherData.currentConditions.visibility + ' MI.                  ');
-                if (weatherData.currentConditions.ceiling != null) {
-					$('.info-cc .current-ceiling').text(weatherData.currentConditions.ceiling +' FT.')
+                $('.info-cc .current-visibility').text((weatherData.currentConditions.visibility || '') + '                  ');
+                if (weatherData.currentConditions.ceiling && weatherData.currentConditions.ceiling !== "") {
+					$('.info-cc .current-ceiling').text((weatherData.currentConditions.ceiling || '') +' FT.')
 				} else {
 					$('.info-cc .current-ceiling').text('UNLIMITED')
 				};
@@ -69,12 +67,11 @@ function slideKickOff() {
             hourlyObservation() {
                 $('#slide-title-text').css('font-family', 'mainfont');
                 $('#slide-title-text').text('   LATEST HOURLY OBSERVATIONS');
-                $('#slide-title-text').css('line-height', '90px');
-                for (let i = 0; i < locationConfig.surroundCities.citiesAmount; i++) {
+                $('#slide-title-text').css('line-height', '90px');                for (let i = 0; i < locationConfig.surroundCities.citiesAmount; i++) {
                     let l = i+1
                     $('.hourly-observations .cities .city-'+l).text(locReplace(weatherData.nearbyCities.conditions.cities[i].cityname).substring(0,15));
-					$('.hourly-observations .temps .temp-'+l).text(weatherData.nearbyCities.conditions.cities[i].temp + '               ')
-                    $('.hourly-observations .weathers .weather-'+l).text('                  '+condReplace(weatherData.nearbyCities.conditions.cities[i].condition));
+					$('.hourly-observations .temps .temp-'+l).text((weatherData.nearbyCities.conditions.cities[i].temp || '') + '               ')
+                    $('.hourly-observations .weathers .weather-'+l).text('                  '+condReplace(weatherData.nearbyCities.conditions.cities[i].condition || ''));
 					simpWind($('.hourly-observations .winds .wind-'+l), weatherData.nearbyCities.conditions.cities[i].wind, weatherData.nearbyCities.conditions.cities[i].windDirNum, weatherData.nearbyCities.conditions.cities[i].windspeed)
                 }
                 $('.hourly-observations').fadeIn(0);
@@ -292,20 +289,18 @@ function slideKickOff() {
             ,regionalConditions() {
                 $('#slide-title-text').css('font-family', 'mainfont');
                 $('#slide-title-text').css('line-height', '90px');
-                $('#slide-title-text').text('  CONDITIONS ACROSS THE REGION');
-                for (let i = 0; i < locationConfig.regionalCities.citiesAmount; i++) {
+                $('#slide-title-text').text('  CONDITIONS ACROSS THE REGION');                for (let i = 0; i < locationConfig.regionalCities.citiesAmount; i++) {
                     let l = i+1
                     $('.regional-conditions .cities .city-'+l).text(locReplace(weatherData.regionalConditions.cities[i].cityname).substring(0,15) + ", " + weatherData.regionalConditions.cities[i].statename);
-					$('.regional-conditions .temps .temp-'+l).text(weatherData.regionalConditions.cities[i].temp)
-                    $('.regional-conditions .weathers .weather-'+l).text('                    '+condReplace(weatherData.regionalConditions.cities[i].condition));
+					$('.regional-conditions .temps .temp-'+l).text(weatherData.regionalConditions.cities[i].temp || '')
+                    $('.regional-conditions .weathers .weather-'+l).text('                    '+condReplace(weatherData.regionalConditions.cities[i].condition || ''));
                 }
                 $('.regional-conditions').fadeIn(0);
                 setTimeout(function() {
                   $('.regional-conditions').fadeOut(0);
                   slideCallBack()
                 }, slideLength);
-            }
-            ,outlook() {
+            }            ,outlook() {
                 $('#slide-title-text').css('line-height', '90px');
                 $('#slide-title-text').css('font-family', 'mainfont');
                 $('#slide-title-text').text(' NAT\'L WEATHER SERVICE OUTLOOK');
@@ -314,6 +309,14 @@ function slideKickOff() {
                 let omonthname = omonth[od.getMonth()];
             
                 $('.outlook .month').text('           '+omonthname);
+                
+                // Populate outlook description with forecast data
+                if (weatherData.dayDesc && weatherData.dayDesc.times && weatherData.dayDesc.times.length > 0 && !weatherData.dayDesc.noReport) {
+                    const forecastText = weatherData.dayDesc.times[0].forecast || "NO REPORT";
+                    $('.outlook .outlook-desc').text(forecastText);
+                } else {
+                    $('.outlook .outlook-desc').text("NO REPORT");
+                }
             
                 $('.outlook').fadeIn(0);
                 setTimeout(function() {

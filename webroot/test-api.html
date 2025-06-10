@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NWS API Test</title>
+    <script src="js/nwsClient.js"></script>
+</head>
+<body>    <h1>NWS API Test</h1>
+    <button onclick="testBasicAPI()">Test Basic API</button>
+    <button onclick="testAPI()">Test Current Conditions</button>
+    <button onclick="testForecast()">Test Forecast</button>
+    <pre id="results"></pre>
+
+    <script>        async function testAPI() {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.textContent = 'Testing Current Conditions...';
+            
+            try {
+                // Test Kingsland, GA coordinates
+                console.log('Starting current conditions test...');
+                const data = await nwsClient.getCurrentConditions(30.7991, -81.6956);
+                resultsDiv.textContent = 'SUCCESS:\n' + JSON.stringify(data, null, 2);
+                console.log('Current conditions data:', data);
+            } catch (error) {
+                console.error('Error in test:', error);
+                resultsDiv.textContent = 'ERROR:\n' + error.message + '\n\nStack:\n' + error.stack;
+            }
+        }
+
+        async function testForecast() {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.textContent = 'Testing Forecast...';
+            
+            try {
+                // Test Kingsland, GA coordinates
+                console.log('Starting forecast test...');
+                const data = await nwsClient.getForecast(30.7991, -81.6956);
+                resultsDiv.textContent = 'SUCCESS:\n' + JSON.stringify(data, null, 2);
+                console.log('Forecast data:', data);
+            } catch (error) {
+                console.error('Error in forecast test:', error);
+                resultsDiv.textContent = 'ERROR:\n' + error.message + '\n\nStack:\n' + error.stack;
+            }
+        }
+
+        // Test basic API connectivity
+        async function testBasicAPI() {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.textContent = 'Testing basic API connectivity...';
+            
+            try {
+                const response = await fetch('https://api.weather.gov/points/30.7991,-81.6956');
+                const data = await response.json();
+                resultsDiv.textContent = 'BASIC API SUCCESS:\n' + JSON.stringify(data, null, 2);
+                console.log('Basic API response:', data);
+            } catch (error) {
+                console.error('Basic API error:', error);
+                resultsDiv.textContent = 'BASIC API ERROR:\n' + error.message;
+            }
+        }
+    </script>
+</body>
+</html>
