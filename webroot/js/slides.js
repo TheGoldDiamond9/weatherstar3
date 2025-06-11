@@ -1,3 +1,154 @@
+Shibedev12
+shibedev12
+Idle
+too lazy
+picelboi (ピセルボイ) — Yesterday at 2:27 PM
+really only know it sells fried chicken
+グーバー (goober)
+[AERO]
+ — Yesterday at 2:27 PM
+my ahh is NOT a real one
+😭
+JiJoe — Yesterday at 2:28 PM
+thats like what theyre least known for
+グーバー (goober)
+[AERO]
+ — Yesterday at 2:28 PM
+Look look! I'm not misterscan, I'm theythemscan 💔
+JiJoe — Yesterday at 2:28 PM
+zach might know, hes in geoegia
+alex
+[GD]
+ — Yesterday at 2:48 PM
+nick robinson brought bojangles to norway i think
+JiJoe — Yesterday at 2:50 PM
+bro what
+retsloc
+[AERO]
+ — Yesterday at 3:05 PM
+5:15
+https://youtu.be/3KIRzgqespc?si=Xsdq4Z5LvHxPNE6F
+YouTube
+Nick Robinson (Babylonian)
+The "Don't Know What Time It Is" Challenge
+Image
+this video is actually amazing
+Mice (マウス)
+[wonk]
+ — Yesterday at 3:47 PM
+I hate spectrum 🥀
+They got a outage in my area rn
+グーバー (goober)
+[AERO]
+ — Yesterday at 3:48 PM
+you should swap to charter communications
+😼
+Mice (マウス)
+[wonk]
+ — Yesterday at 3:48 PM
+Same thing vro 🥀
+グーバー (goober)
+[AERO]
+ — Yesterday at 3:49 PM
+ik
+😼
+Mice (マウス)
+[wonk]
+ — Yesterday at 3:50 PM
+🥷
+Mice (マウス)
+[wonk]
+ — Yesterday at 3:58 PM
+I’m on my trampoline rn
+Only place with service 🐳
+グーバー (goober)
+[AERO]
+ — Yesterday at 4:01 PM
+nearly deleted this, this is the patch for the 3000
+var slideLength = 10000;
+var travelForecastLength = 60000;
+var currentProgram;
+var currentDiv;
+var goOn = true
+function slideKickOff() {
+Expand
+24 KB
+this fixes the extended forecast speed header glitch where it keeps speeding up
+ive had this for a while while
+im just too lazy to make a PR
+🤑
+Mice (マウス)
+[wonk]
+ — Yesterday at 4:20 PM
+Bro shibe 
+グーバー (goober)
+[AERO]
+ — Yesterday at 4:20 PM
+wut
+Mice (マウス)
+[wonk]
+ — Yesterday at 4:20 PM
+Hackintoshing is cooked next year 🥀
+グーバー (goober)
+[AERO]
+ — Yesterday at 4:20 PM
+hackintoshing has BEEN cooked
+💔
+Mice (マウス)
+[wonk]
+ — Yesterday at 4:21 PM
+No like
+It would be like no longer be possible level of cooked 
+picelboi (ピセルボイ) — Yesterday at 4:22 PM
+they barring all hackintoshes or they removing intel support
+Mice (マウス)
+[wonk]
+ — Yesterday at 4:22 PM
+Removing Intel
+Long ahh essay
+ Honestly it’s been super fun to be able to run MacOS on things that it never was intended to run. MacOS is pretty much the only OS that isn’t poorly supported by some apps (namely adobe) that isn’t windows. Sure, you can install Linux easily, but what’s the fun in that. I liked watching hackintoshes and even though I haven’t set up a physical one (yet), it’s a pretty nice hobby that got me into computer science and the likes. It’s sad to see that Apple is finally canning Intel, but we got to see one last visual overhaul at least. 
+picelboi (ピセルボイ) — Yesterday at 4:23 PM
+ehhh I mean you can still use the previous version for a bit of a long while before it becomes obsolete
+so not exactly doomsday for just daily use
+Mice (マウス)
+[wonk]
+ — Yesterday at 4:24 PM
+True
+Mac Pro prices bouta go 📉📉
+𝖊𝖛𝖎𝖑 gurt (thecleanladybug)
+[RVLS]
+ — Yesterday at 5:25 PM
+who the hell eats at long john slivers
+picelboi (ピセルボイ) — Yesterday at 5:26 PM
+never seen anyone 
+never tried it either
+𝖊𝖛𝖎𝖑 gurt (thecleanladybug)
+[RVLS]
+ — Yesterday at 5:31 PM
+the only one near me is at the moa
+and like
+that’s gotta be a drug front
+Dalk — Yesterday at 5:32 PM
+wtf is the moa
+all i can think is minn??? somethieng something
+𝖊𝖛𝖎𝖑 gurt (thecleanladybug)
+[RVLS]
+ — Yesterday at 5:33 PM
+mall of america
+Dalk — Yesterday at 5:33 PM
+ohhhhhh
+﻿
+Azzy — 8:08 PM
+Yeah I know that
+But I'm kinda too lazy rn to do that
+Wanna figure out whether or not it's possible to make it look somewhat good before I go in depth with it
+グーバー (goober)
+[AERO]
+ — Yesterday at 4:04 PM
+im just too lazy to make a PR
+picelboi (ピセルボイ) — 4/27/25, 7:46 PM
+(too lazy to boot up my desktop)
+Image
 var slideLength = 10000;
 var travelForecastLength = 60000;
 var currentProgram;
@@ -203,42 +354,52 @@ function slideKickOff() {
                 $('#travel-content .weathers').fadeIn(0)
                 $('#travel-content .his').fadeIn(0)
                 $('#travel-content .lows').fadeIn(0)
-		$('#slides').fadeOut(0)
-				
-				$('#travel-container #travel-content .cities').text("\n\nCITY")
-				$('#travel-container #travel-content .weathers').text("\n\nWEATHER")
-				$('#travel-container #travel-content .his').text("\n\nHI")
-				$('#travel-container #travel-content .lows').text("\n\nLOW")
+                $('#slides').fadeOut(0)
 
-				for (var i = 0; i < weatherData.travel.cities.length; i++) {
-					let prevTextCity = $('#travel-container #travel-content .cities').text()
-					$('#travel-container #travel-content .cities').text(prevTextCity += "\n" + weatherData.travel.cities[i].displayname)
-					let prevTextWeathers = $('#travel-container #travel-content .weathers').text()
-					$('#travel-container #travel-content .weathers').text(prevTextWeathers += "\n" + condReplace(weatherData.travel.cities[i].days[0].condition))
-					let prevTextHigh = $('#travel-container #travel-content .his').text()
-					$('#travel-container #travel-content .his').text(prevTextHigh += "\n" + weatherData.travel.cities[i].days[0].high)
-					let prevTextLow = $('#travel-container #travel-content .lows').text()
-					$('#travel-container #travel-content .lows').text(prevTextLow += "\n" + weatherData.travel.cities[i].days[0].low)
-				}
-            
-                $('#travel-container #travel-title-container').marquee({speed: 110, direction: 'up', pauseOnHover: false});
-                $('#travel-container #travel-title-container').on('finished', function() {$('#travel-container #travel-title-container').marquee('destroy'), $('#travel-container #travel-title-container').fadeOut(0)});
+                $('#travel-container #travel-content .cities').text("\n\nCITY")
+                $('#travel-container #travel-content .weathers').text("\n\nWEATHER")
+                $('#travel-container #travel-content .his').text("\n\nHI")
+                $('#travel-container #travel-content .lows').text("\n\nLOW")
+
+                for (var i = 0; i < weatherData.travel.cities.length; i++) {
+                    let prevTextCity = $('#travel-container #travel-content .cities').text()
+                    $('#travel-container #travel-content .cities').text(prevTextCity += "\n" + weatherData.travel.cities[i].displayname)
+                    let prevTextWeathers = $('#travel-container #travel-content .weathers').text()
+                    $('#travel-container #travel-content .weathers').text(prevTextWeathers += "\n" + condReplace(weatherData.travel.cities[i].days[0].condition))
+                    let prevTextHigh = $('#travel-container #travel-content .his').text()
+                    $('#travel-container #travel-content .his').text(prevTextHigh += "\n" + weatherData.travel.cities[i].days[0].high)
+                    let prevTextLow = $('#travel-container #travel-content .lows').text()
+                    $('#travel-container #travel-content .lows').text(prevTextLow += "\n" + weatherData.travel.cities[i].days[0].low)
+                }
+
+                // This is where the issue occurs. 
+                // The marquee is not being destroyed properly, causing it to not work as expected.
+                // In lamens terms, we didnt exactly remove it correctly, making the whole thing like compound and break.
+                // this fix appears to work, if it doesnt work, let me know lol.
+                var $titleContainer = $('#travel-container #travel-title-container');
+                $titleContainer.marquee('destroy');
+                $titleContainer.off('finished');             
+                $titleContainer.marquee({speed: 110, direction: 'up', pauseOnHover: false});
+                $titleContainer.on('finished', function() {
+                    $titleContainer.marquee('destroy');
+                    $titleContainer.fadeOut(0)
+                });
+
                 $('#travel-content .cities').marquee({speed: 110, direction: 'up', pauseOnHover: false});
-                $('#travel-content .cities').on('finished', function() {$('#travel-content .cities').fadeOut(0)});
+                $('#travel-content .cities').off('finished').on('finished', function() {$('#travel-content .cities').fadeOut(0)});
                 $('#travel-content .weathers').marquee({speed: 110, direction: 'up', pauseOnHover: false});
-                $('#travel-content .weathers').on('finished', function() {$('#travel-content .weathers').fadeOut(0)});
+                $('#travel-content .weathers').off('finished').on('finished', function() {$('#travel-content .weathers').fadeOut(0)});
                 $('#travel-content .his').marquee({speed: 110, direction: 'up', pauseOnHover: false});
-                $('#travel-content .his').on('finished', function() {$('#travel-content .his').fadeOut(0)});
+                $('#travel-content .his').off('finished').on('finished', function() {$('#travel-content .his').fadeOut(0)});
                 $('#travel-content .lows').marquee({speed: 110, direction: 'up', pauseOnHover: false});
-                $('#travel-content .lows').on('finished', function() {$('#travel-content .lows').fadeOut(0)});
-                
-				setTimeout(function() {
+                $('#travel-content .lows').off('finished').on('finished', function() {$('#travel-content .lows').fadeOut(0)});
+
+                setTimeout(function() {
                     $('#travel-container').fadeOut(0);
                     $('#travel-background').fadeOut(0);
-					$('#slides').fadeIn(0)
+                    $('#slides').fadeIn(0)
                     slideCallBack()
                 }, travelForecastLength);
-            
             }
             ,almanac() {
                 const almonth = ["January","February","March","April","May","June","July","August","September","October","November","December"];
@@ -357,3 +518,5 @@ function slideKickOff() {
 		};
 	}//END OF showSlides() FUNCTION
 }//end of slideKickOff() function
+slides.js
+24 KB
