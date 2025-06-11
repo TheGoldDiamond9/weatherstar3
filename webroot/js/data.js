@@ -78,26 +78,67 @@ var weatherData = {
 }
 
 function grabData() {  function grabCurrentConditions() {
-    // Use NWS API for current conditions
-    nwsClient.getCurrentConditions(locationConfig.mainCity.lat, locationConfig.mainCity.lon)
+    // Use enhanced NWS API for current conditions
+    nwsClient.getEnhancedCurrentConditions(locationConfig.mainCity.lat, locationConfig.mainCity.lon)
       .then(function(data) {        try {
-          console.log('Current conditions data received:', data);
-          weatherData.currentConditions.cityname = locationConfig.mainCity.displayname
-          weatherData.currentConditions.cond = data.wxPhraseLong || ""
-          weatherData.currentConditions.gusts = (data.windGust ? data.windGust + " MPH" : "NONE")
-          weatherData.currentConditions.humidity = (data.relativeHumidity !== null && data.relativeHumidity !== undefined) ? data.relativeHumidity + "%" : ""
-          weatherData.currentConditions.pressure = (data.pressure !== null && data.pressure !== undefined) ? data.pressure + " IN" : ""
-          weatherData.currentConditions.pressureTrend = data.pressureTendency || ""
-          weatherData.currentConditions.temp = (data.temperature !== null && data.temperature !== undefined) ? data.temperature + "°" : ""
-          weatherData.currentConditions.wind = data.windDirectionCardinal || "CALM"
-          weatherData.currentConditions.windDirNum = data.windDirection || ""
-          weatherData.currentConditions.windspeed = (data.windSpeed !== null && data.windSpeed !== undefined) ? data.windSpeed + " MPH" : ""
-          weatherData.currentConditions.feelslike = (data.temperatureFeelsLike !== null && data.temperatureFeelsLike !== undefined) ? data.temperatureFeelsLike + "°" : ""
-          weatherData.currentConditions.feelsliketype = ((data.temperatureFeelsLike && data.temperatureFeelsLike < 65) ? "WIND CHILL: " : "HEAT INDEX: ")
-          weatherData.currentConditions.dewpoint = (data.dewpoint !== null && data.dewpoint !== undefined) ? data.dewpoint + "°" : ""
-          weatherData.currentConditions.visibility = (data.visibility !== null && data.visibility !== undefined) ? data.visibility + " MI" : ""
-          weatherData.currentConditions.ceiling = (data.cloudCeiling !== null && data.cloudCeiling !== undefined) ? data.cloudCeiling + " FT" : ""
-          weatherData.currentConditions.noReport = false
+          console.log('Enhanced current conditions data received:', data);
+          weatherData.currentConditions.cityname = locationConfig.mainCity.displayname;
+          weatherData.currentConditions.cond = data.wxPhraseLong ? weatherTextFormatter.formatCondition(data.wxPhraseLong) : "";
+          weatherData.currentConditions.gusts = (data.windGust ? data.windGust + " MPH" : "NONE");
+          
+          // Use computed humidity if available, with fallback formatting
+          if (data.relativeHumidity !== null && data.relativeHumidity !== undefined) {
+            weatherData.currentConditions.humidity = ThermoHelper.formatHumidity(data.relativeHumidity);
+          } else {
+            weatherData.currentConditions.humidity = "";
+          }
+          
+          // Use enhanced pressure formatting with trends
+          if (data.pressureFormatted) {
+            weatherData.currentConditions.pressure = data.pressureFormatted;
+          } else if (data.pressure !== null && data.pressure !== undefined) {
+            weatherData.currentConditions.pressure = data.pressure + " IN";
+          } else {
+            weatherData.currentConditions.pressure = "";
+          }
+          
+          weatherData.currentConditions.pressureTrend = data.pressureTrend || data.pressureTendency || "";
+          weatherData.currentConditions.temp = (data.temperature !== null && data.temperature !== undefined) ? ThermoHelper.formatTemperature(data.temperature) : "";
+          weatherData.currentConditions.wind = data.windDirectionCardinal || "CALM";
+          weatherData.currentConditions.windDirNum = data.windDirection || "";
+          weatherData.currentConditions.windspeed = (data.windSpeed !== null && data.windSpeed !== undefined) ? data.windSpeed + " MPH" : "";
+          
+          // Use computed apparent temperature
+          if (data.temperatureFeelsLike !== null && data.temperatureFeelsLike !== undefined) {
+            weatherData.currentConditions.feelslike = ThermoHelper.formatTemperature(data.temperatureFeelsLike);
+            weatherData.currentConditions.feelsliketype = data.feelsLikeType ? data.feelsLikeType + ": " : "";
+          } else {
+            weatherData.currentConditions.feelslike = "";
+            weatherData.currentConditions.feelsliketype = "";
+          }
+          
+          // Use computed dewpoint
+          if (data.dewpoint !== null && data.dewpoint !== undefined) {
+            weatherData.currentConditions.dewpoint = ThermoHelper.formatTemperature(data.dewpoint);
+          } else {
+            weatherData.currentConditions.dewpoint = "";
+          }
+          
+          weatherData.currentConditions.visibility = (data.visibility !== null && data.visibility !== undefined) ? FormatHelper.formatVisibility(data.visibility) : "";
+          
+          // Use enhanced ceiling formatting
+          if (data.ceilingFormatted) {
+            weatherData.currentConditions.ceiling = data.ceilingFormatted;
+          } else if (data.cloudCeiling !== null && data.cloudCeiling !== undefined) {
+            weatherData.currentConditions.ceiling = FormatHelper.formatCeiling(data.cloudCeiling);
+          } else {
+            weatherData.currentConditions.ceiling = "";
+          }
+          
+          // Use MTD precipitation if available
+          weatherData.currentConditions.monthPrecip = data.monthPrecip || "";
+          
+          weatherData.currentConditions.noReport = false;
         } catch (error) {
           weatherData.currentConditions.cityname = locationConfig.mainCity.displayname
           weatherData.currentConditions.cond = ""
@@ -137,9 +178,9 @@ function grabData() {  function grabCurrentConditions() {
   }
   grabCurrentConditions();  function grabNearbyConditions() {
     weatherData.nearbyCities.conditions.cities = []
-      // Process each nearby city
-    const promises = [];
-    for (var i = 0; i < locationConfig.surroundCities.citiesAmount; i++) {
+    
+    // Process each nearby city
+    const promises = [];    for (var i = 0; i < locationConfig.surroundCities.citiesAmount; i++) {
       const cityData = locationConfig.surroundCities.cities[i];
       const promise = nwsClient.getCurrentConditions(cityData.lat, cityData.lon)
         .then(function(data) {
@@ -147,10 +188,10 @@ function grabData() {  function grabCurrentConditions() {
             noReport: false,
             cityname: cityData.displayname,
             statename: cityData.state,
-            temp: (data.temperature !== null && data.temperature !== undefined) ? data.temperature + "°" : "",
-            condition: weatherTextFormatter.formatCondition(data.wxPhraseShort),
+            temp: data.temperature || "",
+            condition: data.wxPhraseShort ? weatherTextFormatter.formatCondition(data.wxPhraseShort) : "",
             wind: data.windDirectionCardinal || "CALM",
-            windspeed: (data.windSpeed !== null && data.windSpeed !== undefined) ? data.windSpeed : "",
+            windspeed: data.windSpeed || "",
             windDirNum: data.windDirection || ""
           };
           return nearbyCitiesObj;
@@ -205,8 +246,7 @@ function grabData() {  function grabCurrentConditions() {
             if (!todayPeriod.isDaytime && periods.length > 1) {
               todayPeriod = periods[1]; // Use tomorrow if today is nighttime
             }
-            
-            const nearbyCitiesObjF = {
+              const nearbyCitiesObjF = {
               noReport: false,
               cityname: cityData.displayname,
               low: todayPeriod.temperature || "",
@@ -258,25 +298,24 @@ function grabData() {  function grabCurrentConditions() {
           condition: ""
         };
         weatherData.nearbyCities.forecast.cities.push(nearbyCitiesObjF);
-      }
-    });  }
-  grabNearbyForecast()
+      }    });  }
+  grabNearbyForecast();
   function grabRegionalConditions() {
     weatherData.regionalConditions.cities = []
-      // Process each regional city
-    const promises = [];
-    for (var i = 0; i < locationConfig.regionalCities.citiesAmount; i++) {
+    
+    // Process each regional city
+    const promises = [];    for (var i = 0; i < locationConfig.regionalCities.citiesAmount; i++) {
       const cityData = locationConfig.regionalCities.cities[i];
       const promise = nwsClient.getCurrentConditions(cityData.lat, cityData.lon)
         .then(function(data) {
           const nearbyCitiesObj = {
             noReport: false,
-            cityname: cityData.displayname,
+            cityname: FormatHelper.removeUSFromCityName(cityData.displayname),
             statename: cityData.state,
-            temp: (data.temperature !== null && data.temperature !== undefined) ? data.temperature + "°" : "",
-            condition: weatherTextFormatter.formatCondition(data.wxPhraseShort),
+            temp: data.temperature || "",
+            condition: data.wxPhraseShort ? FormatHelper.shortenCondition(weatherTextFormatter.formatCondition(data.wxPhraseShort)) : "",
             wind: data.windDirectionCardinal || "CALM",
-            windspeed: (data.windSpeed !== null && data.windSpeed !== undefined) ? data.windSpeed : "",
+            windspeed: data.windSpeed || "",
             windDirNum: data.windDirection || ""
           };
           return nearbyCitiesObj;
@@ -325,8 +364,7 @@ function grabData() {  function grabCurrentConditions() {
           const periods = forecastData.daily;
           if (periods && periods.length > 0) {
             const todayPeriod = periods[0];
-            
-            weatherData.travel.cities[i].days[0].high = todayPeriod.temperature || ""
+              weatherData.travel.cities[i].days[0].high = todayPeriod.temperature || ""
             weatherData.travel.cities[i].days[0].low = ""
             weatherData.travel.cities[i].days[0].condition = todayPeriod.shortForecast ? weatherTextFormatter.formatCondition(todayPeriod.shortForecast) : ""
             weatherData.travel.cities[i].days[0].dayNight = todayPeriod.isDaytime ? "D" : "N"
@@ -401,7 +439,7 @@ function grabData() {  function grabCurrentConditions() {
           // Process up to 5 days of forecast
           for (var i = 0; i < Math.min(weatherData.extendedForecast.days.length, periods.length); i++) {
             const period = periods[i];
-            weatherData.extendedForecast.days[i].cond = period.detailedForecast ? period.detailedForecast.replace('Scattered ', "Sct'd ").replace('Thunderstorms',"T'Storms").replace('Thundershowers',"T'Showers") : ""
+            weatherData.extendedForecast.days[i].cond = period.detailedForecast ? weatherTextFormatter.formatCondition(period.detailedForecast) : ""
             weatherData.extendedForecast.days[i].dayname = period.name ? period.name.toUpperCase() : ""
             weatherData.extendedForecast.days[i].high = period.temperature || ""
             weatherData.extendedForecast.days[i].icon = period.icon || 44
@@ -436,24 +474,66 @@ function grabData() {  function grabCurrentConditions() {
           weatherData.extendedForecast.days[i].icon = 44
           weatherData.extendedForecast.days[i].low = ""
           weatherData.extendedForecast.days[i].windspeed = ""
-        }
-      })  }
-  grabExtended()
+        }      })  }
+  grabExtended();
   function grabAlmanac() {
-    // Note: NWS doesn't provide almanac data like sunrise/sunset times
-    // This functionality would need an external astronomy API
-    weatherData.almanac.noReport = true
-    weatherData.almanac.sunrisetoday = ""
-    weatherData.almanac.sunrisetomorow = ""
-    weatherData.almanac.sunsettoday = ""
-    weatherData.almanac.sunsettomorrow = ""
-    weatherData.almanac.today = ""
-    weatherData.almanac.tomorrow = ""
-    weatherData.almanac.avglowtoday = ""
-    weatherData.almanac.avghightoday = ""
-    weatherData.almanac.avglowtomorrow = ""
-    weatherData.almanac.avghightomorow = ""
-    weatherData.almanac.normalprecip = "NO REPORT"
+    // Use almanac helper for astronomical data
+    if (typeof almanacHelper !== 'undefined') {
+      const today = new Date();
+      const tomorrow = new Date(today);
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      
+      // Get today's almanac data
+      almanacHelper.getAlmanac(locationConfig.mainCity.lat, locationConfig.mainCity.lon, today)
+        .then(function(todayData) {
+          if (todayData) {
+            weatherData.almanac.sunrisetoday = todayData.sunrise || "";
+            weatherData.almanac.sunsettoday = todayData.sunset || "";
+            weatherData.almanac.noReport = false;
+          }
+          
+          // Get tomorrow's almanac data
+          return almanacHelper.getAlmanac(locationConfig.mainCity.lat, locationConfig.mainCity.lon, tomorrow);
+        })
+        .then(function(tomorrowData) {
+          if (tomorrowData) {
+            weatherData.almanac.sunrisetomorow = tomorrowData.sunrise || "";
+            weatherData.almanac.sunsettomorrow = tomorrowData.sunset || "";
+          }
+          
+          // Set date labels
+          const todayStr = dateFns.format(today, "MMM D");
+          const tomorrowStr = dateFns.format(tomorrow, "MMM D");
+          weatherData.almanac.today = todayStr;
+          weatherData.almanac.tomorrow = tomorrowStr;
+          
+          console.log('Almanac data updated:', weatherData.almanac);
+        })
+        .catch(function(error) {
+          console.warn('Could not get almanac data:', error);
+          weatherData.almanac.noReport = true;
+          weatherData.almanac.sunrisetoday = "";
+          weatherData.almanac.sunrisetomorow = "";
+          weatherData.almanac.sunsettoday = "";
+          weatherData.almanac.sunsettomorrow = "";
+        });
+    } else {
+      // Fallback when almanac helper is not available
+      weatherData.almanac.noReport = true;
+      weatherData.almanac.sunrisetoday = "";
+      weatherData.almanac.sunrisetomorow = "";
+      weatherData.almanac.sunsettoday = "";
+      weatherData.almanac.sunsettomorrow = "";
+    }
+    
+    // Set other almanac fields to default/unavailable values
+    weatherData.almanac.today = weatherData.almanac.today || dateFns.format(new Date(), "MMM D");
+    weatherData.almanac.tomorrow = weatherData.almanac.tomorrow || dateFns.format(dateFns.addDays(new Date(), 1), "MMM D");
+    weatherData.almanac.avglowtoday = "";
+    weatherData.almanac.avghightoday = "";
+    weatherData.almanac.avglowtomorrow = "";
+    weatherData.almanac.avghightomorow = "";
+    weatherData.almanac.normalprecip = "NO REPORT";
   }
   grabAlmanac()
   function grabMoons() {

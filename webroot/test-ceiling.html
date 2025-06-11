@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Ceiling Display Fix</title>
+    <style>
+        body { font-family: monospace; padding: 20px; background: #000; color: #0f0; }
+        .section { margin: 20px 0; padding: 10px; border: 1px solid #0f0; }
+        .success { color: #0f0; }
+        .error { color: #f00; }
+        .warning { color: #ff0; }
+        .info { color: #0ff; }
+    </style>
+</head>
+<body>
+    <h1>Weather Star 3000 - Ceiling Display Fix Test</h1>
+    
+    <div class="section">
+        <h2>🔧 Testing Ceiling Format Fix</h2>
+        <div id="ceiling-test">Running ceiling format tests...</div>
+    </div>
+
+    <div class="section">
+        <h2>📊 NWS Data Test</h2>
+        <div id="nws-test">Testing with real NWS data...</div>
+    </div>
+
+    <script src="js/nwsClient.js"></script>
+    <script>
+        // Test ceiling formatting function
+        function testCeilingFormat() {
+            const testDiv = document.getElementById('ceiling-test');
+            
+            // Test the new formatCeiling function
+            const tests = [
+                { meters: null, expected: null, description: "Null meters" },
+                { meters: 914, expected: 3000, description: "3000 feet (low ceiling)" },
+                { meters: 1524, expected: "1.0 MI", description: "5000 feet → 1 mile" },
+                { meters: 2438, expected: "1.5 MI", description: "8000 feet → 1.5 miles" },
+                { meters: 3048, expected: "2.0 MI", description: "10000 feet → 2 miles" }
+            ];
+            
+            let results = '<div class="info"><strong>Ceiling Format Tests:</strong></div>';
+            let allPassed = true;
+            
+            tests.forEach(test => {
+                const result = window.nwsClient.formatCeiling(test.meters);
+                const passed = (result === test.expected) || 
+                               (test.expected && result && result.toString() === test.expected.toString());
+                
+                if (passed) {
+                    results += `<div class="success">✅ ${test.description}: ${result}</div>`;
+                } else {
+                    results += `<div class="error">❌ ${test.description}: Got ${result}, expected ${test.expected}</div>`;
+                    allPassed = false;
+                }
+            });
+            
+            if (allPassed) {
+                results += '<div class="success"><strong>🎉 All ceiling format tests passed!</strong></div>';
+            } else {
+                results += '<div class="error"><strong>❌ Some tests failed</strong></div>';
+            }
+            
+            testDiv.innerHTML = results;
+        }
+        
+        // Test with real NWS data
+        async function testNWSData() {
+            const testDiv = document.getElementById('nws-test');
+            testDiv.innerHTML = 'Testing with Kingsland, GA coordinates...';
+            
+            try {
+                const conditions = await window.nwsClient.getCurrentConditions(30.7991, -81.6956);
+                console.log('NWS ceiling test data:', conditions);
+                
+                const ceiling = conditions.cloudCeiling;
+                
+                let result = '<div class="info"><strong>Real NWS Ceiling Data:</strong></div>';
+                
+                if (ceiling !== null && ceiling !== undefined) {
+                    if (typeof ceiling === 'string' && ceiling.includes(' MI')) {
+                        result += `<div class="success">✅ High ceiling converted to miles: ${ceiling}</div>`;
+                    } else if (typeof ceiling === 'number') {
+                        result += `<div class="success">✅ Low ceiling in feet: ${ceiling} FT</div>`;
+                    } else {
+                        result += `<div class="warning">⚠️ Ceiling format: ${ceiling} (type: ${typeof ceiling})</div>`;
+                    }
+                    
+                    result += `<div class="info">📝 Display will show: ${ceiling.toString().includes(' MI') ? ceiling : ceiling + ' FT.'}</div>`;
+                } else {
+                    result += '<div class="warning">⚠️ No ceiling data available (will show UNLIMITED)</div>';
+                }
+                
+                // Show visibility for comparison
+                if (conditions.visibility) {
+                    result += `<div class="info">👁️ Visibility: ${conditions.visibility} MI</div>`;
+                }
+                
+                testDiv.innerHTML = result;
+                
+            } catch (error) {
+                testDiv.innerHTML = `<div class="error">❌ Test failed: ${error.message}</div>`;
+                console.error('NWS test error:', error);
+            }
+        }
+        
+        // Run tests when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            testCeilingFormat();
+            testNWSData();
+        });
+    </script>
+</body>
+</html>

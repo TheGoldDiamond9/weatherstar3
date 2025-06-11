@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Regional Conditions Test</title>
+    <link rel="stylesheet" href="star3000.css">
+    <style>
+        body { 
+            background: black; 
+            color: white; 
+            padding: 20px;
+        }
+        .test-container {
+            width: 1620px;
+            height: 600px;
+            position: relative;
+            border: 1px solid #333;
+            margin: 20px 0;
+        }
+        .debug-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+        .debug-overlay .column-marker {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            border: 1px dashed rgba(255,255,255,0.3);
+        }
+        .debug-overlay .cities-marker { left: 200px; }
+        .debug-overlay .weathers-marker { left: 380px; }
+        .debug-info {
+            background: #333;
+            padding: 10px;
+            margin: 10px 0;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>Regional Conditions Layout Test</h1>
+    
+    <div class="debug-info">
+        Testing the regional conditions layout with the actual CSS to see if weather conditions overlay city names.
+    </div>
+
+    <div class="test-container">
+        <div class="debug-overlay">
+            <div class="column-marker cities-marker"></div>
+            <div class="column-marker weathers-marker"></div>
+        </div>
+        
+        <div class="regional-conditions" style="display: block;">
+            <div class="header">CITY                WEATHER   °F</div>
+            <div class="cities">
+                <div class="city-1">MIAMI</div>
+                <div class="city-2">ORLANDO</div>
+                <div class="city-3">TAMPA</div>
+                <div class="city-4">TALLAHASSEE</div>
+                <div class="city-5">GAINESVILLE</div>
+                <div class="city-6">CLEARWATER</div>
+                <div class="city-7">JACKSONVILLE</div>
+            </div>
+            <div class="weathers">
+                <div class="weather-1">Sunny</div>
+                <div class="weather-2">P Cloudy</div>
+                <div class="weather-3">Cloudy</div>
+                <div class="weather-4">Lt Rain</div>
+                <div class="weather-5">T-Storms</div>
+                <div class="weather-6">Fair</div>
+                <div class="weather-7">Clear</div>
+            </div>
+            <div class="temps">
+                <div class="temp-1">85°F</div>
+                <div class="temp-2">82°F</div>
+                <div class="temp-3">79°F</div>
+                <div class="temp-4">76°F</div>
+                <div class="temp-5">81°F</div>
+                <div class="temp-6">84°F</div>
+                <div class="temp-7">87°F</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="debug-info">
+        Expected: Cities in left column, weather conditions in middle column, temperatures in right column.
+        <br>Issue: If weather text appears on top of city names, the positioning CSS isn't working.
+        <br>Dashed lines show expected column boundaries.
+    </div>
+</body>
+</html>

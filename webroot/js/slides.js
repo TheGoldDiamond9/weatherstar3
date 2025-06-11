@@ -121,10 +121,9 @@ function slideKickOff() {
                 }
                 function dtimeThree() {
                     $('.daypart-forecast .forecast-1').text(weatherData.dayDesc.times[2].timetitle + '...' + weatherData.dayDesc.times[2].forecast);
-                }
-                $('#slide-title-text').css('font-family', 'smallfont');
+                }                $('#slide-title-text').css('font-family', 'smallfont');
                 $('#slide-title-text').css('line-height', '45px');
-                $('#slide-title-text').text('        YOUR TWC FORECAST');
+                $('#slide-title-text').text(''); // Remove "YOUR TWC FORECAST" title
                 if (alerttext == "") {
 					setTimeout(() => {dtimeOne()}, 1);
                     //dtimeOne()
@@ -272,13 +271,12 @@ function slideKickOff() {
             ,regionalForecast() {
                 $('#slide-title-text').css('font-family', 'mainfont');
                 $('#slide-title-text').css('line-height', '90px');
-                $('#slide-title-text').text('   FORECAST ACROSS THE REGION');
-				for (let i = 0; i < locationConfig.surroundCities.citiesAmount; i++) {
-                    let l = i+1
-                    $('.regional-forecast .cities .city-'+l).text(locReplace(weatherData.nearbyCities.forecast.cities[i].cityname).substring(0,15));
-					$('.regional-forecast .lows .low-'+l).text(weatherData.nearbyCities.forecast.cities[i].low+'    ')
-					$('.regional-forecast .highs .hi-'+l).text(weatherData.nearbyCities.forecast.cities[i].high)
-                    $('.regional-forecast .weathers .weather-'+l).text('               '+condReplace(weatherData.nearbyCities.forecast.cities[i].condition));
+                $('#slide-title-text').text('   FORECAST ACROSS THE REGION');				for (let i = 0; i < locationConfig.surroundCities.citiesAmount; i++) {
+                    let l = i+1;
+                    $('.regional-forecast .cities .city-'+l).text((weatherData.nearbyCities.forecast.cities[i].cityname || '').substring(0,15));
+					$('.regional-forecast .lows .low-'+l).text((weatherData.nearbyCities.forecast.cities[i].low || ''));
+					$('.regional-forecast .highs .hi-'+l).text((weatherData.nearbyCities.forecast.cities[i].high || ''));
+                    $('.regional-forecast .weathers .weather-'+l).text((weatherData.nearbyCities.forecast.cities[i].condition || '').substring(0,12));
                 }
                 $('.regional-forecast').fadeIn(0);
                 setTimeout(function() {
@@ -290,10 +288,10 @@ function slideKickOff() {
                 $('#slide-title-text').css('font-family', 'mainfont');
                 $('#slide-title-text').css('line-height', '90px');
                 $('#slide-title-text').text('  CONDITIONS ACROSS THE REGION');                for (let i = 0; i < locationConfig.regionalCities.citiesAmount; i++) {
-                    let l = i+1
-                    $('.regional-conditions .cities .city-'+l).text(locReplace(weatherData.regionalConditions.cities[i].cityname).substring(0,15) + ", " + weatherData.regionalConditions.cities[i].statename);
-					$('.regional-conditions .temps .temp-'+l).text(weatherData.regionalConditions.cities[i].temp || '')
-                    $('.regional-conditions .weathers .weather-'+l).text('                    '+condReplace(weatherData.regionalConditions.cities[i].condition || ''));
+                    let l = i+1;
+                    $('.regional-conditions .cities .city-'+l).text((weatherData.regionalConditions.cities[i].cityname || '').substring(0,18));
+					$('.regional-conditions .temps .temp-'+l).text((weatherData.regionalConditions.cities[i].temp || ''));
+                    $('.regional-conditions .weathers .weather-'+l).text((weatherData.regionalConditions.cities[i].condition || '').substring(0,12));
                 }
                 $('.regional-conditions').fadeIn(0);
                 setTimeout(function() {

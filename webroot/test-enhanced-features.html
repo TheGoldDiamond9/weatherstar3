@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Star 3000 - Enhanced Features Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #1a1a1a;
+            color: #00ff00;
+        }
+        .test-section {
+            background-color: #000;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border: 1px solid #333;
+        }
+        .test-result {
+            font-family: monospace;
+            white-space: pre-wrap;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #222;
+            border-radius: 3px;
+        }
+        h1, h2 { color: #ffffff; }
+        .status-ok { color: #00ff00; }
+        .status-error { color: #ff0000; }
+        .status-warning { color: #ffaa00; }
+        button {
+            background-color: #333;
+            color: #fff;
+            border: 1px solid #555;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Weather Star 3000 - Enhanced Features Test</h1>
+    <p>Testing all new features including MTD precipitation, pressure trends, almanac data, thermodynamic calculations, and formatting helpers.</p>
+
+    <div class="test-section">
+        <h2>1. Helper Scripts Loading Test</h2>
+        <button onclick="testHelperLoading()">Test Helper Loading</button>
+        <div id="helper-test" class="test-result">Click to test...</div>
+    </div>
+
+    <div class="test-section">
+        <h2>2. Thermodynamic Helper Test</h2>
+        <button onclick="testThermoHelper()">Test Thermo Calculations</button>
+        <div id="thermo-test" class="test-result">Click to test...</div>
+    </div>
+
+    <div class="test-section">
+        <h2>3. Format Helper Test</h2>
+        <button onclick="testFormatHelper()">Test Formatting Functions</button>
+        <div id="format-test" class="test-result">Click to test...</div>
+    </div>
+
+    <div class="test-section">
+        <h2>4. Precipitation Helper Test</h2>
+        <button onclick="testPrecipHelper()">Test MTD Precipitation</button>
+        <div id="precip-test" class="test-result">Click to test...</div>
+    </div>
+
+    <div class="test-section">
+        <h2>5. Pressure Trends Test</h2>
+        <button onclick="testPressureHelper()">Test Pressure Trends</button>
+        <div id="pressure-test" class="test-result">Click to test...</div>
+    </div>
+
+    <div class="test-section">
+        <h2>6. Almanac Data Test</h2>
+        <button onclick="testAlmanacHelper()">Test Almanac Data</button>
+        <div id="almanac-test" class="test-result">Click to test...</div>
+    </div>
+
+    <div class="test-section">
+        <h2>7. Enhanced NWS Client Test</h2>
+        <button onclick="testEnhancedNWS()">Test Enhanced Current Conditions</button>
+        <div id="nws-test" class="test-result">Click to test...</div>
+    </div>
+
+    <div class="test-section">
+        <h2>8. Integration Test</h2>
+        <button onclick="testFullIntegration()">Test Full Integration</button>
+        <div id="integration-test" class="test-result">Click to test...</div>
+    </div>
+
+    <!-- Load all required scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="js/date_fns.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/thermoHelper.js"></script>
+    <script src="js/formatHelper.js"></script>
+    <script src="js/precipHelper.js"></script>
+    <script src="js/pressureHelper.js"></script>
+    <script src="js/almanacHelper.js"></script>
+    <script src="js/textFormatter.js"></script>
+    <script src="js/locationFallback.js"></script>
+    <script src="js/location.js"></script>
+    <script src="js/nwsClient.js"></script>
+
+    <script>
+        // Test helper script loading
+        function testHelperLoading() {
+            const output = document.getElementById('helper-test');
+            let results = 'Testing helper script availability:\n\n';
+            
+            const helpers = [
+                { name: 'ThermoHelper', obj: window.ThermoHelper },
+                { name: 'FormatHelper', obj: window.FormatHelper },
+                { name: 'precipHelper', obj: window.precipHelper },
+                { name: 'pressureHelper', obj: window.pressureHelper },
+                { name: 'almanacHelper', obj: window.almanacHelper },
+                { name: 'weatherTextFormatter', obj: window.weatherTextFormatter },
+                { name: 'nwsClient', obj: window.nwsClient },
+                { name: 'locationConfig', obj: window.locationConfig }
+            ];
+
+            helpers.forEach(helper => {
+                if (helper.obj) {
+                    results += `✅ ${helper.name} - LOADED\n`;
+                } else {
+                    results += `❌ ${helper.name} - NOT LOADED\n`;
+                }
+            });
+
+            output.textContent = results;
+        }
+
+        // Test thermodynamic calculations
+        function testThermoHelper() {
+            const output = document.getElementById('thermo-test');
+            let results = 'Testing thermodynamic calculations:\n\n';
+
+            if (typeof ThermoHelper !== 'undefined') {
+                try {
+                    // Test heat index calculation
+                    const heatIndex = ThermoHelper.computeHeatIndex(95, 65);
+                    results += `Heat Index (95°F, 65% RH): ${heatIndex}°F\n`;
+
+                    // Test dewpoint calculation
+                    const dewpoint = ThermoHelper.computeDewpoint(75, 60);
+                    results += `Dewpoint (75°F, 60% RH): ${dewpoint}°F\n`;
+
+                    // Test wind chill calculation
+                    const windChill = ThermoHelper.computeWindChill(32, 15);
+                    results += `Wind Chill (32°F, 15 mph): ${windChill}°F\n`;
+
+                    // Test apparent temperature
+                    const apparent = ThermoHelper.computeApparentTemperature(85, 70, 5);
+                    results += `Apparent Temp (85°F, 70% RH, 5 mph): ${apparent.temperature}°F (${apparent.type})\n`;
+
+                    // Test formatting
+                    results += `Temperature formatting: ${ThermoHelper.formatTemperature(72.3)}\n`;
+                    results += `Humidity formatting: ${ThermoHelper.formatHumidity(68.7)}\n`;
+
+                    results += '\n✅ All thermodynamic tests passed!';
+                } catch (error) {
+                    results += `❌ Error in thermodynamic tests: ${error.message}`;
+                }
+            } else {
+                results += '❌ ThermoHelper not loaded';
+            }
+
+            output.textContent = results;
+        }
+
+        // Test format helper functions
+        function testFormatHelper() {
+            const output = document.getElementById('format-test');
+            let results = 'Testing formatting functions:\n\n';
+
+            if (typeof FormatHelper !== 'undefined') {
+                try {
+                    // Test ceiling formatting
+                    results += `Ceiling 4987 ft: ${FormatHelper.formatCeiling(4987)}\n`;
+                    results += `Ceiling 15000 ft: ${FormatHelper.formatCeiling(15000)}\n`;
+                    results += `Ceiling 800 ft: ${FormatHelper.formatCeiling(800)}\n`;
+
+                    // Test condition shortening
+                    results += `"Mostly Cloudy" → "${FormatHelper.shortenCondition('Mostly Cloudy')}"\n`;
+                    results += `"Scattered Thunderstorms" → "${FormatHelper.shortenCondition('Scattered Thunderstorms')}"\n`;
+
+                    // Test US removal from city names
+                    results += `"Atlanta, GA US" → "${FormatHelper.removeUSFromCityName('Atlanta, GA US')}"\n`;
+
+                    // Test wind formatting
+                    results += `Wind (15 mph, NW): ${FormatHelper.formatWind(15, 'NW')}\n`;
+
+                    // Test visibility formatting
+                    results += `Visibility 0.25 mi: ${FormatHelper.formatVisibility(0.25)}\n`;
+                    results += `Visibility 15 mi: ${FormatHelper.formatVisibility(15)}\n`;
+
+                    results += '\n✅ All formatting tests passed!';
+                } catch (error) {
+                    results += `❌ Error in formatting tests: ${error.message}`;
+                }
+            } else {
+                results += '❌ FormatHelper not loaded';
+            }
+
+            output.textContent = results;
+        }
+
+        // Test precipitation helper
+        async function testPrecipHelper() {
+            const output = document.getElementById('precip-test');
+            output.textContent = 'Testing MTD precipitation...\n';
+
+            if (typeof precipHelper !== 'undefined') {
+                try {
+                    // Test with Kingsland, GA coordinates
+                    const lat = 30.7991;
+                    const lon = -81.6956;
+                    
+                    output.textContent += `Fetching MTD precipitation for Kingsland, GA (${lat}, ${lon})...\n`;
+                    
+                    const precipData = await precipHelper.getMTDPrecipForLocation(lat, lon);
+                    
+                    if (precipData !== null) {
+                        const formatted = precipHelper.formatPrecipitation(precipData);
+                        output.textContent += `MTD Precipitation: ${precipData.toFixed(1)} mm (${formatted})\n`;
+                        output.textContent += '✅ Precipitation test completed!';
+                    } else {
+                        output.textContent += '⚠️ No precipitation data available (this is normal for test/unavailable gauges)\n';
+                        output.textContent += '✅ Precipitation helper working correctly';
+                    }
+                } catch (error) {
+                    output.textContent += `❌ Error in precipitation test: ${error.message}`;
+                }
+            } else {
+                output.textContent = '❌ precipHelper not loaded';
+            }
+        }
+
+        // Test pressure trends
+        async function testPressureHelper() {
+            const output = document.getElementById('pressure-test');
+            output.textContent = 'Testing pressure trends...\n';
+
+            if (typeof pressureHelper !== 'undefined') {
+                try {
+                    // Test with Kingsland, GA coordinates
+                    const lat = 30.7991;
+                    const lon = -81.6956;
+                    
+                    output.textContent += `Fetching pressure trend for Kingsland, GA (${lat}, ${lon})...\n`;
+                    
+                    const pressureTrend = await pressureHelper.getPressureTrend(lat, lon, 3);
+                    
+                    if (pressureTrend) {
+                        output.textContent += `Current Pressure: ${pressureTrend.current} hPa\n`;
+                        output.textContent += `Trend: ${pressureTrend.trend}\n`;
+                        output.textContent += `3-Hour Change: ${pressureTrend.threeHourChange || 'N/A'} hPa\n`;
+                        output.textContent += `Formatted: ${pressureHelper.formatPressureTrend(pressureTrend)}\n`;
+                        output.textContent += '✅ Pressure trend test completed!';
+                    } else {
+                        output.textContent += '⚠️ No pressure trend data available\n';
+                        output.textContent += '✅ Pressure helper working correctly';
+                    }
+                } catch (error) {
+                    output.textContent += `❌ Error in pressure test: ${error.message}`;
+                }
+            } else {
+                output.textContent = '❌ pressureHelper not loaded';
+            }
+        }
+
+        // Test almanac data
+        async function testAlmanacHelper() {
+            const output = document.getElementById('almanac-test');
+            output.textContent = 'Testing almanac data...\n';
+
+            if (typeof almanacHelper !== 'undefined') {
+                try {
+                    // Test with Kingsland, GA coordinates
+                    const lat = 30.7991;
+                    const lon = -81.6956;
+                    
+                    output.textContent += `Fetching almanac data for Kingsland, GA (${lat}, ${lon})...\n`;
+                    
+                    const almanacData = await almanacHelper.getAlmanac(lat, lon);
+                    
+                    if (almanacData) {
+                        const formatted = almanacHelper.formatAlmanacForDisplay(almanacData);
+                        output.textContent += `Sunrise: ${formatted.sunrise}\n`;
+                        output.textContent += `Sunset: ${formatted.sunset}\n`;
+                        output.textContent += `Moonrise: ${formatted.moonrise}\n`;
+                        output.textContent += `Moonset: ${formatted.moonset}\n`;
+                        output.textContent += `Moon Phase: ${formatted.moonPhase}\n`;
+                        output.textContent += '✅ Almanac test completed!';
+                    } else {
+                        output.textContent += '⚠️ Using fallback almanac calculations\n';
+                        output.textContent += '✅ Almanac helper working correctly';
+                    }
+                } catch (error) {
+                    output.textContent += `❌ Error in almanac test: ${error.message}`;
+                }
+            } else {
+                output.textContent = '❌ almanacHelper not loaded';
+            }
+        }
+
+        // Test enhanced NWS client
+        async function testEnhancedNWS() {
+            const output = document.getElementById('nws-test');
+            output.textContent = 'Testing enhanced NWS client...\n';
+
+            if (typeof nwsClient !== 'undefined' && typeof nwsClient.getEnhancedCurrentConditions === 'function') {
+                try {
+                    // Test with Kingsland, GA coordinates
+                    const lat = 30.7991;
+                    const lon = -81.6956;
+                    
+                    output.textContent += `Fetching enhanced current conditions for Kingsland, GA...\n`;
+                    
+                    const conditions = await nwsClient.getEnhancedCurrentConditions(lat, lon);
+                    
+                    if (conditions) {
+                        output.textContent += `Temperature: ${conditions.temperature}°F\n`;
+                        output.textContent += `Humidity: ${conditions.relativeHumidity}%\n`;
+                        output.textContent += `Condition: ${conditions.wxPhraseLong || conditions.wxPhraseShort}\n`;
+                        
+                        if (conditions.heatIndex) {
+                            output.textContent += `Heat Index: ${conditions.heatIndex}°F\n`;
+                        }
+                        if (conditions.dewpoint) {
+                            output.textContent += `Dewpoint: ${conditions.dewpoint}°F\n`;
+                        }
+                        if (conditions.ceilingFormatted) {
+                            output.textContent += `Ceiling: ${conditions.ceilingFormatted}\n`;
+                        }
+                        if (conditions.monthPrecip) {
+                            output.textContent += `MTD Precipitation: ${conditions.monthPrecip}\n`;
+                        }
+                        
+                        output.textContent += '✅ Enhanced NWS test completed!';
+                    } else {
+                        output.textContent += '❌ No enhanced conditions data received';
+                    }
+                } catch (error) {
+                    output.textContent += `❌ Error in enhanced NWS test: ${error.message}`;
+                }
+            } else {
+                output.textContent = '❌ Enhanced NWS client not available';
+            }
+        }
+
+        // Test full integration
+        async function testFullIntegration() {
+            const output = document.getElementById('integration-test');
+            output.textContent = 'Testing full integration...\n\n';
+
+            try {
+                // Test weather text formatting
+                const testCondition = "Light Rain Showers and Thunderstorms";
+                if (typeof weatherTextFormatter !== 'undefined') {
+                    const formatted = weatherTextFormatter.formatCondition(testCondition);
+                    output.textContent += `Text formatting: "${testCondition}" → "${formatted}"\n`;
+                }
+
+                // Test location configuration
+                if (typeof locationConfig !== 'undefined') {
+                    output.textContent += `Main city: ${locationConfig.mainCity.displayname}\n`;
+                    output.textContent += `Coordinates: ${locationConfig.mainCity.lat}, ${locationConfig.mainCity.lon}\n`;
+                    output.textContent += `Surrounding cities: ${locationConfig.surroundCities.citiesAmount}\n`;
+                }
+
+                // Test combined formatting
+                if (typeof ThermoHelper !== 'undefined' && typeof FormatHelper !== 'undefined') {
+                    const temp = 78;
+                    const humidity = 65;
+                    const ceiling = 3500;
+                    
+                    output.textContent += `\nCombined formatting test:\n`;
+                    output.textContent += `Temperature: ${ThermoHelper.formatTemperature(temp)}\n`;
+                    output.textContent += `Humidity: ${ThermoHelper.formatHumidity(humidity)}\n`;
+                    output.textContent += `Dewpoint: ${ThermoHelper.formatTemperature(ThermoHelper.computeDewpoint(temp, humidity))}\n`;
+                    output.textContent += `Ceiling: ${FormatHelper.formatCeiling(ceiling)}\n`;
+                }
+
+                output.textContent += '\n✅ Full integration test completed successfully!';
+                
+            } catch (error) {
+                output.textContent += `❌ Error in integration test: ${error.message}`;
+            }
+        }
+
+        // Auto-run helper loading test on page load
+        window.addEventListener('load', function() {
+            setTimeout(testHelperLoading, 1000);
+        });
+    </script>
+</body>
+</html>

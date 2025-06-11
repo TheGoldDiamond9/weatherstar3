@@ -205,13 +205,90 @@ class NWSClient {
       windDirectionCardinal: this.degreeToCardinal(props.windDirection?.value),
       windGust: this.mpsToMph(props.windGust?.value),
       pressure: this.pascalToInches(props.barometricPressure?.value),
-      pressureTendency: this.mapPressureTrend(props.pressureTendency),
-      visibility: this.metersToMiles(props.visibility?.value),
+      pressureTendency: this.mapPressureTrend(props.pressureTendency),      visibility: this.metersToMiles(props.visibility?.value),
       dewpoint: this.celsiusToFahrenheit(props.dewpoint?.value),
-      cloudCeiling: this.metersToFeet(props.cloudLayers?.[0]?.base?.value),
+      cloudCeiling: this.formatCeiling(props.cloudLayers?.[0]?.base?.value),
       wxPhraseLong: wxPhraseLong,
       wxPhraseShort: wxPhraseShort
     };
+  }
+
+  /**
+   * Get enhanced current conditions with computed values
+   * @param {number} lat - Latitude
+   * @param {number} lon - Longitude
+   * @returns {Promise<Object>} Enhanced current conditions data
+   */
+  async getEnhancedCurrentConditions(lat, lon) {
+    try {
+      const basicConditions = await this.getCurrentConditions(lat, lon);
+      
+      if (!basicConditions) {
+        return null;
+      }
+
+      // Add computed thermodynamic values
+      const temp = basicConditions.temperature;
+      const humidity = basicConditions.relativeHumidity;
+      const windSpeed = basicConditions.windSpeed || 0;
+
+      if (temp !== null && humidity !== null) {
+        // Compute heat index if applicable
+        if (typeof ThermoHelper !== 'undefined') {
+          const heatIndex = ThermoHelper.computeHeatIndex(temp, humidity);
+          if (heatIndex !== null) {
+            basicConditions.heatIndex = heatIndex;
+          }
+
+          // Compute dewpoint
+          basicConditions.dewpoint = ThermoHelper.computeDewpoint(temp, humidity);
+
+          // Compute apparent temperature
+          const apparent = ThermoHelper.computeApparentTemperature(temp, humidity, windSpeed);
+          basicConditions.temperatureFeelsLike = apparent.temperature;
+          basicConditions.feelsLikeType = apparent.type;
+        }
+      }
+
+      // Enhanced ceiling formatting
+      if (basicConditions.cloudCeiling && typeof FormatHelper !== 'undefined') {
+        basicConditions.ceilingFormatted = FormatHelper.formatCeiling(basicConditions.cloudCeiling);
+      }
+
+      // Get pressure trend if available
+      if (typeof pressureHelper !== 'undefined') {
+        try {
+          const pressureTrend = await pressureHelper.getPressureTrend(lat, lon, 3);
+          if (pressureTrend) {
+            basicConditions.pressureTrend = pressureTrend.trend;
+            basicConditions.pressureFormatted = FormatHelper.formatPressure(
+              basicConditions.pressure / 3386.39, // Convert Pa to inHg
+              pressureTrend.trend
+            );
+          }
+        } catch (error) {
+          console.warn('Could not get pressure trend:', error);
+        }
+      }
+
+      // Get month-to-date precipitation if available
+      if (typeof precipHelper !== 'undefined') {
+        try {
+          const mtdPrecip = await precipHelper.getMTDPrecipForLocation(lat, lon);
+          if (mtdPrecip !== null) {
+            basicConditions.monthPrecip = precipHelper.formatPrecipitation(mtdPrecip);
+          }
+        } catch (error) {
+          console.warn('Could not get MTD precipitation:', error);
+        }
+      }
+
+      return basicConditions;
+
+    } catch (error) {
+      console.error('Error getting enhanced current conditions:', error);
+      return null;
+    }
   }
 
   /**
@@ -325,9 +402,28 @@ class NWSClient {
   metersToMiles(meters) {
     return meters ? (meters * 0.000621371).toFixed(1) : null;
   }
-
   metersToFeet(meters) {
     return meters ? Math.round(meters * 3.28084) : null;
+  }
+
+  /**
+   * Convert ceiling height to appropriate display format
+   * For high ceilings (>3000 ft), show in miles rounded to nearest 0.5
+   * For lower ceilings, show in feet
+   */  formatCeiling(meters) {
+    if (!meters) return "UNKNOWN";
+    
+    const feet = Math.round(meters * 3.28084);
+    
+    // If ceiling is high (over 3000 feet), convert to miles
+    if (feet >= 3000) {
+      const miles = feet / 5280;
+      // Round to nearest 0.5 miles
+      const roundedMiles = Math.round(miles * 2) / 2;
+      return `${roundedMiles} MI`;
+    } else {
+      return feet; // Just return the number, unit will be added later
+    }
   }
 
   degreeToCardinal(degrees) {

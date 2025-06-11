@@ -89,11 +89,15 @@ var locationSettings = {//This is what you can edit, anything under the lcationS
         displayname:"LAKE CITY",
         type:"geocode",
         val:"30.1896,-82.6390",
-      },
-      {
+      },      {
         displayname:"TIFTON",
         type:"geocode",
         val:"31.4504,-83.5085",
+      },
+      {
+        displayname:"CLEARWATER",
+        type:"geocode",
+        val:"27.9659,-82.8001",
       },
     ]
   }

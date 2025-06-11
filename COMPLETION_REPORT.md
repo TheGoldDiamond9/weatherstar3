@@ -65,6 +65,15 @@ All reported issues have been successfully resolved! The Weather Star 3000 simul
   - Character encoding fixes for degree symbols (Â° → °)
 - **Result**: Current conditions now display complete, accurate data
 
+### 9. **Elevation Display Fixed**
+- **Problem**: Ceiling showing "4987 FT FT" (double units) and excessive precision
+- **Solution**: Implemented smart ceiling formatting:
+  - High ceilings (>3000 ft) converted to miles (e.g., "1.0 MI")
+  - Low ceilings remain in feet (e.g., "2500 FT")
+  - Fixed double unit display issue
+  - Rounded to user-friendly values
+- **Result**: Clean, readable ceiling display (e.g., "1.0 MI" instead of "4987 FT FT")
+
 ---
 
 ## 🛠️ TECHNICAL IMPROVEMENTS
@@ -75,6 +84,8 @@ All reported issues have been successfully resolved! The Weather Star 3000 simul
 - ✅ Fixed character encoding issues
 - ✅ Enhanced error handling and debugging
 - ✅ Added comprehensive logging for troubleshooting
+- ✅ Smart ceiling formatting (high ceilings in miles, low in feet)
+- ✅ Fixed double unit display issues
 
 ### Location System Updated
 - ✅ Manual coordinates for precise location targeting
@@ -112,6 +123,7 @@ All reported issues have been successfully resolved! The Weather Star 3000 simul
 - `webroot/debug-nws.html` - Comprehensive NWS debugging
 - `webroot/test-fixes.html` - Fix verification
 - `webroot/test-final.html` - Final comprehensive test
+- `webroot/test-ceiling.html` - Ceiling display format testing
 - `webroot/console-test.js` - Console-based testing
 
 ---
@@ -127,6 +139,7 @@ The Weather Star 3000 simulator is now:
 - Showing actual forecast data in outlook section
 - Handling null data gracefully with fallback mechanisms
 - Using multiple weather stations for data reliability
+- Displaying ceiling heights in user-friendly format (miles vs feet)
 
 ### 🔍 **TESTING VERIFIED**
 All fixes have been tested and confirmed working:

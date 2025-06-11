@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Regional Conditions Overlay Debug</title>
+    <style>
+        body { 
+            background: black; 
+            color: white; 
+            font-family: Arial, sans-serif;
+        }
+        .debug-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            border: 2px solid red;
+            margin: 20px 0;
+        }
+        .regional-conditions {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        .regional-conditions .cities{
+            position: absolute;
+            font-family: monospace;
+            margin-top: 45px;
+            left: 0px;
+            width: 200px;
+            background: rgba(255,0,0,0.2); /* Red background for debugging */
+            border: 1px solid red;
+        }
+        .regional-conditions .weathers{
+            position: absolute;
+            font-family: monospace;
+            margin-top: 45px;
+            left: 220px;
+            width: 160px;
+            background: rgba(0,255,0,0.2); /* Green background for debugging */
+            border: 1px solid green;
+        }
+        .regional-conditions .temps{
+            position: absolute;
+            font-family: monospace;
+            margin-top: 45px;
+            right: 0px;
+            width: 100px;
+            text-align: right;
+            background: rgba(0,0,255,0.2); /* Blue background for debugging */
+            border: 1px solid blue;
+        }
+        .debug-info {
+            margin: 20px 0;
+            padding: 10px;
+            background: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Regional Conditions Overlay Debug</h1>
+    
+    <div class="debug-info">
+        <h3>Expected Layout:</h3>
+        <p>Cities column (red) should be on the left, Weather column (green) in the middle, Temps column (blue) on the right.</p>
+        <p>Each column should show 7 rows of data stacked vertically.</p>
+    </div>
+
+    <div class="debug-container">
+        <div class="regional-conditions">
+            <div class="cities">
+                <div class="city-1">MIAMI</div>
+                <div class="city-2">ORLANDO</div>
+                <div class="city-3">TAMPA</div>
+                <div class="city-4">TALLAHASSEE</div>
+                <div class="city-5">GAINESVILLE</div>
+                <div class="city-6">CLEARWATER</div>
+                <div class="city-7">JACKSONVILLE</div>
+            </div>
+            <div class="weathers">
+                <div class="weather-1">Sunny</div>
+                <div class="weather-2">P Cloudy</div>
+                <div class="weather-3">Cloudy</div>
+                <div class="weather-4">Lt Rain</div>
+                <div class="weather-5">T-Storms</div>
+                <div class="weather-6">Fair</div>
+                <div class="weather-7">Clear</div>
+            </div>
+            <div class="temps">
+                <div class="temp-1">85°F</div>
+                <div class="temp-2">82°F</div>
+                <div class="temp-3">79°F</div>
+                <div class="temp-4">76°F</div>
+                <div class="temp-5">81°F</div>
+                <div class="temp-6">84°F</div>
+                <div class="temp-7">87°F</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="debug-info">
+        <h3>Analysis:</h3>
+        <p>If the columns appear properly separated with colored backgrounds, the CSS positioning is working.</p>
+        <p>If text appears overlapped or in wrong positions, there's a CSS issue to fix.</p>
+    </div>
+</body>
+</html>
