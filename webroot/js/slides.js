@@ -203,42 +203,52 @@ function slideKickOff() {
                 $('#travel-content .weathers').fadeIn(0)
                 $('#travel-content .his').fadeIn(0)
                 $('#travel-content .lows').fadeIn(0)
-		$('#slides').fadeOut(0)
-				
-				$('#travel-container #travel-content .cities').text("\n\nCITY")
-				$('#travel-container #travel-content .weathers').text("\n\nWEATHER")
-				$('#travel-container #travel-content .his').text("\n\nHI")
-				$('#travel-container #travel-content .lows').text("\n\nLOW")
+                $('#slides').fadeOut(0)
 
-				for (var i = 0; i < weatherData.travel.cities.length; i++) {
-					let prevTextCity = $('#travel-container #travel-content .cities').text()
-					$('#travel-container #travel-content .cities').text(prevTextCity += "\n" + weatherData.travel.cities[i].displayname)
-					let prevTextWeathers = $('#travel-container #travel-content .weathers').text()
-					$('#travel-container #travel-content .weathers').text(prevTextWeathers += "\n" + condReplace(weatherData.travel.cities[i].days[0].condition))
-					let prevTextHigh = $('#travel-container #travel-content .his').text()
-					$('#travel-container #travel-content .his').text(prevTextHigh += "\n" + weatherData.travel.cities[i].days[0].high)
-					let prevTextLow = $('#travel-container #travel-content .lows').text()
-					$('#travel-container #travel-content .lows').text(prevTextLow += "\n" + weatherData.travel.cities[i].days[0].low)
-				}
-            
-                $('#travel-container #travel-title-container').marquee({speed: 110, direction: 'up', pauseOnHover: false});
-                $('#travel-container #travel-title-container').on('finished', function() {$('#travel-container #travel-title-container').marquee('destroy'), $('#travel-container #travel-title-container').fadeOut(0)});
+                $('#travel-container #travel-content .cities').text("\n\nCITY")
+                $('#travel-container #travel-content .weathers').text("\n\nWEATHER")
+                $('#travel-container #travel-content .his').text("\n\nHI")
+                $('#travel-container #travel-content .lows').text("\n\nLOW")
+
+                for (var i = 0; i < weatherData.travel.cities.length; i++) {
+                    let prevTextCity = $('#travel-container #travel-content .cities').text()
+                    $('#travel-container #travel-content .cities').text(prevTextCity += "\n" + weatherData.travel.cities[i].displayname)
+                    let prevTextWeathers = $('#travel-container #travel-content .weathers').text()
+                    $('#travel-container #travel-content .weathers').text(prevTextWeathers += "\n" + condReplace(weatherData.travel.cities[i].days[0].condition))
+                    let prevTextHigh = $('#travel-container #travel-content .his').text()
+                    $('#travel-container #travel-content .his').text(prevTextHigh += "\n" + weatherData.travel.cities[i].days[0].high)
+                    let prevTextLow = $('#travel-container #travel-content .lows').text()
+                    $('#travel-container #travel-content .lows').text(prevTextLow += "\n" + weatherData.travel.cities[i].days[0].low)
+                }
+
+                // This is where the issue occurs. 
+                // The marquee is not being destroyed properly, causing it to not work as expected.
+                // In lamens terms, we didnt exactly remove it correctly, making the whole thing like compound and break.
+                // this fix appears to work, if it doesnt work, let me know lol.
+                var $titleContainer = $('#travel-container #travel-title-container');
+                $titleContainer.marquee('destroy');
+                $titleContainer.off('finished');             
+                $titleContainer.marquee({speed: 110, direction: 'up', pauseOnHover: false});
+                $titleContainer.on('finished', function() {
+                    $titleContainer.marquee('destroy');
+                    $titleContainer.fadeOut(0)
+                });
+
                 $('#travel-content .cities').marquee({speed: 110, direction: 'up', pauseOnHover: false});
-                $('#travel-content .cities').on('finished', function() {$('#travel-content .cities').fadeOut(0)});
+                $('#travel-content .cities').off('finished').on('finished', function() {$('#travel-content .cities').fadeOut(0)});
                 $('#travel-content .weathers').marquee({speed: 110, direction: 'up', pauseOnHover: false});
-                $('#travel-content .weathers').on('finished', function() {$('#travel-content .weathers').fadeOut(0)});
+                $('#travel-content .weathers').off('finished').on('finished', function() {$('#travel-content .weathers').fadeOut(0)});
                 $('#travel-content .his').marquee({speed: 110, direction: 'up', pauseOnHover: false});
-                $('#travel-content .his').on('finished', function() {$('#travel-content .his').fadeOut(0)});
+                $('#travel-content .his').off('finished').on('finished', function() {$('#travel-content .his').fadeOut(0)});
                 $('#travel-content .lows').marquee({speed: 110, direction: 'up', pauseOnHover: false});
-                $('#travel-content .lows').on('finished', function() {$('#travel-content .lows').fadeOut(0)});
-                
-				setTimeout(function() {
+                $('#travel-content .lows').off('finished').on('finished', function() {$('#travel-content .lows').fadeOut(0)});
+
+                setTimeout(function() {
                     $('#travel-container').fadeOut(0);
                     $('#travel-background').fadeOut(0);
-					$('#slides').fadeIn(0)
+                    $('#slides').fadeIn(0)
                     slideCallBack()
                 }, travelForecastLength);
-            
             }
             ,almanac() {
                 const almonth = ["January","February","March","April","May","June","July","August","September","October","November","December"];
