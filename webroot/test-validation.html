@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Star 3000 - Validation Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #1a1a1a;
+            color: #00ff00;
+        }
+        .console-output {
+            background-color: #000;
+            padding: 20px;
+            border-radius: 5px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            margin-top: 20px;
+            height: 400px;
+            overflow-y: auto;
+        }
+        h1 {
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <h1>Weather Star 3000 - Validation Test</h1>
+    <p>Check the browser console and the output below for validation results.</p>
+    
+    <div id="console-output" class="console-output">
+        Loading validation test...
+    </div>    <!-- Load all required scripts in correct order -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="js/date_fns.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/textFormatter.js"></script>
+    <script src="js/location.js"></script>
+    <script src="js/locationFallback.js"></script>
+    <script src="js/nwsClient.js"></script>
+    <script src="js/data.js"></script>
+    
+    <script>
+        // Capture console output to display on page
+        const consoleOutput = document.getElementById('console-output');
+        const originalLog = console.log;
+        const originalError = console.error;
+        
+        console.log = function(...args) {
+            originalLog.apply(console, args);
+            consoleOutput.textContent += args.join(' ') + '\n';
+            consoleOutput.scrollTop = consoleOutput.scrollHeight;
+        };
+        
+        console.error = function(...args) {
+            originalError.apply(console, args);
+            consoleOutput.textContent += 'ERROR: ' + args.join(' ') + '\n';
+            consoleOutput.scrollTop = consoleOutput.scrollHeight;
+        };
+    </script>
+    
+    <script src="validation-test.js"></script>
+</body>
+</html>

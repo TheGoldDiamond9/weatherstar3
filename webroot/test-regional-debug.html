@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Regional Conditions Debug</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="js/location.js"></script>
+    <script src="js/locationFallback.js"></script>
+    <script src="js/nwsClient.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/extras.js"></script>
+    <script src="js/textFormatter.js"></script>
+    <script src="js/formatHelper.js"></script>
+    <script src="js/thermoHelper.js"></script>
+</head>
+<body>
+    <h1>Regional Conditions Debug</h1>
+    <div id="debug-output"></div>
+
+    <script>
+        // Wait for data to load
+        setTimeout(function() {
+            let output = '<h2>Location Config - Regional Cities:</h2><ul>';
+            for (let i = 0; i < locationConfig.regionalCities.citiesAmount; i++) {
+                const city = locationConfig.regionalCities.cities[i];
+                output += `<li>${i+1}: ${city.displayname} (${city.lat}, ${city.lon})</li>`;
+            }
+            output += '</ul>';
+            
+            output += '<h2>Weather Data - Regional Conditions:</h2><ul>';
+            for (let i = 0; i < weatherData.regionalConditions.cities.length; i++) {
+                const city = weatherData.regionalConditions.cities[i];
+                output += `<li>${i+1}: ${city.cityname} - ${city.temp} - ${city.condition}</li>`;
+            }
+            output += '</ul>';
+            
+            output += '<h2>Processing Tests:</h2>';
+            output += `<p>locReplace("TALLAHASSEE"): ${locReplace("TALLAHASSEE")}</p>`;
+            output += `<p>condReplace("PARTLY CLOUDY"): ${condReplace("PARTLY CLOUDY")}</p>`;
+            
+            document.getElementById('debug-output').innerHTML = output;
+        }, 5000); // Wait 5 seconds for data to load
+    </script>
+</body>
+</html>

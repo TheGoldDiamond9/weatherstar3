@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Formatting Test</title>
+</head>
+<body>
+    <h1>Weather Text Formatting Test</h1>
+    
+    <div id="test-results"></div>
+
+    <script src="js/textFormatter.js"></script>
+    <script>
+        // Test the weatherTextFormatter with problematic text patterns
+        const testCases = [
+            "Partly Cloudy and Chance Light Rain Showers",
+            "Early Morning Light Rain",
+            "Near Thunderstorms Heavy",
+            "Partial Cloudy Afternoon",
+            "Light T-Storm Chance",
+            "Heavy Shower Activity",
+            "Scattered Light Rain Showers"
+        ];
+
+        const results = document.getElementById('test-results');
+        
+        testCases.forEach(testCase => {
+            const formatted = weatherTextFormatter.formatCondition(testCase);
+            const div = document.createElement('div');
+            div.innerHTML = `
+                <strong>Original:</strong> ${testCase}<br>
+                <strong>Formatted:</strong> ${formatted}<br><br>
+            `;
+            results.appendChild(div);
+        });
+
+        console.log('Text formatting tests completed');
+    </script>
+</body>
+</html>

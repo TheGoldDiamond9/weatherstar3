@@ -73,21 +73,20 @@ function crawlKickOff() {
             temperature() {
                 $('#lowerinfotext').fadeIn(0)
                 $('#date-time').fadeIn(0)
-                $('#marqueeholder').fadeOut(0)
+                $('#marqueeholder').fadeOut(0);
                 if (weatherData.currentConditions.feelslike == weatherData.currentConditions.temp) {
-                    $('#lowerinfotext').text('TEMP:  ' + weatherData.currentConditions.temp + '°F   ')
+                    $('#lowerinfotext').text('TEMP:  ' + weatherData.currentConditions.temp + 'F   ')
                 } else {
-                    $('#lowerinfotext').text('TEMP:  ' + weatherData.currentConditions.temp + '°F   ' + weatherData.currentConditions.feelsliketype + weatherData.currentConditions.feelslike + '°F')
+                    $('#lowerinfotext').text('TEMP:  ' + weatherData.currentConditions.temp + 'F   ' + weatherData.currentConditions.feelsliketype + weatherData.currentConditions.feelslike + 'F')
                 }
                 setTimeout(function() {
                     crawlCallBack()
                 }, lowerDetailLength);
-            },
-            humidity() {
+            },            humidity() {
                 $('#lowerinfotext').fadeIn(0)
                 $('#date-time').fadeIn(0)
                 $('#marqueeholder').fadeOut(0)
-                $('#lowerinfotext').text('HUMIDITY: ' + weatherData.currentConditions.humidity + '%   ' + 'DEWPOINT: ' + weatherData.currentConditions.dewpoint + '°F')
+                $('#lowerinfotext').text('HUMIDITY: ' + weatherData.currentConditions.humidity + '   ' + 'DEWPOINT: ' + weatherData.currentConditions.dewpoint)
                 setTimeout(function() {
                     crawlCallBack()
                 }, lowerDetailLength);

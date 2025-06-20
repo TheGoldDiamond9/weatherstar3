@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Debug NWS API</title>
+    <script src="js/nwsClient.js"></script>
+</head>
+<body>
+    <h1>Debug NWS API Call</h1>
+    <button onclick="runDebugTest()">Run Debug Test</button>
+    <pre id="results"></pre>
+
+    <script>
+        async function runDebugTest() {
+            const results = document.getElementById('results');
+            results.textContent = 'Starting debug test...\n';
+            
+            function log(message) {
+                results.textContent += message + '\n';
+                console.log(message);
+            }
+            
+            try {
+                log('=== Testing NWS API Step by Step ===');
+                
+                // Step 1: Basic connectivity
+                log('Step 1: Testing basic connectivity to api.weather.gov');
+                const basicResponse = await fetch('https://api.weather.gov/');
+                log(`Basic connectivity: ${basicResponse.ok ? 'SUCCESS' : 'FAILED'} (${basicResponse.status})`);
+                
+                // Step 2: Points endpoint
+                log('\nStep 2: Testing points endpoint for Kingsland, GA');
+                const pointsUrl = 'https://api.weather.gov/points/30.7991,-81.6956';
+                log(`URL: ${pointsUrl}`);
+                
+                const pointsResponse = await fetch(pointsUrl, {
+                    headers: {
+                        'User-Agent': '(Weather Star 3000 Debug, debug@example.com)',
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                log(`Points response: ${pointsResponse.status} ${pointsResponse.statusText}`);
+                
+                if (!pointsResponse.ok) {
+                    const errorText = await pointsResponse.text();
+                    log(`Points error response: ${errorText}`);
+                    throw new Error(`Points API failed: ${pointsResponse.status}`);
+                }
+                
+                const pointsData = await pointsResponse.json();
+                log(`Grid info: ${pointsData.properties.gridId}/${pointsData.properties.gridX},${pointsData.properties.gridY}`);
+                
+                // Step 3: Stations
+                log('\nStep 3: Testing stations endpoint');
+                const gridId = pointsData.properties.gridId;
+                const gridX = pointsData.properties.gridX;
+                const gridY = pointsData.properties.gridY;
+                
+                const stationsUrl = `https://api.weather.gov/gridpoints/${gridId}/${gridX},${gridY}/stations`;
+                log(`Stations URL: ${stationsUrl}`);
+                
+                const stationsResponse = await fetch(stationsUrl, {
+                    headers: {
+                        'User-Agent': '(Weather Star 3000 Debug, debug@example.com)',
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                log(`Stations response: ${stationsResponse.status} ${stationsResponse.statusText}`);
+                
+                if (!stationsResponse.ok) {
+                    const errorText = await stationsResponse.text();
+                    log(`Stations error: ${errorText}`);
+                    throw new Error(`Stations API failed: ${stationsResponse.status}`);
+                }
+                
+                const stationsData = await stationsResponse.json();
+                log(`Number of stations found: ${stationsData.features ? stationsData.features.length : 0}`);
+                
+                if (!stationsData.features || stationsData.features.length === 0) {
+                    log('ERROR: No weather stations found for this location');
+                    return;
+                }
+                
+                const station = stationsData.features[0];
+                const stationId = station.properties.stationIdentifier;
+                log(`Using station: ${stationId} (${station.properties.name})`);
+                
+                // Step 4: Observations
+                log('\nStep 4: Testing observations endpoint');
+                const obsUrl = `https://api.weather.gov/stations/${stationId}/observations/latest`;
+                log(`Observations URL: ${obsUrl}`);
+                
+                const obsResponse = await fetch(obsUrl, {
+                    headers: {
+                        'User-Agent': '(Weather Star 3000 Debug, debug@example.com)',
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                log(`Observations response: ${obsResponse.status} ${obsResponse.statusText}`);
+                
+                if (!obsResponse.ok) {
+                    const errorText = await obsResponse.text();
+                    log(`Observations error: ${errorText}`);
+                    throw new Error(`Observations API failed: ${obsResponse.status}`);
+                }
+                
+                const obsData = await obsResponse.json();
+                const props = obsData.properties;
+                
+                // Step 5: Data extraction
+                log('\nStep 5: Extracting weather data');
+                log(`Temperature: ${props.temperature?.value}${props.temperature?.unitCode || ''}`);
+                log(`Humidity: ${props.relativeHumidity?.value}%`);
+                log(`Pressure: ${props.barometricPressure?.value} ${props.barometricPressure?.unitCode || ''}`);
+                log(`Wind: ${props.windSpeed?.value} ${props.windSpeed?.unitCode || ''} from ${props.windDirection?.value}°`);
+                log(`Visibility: ${props.visibility?.value} ${props.visibility?.unitCode || ''}`);
+                log(`Conditions: ${props.textDescription || 'N/A'}`);
+                
+                // Step 6: Test our conversion functions
+                log('\nStep 6: Testing conversion functions');
+                if (typeof nwsClient !== 'undefined') {
+                    const tempF = nwsClient.celsiusToFahrenheit(props.temperature?.value);
+                    const windMph = nwsClient.mpsToMph(props.windSpeed?.value);
+                    const pressureIn = nwsClient.pascalToInches(props.barometricPressure?.value);
+                    
+                    log(`Converted temperature: ${tempF}°F`);
+                    log(`Converted wind speed: ${windMph} mph`);
+                    log(`Converted pressure: ${pressureIn} in`);
+                } else {
+                    log('NWS client not available for conversions');
+                }
+                
+                log('\n=== SUCCESS: All API calls completed ===');
+                
+            } catch (error) {
+                log(`\n=== ERROR: ${error.message} ===`);
+                log(`Stack: ${error.stack}`);
+            }
+        }
+    </script>
+</body>
+</html>

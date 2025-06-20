@@ -49,57 +49,115 @@ var weatherData = {
   }, alerts: {
     warnings:[]
   }, NWS: {
-    zone:""
-  }, travel:{noReport:false,cities:[
+    zone:""  }, travel:{noReport:false,cities:[
     {displayname:"ATLANTA",lat:"33.7488",lon:"-84.3877",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
-    {displayname:"BISMARCK",lat:"46.8042",lon:"-100.7878",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
-    {displayname:"BOISE",lat:"43.6150",lon:"-116.2023",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
-    {displayname:"BOSTON",lat:"42.3601",lon:"-71.0589",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
-    {displayname:"BUFFALO",lat:"42.8864",lon:"-78.8784",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
-    {displayname:"CHICAGO",lat:"41.8781",lon:"-87.6298",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
-    {displayname:"CINCINNATI",lat:"39.1031",lon:"-84.5120",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
-    {displayname:"DALLAS",lat:"32.7767",lon:"-96.7970",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
-    {displayname:"DENVER",lat:"39.7392",lon:"-104.9903",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
-    {displayname:"DETROIT",lat:"42.3314",lon:"-83.0458",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
-    {displayname:"KANSAS CITY",lat:"39.0997",lon:"-94.5786",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
-    {displayname:"LOS ANGELES",lat:"34.0549",lon:"-118.2426",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
-    {displayname:"MINNEAPOLIS",lat:"44.9778",lon:"-93.2650",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
-    {displayname:"NASHVILLE",lat:"36.1627",lon:"-86.7816",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
-    {displayname:"NEW ORLEANS",lat:"29.9511",lon:"-90.0715",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
-    {displayname:"NEW YORK CITY",lat:"40.7128",lon:"-74.0060",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
-    {displayname:"PHOENIX",lat:"33.4484",lon:"-112.0740",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
-    {displayname:"PORTLAND",lat:"45.5152",lon:"-122.6784",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
-    {displayname:"RALEIGH",lat:"35.7796",lon:"-78.6382",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
-    {displayname:"RAPID CITY",lat:"44.0805",lon:"-103.2310",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
-    {displayname:"SACRAMENTO",lat:"38.5816",lon:"-121.4944",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
-    {displayname:"SALT LAKE CITY",lat:"40.7608",lon:"-111.8910",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+    {displayname:"SAVANNAH",lat:"32.0835",lon:"-81.0998",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+    {displayname:"JACKSONVILLE",lat:"30.3322",lon:"-81.6557",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+    {displayname:"TALLAHASSEE",lat:"30.4518",lon:"-84.2807",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+    {displayname:"GAINESVILLE",lat:"29.6516",lon:"-82.3248",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+    {displayname:"MACON",lat:"32.8407",lon:"-83.6324",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+    {displayname:"VALDOSTA",lat:"30.8327",lon:"-83.2785",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+    {displayname:"COLUMBUS",lat:"32.4609",lon:"-84.9877",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+    {displayname:"WAYCROSS",lat:"31.2135",lon:"-82.3540",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+    {displayname:"BRUNSWICK",lat:"31.1499",lon:"-81.4915",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+    {displayname:"ST. AUGUSTINE",lat:"29.9012",lon:"-81.3124",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+    {displayname:"DAYTONA BEACH",lat:"29.2108",lon:"-81.0228",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+    {displayname:"ORLANDO",lat:"28.5383",lon:"-81.3792",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
     {displayname:"TAMPA",lat:"27.9517",lon:"-82.4588",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
-    {displayname:"WASHINGTON DC",lat:"38.9072",lon:"-77.0369",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+    {displayname:"PENSACOLA",lat:"30.4213",lon:"-87.2169",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+    {displayname:"PANAMA CITY",lat:"30.1588",lon:"-85.6602",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+    {displayname:"CHARLESTON",lat:"32.7765",lon:"-79.9311",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+    {displayname:"HILTON HEAD",lat:"32.2163",lon:"-80.7526",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+    {displayname:"MYRTLE BEACH",lat:"33.6891",lon:"-78.8867",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+    {displayname:"CHARLOTTE",lat:"35.2271",lon:"-80.8431",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+    {displayname:"RALEIGH",lat:"35.7796",lon:"-78.6382",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+    {displayname:"ASHEVILLE",lat:"35.5951",lon:"-82.5515",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+    {displayname:"AUGUSTA",lat:"33.4735",lon:"-82.0105",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
+    {displayname:"ATHENS",lat:"33.9519",lon:"-83.3576",days:[{dayName:"",condition:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""},{dayName:"",icon:"",high:"",low:"",windspeed:""}]},
   ]},
 }
 
-function grabData() {
-  function grabCurrentConditions() {
-    var url = "https://api.weather.com/v3/wx/observations/current?geocode=" + locationConfig.mainCity.lat + "," + locationConfig.mainCity.lon + "&units=e&language=en-US&format=json&apiKey=" + api_key
-    $.getJSON(url, function(data) {
-      try {
-        weatherData.currentConditions.cityname = locationConfig.mainCity.displayname
-        weatherData.currentConditions.cond = data.wxPhraseLong
-        weatherData.currentConditions.gusts = ((data.windGust != null || data.windGust != undefined) ? data.windGust + " Mph" : "NONE")
-        weatherData.currentConditions.humidity = data.relativeHumidity
-        weatherData.currentConditions.pressure = data.pressureAltimeter.toFixed(2)
-        weatherData.currentConditions.pressureTrend = ((data.pressureTendencyCode == 0) ? "IN." : (data.pressureTendencyCode == 1) ? "R" : (data.pressureTendencyCode == 2) ? "F" : (data.pressureTendencyCode == 3) ? "R" : (data.pressureTendencyCode == 4) ? "F" : "")
-        weatherData.currentConditions.temp = data.temperature
-        weatherData.currentConditions.wind = ((data.windDirectionCardinal == "CALM" || data.windSpeed == 0) ? "CALM" : data.windDirectionCardinal)
-        weatherData.currentConditions.windDirNum = data.windDirection
-        weatherData.currentConditions.windspeed = data.windSpeed
-        weatherData.currentConditions.feelslike = data.temperatureFeelsLike
-        weatherData.currentConditions.feelsliketype = ((data.temperatureFeelsLike < 65) ? "WIND CHILL: " : "HEAT INDEX: ")
-        weatherData.currentConditions.dewpoint = data.temperatureDewPoint
-        weatherData.currentConditions.visibility = data.visibility
-        weatherData.currentConditions.ceiling = data.cloudCeiling
-        weatherData.currentConditions.noReport = false
-      } catch (error) {
+function grabData() {  function grabCurrentConditions() {
+    // Use enhanced NWS API for current conditions
+    nwsClient.getEnhancedCurrentConditions(locationConfig.mainCity.lat, locationConfig.mainCity.lon)
+      .then(function(data) {        try {
+          console.log('Enhanced current conditions data received:', data);
+          weatherData.currentConditions.cityname = locationConfig.mainCity.displayname;
+          weatherData.currentConditions.cond = data.wxPhraseLong ? weatherTextFormatter.formatCondition(data.wxPhraseLong) : "";
+          weatherData.currentConditions.gusts = (data.windGust ? data.windGust + " MPH" : "NONE");
+          
+          // Use computed humidity if available, with fallback formatting
+          if (data.relativeHumidity !== null && data.relativeHumidity !== undefined) {
+            weatherData.currentConditions.humidity = ThermoHelper.formatHumidity(data.relativeHumidity);
+          } else {
+            weatherData.currentConditions.humidity = "";
+          }
+          
+          // Use enhanced pressure formatting with trends
+          if (data.pressureFormatted) {
+            weatherData.currentConditions.pressure = data.pressureFormatted;
+          } else if (data.pressure !== null && data.pressure !== undefined) {
+            weatherData.currentConditions.pressure = data.pressure + " IN";
+          } else {
+            weatherData.currentConditions.pressure = "";
+          }
+          
+          weatherData.currentConditions.pressureTrend = data.pressureTrend || data.pressureTendency || "";
+          weatherData.currentConditions.temp = (data.temperature !== null && data.temperature !== undefined) ? ThermoHelper.formatTemperature(data.temperature) : "";
+          weatherData.currentConditions.wind = data.windDirectionCardinal || "CALM";
+          weatherData.currentConditions.windDirNum = data.windDirection || "";
+          weatherData.currentConditions.windspeed = (data.windSpeed !== null && data.windSpeed !== undefined) ? data.windSpeed + " MPH" : "";
+          
+          // Use computed apparent temperature
+          if (data.temperatureFeelsLike !== null && data.temperatureFeelsLike !== undefined) {
+            weatherData.currentConditions.feelslike = ThermoHelper.formatTemperature(data.temperatureFeelsLike);
+            weatherData.currentConditions.feelsliketype = data.feelsLikeType ? data.feelsLikeType + ": " : "";
+          } else {
+            weatherData.currentConditions.feelslike = "";
+            weatherData.currentConditions.feelsliketype = "";
+          }
+          
+          // Use computed dewpoint
+          if (data.dewpoint !== null && data.dewpoint !== undefined) {
+            weatherData.currentConditions.dewpoint = ThermoHelper.formatTemperature(data.dewpoint);
+          } else {
+            weatherData.currentConditions.dewpoint = "";
+          }
+          
+          weatherData.currentConditions.visibility = (data.visibility !== null && data.visibility !== undefined) ? FormatHelper.formatVisibility(data.visibility) : "";
+          
+          // Use enhanced ceiling formatting
+          if (data.ceilingFormatted) {
+            weatherData.currentConditions.ceiling = data.ceilingFormatted;
+          } else if (data.cloudCeiling !== null && data.cloudCeiling !== undefined) {
+            weatherData.currentConditions.ceiling = FormatHelper.formatCeiling(data.cloudCeiling);
+          } else {
+            weatherData.currentConditions.ceiling = "";
+          }
+          
+          // Use MTD precipitation if available
+          weatherData.currentConditions.monthPrecip = data.monthPrecip || "";
+          
+          weatherData.currentConditions.noReport = false;
+        } catch (error) {
+          weatherData.currentConditions.cityname = locationConfig.mainCity.displayname
+          weatherData.currentConditions.cond = ""
+          weatherData.currentConditions.gusts = ""
+          weatherData.currentConditions.humidity = ""
+          weatherData.currentConditions.pressure = ""
+          weatherData.currentConditions.pressureTrend = ""
+          weatherData.currentConditions.temp = ""
+          weatherData.currentConditions.wind = ""
+          weatherData.currentConditions.feelslike = ""
+          weatherData.currentConditions.feelsliketype = ""
+          weatherData.currentConditions.dewpoint = ""
+          weatherData.currentConditions.visibility = ""
+          weatherData.currentConditions.ceiling = ""
+          weatherData.currentConditions.windspeed = ""
+          weatherData.currentConditions.windDirNum = ""
+          weatherData.currentConditions.noReport = true
+        }
+      }).catch(function(error) {
         weatherData.currentConditions.cityname = locationConfig.mainCity.displayname
         weatherData.currentConditions.cond = ""
         weatherData.currentConditions.gusts = ""
@@ -116,353 +174,366 @@ function grabData() {
         weatherData.currentConditions.windspeed = ""
         weatherData.currentConditions.windDirNum = ""
         weatherData.currentConditions.noReport = true
-      }
-    }).fail(function() {
-      weatherData.currentConditions.cityname = locationConfig.mainCity.displayname
-      weatherData.currentConditions.cond = ""
-      weatherData.currentConditions.gusts = ""
-      weatherData.currentConditions.humidity = ""
-      weatherData.currentConditions.pressure = ""
-      weatherData.currentConditions.pressureTrend = ""
-      weatherData.currentConditions.temp = ""
-      weatherData.currentConditions.wind = ""
-      weatherData.currentConditions.feelslike = ""
-      weatherData.currentConditions.feelsliketype = ""
-      weatherData.currentConditions.dewpoint = ""
-      weatherData.currentConditions.visibility = ""
-      weatherData.currentConditions.ceiling = ""
-      weatherData.currentConditions.windspeed = ""
-      weatherData.currentConditions.windDirNum = ""
-      weatherData.currentConditions.noReport = true
-    })
+      })
   }
-  grabCurrentConditions();
-  function grabNearbyConditions() {
+  grabCurrentConditions();  function grabNearbyConditions() {
     weatherData.nearbyCities.conditions.cities = []
-    var url = "https://api.weather.com/v3/aggcommon/v3-wx-observations-current?geocodes="
-    for (var li = 0; li < locationConfig.surroundCities.citiesAmount; li++) {
-      url += locationConfig.surroundCities.cities[li].lat + "," + locationConfig.surroundCities.cities[li].lon + ";"
+    
+    // Process each nearby city
+    const promises = [];    for (var i = 0; i < locationConfig.surroundCities.citiesAmount; i++) {
+      const cityData = locationConfig.surroundCities.cities[i];
+      const promise = nwsClient.getCurrentConditions(cityData.lat, cityData.lon)
+        .then(function(data) {
+          const nearbyCitiesObj = {
+            noReport: false,
+            cityname: cityData.displayname,
+            statename: cityData.state,
+            temp: data.temperature || "",
+            condition: data.wxPhraseShort ? weatherTextFormatter.formatCondition(data.wxPhraseShort) : "",
+            wind: data.windDirectionCardinal || "CALM",
+            windspeed: data.windSpeed || "",
+            windDirNum: data.windDirection || ""
+          };
+          return nearbyCitiesObj;
+        })
+        .catch(function(error) {
+          return {
+            noReport: true,
+            cityname: cityData.displayname,
+            statename: cityData.state,
+            condition: "",
+            temp: "",
+            wind: "",
+            windspeed: "",
+            windDirNum: ""
+          };
+        });
+      promises.push(promise);
     }
-    url += "&language=en-US&units=e&format=json&apiKey=" + api_key
-    $.getJSON(url, function(data) {
-      data.forEach((ajaxedLoc, i) => {
-        var nearbyCitiesObj = {noReport:false,cityname:"", temp:"", wind:"", windspeed:"",condition:'',windDirNum:""};
-        try {
-        if (ajaxedLoc != undefined || ajaxedLoc != null || ajaxedLoc != "" || ajaxedLoc != " ") {
-          nearbyCitiesObj.noReport = false
-          nearbyCitiesObj.cityname = locationConfig.surroundCities.cities[i].displayname
-          nearbyCitiesObj.statename = locationConfig.surroundCities.cities[i].state
-          nearbyCitiesObj.condition = ajaxedLoc["v3-wx-observations-current"].wxPhraseShort.replaceAll(' Shower', ' SHWR',).replaceAll('Near', '',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').replaceAll('Partial', 'PART').replaceAll('Cldy', 'CLOUDY').replaceAll(' T-Storm', ' T-STM')
-          nearbyCitiesObj.temp = ajaxedLoc["v3-wx-observations-current"].temperature
-          nearbyCitiesObj.wind = ((ajaxedLoc["v3-wx-observations-current"].windDirectionCardinal == "CALM" || ajaxedLoc["v3-wx-observations-current"].windSpeed == 0) ? 'CALM' :  ajaxedLoc["v3-wx-observations-current"].windDirectionCardinal)
-          nearbyCitiesObj.windspeed = ajaxedLoc["v3-wx-observations-current"].windSpeed
-          nearbyCitiesObj.windDirNum = ajaxedLoc["v3-wx-observations-current"].windDirection
-          weatherData.nearbyCities.conditions.cities.push(nearbyCitiesObj)
-        } else {
-          nearbyCitiesObj.noReport = true
-          nearbyCitiesObj.cityname = locationConfig.surroundCities.cities[i].displayname
-          nearbyCitiesObj.statename = locationConfig.surroundCities.cities[i].state
-          nearbyCitiesObj.condition = ""
-          nearbyCitiesObj.temp = ""
-          nearbyCitiesObj.wind = ""
-          nearbyCitiesObj.windspeed = ""
-          nearbyCitiesObj.windDirNum = ""
-          weatherData.nearbyCities.conditions.cities.push(nearbyCitiesObj)
-        }
-        } catch (error) {
-          nearbyCitiesObj.noReport = true
-          nearbyCitiesObj.cityname = locationConfig.surroundCities.cities[i].displayname
-          nearbyCitiesObj.statename = locationConfig.surroundCities.cities[i].state
-          nearbyCitiesObj.condition = ""
-          nearbyCitiesObj.temp = ""
-          nearbyCitiesObj.wind = ""
-          nearbyCitiesObj.windspeed = ""
-          nearbyCitiesObj.windDirNum = ""
-          weatherData.nearbyCities.conditions.cities.push(nearbyCitiesObj)
-        }
-      })
-    }).fail(function(error) {
-      for (var i; i < locationConfig.surroundCities.citiesAmount; i++) {
-        var nearbyCitiesObj = {noReport:false,cityname:"", temp:"", condition:"", wind:"", windspeed:"",statename:"",windDirNum:""};
-        nearbyCitiesObj.noReport = true
-        nearbyCitiesObj.cityname = locationConfig.surroundCities.cities[i].displayname
-        nearbyCitiesObj.statename = locationConfig.surroundCities.cities[i].state
-        nearbyCitiesObj.condition = ""
-        nearbyCitiesObj.temp = ""
-        nearbyCitiesObj.wind = ""
-        nearbyCitiesObj.windspeed = ""
-        nearbyCitiesObj.windDirNum = ""
-        weatherData.nearbyCities.conditions.cities.push(nearbyCitiesObj)
+    
+    Promise.all(promises).then(function(results) {
+      weatherData.nearbyCities.conditions.cities = results;
+    }).catch(function(error) {
+      // Fallback to empty data
+      for (var i = 0; i < locationConfig.surroundCities.citiesAmount; i++) {
+        var nearbyCitiesObj = {
+          noReport: true,
+          cityname: locationConfig.surroundCities.cities[i].displayname,
+          statename: locationConfig.surroundCities.cities[i].state,
+          condition: "",
+          temp: "",
+          wind: "",
+          windspeed: "",
+          windDirNum: ""
+        };
+        weatherData.nearbyCities.conditions.cities.push(nearbyCitiesObj);
       }
-    })
+    });
   }
-  grabNearbyConditions();
-  function grabNearbyForecast() {
+  grabNearbyConditions();  function grabNearbyForecast() {
     weatherData.nearbyCities.forecast.cities = []
-    var url = "https://api.weather.com/v3/aggcommon/v3-wx-forecast-daily-3day?geocodes="
-    for (var li = 0; li < locationConfig.surroundCities.citiesAmount; li++) {
-      url += locationConfig.surroundCities.cities[li].lat + "," + locationConfig.surroundCities.cities[li].lon + ";"
+    
+    // Process each nearby city forecast
+    const promises = [];
+    for (var i = 0; i < locationConfig.surroundCities.citiesAmount; i++) {
+      const cityData = locationConfig.surroundCities.cities[i];
+      const promise = nwsClient.getForecast(cityData.lat, cityData.lon)
+        .then(function(forecastData) {
+          const periods = forecastData.daily;
+          if (periods && periods.length > 0) {
+            // Find today's forecast (first period that's daytime or has temperature info)
+            let todayPeriod = periods[0];
+            if (!todayPeriod.isDaytime && periods.length > 1) {
+              todayPeriod = periods[1]; // Use tomorrow if today is nighttime
+            }
+              const nearbyCitiesObjF = {
+              noReport: false,
+              cityname: cityData.displayname,
+              low: todayPeriod.temperature || "",
+              high: todayPeriod.temperature || "",
+              condition: todayPeriod.shortForecast ? weatherTextFormatter.formatCondition(todayPeriod.shortForecast) : ""
+            };
+            
+            // Try to get both high and low from daily periods
+            if (periods.length >= 2) {
+              const dayPeriod = periods.find(p => p.isDaytime);
+              const nightPeriod = periods.find(p => !p.isDaytime);
+              if (dayPeriod) nearbyCitiesObjF.high = dayPeriod.temperature;
+              if (nightPeriod) nearbyCitiesObjF.low = nightPeriod.temperature;
+            }
+            
+            return nearbyCitiesObjF;
+          } else {
+            return {
+              noReport: true,
+              cityname: cityData.displayname,
+              low: "",
+              high: "",
+              condition: ""
+            };
+          }
+        })
+        .catch(function(error) {
+          return {
+            noReport: true,
+            cityname: cityData.displayname,
+            low: "",
+            high: "",
+            condition: ""
+          };
+        });
+      promises.push(promise);
     }
-    url += "&language=en-US&units=e&format=json&apiKey=" + api_key
-    $.getJSON(url, function(data) {
-      data.forEach((ajaxedLoc, i) => {
-        var nearbyCitiesObjF = {noReport:false,cityname:"", low:"", high:"",condition:""};
-        var ii = 0
-        var fi = 0
-        try {
-        if (ajaxedLoc["v3-wx-forecast-daily-3day"].daypart[0].daypartName[0] == null) {
-          ii = 2
-        }
-        if (ajaxedLoc["v3-wx-forecast-daily-3day"].temperatureMax[0] == null) {
-          fi = 1
-        }
-        if (ajaxedLoc != undefined || ajaxedLoc != null || ajaxedLoc != "" || ajaxedLoc != " ") {
-          nearbyCitiesObjF.noReport = false
-          nearbyCitiesObjF.cityname = locationConfig.surroundCities.cities[i].displayname
-          nearbyCitiesObjF.low = ajaxedLoc["v3-wx-forecast-daily-3day"].temperatureMin[fi]
-          nearbyCitiesObjF.high = ajaxedLoc["v3-wx-forecast-daily-3day"].temperatureMax[fi]
-          nearbyCitiesObjF.condition = ajaxedLoc["v3-wx-forecast-daily-3day"].daypart[0].wxPhraseShort[ii].replaceAll(' Shower', ' SHWR',).replaceAll('Near', '',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').replaceAll('Partial', 'PART').replaceAll('Cldy', 'CLOUDY').replaceAll(' T-Storm', ' T-STM')
-          weatherData.nearbyCities.forecast.cities.push(nearbyCitiesObjF)
-        } else {
-          nearbyCitiesObjF.noReport = true
-          nearbyCitiesObjF.cityname = locationConfig.surroundCities.cities[i].displayname
-          nearbyCitiesObjF.low = ""
-          nearbyCitiesObjF.high = ""
-          nearbyCitiesObjF.condition = ""
-          weatherData.nearbyCities.forecast.cities.push(nearbyCitiesObjF)
-        }
-        } catch (error) {
-          nearbyCitiesObjF.noReport = true
-          nearbyCitiesObjF.cityname = locationConfig.surroundCities.cities[i].displayname
-          nearbyCitiesObjF.low = ""
-          nearbyCitiesObjF.high = ""
-          nearbyCitiesObjF.condition = ""
-          weatherData.nearbyCities.forecast.cities.push(nearbyCitiesObjF)
-        }
-      })
-    }).fail(function(error) {
-      for (var i; i < locationConfig.surroundCities.citiesAmount; i++) {
-        var nearbyCitiesObjF = {noReport:false,cityname:"", low:"", high:"", wind:"", condition:""};
-        nearbyCitiesObjF.noReport = true
-        nearbyCitiesObjF.cityname = locationConfig.surroundCities.cities[i].displayname
-        nearbyCitiesObjF.low = ""
-        nearbyCitiesObjF.high = ""
-        nearbyCitiesObjF.condition = ""
-        weatherData.nearbyCities.forecast.cities.push(nearbyCitiesObjF)
-      }
-    })
-  }
-  grabNearbyForecast()
+    
+    Promise.all(promises).then(function(results) {
+      weatherData.nearbyCities.forecast.cities = results;
+    }).catch(function(error) {
+      // Fallback to empty data
+      for (var i = 0; i < locationConfig.surroundCities.citiesAmount; i++) {
+        var nearbyCitiesObjF = {
+          noReport: true,
+          cityname: locationConfig.surroundCities.cities[i].displayname,
+          low: "",
+          high: "",
+          condition: ""
+        };
+        weatherData.nearbyCities.forecast.cities.push(nearbyCitiesObjF);
+      }    });  }
+  grabNearbyForecast();
   function grabRegionalConditions() {
     weatherData.regionalConditions.cities = []
-    var url = "https://api.weather.com/v3/aggcommon/v3-wx-observations-current?geocodes="
-    for (var li = 0; li < locationConfig.regionalCities.citiesAmount; li++) {
-      url += locationConfig.regionalCities.cities[li].lat + "," + locationConfig.regionalCities.cities[li].lon + ";"
+    
+    // Process each regional city
+    const promises = [];    for (var i = 0; i < locationConfig.regionalCities.citiesAmount; i++) {
+      const cityData = locationConfig.regionalCities.cities[i];
+      const promise = nwsClient.getCurrentConditions(cityData.lat, cityData.lon)
+        .then(function(data) {
+          const nearbyCitiesObj = {
+            noReport: false,
+            cityname: FormatHelper.removeUSFromCityName(cityData.displayname),
+            statename: cityData.state,
+            temp: data.temperature || "",
+            condition: data.wxPhraseShort ? FormatHelper.shortenCondition(weatherTextFormatter.formatCondition(data.wxPhraseShort)) : "",
+            wind: data.windDirectionCardinal || "CALM",
+            windspeed: data.windSpeed || "",
+            windDirNum: data.windDirection || ""
+          };
+          return nearbyCitiesObj;
+        })
+        .catch(function(error) {
+          return {
+            noReport: true,
+            cityname: cityData.displayname,
+            statename: cityData.state,
+            condition: "",
+            temp: "",
+            wind: "",
+            windspeed: "",
+            windDirNum: ""
+          };
+        });
+      promises.push(promise);
     }
-    url += "&language=en-US&units=e&format=json&apiKey=" + api_key
-    $.getJSON(url, function(data) {
-      data.forEach((ajaxedLoc, i) => {
-        var nearbyCitiesObj = {noReport:false,cityname:"", temp:"", wind:"", windspeed:"",condition:'',windDirNum:""};
-        try {
-        if (ajaxedLoc != undefined || ajaxedLoc != null || ajaxedLoc != "" || ajaxedLoc != " ") {
-          nearbyCitiesObj.noReport = false
-          nearbyCitiesObj.cityname = locationConfig.regionalCities.cities[i].displayname
-          nearbyCitiesObj.statename = locationConfig.regionalCities.cities[i].state
-          nearbyCitiesObj.condition = ajaxedLoc["v3-wx-observations-current"].wxPhraseShort.replaceAll(' Shower', ' SHWR',).replaceAll('Near', '',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').replaceAll('Partial', 'PART').replaceAll('Cldy', 'CLOUDY').replaceAll(' T-Storm', ' T-STM')
-          nearbyCitiesObj.temp = ajaxedLoc["v3-wx-observations-current"].temperature
-          nearbyCitiesObj.wind = ((ajaxedLoc["v3-wx-observations-current"].windDirectionCardinal == "CALM" || ajaxedLoc["v3-wx-observations-current"].windSpeed == 0) ? 'CALM' :  ajaxedLoc["v3-wx-observations-current"].windDirectionCardinal)
-          nearbyCitiesObj.windspeed = ajaxedLoc["v3-wx-observations-current"].windSpeed
-          nearbyCitiesObj.windDirNum = ajaxedLoc["v3-wx-observations-current"].windDirection
-          weatherData.regionalConditions.cities.push(nearbyCitiesObj)
-        } else {
-          nearbyCitiesObj.noReport = true
-          nearbyCitiesObj.cityname = locationConfig.regionalCities.cities[i].displayname
-          nearbyCitiesObj.statename = locationConfig.regionalCities.cities[i].state
-          nearbyCitiesObj.condition = ""
-          nearbyCitiesObj.temp = ""
-          nearbyCitiesObj.wind = ""
-          nearbyCitiesObj.windspeed = ""
-          nearbyCitiesObj.windDirNum = ""
-          weatherData.regionalConditions.cities.push(nearbyCitiesObj)
-        }
-        } catch (error) {
-          nearbyCitiesObj.noReport = true
-          nearbyCitiesObj.cityname = locationConfig.regionalCities.cities[i].displayname
-          nearbyCitiesObj.statename = locationConfig.regionalCities.cities[i].state
-          nearbyCitiesObj.condition = ""
-          nearbyCitiesObj.temp = ""
-          nearbyCitiesObj.wind = ""
-          nearbyCitiesObj.windspeed = ""
-          nearbyCitiesObj.windDirNum = ""
-          weatherData.regionalConditions.cities.push(nearbyCitiesObj)
-        }
-      })
-    }).fail(function(error) {
-      for (var i; i < locationConfig.regionalCities.citiesAmount; i++) {
-        var nearbyCitiesObj = {noReport:false,cityname:"", temp:"", condition:"", wind:"", windspeed:"",statename:"",windDirNum:""};
-        nearbyCitiesObj.noReport = true
-        nearbyCitiesObj.cityname = locationConfig.regionalCities.cities[i].displayname
-        nearbyCitiesObj.statename = locationConfig.regionalCities.cities[i].state
-        nearbyCitiesObj.condition = ""
-        nearbyCitiesObj.temp = ""
-        nearbyCitiesObj.wind = ""
-        nearbyCitiesObj.windspeed = ""
-        nearbyCitiesObj.windDirNum = ""
-        weatherData.regionalConditions.cities.push(nearbyCitiesObj)
+    
+    Promise.all(promises).then(function(results) {
+      weatherData.regionalConditions.cities = results;
+    }).catch(function(error) {
+      // Fallback to empty data
+      for (var i = 0; i < locationConfig.regionalCities.citiesAmount; i++) {
+        var nearbyCitiesObj = {
+          noReport: true,
+          cityname: locationConfig.regionalCities.cities[i].displayname,
+          statename: locationConfig.regionalCities.cities[i].state,
+          condition: "",
+          temp: "",
+          wind: "",
+          windspeed: "",
+          windDirNum: ""
+        };
+        weatherData.regionalConditions.cities.push(nearbyCitiesObj);
       }
-    })
-  }
-  grabRegionalConditions();
-  function grabTravel() {
-    var url = "https://api.weather.com/v3/aggcommon/v3-wx-forecast-daily-5day?geocodes="
-    weatherData.travel.cities.forEach((loc, i) => {
-      url += `${loc.lat},${loc.lon};`
     });
-    url += "&language=en-US&units=e&format=json&apiKey=" + api_key
-    $.getJSON(url, function(data) {
-      data.forEach((ajaxedLoc, i) => {
-        for (var hi = (ajaxedLoc["v3-wx-forecast-daily-5day"].daypart[0].daypartName[0] == null) ? 1 : 0, hidp = (ajaxedLoc["v3-wx-forecast-daily-5day"].daypart[0].daypartName[0] == null) ? 2 : 0; hi < 3; hi++, hidp = hidp + 2) {
-          weatherData.travel.cities[i].days[0].high = ajaxedLoc["v3-wx-forecast-daily-5day"].temperatureMax[hi]
-          weatherData.travel.cities[i].days[0].low = ajaxedLoc["v3-wx-forecast-daily-5day"].temperatureMin[hi]
-          weatherData.travel.cities[i].days[0].condition = ajaxedLoc["v3-wx-forecast-daily-5day"].daypart[0].wxPhraseShort[hidp].replaceAll(' Shower', ' SHWR',).replaceAll('Near', '',).replaceAll('Light', 'LGT',).replaceAll('Heavy', 'HVY').replaceAll('Early', 'ERLY').replaceAll('Partial', 'PART').replaceAll('Cldy', 'CLOUDY').replaceAll(' T-Storm', ' T-STM')
-          weatherData.travel.cities[i].days[0].dayNight = ajaxedLoc["v3-wx-forecast-daily-5day"].daypart[0].dayOrNight[hidp]
-        }
-      })
-    }).fail(function() {
+  }
+  grabRegionalConditions();  function grabTravel() {
+    // Process travel cities forecast using NWS
+    const promises = [];
+    
+    weatherData.travel.cities.forEach((city, i) => {
+      const promise = nwsClient.getForecast(city.lat, city.lon)
+        .then(function(forecastData) {
+          const periods = forecastData.daily;
+          if (periods && periods.length > 0) {
+            const todayPeriod = periods[0];
+              weatherData.travel.cities[i].days[0].high = todayPeriod.temperature || ""
+            weatherData.travel.cities[i].days[0].low = ""
+            weatherData.travel.cities[i].days[0].condition = todayPeriod.shortForecast ? weatherTextFormatter.formatCondition(todayPeriod.shortForecast) : ""
+            weatherData.travel.cities[i].days[0].dayNight = todayPeriod.isDaytime ? "D" : "N"
+            
+            // Try to get low from night period
+            if (periods.length > 1) {
+              const nightPeriod = periods.find(p => !p.isDaytime);
+              if (nightPeriod) {
+                weatherData.travel.cities[i].days[0].low = nightPeriod.temperature || ""
+              }
+            }
+          }
+        })
+        .catch(function(error) {
+          weatherData.travel.cities[i].days[0].high = ""
+          weatherData.travel.cities[i].days[0].low = ""
+          weatherData.travel.cities[i].days[0].condition = ""
+          weatherData.travel.cities[i].days[0].dayNight = ""
+        });
+      promises.push(promise);
+    });
+    
+    Promise.all(promises).catch(function(error) {
       for (var i = 0; i < weatherData.travel.cities.length; i++) {
         weatherData.travel.cities[i].days[0].high = ""
         weatherData.travel.cities[i].days[0].low = ""
         weatherData.travel.cities[i].days[0].condition = ""
         weatherData.travel.cities[i].days[0].dayNight = ""
       }
-    })
-  }
+    });  }
   grabTravel()
   function grabDayDesc() {
-    var url = "https://api.weather.com/v3/wx/forecast/daily/5day?geocode=" + locationConfig.mainCity.lat + "," + locationConfig.mainCity.lon + "&format=json&units=e&language=en-US&apiKey=" + api_key
-    $.getJSON(url, function(data) {
-      var ii = 0
-      try {
-        if (data.daypart[0].daypartName[0] == null) {
-          ii = 1
+    nwsClient.getForecast(locationConfig.mainCity.lat, locationConfig.mainCity.lon)
+      .then(function(forecastData) {
+        const periods = forecastData.daily;
+        try {
+          weatherData.dayDesc.cityname = locationConfig.mainCity.displayname
+          weatherData.dayDesc.noReport = false
+          
+          // Fill in up to 3 day periods with detailed forecasts
+          for (var i = 0; i < Math.min(weatherData.dayDesc.times.length, periods.length); i++) {
+            const period = periods[i];
+            weatherData.dayDesc.times[i].timetitle = period.name || ""
+            weatherData.dayDesc.times[i].forecast = period.detailedForecast || ""
+          }
+        } catch (error) {
+          weatherData.dayDesc.cityname = locationConfig.mainCity.displayname
+          weatherData.dayDesc.noReport = true
+          for (var i = 0; i < weatherData.dayDesc.times.length; i++) {
+            weatherData.dayDesc.times[i].timetitle = ""
+            weatherData.dayDesc.times[i].forecast = ""
+          }
         }
-        weatherData.dayDesc.cityname = locationConfig.mainCity.displayname
-        weatherData.dayDesc.noReport = false
-        for (var i = 0; i < weatherData.dayDesc.times.length; i++, ii++) {
-          weatherData.dayDesc.times[i].timetitle = data.daypart[0].daypartName[ii]
-          weatherData.dayDesc.times[i].forecast = data.daypart[0].narrative[ii]
-        }
-      } catch (error) {
+      })
+      .catch(function(error) {
         weatherData.dayDesc.cityname = locationConfig.mainCity.displayname
         weatherData.dayDesc.noReport = true
-        for (var i = 0; i < weatherData.dayDesc.times.length; i++, ii++) {
+        for (var i = 0; i < weatherData.dayDesc.times.length; i++) {
           weatherData.dayDesc.times[i].timetitle = ""
           weatherData.dayDesc.times[i].forecast = ""
         }
-      }
-    }).fail(function() {
-      weatherData.dayDesc.cityname = locationConfig.mainCity.displayname
-      weatherData.dayDesc.noReport = true
-      for (var i = 0; i < weatherData.dayDesc.times.length; i++) {
-        weatherData.dayDesc.times[i].timetitle = ""
-        weatherData.dayDesc.times[i].forecast = ""
-      }
-    })
-  }
-  grabDayDesc()
+      })
+  }grabDayDesc()
   function grabExtended() {
-    var url = "https://api.weather.com/v3/wx/forecast/daily/5day?geocode=" + locationConfig.mainCity.lat + "," + locationConfig.mainCity.lon + "&format=json&units=e&language=en-US&apiKey=" + api_key
-    $.getJSON(url, function(data) {
-      var daysDivs = ['one', "two", "three", "four", "five"]
-      try {
-        weatherData.extendedForecast.cityname = locationConfig.mainCity.displayname
-        weatherData.extendedForecast.noReport = false
-        var ii = 0
-        var dpi = 0
-        if (data.daypart[0].daypartName[0] == null) {
-          ii = 1
-          dpi = 2
+    nwsClient.getForecast(locationConfig.mainCity.lat, locationConfig.mainCity.lon)
+      .then(function(forecastData) {
+        const periods = forecastData.daily;
+        try {
+          weatherData.extendedForecast.cityname = locationConfig.mainCity.displayname
+          weatherData.extendedForecast.noReport = false
+          
+          // Process up to 5 days of forecast
+          for (var i = 0; i < Math.min(weatherData.extendedForecast.days.length, periods.length); i++) {
+            const period = periods[i];
+            weatherData.extendedForecast.days[i].cond = period.detailedForecast ? weatherTextFormatter.formatCondition(period.detailedForecast) : ""
+            weatherData.extendedForecast.days[i].dayname = period.name ? period.name.toUpperCase() : ""
+            weatherData.extendedForecast.days[i].high = period.temperature || ""
+            weatherData.extendedForecast.days[i].icon = period.icon || 44
+            weatherData.extendedForecast.days[i].low = ""
+            weatherData.extendedForecast.days[i].windspeed = period.windSpeed ? period.windSpeed.replace(/[^\d]/g, '') : ""
+            
+            // Try to get low temperature from next period if this is a day period
+            if (period.isDaytime && i + 1 < periods.length) {
+              weatherData.extendedForecast.days[i].low = periods[i + 1].temperature || ""
+            }
+          }
+        } catch (error) {
+          weatherData.extendedForecast.cityname = locationConfig.mainCity.displayname
+          weatherData.extendedForecast.noReport = true
+          for (var i = 0; i < weatherData.extendedForecast.days.length; i++) {
+            weatherData.extendedForecast.days[i].cond = ""
+            weatherData.extendedForecast.days[i].dayname = ""
+            weatherData.extendedForecast.days[i].high = ""
+            weatherData.extendedForecast.days[i].icon = 44
+            weatherData.extendedForecast.days[i].low = ""
+            weatherData.extendedForecast.days[i].windspeed = ""
+          }
         }
-        for (var i = 0; i < weatherData.extendedForecast.days.length; i++, ii++, dpi = dpi + 2) {
-          weatherData.extendedForecast.days[i].cond = data.daypart[0].wxPhraseLong[dpi].replace('Scattered ', "Sct'd ").replace('Thunderstorms',"T'Storms").replace('Thundershowers',"T'Showers")
-          weatherData.extendedForecast.days[i].dayname = data.dayOfWeek[ii].toUpperCase()
-          weatherData.extendedForecast.days[i].high = data.temperatureMax[ii]
-          weatherData.extendedForecast.days[i].icon = data.daypart[0].iconCode[dpi]
-          weatherData.extendedForecast.days[i].low = data.temperatureMin[ii]
-          weatherData.extendedForecast.days[i].windspeed = data.daypart[0].windSpeed[dpi]
-        }
-      } catch (error) {
+      })
+      .catch(function(error) {
         weatherData.extendedForecast.cityname = locationConfig.mainCity.displayname
         weatherData.extendedForecast.noReport = true
-        var ii = 0
-        var dpi = 0
-        if (data.daypart[0].daypartName[0] == null) {
-          ii = 1
-          dpi = 2
-        }
-        for (var i = 0; i < weatherData.extendedForecast.days.length; i++, ii++, dpi = dpi + 2) {
+        for (var i = 0; i < weatherData.extendedForecast.days.length; i++) {
           weatherData.extendedForecast.days[i].cond = ""
           weatherData.extendedForecast.days[i].dayname = ""
           weatherData.extendedForecast.days[i].high = ""
           weatherData.extendedForecast.days[i].icon = 44
           weatherData.extendedForecast.days[i].low = ""
           weatherData.extendedForecast.days[i].windspeed = ""
-        }
-      }
-    }).fail(function() {
-      weatherData.extendedForecast.cityname = locationConfig.mainCity.displayname
-      weatherData.extendedForecast.noReport = true
-      for (var i = 0; i < weatherData.extendedForecast.days.length; i++) {
-        weatherData.extendedForecast.days[i].cond = ""
-        weatherData.extendedForecast.days[i].dayname = ""
-        weatherData.extendedForecast.days[i].high = ""
-        weatherData.extendedForecast.days[i].icon = ""
-        weatherData.extendedForecast.days[i].low = ""
-        weatherData.extendedForecast.days[i].windspeed = ""
-      }
-    })
-  }
-  grabExtended()
+        }      })  }
+  grabExtended();
   function grabAlmanac() {
-    var url = "https://api.weather.com/v3/wx/forecast/daily/5day?geocode=" + locationConfig.mainCity.lat + "," + locationConfig.mainCity.lon + "&format=json&units=e&language=en-US&apiKey=" + api_key
-    $.getJSON(url, function(data) {
-      var ii = 0
-      if (data.daypart[0].daypartName[0] == null) {
-        ii = 1
-      }
-      weatherData.almanac.noReport = false
-      weatherData.almanac.sunrisetoday = new Date(data.sunriseTimeLocal[ii])
-      weatherData.almanac.sunrisetoday = weatherData.almanac.sunrisetoday.toLocaleTimeString('en-US', { hour: 'numeric', hour12: true, minute: 'numeric'}).replace(/ /g,' ').toLowerCase()
-      weatherData.almanac.sunrisetomorow = new Date(data.sunriseTimeLocal[ii+1])
-      weatherData.almanac.sunrisetomorow = weatherData.almanac.sunrisetomorow.toLocaleTimeString('en-US', { hour: 'numeric', hour12: true, minute: 'numeric'}).replace(/ /g,' ').toLowerCase()
-      weatherData.almanac.sunsettoday = new Date(data.sunsetTimeLocal[ii])
-      weatherData.almanac.sunsettoday = weatherData.almanac.sunsettoday.toLocaleTimeString('en-US', { hour: 'numeric', hour12: true, minute: 'numeric'}).replace(/ /g,' ').toLowerCase()
-      weatherData.almanac.sunsettomorrow = new Date(data.sunsetTimeLocal[ii+1])
-      weatherData.almanac.sunsettomorrow = weatherData.almanac.sunsettomorrow.toLocaleTimeString('en-US', { hour: 'numeric', hour12: true, minute: 'numeric'}).replace(/ /g,' ').toLowerCase()
-      weatherData.almanac.today = data.dayOfWeek[ii].toUpperCase()
-      weatherData.almanac.tomorrow = data.dayOfWeek[ii+1].toUpperCase()
-    }).fail(function() {
-      weatherData.almanac.noReport = true
-      weatherData.almanac.sunrisetoday = ""
-      weatherData.almanac.sunrisetomorow = ""
-      weatherData.almanac.sunsettoday = ""
-      weatherData.almanac.sunsettomorrow = ""
-      weatherData.almanac.today = ""
-      weatherData.almanac.tomorrow = ""
-    })
-    $.getJSON("https://api.weather.com/v3/wx/almanac/daily/5day?geocode=" + locationConfig.mainCity.lat + "," + locationConfig.mainCity.lon + "&format=json&units=e&startDay=" + dateFns.format(new Date(), "D") + "&startMonth=" + dateFns.format(new Date(),"M") + "&apiKey=" + api_key, function(data) {
-      weatherData.almanac.avglowtoday = data.temperatureAverageMin[0]
-      weatherData.almanac.avghightoday = data.temperatureAverageMax[0]
-      weatherData.almanac.avglowtomorrow = data.temperatureAverageMin[1]
-      weatherData.almanac.avghightomorow = data.temperatureAverageMax[1]
-      weatherData.almanac.normalprecip = data.precipitationAverage[0]
-    }).fail(function() {
-      weatherData.almanac.avglowtoday = ""
-      weatherData.almanac.avghightoday = ""
-      weatherData.almanac.avglowtomorrow = ""
-      weatherData.almanac.avghightomorow = ""
-      weatherData.almanac.normalprecip = "NO REPORT"
-    })
+    // Use almanac helper for astronomical data
+    if (typeof almanacHelper !== 'undefined') {
+      const today = new Date();
+      const tomorrow = new Date(today);
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      
+      // Get today's almanac data
+      almanacHelper.getAlmanac(locationConfig.mainCity.lat, locationConfig.mainCity.lon, today)
+        .then(function(todayData) {
+          if (todayData) {
+            weatherData.almanac.sunrisetoday = todayData.sunrise || "";
+            weatherData.almanac.sunsettoday = todayData.sunset || "";
+            weatherData.almanac.noReport = false;
+          }
+          
+          // Get tomorrow's almanac data
+          return almanacHelper.getAlmanac(locationConfig.mainCity.lat, locationConfig.mainCity.lon, tomorrow);
+        })
+        .then(function(tomorrowData) {
+          if (tomorrowData) {
+            weatherData.almanac.sunrisetomorow = tomorrowData.sunrise || "";
+            weatherData.almanac.sunsettomorrow = tomorrowData.sunset || "";
+          }
+          
+          // Set date labels
+          const todayStr = dateFns.format(today, "MMM D");
+          const tomorrowStr = dateFns.format(tomorrow, "MMM D");
+          weatherData.almanac.today = todayStr;
+          weatherData.almanac.tomorrow = tomorrowStr;
+          
+          console.log('Almanac data updated:', weatherData.almanac);
+        })
+        .catch(function(error) {
+          console.warn('Could not get almanac data:', error);
+          weatherData.almanac.noReport = true;
+          weatherData.almanac.sunrisetoday = "";
+          weatherData.almanac.sunrisetomorow = "";
+          weatherData.almanac.sunsettoday = "";
+          weatherData.almanac.sunsettomorrow = "";
+        });
+    } else {
+      // Fallback when almanac helper is not available
+      weatherData.almanac.noReport = true;
+      weatherData.almanac.sunrisetoday = "";
+      weatherData.almanac.sunrisetomorow = "";
+      weatherData.almanac.sunsettoday = "";
+      weatherData.almanac.sunsettomorrow = "";
+    }
+    
+    // Set other almanac fields to default/unavailable values
+    weatherData.almanac.today = weatherData.almanac.today || dateFns.format(new Date(), "MMM D");
+    weatherData.almanac.tomorrow = weatherData.almanac.tomorrow || dateFns.format(dateFns.addDays(new Date(), 1), "MMM D");
+    weatherData.almanac.avglowtoday = "";
+    weatherData.almanac.avghightoday = "";
+    weatherData.almanac.avglowtomorrow = "";
+    weatherData.almanac.avghightomorow = "";
+    weatherData.almanac.normalprecip = "NO REPORT";
   }
   grabAlmanac()
   function grabMoons() {
@@ -506,59 +577,43 @@ function grabData() {
         weatherData.almanac.moonphases[i].date = ""
         weatherData.almanac.moonphases[i].moon = "blank"
       }
-    }
-  }
+    }  }
   grabMoons()
   function getWarnings() {
-    var url = "https://api.weather.com/v3/alerts/headlines?geocode=" + locationConfig.mainCity.lat + "," + locationConfig.mainCity.lon + "&format=json&language=en-US&apiKey=" + api_key
-    $.getJSON(url, function(data) {
-      try {
-        if (data != undefined) {
-          var warnings = []
-          weatherData.alerts.alertsAmount = data.alerts.length
-          for (var i = 0; i < data.alerts.length; i++) {
-            warnings.push({alertNum: i+1, key: data.alerts[i].detailKey, warningtitle:"", warningdesc:"", severity:"", alertType:"", significance:"",headlinetext: data.alerts[i].headlineText})
-            eachAlert(i)
+    nwsClient.getAlerts(locationConfig.mainCity.lat, locationConfig.mainCity.lon)
+      .then(function(alertsData) {
+        try {
+          if (alertsData && alertsData.alerts && alertsData.alerts.length > 0) {
+            weatherData.alerts.alertsAmount = alertsData.alertsAmount;
+            weatherData.alerts.warnings = alertsData.alerts;
+          } else {
+            weatherData.alerts = {}
+            weatherData.alerts.alertsAmount = 0
           }
-          function eachAlert(i) {
-            $.getJSON("https://api.weather.com/v3/alerts/detail?alertId=" + warnings[i].key + "&format=json&language=en-US&apiKey=" + api_key, function(data) {
-              warnings[i].warningtitle = data.alertDetail.eventDescription
-              warnings[i].warningdesc = data.alertDetail.texts[0].description
-              warnings[i].severity = data.alertDetail.severityCode
-              warnings[i].significance = data.alertDetail.significance
-              warnings[i].alertType = data.alertDetail.messageType.replace("Cancel","Cancellation").replace("New","")
-            })
-            weatherData.alerts.warnings.push(warnings[i])
-          }
-        } else {
+        } catch (error) {
           weatherData.alerts = {}
           weatherData.alerts.alertsAmount = 0
         }
-      } catch (error) {
+      })
+      .catch(function(error) {
         weatherData.alerts = {}
         weatherData.alerts.alertsAmount = 0
-      }
-    }).fail(function() {
-      weatherData.alerts = {}
-      weatherData.alerts.alertsAmount = 0
+      })
+  }  getWarnings()
+  
+  // Get NWS zone information
+  nwsClient.makeRequest(`/points/${locationConfig.mainCity.lat},${locationConfig.mainCity.lon}`)
+    .then(function(data) {
+      weatherData.NWS.zone = data.properties.forecastZone.substr(-6)
     })
-  }
-  getWarnings()
-  var NWSurl1 = "https://api.weather.gov/points/" + locationConfig.mainCity.lat + "," + locationConfig.mainCity.lon;
-  $.getJSON(NWSurl1, function(data) {
-    weatherData.NWS.zone = data.properties.forecastZone.substr(-6)
-  })
+    .catch(function(error) {
+      weatherData.NWS.zone = ""
+    })
+  
   function getMonthPrecip() {
-    var url = "https://api.weather.com/v1/geocode/"+ locationConfig.mainCity.lat + "/" + locationConfig.mainCity.lon + "/observations/current.json?language=en-US&units=e&apiKey=" + api_key;
-    $.getJSON(url, function(data) {
-      try {
-        weatherData.currentConditions.monthPrecip = data.observation.imperial.precip_mtd.toFixed(2) + " IN"
-      } catch (error) {
-        weatherData.currentConditions.monthPrecip = ""
-      }
-    }).fail(function() {
-      weatherData.currentConditions.monthPrecip = ""
-    })
+    // Note: NWS doesn't provide month-to-date precipitation in the same way as TWC
+    // This would need to be calculated from daily observations or omitted
+    weatherData.currentConditions.monthPrecip = ""
   }
   getMonthPrecip()
 }

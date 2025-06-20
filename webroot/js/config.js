@@ -1,4 +1,9 @@
-var api_key = 'e1f10a1e78da46f5b10a1e78da96f525';
+// NWS API Configuration (no API key required)
+var nws_config = {
+  baseUrl: 'https://api.weather.gov',
+  userAgent: '(Weather Star 3000 Simulator, contact@example.com)',
+  requestDelay: 100 // milliseconds between requests
+};
 
 var apperanceSettings = {
   providerName: "Mist Weather Media",
