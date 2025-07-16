@@ -242,7 +242,7 @@ var selectedRagionalLocs = {}
 function locationGrab() {
   if (locationSettings.mainCity.autoFind == false) {
     $.getJSON("https://api.weather.com/v3/location/point?" + locationSettings.mainCity.type + "=" + locationSettings.mainCity.val + "&language=en-US&format=json&apiKey=" + api_key, function(data) {
-      locationConfig.mainCity.displayname = ((locationConfig.mainCity.displayname != "") ? locationConfig.mainCity.displayname : data.location.displayName)
+      locationConfig.mainCity.displayname = ((locationSettings.mainCity.displayname != "") ? locationSettings.mainCity.displayname : data.location.displayName)
       locationConfig.mainCity.lat = data.location.latitude
       locationConfig.mainCity.lon = data.location.longitude
       locationConfig.mainCity.state = data.location.adminDistrictCode
