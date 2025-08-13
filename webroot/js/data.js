@@ -510,7 +510,7 @@ function grabData() {
   }
   grabMoons()
   function getWarnings() {
-    weatherData.alerts = {}
+    weatherData.alerts.warnings = []
     weatherData.alerts.alertsAmount = 0
     var url = "https://api.weather.com/v3/alerts/headlines?geocode=" + locationConfig.mainCity.lat + "," + locationConfig.mainCity.lon + "&format=json&language=en-US&apiKey=" + api_key
     $.getJSON(url, function(data) {
