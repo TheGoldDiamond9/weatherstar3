@@ -533,15 +533,15 @@ function grabData() {
             weatherData.alerts.warnings.push(warnings[i])
           }
         } else {
-          weatherData.alerts = {}
+          weatherData.alerts.warnings = []
           weatherData.alerts.alertsAmount = 0
         }
       } catch (error) {
-        weatherData.alerts = {}
+        weatherData.alerts.warnings = []
         weatherData.alerts.alertsAmount = 0
       }
     }).fail(function() {
-      weatherData.alerts = {}
+      weatherData.alerts.warnings = []
       weatherData.alerts.alertsAmount = 0
     })
   }
