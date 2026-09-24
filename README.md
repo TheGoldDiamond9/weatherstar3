@@ -1,6 +1,8 @@
 # Weather Star 3000 Simulator
 Weather Star 3000 emulation in HTML/JS/CSS
 
+I recommend checking out my better WeatherSTAR 3000 [simulator](https://github.com/MistWeatherMedia/WeatherSTAR-3000-Java)
+
 Official Website: https://3000.weatherstar.dev/
 
 ### Visit the Discord Server
