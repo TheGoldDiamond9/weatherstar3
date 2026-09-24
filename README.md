@@ -13,7 +13,7 @@ You can change location settings in the location.js file under the locationSetti
 ## NEW MAJOR UPDATE FEBRUARY 8, 2025
 Check changelong.txt for more information
 
-The license does not prohibit this, but I do not recommend making your own website around this simulator. It is not nice.
+The license does not prohibit this, but I do not recommend making your own website around this simulator.
 
 Code mostly made by me, rest of the code used in other open source projects.
 Images made by COLSTERGit (COLSTER)
